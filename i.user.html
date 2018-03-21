@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul{
+            list-style: none;
+        }
+        .usercenter-view-mine{
+            width: 100%;
+            margin-bottom: 45px;
+        }
+        .page-top-box{
+            height: 252px;
+            width: 100%;
+            padding-top: 1px;
+        }
+        .mantop{
+            height: 130px;
+            width: 100%;
+            margin-top: 1px;
+            background: url('./images/user-top.png') center bottom no-repeat;
+            background-size: 100%;
+            padding-top: 1px;
+        }
+        .top-box{
+            margin:37px 0px 0px 20px;
+            width: 95%;
+            height: 56px;
+        }
+        .top-box img{
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+        .top-hello{
+            /* display: inline; */
+            position: absolute;
+            top:0px;
+        }
+        .content-box{
+            width: 100px;
+            height: 56px;
+            display: inline-block;
+            position:relative;
+            font-size: 16px;
+            color:#fff;
+        }
+        .user-button{
+            width: 82px;
+            border-radius: 10px;
+            position: absolute;
+            top: 30px;
+            height: 24px;
+            line-height: 24px;
+            color: #ff5700;
+            background: #fff;
+            text-align: center;
+            font-size: 14px;
+        }
+        .content-frist{
+            width: 100%;
+            height: 100px;
+            height:117px;
+            margin: 5px 0px 10px 0px;
+            
+        }
+        .content-frist-title{
+            padding: 5.6px 20px;
+            color:#404040;
+            border-bottom:1px solid #f0f0f0;
+        }
+        .all_bill{
+            float: right;
+            color:#808080;
+        }
+        .all_bill::after{
+            content: " ";
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            border-width: 2px 2px 0 0;
+            border-color: #c8cccd;
+            border-style: solid;
+            position: relative;
+            top: 0px;
+            transform: rotate(45deg);
+        }
+        .content-frist-box{
+            width: 100%;
+            height: 87px;
+        }
+        .bill-ul{
+            width: 100%;
+            height: 45px;
+            padding: 21px 0px;
+        }
+        .bill-ul li{
+            width: 33.33%;
+            float: left;
+            position: relative;
+        }
+        .bill-img-1{
+            width: 30px;
+            height: 20px;
+            margin: auto;
+            background: url(./images/user-bill.png) no-repeat 0px 0px;
+            background-size: 170px 50px;
+        }
+        .bill-img-2{
+            width: 30px;
+            height: 20px;
+            margin: auto;
+            background: url(./images/user-bill.png) no-repeat -57px 0px;
+            background-size: 170px 50px;
+        }
+        .bill-img-3{
+            width: 31px;
+            height: 20px;
+            margin: auto;
+            background: url(./images/user-bill.png) no-repeat -114px 0px;
+            background-size: 170px 50px;
+        }
+        .bill-ul p{
+            text-align: center;
+            font-size: 12px;
+            color: grey;
+            margin-top: 7px;
+            margin-left: 5px;  
+        }
+        .bull-tow-ul li{
+            /* width: 25%; */
+        }
+        .bill-num{
+            /* width: 22px; */
+            word-wrap: word-break;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            color: #36383f;
+            position: relative;
+        }
+        .bill-num span{
+            color: #36383f;
+        }
+        .bill-bar{
+            height: 10px;
+            width: 100%;
+            background: #f6f6f6;
+        }
+        /* .bill-server .bull-img-1{
+            background: url('./images/bill-icon.png') no-repeat 0px 0px;
+        } */
+        .bill-server li{
+            width: 25%;
+        }
+        .bill-server li .bill-img-1{
+            width: 30px;
+            height: 30px;
+            margin: auto;
+            background: url(./images/bill-icon.png) no-repeat -4px -685px;
+            background-size: 500px 800px;         
+        }
+        .bill-server li .bill-img-2{
+            width: 30px;
+            height: 30px;
+            margin: auto;
+            background: url(./images/bill-icon.png) no-repeat -63px -685px;
+            background-size: 500px 800px;         
+        }
+        .bill-server li .bill-img-3{
+            width: 30px;
+            height: 30px;
+            margin: auto;
+            background: url(./images/bill-icon.png) no-repeat -129px -685px;
+            background-size: 500px 800px;         
+        }
+        .bill-server li .bill-img-4{
+            width: 30px;
+            height: 32px;
+            margin: auto;
+            background: url(./images/bill-icon.png) no-repeat -191px -683px;
+            background-size: 500px 800px;         
+        }
+        .footer a{
+            text-decoration: none;
+            display: inline-block;
+            color: rgba(0, 0, 0, 0.28);
+        }
+        .footer{
+            width: 100%;
+            height: 45px;
+            position: fixed;
+            background: #fff;
+            border-top:0.5px solid lightgray;
+            bottom: 0;
+        }
+        .footer ul {
+            list-style: none;
+            width: 100%;
+            height: 45px;
+        }
+        .footer ul li{
+            width: 25%;
+            height: 45px;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            line-height: 10px;
+            /*
+            color: #ff712b;
+            */
+            font-weight: 400;
+        }
+        .home-img1{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: 0px -50px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img2{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -50px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img3{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -100px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img4{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -150px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img5{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -200px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .position1 a{
+            color:#ff712b ;
+        }
+        .user-button a{
+            text-decoration: none;
+            color:#ff712b ;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="usercenter-view-mine">
+         <div class="page-top-box">
+             <div class="mantop">
+                 <div class="top-box">
+                        <!-- <img src="./images/userimg.jpg" width="56" height="56">
+                        <div class="content-box">
+                                <div class="top-hello">你好</div>
+                                <div class="user-button"><div>
+                        </div>                        -->
+                        <div class="content-box">
+                                <div class="top-hello">Hello 你好</div>
+                                <div class="user-button"><a href="./i.login.html">去登陆</a></div>
+                        </div> 
+                 </div>
+                 
+
+             </div>
+             <section class="content-frist">
+                    <div class="content-frist-title">我的订单<span class="all_bill">全部订单</span></div>
+                    <div class="content-frist-box">
+                        <ul class="bill-ul">
+                            <li>
+                                <div class="bill-img-1"></div>
+                                <p>待支付</p>
+                            </li>
+                            <li>
+                                <div class="bill-img-2"></div>
+                                <p>待配送</p>
+                            </li>
+                            <li>
+                                <div class="bill-img-3"></div>
+                                <p>已完成</p>
+                            </li>
+                        </ul>
+                    </div>
+               </section>
+               <div class='bill-bar'></div>
+               <section class="content-frist">
+                    <div class="content-frist-title">我的资产</div>
+                    <div class="content-frist-box">
+                        <ul class="bill-ul bull-tow-ul">
+                            <li>
+                                <div class="bill-num"><span>￥0.00</span></div>
+                                <p>余额</p>
+                            </li>
+                            <li>
+                                <div class="bill-num">
+                                    <span class="bill-num-box">0</span>
+                                    <!-- <div class="bill-num-box"><span>评价送积分</span></div> -->
+                                </div>
+                                <p>积分</p>
+                            </li>
+                           
+                            <li>
+                                <div class="bill-num"><span>0</span></div>
+                                <p>优惠卷</p>
+                            </li>
+                        </ul>
+                    </div>
+               </section>
+               <div class='bill-bar'></div>
+               <section class="content-frist">
+                    <div class="content-frist-title">我的服务</div>
+                    <div class="content-frist-box">
+                        <ul class="bill-ul bill-server">
+                            <li>
+                                <div class="bill-img-1"></div>
+                                <p>会员中心</p>
+                            </li>
+                            <li>
+                                <div class="bill-img-2"></div>
+                                <p>收货地址</p>
+                            </li>
+                            <li>
+                                <div class="bill-img-3"></div>
+                                <p>帮助中心</p>
+                            </li>
+                            <li>
+                                <div class="bill-img-4"></div>
+                                <p>客服中心</p>
+                            </li>
+                        </ul>
+                    </div>
+               </section>
+               
+               
+         </div>
+    </div>
+    <div class="footer">
+            <ul>
+                <li class="position1"><a href="./i.index.html"><div class="home-img1"></div><div>首页</div></a></li>
+                <li class="position2"><a href="#"><div class="home-img2"></div><div>订单</div></a></li>
+                <li class="position4"><a href="#"><div class="home-img4"></div><div>购物车</div></a></li>
+                <li class="position5"><a href="./i.user.html"><div class="home-img5"></div><div>我的</div></a></li>       
+            </ul>
+        </div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>联家</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .nav{
+            height: 44px;
+            width: 100%;
+            line-height: 44px;
+            border-bottom: 1px solid gray;
+            text-align: center;
+            position: relative;
+        }
+        body{
+            background: #f6f6f6;
+            /* overflow:-Scroll;
+            overflow-y:hidden */
+        }
+        .back{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            background: #333;
+            border-radius: 50%;
+            color: #fff;
+            display: block;
+        }
+        .back-into{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 32px;            
+        }
+        .regedit-box{
+            width: 750px;
+            margin: auto;
+        }
+        .regedit-box img{
+            width: 100%;
+        }
+        .regedit-input{
+            margin-top: 10px;
+            width: 100%;
+            height: 180px;          
+        }
+        .regedit-input .regedit-div{
+            width: 100%;
+            height: 59px;
+            background: #fff;
+            margin-bottom: 1px;
+        }
+        .regedit-input input{
+            display: inline-block;
+            width: 60%;
+            outline:none;
+            border: none;
+            height: 59px;
+            padding-left: 10px;
+            margin-bottom: 1px;
+        }
+        .user-protocol{
+            float: right;
+        }
+        .user-protocol span{
+            color:#ff712b;
+            cursor: pointer;            
+        }
+        .user-protocol-p{
+            padding: 20px 15px;
+            font-size: 13px;
+            color: grey;             
+        }
+        .register{
+            cursor: pointer;
+            color:#ff712b;
+        }
+        .regedit-btn-box{
+            width: 100%;
+            height: 39px;
+            padding: 0px 15px;           
+        }
+        .regedit-btn{
+            width: 100%;
+            height: 39px;
+            line-height: 39px;
+            text-align: center;
+            padding: 0px 15px;
+            background: #ff712b;
+            border-radius: 4px;
+            color: #fff;
+        }
+        .check{
+            display: inline-block;
+            float: right;
+            /* padding: 10px; */
+            margin: 10px;
+        }
+        .check span{
+            display: inline-block;
+            width: 94px;
+            height: 35px;
+            border-radius:4px;
+            border: 1px solid #ff712b;
+            text-align: center;
+            line-height: 33px;
+            color: #ff712b;
+            cursor: pointer;     
+        }
+        @media screen and (max-width: 750px) {
+            .regedit-box{
+                 width: 100%;
+            }
+        }   
+    </style>
+</head>
+<body>
+    <div class="nav">    
+        <a class="back" href="./i.user.html"><div class="back-into"><</div></a>
+        用户注册
+    </div>
+    <div class="regedit-box">
+        <img src="./images/login-top.jpg" alt="">
+        <div class='regedit-input'>
+            <div class="regedit-div"><input type="text" placeholder="请输入您的手机号"><div class="check"><span>验证码</span></div></div>
+            <div class="regedit-div"><input type="password" type="text" placeholder="验证码"></div>            
+            <div class="regedit-div"><input type="password" type="text" placeholder="请输入密码"></div>
+        </div>
+        <p class="user-protocol-p"><a href="./i.login.html" class="register">返回登陆</a><span class="user-protocol">验证手机视为已阅读并同意<span>用户协议</span></span></p>
+        <div class="regedit-btn-box"><div class="regedit-btn">注册</div></div>
+    </div>
+</body>
+</html>
+</body>
+</html>

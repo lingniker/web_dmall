@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        ul{
+            list-style: none;
+        }
+        .nav{
+            position:absolute;
+        }
+        .view-home{
+            width: 100%;
+        }
+        .home-nav{
+            position:fixed;
+            width: 100%;            
+            height: 70px;
+            background: #fff;
+            border-bottom: 1px solid lightgray;
+        }
+        .active{
+            border-bottom: 2px solid #ff8143;
+        }
+        .home-nav-li{
+            text-align: center;
+            float: left;
+            color:#ff8143;
+            /* width: 90px; */
+            line-height: 28px;
+            padding: 10px 0px 0px 0px;
+            font-size: 14px;
+        }
+        .home-nav-ul{            
+            height: 40px;
+            padding: 0px 0px 10px 20px;
+        }
+        .head-nav{
+            height: 75px;
+            background: #fff;
+            /* padding-top: 5px; */
+        }
+        .content{
+            width: 750px;
+            margin: auto;
+            height: 750px;
+        }
+        .content-bg{
+            width: 100%;
+            background: url("./images/content.png");
+            height: 1334px;          
+        }
+        .select-input{
+            height: 30px;
+            width: 100%;
+            background: #fff;
+        }
+        .input-select{
+            height: 30px;
+            width: 100%;
+            font-size: 14px;
+            padding-left: 18px;
+            line-height: 45px;
+            color: #666;
+        }
+        .footer a{
+            text-decoration: none;
+            display: inline-block;
+            color: rgba(0, 0, 0, 0.28);
+        }
+        .footer{
+            width: 100%;
+            height: 45px;
+            position: fixed;
+            background: #fff;
+            border-top:0.5px solid lightgray;
+            bottom: 0;
+        }
+        .footer ul {
+            list-style: none;
+            width: 100%;
+            height: 45px;
+        }
+        .footer ul li{
+            width: 25%;
+            height: 45px;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            line-height: 10px;
+            font-weight: 400;
+        }
+        .home-img1{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: 0px -50px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img2{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -50px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img3{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -100px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img4{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -150px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img5{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -200px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .position1 a{
+            color:#ff712b ;
+        }
+        /* @media screen andmax-width: ;{
+            
+        } */
+        @media screen and (max-width: 750px) {
+            .content{
+                 width: 100%;
+            }
+            .content-bg{
+                width: 100%;
+            }
+        } 
+    </style>
+</head>
+<body>
+    <div class="view-home">
+        <div class="head-nav">
+        <div class="home-nav">
+            <div class="input-select"><div>送至：滨海花园(珠山南路)</div></div>
+            <ul class="home-nav-ul">
+                <li class="home-nav-li active">联家超市</li>
+            </ul>
+        </div>
+        </div>
+        <div class="content">
+            <div class="content-bg">
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+            <ul>
+                <li class="position1"><a href="./i.index.html"><div class="home-img1"></div><div>首页</div></a></li>
+                <li class="position2"><a href="#"><div class="home-img2"></div><div>订单</div></a></li>
+                <li class="position4"><a href="#"><div class="home-img4"></div><div>购物车</div></a></li>
+                <li class="position5"><a href="./i.user.html"><div class="home-img5"></div><div>我的</div></a></li>       
+            </ul>
+        </div>
+</body>
+</html>

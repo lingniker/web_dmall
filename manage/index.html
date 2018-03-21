@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="myadmin/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="myadmin/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
+   <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    body{
+        background: #ededed;
+    }
+    ul{
+        list-style: none;
+    }
+    .container{
+        width:100%;
+        height: 100%;
+    }
+    .nav{
+        height:60px;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid grey;
+    }
+    .nav-left{
+        width:260px;
+        height: 100%;
+        background: #F36A5A;
+        text-align: center;
+        line-height: 60px;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 100;
+        display: inline-block;
+    }
+    .nav-right{
+        float: right;
+        height: 60px;
+        overflow: auto;
+    }
+    .back-login{
+        height: 60px;
+        line-height: 60px;
+        padding: 0px 10px;
+        cursor: pointer;
+    }
+    .body{
+        width: 100%;
+        overflow: auto;
+    }
+    .body-left{
+        width: 260px;
+        background: #3e3e3e;
+        height: 1000px;
+        display: inline-block;
+        position: absolute;
+    }
+    .body-left-ul{
+        width: 100%;
+        height: 100%;
+        padding: 20px 0px;
+    }
+    .body-left-ul li{
+        width: 100%;
+        height: 54px;
+        line-height: 34px;
+        padding: 10px 10px 10px 30px;
+        border-bottom: 1px solid #464646;
+        color:#8C8C8C;   
+    }
+    .body-left-ul .active{
+        background: #ededed !important;
+        color: #F36A5A !important;
+        
+    }
+    .body-right{
+        margin-left: 260px;
+        width: auto;
+        height: 1000px;
+        padding: 0px 30px 0px 30px;
+        /* background: gray; */
+    }
+    .body-right-title{
+        width: 100%;
+        height: 100px;
+        font-size: 30px;
+        line-height: 100px;
+        color:black;
+    }
+    .body-right-data{
+        width: 100%;
+        overflow: auto;
+    }
+    .data-title{
+        height: 44px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .data-title p{
+        padding:12px 0 0 12px;
+    }
+    .data-body{
+        width: 100px;
+        overflow: auto;
+    }
+    .body-left-ul li:hover{
+        background: #575757;
+        color: #F36A5A;  
+    }
+    .body-data-box{
+        height: 120px;
+        width: 100%;
+        padding-right: 10px;
+        background: white;
+    }
+    .row-box{
+        padding:15px;
+    }
+    .body-data-num{
+        padding: 0px;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="nav-left">联家管理系统</div>
+            <div class="nav-right">
+            <div class="back-login">退出登录</div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body-left">
+                <ul class="body-left-ul">
+                    <li class="active">首页</li>
+                    <li>控制面板</li>
+                    <li>店铺管理</li>
+                    <li>商品管理</li>
+                    <li>订单详情</li>
+                    <li>用户管理</li>
+                    <li>地址管理</li>
+                </ul>
+            </div>
+            <div class="body-right">
+            <div class="body-right-title">首页 </div>
+            <div class="body-right-data">
+                <!-- <div class="data-title">
+                    <p><a href="#">home</a> / <a href="#">首页</a> / 数据</p>
+                <div> -->
+                <div class="row-box">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="body-data-box">
+                                <p class="body-data-num">23,400</p>                                
+                                <p class="body-data-name">订单数</p>
+                           </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="body-data-box">
+                                    <p class="body-data-num">23,400</p>                                
+                                    <p class="body-data-name">销售总额</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="body-data-box">
+                                    <p class="body-data-num">23,400</p>                                
+                                    <p class="body-data-name">销售统计</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3"><div class="body-data-box"></div></div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div id="page-inner"> 
+             
+                               
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="panel panel-default chartJs">
+                                            <div class="panel-heading">
+                                                <div class="card-title">
+                                                    <div class="title">Pie & Doughnut Chart</div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <canvas id="pie-chart" class="chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                        <div class="col-sm-6 col-xs-12">
+                                        <div class="panel panel-default chartJs">
+                                            <div class="panel-heading">
+                                                <div class="card-title">
+                                                    <div class="title">Line Chart</div>
+                                                </div>
+                                            </div>
+                                              <div class="panel-body">
+                                                 <canvas id="jumbotron-line-chart" class="chart no-padding"></canvas>
+                                     </div> 
+                                </div>
+                          </div>
+                     </div>
+                 </div>     
+            </div>
+            </div>
+        </div>
+        <div class="floor"></div>
+    </div>
+
+    <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="myadmin/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
+    <!-- Chart Js -->
+    <script type="text/javascript" src="myadmin/assets/js/Chart.min.js"></script>  
+    <script type="text/javascript" src="myadmin/assets/js/chartjs.js"></script> 
+     <!-- Morris Chart Js -->
+     <script src="myadmin/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="myadmin/assets/js/morris/morris.js"></script>
+      <!-- Custom Js -->
+    <script src="myadmin/assets/js/custom-scripts.js"></script>
+</body>
+</html>
