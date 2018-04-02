@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        ul{
+            list-style: none;
+        }
+        .body{
+            width: 100%;
+            /* overflow: auto; */
+        }
+        .order{
+            width: 100%;
+            /* overflow: auto; */
+            height: 44px;
+            border-bottom:1px solid gray;
+        }
+        .title{
+            width: 750px;
+            margin: auto;
+            height: 44px;
+            padding-left:0px;
+            line-height: 44px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .nav{
+            width:100%;
+            height: 35px;
+            border-bottom:10px solid #ddd;
+            box-sizing: content-box;
+        }
+        .nav-ul{
+            width: 750px;
+            height: 100%;
+            margin: auto;
+        }
+        .nav-ul li{
+            float: left;
+            width: 25%;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+        }
+        .orderlist{
+            width: 750px;
+            margin: auto;
+        }
+        .order-list-ul{
+            width: 100%;
+        }
+        .order-list-ul li{
+            width: 100%;
+            height: 120px;
+            border-bottom: 1px solid gray;
+            position:relative;
+        }
+        .order-img{
+            width: 94px;
+            height: 94px;
+            position: absolute;
+            text-align: center;
+            line-height: 94px;
+        }
+        .product_img{
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            border-radius: 4px;
+        }
+        .order-msg{
+            margin-left: 100px;
+            width: auto;
+            height: 100px;
+            padding: 10px 0px;
+        }
+        .order-div{
+            width: 100%;
+            height: 22px;
+        }
+        .ordermore span{
+            float: right;
+            color: #ff712b;
+            cursor: pointer;
+            display:inline-block;
+            padding-right:10px;
+            padding-top: 10px;
+        }
+        .product{
+            float: left;
+        }
+        .product_right{
+            float:right;
+            display:inline-block;
+            padding-right:10px;
+        }
+        .ordername .product,.orderprice .product,.orderprice .product_right{
+            line-height: 22px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .footer a{
+            text-decoration: none;
+            display: inline-block;
+            color: rgba(0, 0, 0, 0.28);
+        }
+        .footer{
+            width: 100%;
+            height: 45px;
+            position: fixed;
+            background: #fff;
+            border-top:0.5px solid lightgray;
+            bottom: 0;
+        }
+        .footer ul {
+            list-style: none;
+            width: 100%;
+            height: 45px;
+        }
+        .footer ul li{
+            width: 25%;
+            height: 45px;
+            float: left;
+            text-align: center;
+            font-size: 14px;
+            line-height: 10px;
+            font-weight: 400;
+        }
+        .home-img1{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: 0px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img2{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -50px -50px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img3{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -100px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img4{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -150px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .home-img5{
+            background-image: url("images/footerimg.png") ;
+            background-repeat: no-repeat;
+            background-position: -200px 0px;
+            background-size: 250px 100px;
+            width: 30px;
+            height: 30px;
+        }
+        .position2 a{
+            color:#ff712b ;
+        }
+
+
+        @media screen and (max-width: 750px){
+            .orderlist{
+                width: 100%;
+            }
+            .title{
+                width: 100%;
+            }
+            .nav-ul{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="order">
+        <div class="title">
+            <p>我的订单</p>
+        </div>
+    </div>
+    <div class="nav">
+        <ul class="nav-ul">
+            <li style="color:#8cc63f;">全部</li>
+            <li>待支付</li>
+            <li>待配送</li>
+            <li>已完成</li>
+        </ul>
+    </div>
+    <div class="orderlist">
+            <ul class="order-list-ul">
+                <li data-play="wing_payment">
+                    <div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>
+                    <div class="order-msg">
+                        <div class="ordername order-div"><span class="product">草莓</span><span class="product_right">支付完成</span></div>
+                        <div class="ordertime order-div"><span class="product">2017-07-01/</span><span class="product">20:36</span></div>
+                        <div class="orderprice order-div"><span class="product">价格：</span><span class="product_right">12.2 元</span></div>
+                        <div class="ordermore order-div"><span>去支付</span></div>
+                    </div>
+                </li>
+                <li data-play="delivered">
+                        <div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>
+                        <div class="order-msg">
+                            <div class="ordername order-div"><span class="product">酥脆饼干</span><span class="product_right">配送中</span></div>
+                            <div class="ordertime order-div"><span class="product">2017-07-01/</span><span class="product">20:36</span></div>
+                            <div class="orderprice order-div"><span class="product">价格：</span><span class="product_right">12.2 元</span></div>
+                            <div class="ordermore order-div"><span>再来一单</span></div>
+                        </div>
+                </li>
+                <li data-play="pendingPayment">
+                        <div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>
+                        <div class="order-msg">
+                            <div class="ordername order-div"><span class="product">酥脆饼干</span><span class="product_right">待支付</span></div>
+                            <div class="ordertime order-div"><span class="product">2017-07-01/</span><span class="product">20:36</span></div>
+                            <div class="orderprice order-div"><span class="product">价格：</span><span class="product_right">12.2 元</span></div>
+                            <div class="ordermore order-div"><span>再来一单</span></div>
+                        </div>
+                </li>
+            </ul>
+    </div>
+</div>
+<div class="footer">
+    <ul>
+        <li class="position1"><a href="./i.index.html"><div class="home-img1"></div><div>首页</div></a></li>
+        <li class="position2"><a href="./i.order.html"><div class="home-img2"></div><div>订单</div></a></li>
+        <li class="position4"><a href="#"><div class="home-img4"></div><div>购物车</div></a></li>
+        <li class="position5"><a href="./i.user.html"><div class="home-img5"></div><div>我的</div></a></li>       
+    </ul>
+</div>
+</body>
+</html>

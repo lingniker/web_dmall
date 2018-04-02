@@ -22,7 +22,7 @@
         body{
             background: #f6f6f6;
             /* overflow:-Scroll;
-            overflow-y:hidden; */
+            overflow-y:hidden */
         }
         .back{
             height: 32px;
@@ -52,12 +52,12 @@
         .login-box img{
             width: 100%;
         }
-        .login-input{
+        .ligin-input{
             margin-top: 10px;
             width: 100%;
             height: 120px;          
         }
-        .login-input input{
+        .ligin-input input{
             display: inline-block;
             width: 100%;
             outline:none;
@@ -76,7 +76,6 @@
         .user-protocol-p{
             padding: 20px 15px;
             font-size: 13px;
-            margin-bottom: 10px;
             color: grey;             
         }
         .register{
@@ -86,9 +85,7 @@
         .login-btn-box{
             width: 100%;
             height: 39px;
-            padding: 0px 15px;
-            margin-bottom: 15px;
-            cursor: pointer;       
+            padding: 0px 15px;           
         }
         .login-btn{
             width: 100%;
@@ -106,27 +103,10 @@
             }
         }   
     </style>
-</head>
-<body>
-    <div class="nav">    
-        <a class="back" href="./i.user.html"><div class="back-into"><</div></a>
-        用户登录
-    </div>
-    <div class="login-box">
-        <img src="./images/login-top.jpg" alt="">
-        <div class='login-input'>
-            <input type="text" id="phone" placeholder="请输入您的手机号">
-            <input type="password" id="psw" type="text" placeholder="请输入密码">
-        </div>
-        <p class="user-protocol-p"><span class="user-protocol"><span><a href="./i.regedit.html" class="register">去注册</a></span></span></p>
-        <div class="login-btn-box" id="login-btn-box"><div class="login-btn">登录</div></div>
-        <!-- <div class="login-btn-box"><div class="">微信登录</div></div> -->
-    </div>
-</body>
-<script>
-        document.getElementsByClassName('login-btn-box')[0].onclick = function(){
-            login();
-        }
+
+
+    <script>
+
         function login() {
             var phone = document.getElementById('phone').value;
             var psw = document.getElementById('psw').value;
@@ -136,6 +116,7 @@
                 return false;
             }
             if(!(/^[0-9_a-zA-Z!@#$%^&*+-/,.<>?;:'"|{}[()`~]{6,18}$/.test(psw))){
+
                 alert("请输入六到二十位数字或字母或下划线密码");
                 return false;
             }
@@ -143,4 +124,20 @@
             location.href="i.user.html";
         }
     </script>
+</head>
+<body>
+    <div class="nav">    
+        <a class="back" href="./i.user.html"><div class="back-into"><</div></a>
+        用户登录
+    </div>
+    <div class="login-box">
+        <img src="./images/login-top.jpg" alt="">
+        <div class='ligin-input'>
+            <input type="text" placeholder="请输入您的手机号" value="" id="phone" onblur="">
+            <input type="password" placeholder="请输入密码" value="" id="psw" onblur="">
+        </div>
+        <p class="user-protocol-p"><a href="#" class="register">去注册</a><span class="user-protocol">验证手机视为已阅读并同意<span>用户协议</span></span></p>
+        <div class="login-btn-box" onclick="login()"><div class="login-btn">登录</div></div>
+    </div>
+</body>
 </html>

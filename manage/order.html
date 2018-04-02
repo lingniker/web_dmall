@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="myadmin/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="myadmin/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+    body{
+        background: #ededed;
+    }
+    ul{
+        list-style: none;
+    }
+    .admin-container{
+        width:100%;
+        height: 100%;
+    }
+    .admin-nav{
+        height:60px;
+        width: 100%;
+        background: #fff;
+        border-bottom: 1px solid grey;
+    }
+    .admin-nav-left{
+        width:260px;
+        height: 100%;
+        background: #F36A5A;
+        text-align: center;
+        line-height: 60px;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 100;
+        display: inline-block;
+    }
+    .admin-nav-right{
+        float: right;
+        height: 60px;
+        overflow: auto;
+    }
+    .back-login{
+        height: 60px;
+        line-height: 60px;
+        padding: 0px 10px;
+        cursor: pointer;
+    }
+    .body{
+        width: 100%;
+        overflow: auto;
+    }
+    .body-left{
+        width: 260px;
+        background: #3e3e3e;
+        height: 1000px;
+        display: inline-block;
+        position: absolute;
+    }
+    .body-left-ul{
+        width: 100%;
+        height: 100%;
+        padding: 20px 0px;
+    }
+    .body-left-ul li{
+        width: 100%;
+        height: 54px;
+        line-height: 34px;
+        padding: 10px 10px 10px 30px;
+        border-bottom: 1px solid #464646;
+        color:#8C8C8C;   
+    }
+    .body-left-ul li a{
+        color:#8C8C8C;
+    }
+    .body-left-ul .active{
+        background: #ededed !important;
+        color: #F36A5A !important;       
+    }
+    .body-right{
+        margin-left: 260px;
+        width: auto;
+        height: 1000px;
+        padding: 0px 30px 0px 30px;
+        /* background: gray; */
+    }
+    .body-right-title{
+        width: 100%;
+        height: 100px;
+        font-size: 30px;
+        line-height: 100px;
+        color:black;
+    }
+    .body-right-data{
+        width: 100%;
+        /* overflow: auto; */
+    }
+    .data-title{
+        height: 44px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .data-title p{
+        padding:12px 0 0 12px;
+    }
+    .data-body{
+        width: 100px;
+        overflow: auto;
+    }
+    .body-left-ul li:hover{
+        background: #575757;
+        color: #F36A5A;  
+    }
+    .body-data-box{
+        height: 120px;
+        width: 100%;
+        padding-right: 10px;
+        background: white;
+    }
+    .row-box{
+        padding:15px;
+    }
+    .body-data-num{
+        padding: 0px;
+    }
+    .body-data-name{
+        padding: 0px 0px 0px 20px;
+        font-size: 16px;
+        color: #AAB5BC;
+        font-weight: 600;
+        text-transform: uppercase;        
+    }
+    .body-data-num{
+        padding: 30px 0px 0px 20px;
+        font-size: 32px;
+        font-weight: 600;
+        color: #676767;
+    }
+    .order-manage-li{
+        height: 40px;
+        line-height: 40px;
+        padding: 5px 0px;
+        margin: 20px 0px;     
+    }
+    .order-manage-li input{
+        width: 450px;
+        margin-right: 20px;
+        padding-left: 10px;
+    }
+    .add-order {
+        height: 24px;
+        position: relative;
+        overflow: hidden;
+        margin-top:40px;
+        /* overflow:visible; */
+    }
+    #add-order-btn{
+        display: inline-block;
+        padding: 0 10px;
+        width: 35px;
+        height: 24px;
+        margin-left: 20px;
+    }
+    .input-order{
+        width: 450px;
+        height: 30px;
+        position: absolute;
+        top: 30px;
+    }
+    .input-order .order-manage-li input{
+        width: 400px;
+        height: 35px;
+        padding-left: 10px;
+    }
+    .order-manage .order-manage-li button{
+        padding: 0px 10px;
+        margin: 0px 2px;
+    }
+    .input-order .order-manage-li button{
+        height: 34px;
+        margin: 0 2px;
+        padding: 0 5px;
+    }
+    .order-panel{
+        padding:5px;
+    }
+    .page-ul li{
+        float: left;
+        /* width: 24px; */
+        height: 24px;
+        padding: 0px 6px;
+        border: 1px solid gray;
+        text-align: center;
+        cursor: pointer;
+    }
+    .page-ul li:hover{
+        background: #fff;
+    }
+    .mymodal{
+        top: 30px;
+    }
+</style>
+<body>
+    <div class="admin-container">
+        <div class="admin-nav">
+            <div class="admin-nav-left">联家管理系统</div>
+            <div class="admin-nav-right">
+            <div class="back-login"><a href="./manage.html">退出登录</a></div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body-left">
+                <ul class="body-left-ul">
+                    <li><a href="./index.html">首页</a></li>
+                    <li><a href="./control.html">控制面板</a></li>
+                    <li><a href="./store.html">店铺管理</a></li>
+                    <li><a href="./commodity.html">商品管理</a></li>
+                    <li class="active"><a href="./order.html">订单详情</a></li>
+                    <li><a href="./user.html">用户管理</a></li>
+                    <li><a href="./address.html">地址管理</a></li>
+                    <li><a href="./advertising.html">广告公告</a></li>
+                    <li><a href="./classification.html">商品分类</a></li>
+                    <li><a href="./store_manage.html">店长管理</a></li>                  
+                    <li><a href="./courier.html">店员管理</a></li>
+                    <li><a href="./integral.html">积分管理</a></li>
+                </ul>
+            </div>
+            <div class="body-right">
+            <div class="body-right-title">订单详情</div>
+            <div class="body-right-data">
+                <ul class="order-manage">                        
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                  <div class="panel-heading" role="tab" id="headingOne1">
+                                    <h4 class="panel-title">
+                                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        订单号：20180330110756999999
+                                      </a>
+                                    </h4>
+                                  </div>
+                                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                            <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <span>订单号:</span>
+                                                        <span class="order-num">20180330110756999999</span>
+                                                        <span class="float right">下单时间:</span>
+                                                        <span class="right">2018/03/30 11:07:56</span>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                            <span>金额:</span>
+                                                            <span>1000.00 元</span>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span>订单状态：</span>
+                                                        <span>已支付</span>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="">商店：</span>
+                                                        <span class="">山东省青岛市黄岛区水灵山路1号店</span>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="">用户：</span>
+                                                        <span class="">张三</span>
+                                                    </li>
+                                                    <li class="list-group-item">
+
+                                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                                    商品细节
+                                                                </a>
+                                                                <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+                                                                    <div class="panel-body">
+                                                                            <ul class="list-group">
+                                                                                <li class="list-group-item">
+                                                                                    <span>西红柿*10斤  </span>
+                                                                                    <span class="order-num"> 20元</span>
+                                                                                    <span class="float right"> </span>
+                                                                                    <span class="right">2018/03/30 11:07:56</span>
+                                                                                </li>
+                                                                                <li class="list-group-item">
+                                                                                    <span>红牛维生素功能饮料250毫升*10瓶  </span>
+                                                                                    <span class="order-num"> 60元</span>
+                                                                                    <span class="float right"> </span>
+                                                                                    <span class="right">2018/03/30 11:07:56</span>
+                                                                                </li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+                                                    </li>
+                                                    
+                                            </ul>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+
+                                <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingTwo">
+                                          <h4 class="panel-title order-panel">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                              订单号：201803301107568888888
+                                            </a>
+                                          </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                          <div class="panel-body">
+                                                  <ul class="list-group">
+                                                          <li class="list-group-item">
+                                                              <span>订单号:</span>
+                                                              <span class="order-num">201803301107568888888</span>
+                                                              <span class="float right">下单时间:</span>
+                                                              <span class="right">2018/03/30 11:07:56</span>
+                                                          </li>
+                                                          <li class="list-group-item">
+                                                                  <span>金额:</span>
+                                                                  <span>1000.00 元</span>
+                                                          </li>
+                                                          <li class="list-group-item">
+                                                              <span>订单状态：</span>
+                                                              <span>已支付</span>
+                                                          </li>
+                                                          <li class="list-group-item">
+      
+                                                                      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                          订单商品
+                                                                      </a>
+                                                                      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                                                                          <div class="panel-body">
+                                                                                  <ul class="list-group">
+                                                                                      <li class="list-group-item">
+                                                                                          <span>订单号:</span>
+                                                                                          <span class="order-num">20180330110756999999</span>
+                                                                                          <span class="float right">下单时间:</span>
+                                                                                          <span class="right">2018/03/30 11:07:56</span>
+                                                                                      </li>
+                                                                                  </ul>
+                                                                          </div>
+                                                                  </div>
+                                                          </li>
+                                                          <li class="list-group-item">Vestibulum at eros</li>
+                                                  </ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="page" style="padding-top:20px;">
+                                          <ul class="page-ul">
+                                          </ul>
+                                          <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
+                                      </div>
+                              </div>
+                </ul>
+                <div class="add-order">
+                    <span style="font-size: 16px;">&nbsp;查找订单</span>
+                    <button id="add-order-btn">+</button>
+                    
+                    <div class="input-order"><input type="text" placeholder="输入订单" /><button>提交</button></div>
+                </div> 
+            </div>
+        </div>
+        <div class="floor"></div>
+    </div>
+    <div class="modal fade mymodal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="control-label">Recipient:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="control-label">Message:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+    <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="myadmin/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
+    <!-- Chart Js -->
+    <script type="text/javascript" src="myadmin/assets/js/Chart.min.js"></script>  
+    <script type="text/javascript" src="myadmin/assets/js/chartjs.js"></script> 
+     <!-- Morris Chart Js -->
+     <!-- <script src="myadmin/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="myadmin/assets/js/morris/morris.js"></script> -->
+      <!-- Custom Js -->
+    <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
+    <script>
+        $('.page ul').append("<li style='border-radius: 4px 0 0 4px;'>&laquo;</li>");
+        for(var i = 0; i<5;i++){
+            $('.page ul').append("<li>"+i+"</li>");
+        };
+        $('.page ul').append("<li style='border-radius: 0px 4px 4px 0px;'>&raquo;</li>");
+        $("#headingOne1").on("click",function(){
+            console.log(123456789);
+            $('#collapseOne').collapse('toggle');
+        });
+        $('.collapse').collapse();
+        var order_btn = document.getElementById("add-order-btn");
+        order_btn.onclick = function(e){
+            console.log("new order",order_btn.innerHTML);
+            if(order_btn.innerHTML == "+"){
+                order_btn.innerHTML = "-";
+                document.getElementsByClassName("add-order")[0].style="overflow:visible";                
+            }else{
+                order_btn.innerHTML = "+";
+                document.getElementsByClassName("add-order")[0].style="overflow:hidden;"; 
+            }
+        }
+    </script>
+</body>
+</html>

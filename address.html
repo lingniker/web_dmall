@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="address/style/cssreset-min.css">
+    <link rel="stylesheet" type="text/css" href="address/style/common.css">
+    <title>浏览器定位</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .nav{
+            height: 44px;
+            width: 100%;
+            line-height: 44px;
+            border-bottom: 1px solid gray;
+            text-align: center;
+            position: relative;
+        }
+        .back{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            background: #333;
+            border-radius: 50%;
+            color: #fff;
+            display: block;
+        }
+        .back-into{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 32px;            
+        }
+        .map-box{
+            width: 750px;
+            margin: auto;
+            height: 300px;
+        }
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin:0;
+            font-family:"微软雅黑";
+        }
+        .citys{
+		margin-bottom: 10px;
+        }
+        .citys p{
+            line-height: 28px;
+        }
+        .warning{
+            color: #c00;
+        }
+        .address-select a{
+            margin-right: 8px;
+            color: #369;
+        }
+        .address-select{
+            width: 750px;
+            margin: auto;
+            padding-top: 10px;
+        }
+        .add-address{
+            width: 100%;
+            text-align: center;
+            line-height:50px;
+            border-top:1px solid gray;
+            position: fixed;
+        }
+        @media screen and (max-width: 750px){
+            .map-box{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">    
+        <a class="back" href="./i.user.html"><div class="back-into"> < </div></a>
+        地址管理
+    </div>
+    <script src="address/demos/googlegg.js"></script>
+    <script type="text/javascript" src="address/script/jquery.min.js"></script>
+    <script type="text/javascript" src="address/script/jquery.citys.js"></script>
+<div class="address-select">
+	<div id="demo3" class="citys">
+		<p>
+			<select class="province" name="province"></select>
+            <select name="city"></select>
+            <br>
+			<select name="area"></select>
+			<select name="town"></select>
+		</p>
+	</div>
+	<script type="text/javascript">
+		var $town = $('#demo3 select[name="town"]');
+		var townFormat = function(info){
+			$town.hide().empty();
+			if(info['code']%1e4&&info['code']<7e5){	//是否为“区”且不是港澳台地区
+				$.ajax({
+					url:'http://passer-by.com/data_location/town/'+info['code']+'.json',
+					dataType:'json',
+					success:function(town){
+						$town.show();
+						for(i in town){
+								$town.append('<option value="'+i+'">'+town[i]+'</option>');
+						}
+					}
+				});
+			}
+		};
+	</script>
+</div>
+    <div class="map-box">
+        <div id="allmap"></div>
+        <!-- <div class="defaule-address">山东省青岛市黄岛区水灵山路 <span>默认地址</span></div> -->
+        <!-- <div class="defaule-address">山东省青岛市黄岛区水灵山路 <span>默认地址</span></div> -->
+    </div>
+    <div class="add-address">添加地址</div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=65zdgImABAZoTaGRybwPLvYagLIUQ5dz"></script>
+    <script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");
+	var point = new BMap.Point(116.331398,39.897445);
+	map.centerAndZoom(point,12);
+
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			alert('您的位置：'+r.point.lng+','+r.point.lat);
+
+            gpsPoint = new BMap.Point(r.point.lng,r.point.lat);    // 创建点坐标  
+            map.centerAndZoom(gpsPoint, 15);  
+
+            //根据坐标逆解析地址  
+            var geoc = new BMap.Geocoder();  
+            geoc.getLocation(gpsPoint, getCityByCoordinate);
+
+            //  $('#demo3').citys({
+            // 	province:'山东省',
+            // 	city:'青岛市',
+            // 	area:'市北区',
+            // 	onChange:function(info){
+            // 		townFormat(info);
+            // 	}
+            // },function(api){
+            // 	var info = api.getInfo();
+            // 	townFormat(info);
+            // });
+            function getCityByCoordinate(rs){
+            gpsAddress = rs.addressComponents;  
+            var address = "GPS标注：" + gpsAddress.province + "," + gpsAddress.city + "," + gpsAddress.district + "," + gpsAddress.street + "," + gpsAddress.streetNumber; 
+             alert(address);
+             $('#demo3').citys({
+            	province:gpsAddress.province,
+            	city:gpsAddress.city,
+            	area:gpsAddress.district,
+            	onChange:function(info){
+            		townFormat(info);
+            	}
+            },function(api){
+            	var info = api.getInfo();
+            	townFormat(info);
+                console.log($(".province option:selected").text());
+            });          
+            }
+		}
+		else {
+			alert('failed'+this.getStatus());
+		}
+	},{enableHighAccuracy: true});
+</script>
+</body>
+</html>

@@ -82,9 +82,9 @@
     .body-left-ul li a{
         color:#8C8C8C;
     }
-    .body-left-ul .active{     
+    .body-left-ul .active{
         background: #ededed !important;
-        color: #F36A5A !important;    
+        color: #F36A5A !important;       
     }
     .body-right{
         margin-left: 260px;
@@ -102,7 +102,7 @@
     }
     .body-right-data{
         width: 100%;
-        overflow: auto;
+        /* overflow: auto; */
     }
     .data-title{
         height: 44px;
@@ -125,7 +125,6 @@
         width: 100%;
         padding-right: 10px;
         background: white;
-        margin-bottom: 10px;
     }
     .row-box{
         padding:15px;
@@ -146,7 +145,51 @@
         font-weight: 600;
         color: #676767;
     }
-    
+    .user-manage li{
+        height: 40px;
+        line-height: 40px;
+        padding: 5px 0px;
+        margin: 20px 0px;     
+    }
+    .user-manage li input{
+        width: 450px;
+        margin-right: 20px;
+        padding-left: 10px;
+    }
+    .add-user {
+        height: 24px;
+        position: relative;
+        overflow: hidden;
+        margin-top:40px;
+        /* overflow:visible; */
+    }
+    #add-user-btn{
+        display: inline-block;
+        padding: 0 10px;
+        width: 35px;
+        height: 24px;
+        margin-left: 20px;
+    }
+    .input-user{
+        width: 450px;
+        height: 30px;
+        position: absolute;
+        top: 30px;
+    }
+    .input-user input{
+        width: 400px;
+        height: 35px;
+        padding-left: 10px;
+    }
+    .user-manage button{
+        padding: 0px 10px;
+        margin: 0px 2px;
+    }
+    .input-user button{
+        height: 34px;
+        margin: 0 2px;
+        padding: 0 5px;
+    }
 </style>
 <body>
     <div class="admin-container">
@@ -159,14 +202,14 @@
         <div class="body">
             <div class="body-left">
                 <ul class="body-left-ul">
-                    <li class="active"><a href="./index.html">首页</a></li>
+                    <li><a href="./index.html">首页</a></li>
                     <li><a href="./control.html">控制面板</a></li>
                     <li><a href="./store.html">店铺管理</a></li>
                     <li><a href="./commodity.html">商品管理</a></li>
                     <li><a href="./order.html">订单详情</a></li>
                     <li><a href="./user.html">用户管理</a></li>
                     <li><a href="./address.html">地址管理</a></li>
-                    <li><a href="./advertising.html">广告公告</a></li>
+                    <li class="active"><a href="./advertising.html">广告公告</a></li>
                     <li><a href="./classification.html">商品分类</a></li>
                     <li><a href="./store_manage.html">店长管理</a></li>                  
                     <li><a href="./courier.html">店员管理</a></li>
@@ -174,64 +217,18 @@
                 </ul>
             </div>
             <div class="body-right">
-            <div class="body-right-title">首页 </div>
+            <div class="body-right-title">用户管理</div>
             <div class="body-right-data">
-                <div class="row-box">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="body-data-box">
-                                <p class="body-data-num">23,400</p>                                
-                                <p class="body-data-name">订单数</p>
-                           </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="body-data-box">
-                                    <p class="body-data-num">32,850</p>                                
-                                    <p class="body-data-name">销售总额</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="body-data-box">
-                                    <p class="body-data-num">23,400</p>                                
-                                    <p class="body-data-name">统计</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-3"><div class="body-data-box"></div></div>
-                    </div>
-                </div>
-                <div class="row">
-                        <div id="page-inner"> 
-             
-                               
-                                <div class="row">
-                                    <div class="col-sm-6 col-xs-12">
-                                        <div class="panel panel-default chartJs">
-                                            <div class="panel-heading">
-                                                <div class="card-title">
-                                                    <div class="title">Pie & Doughnut Chart</div>
-                                                </div>
-                                            </div>
-                                            <div class="panel-body">
-                                                <canvas id="pie-chart" class="chart"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                        <div class="col-sm-6 col-xs-12">
-                                        <div class="panel panel-default chartJs">
-                                            <div class="panel-heading">
-                                                <div class="card-title">
-                                                    <div class="title">Line Chart</div>
-                                                </div>
-                                            </div>
-                                              <div class="panel-body">
-                                                 <canvas id="jumbotron-line-chart" class="chart no-padding"></canvas>
-                                     </div> 
-                                </div>
-                          </div>
-                     </div>
-                 </div>     
-            </div>
+                <ul class="user-manage">
+                        <li><div><span>广告名:</span><input type="text" value="张三"><button>修改</button><button>删除</button></div></li>
+                        <li><div><span>广告名:</span><input type="text" value="李四"><button>修改</button><button>删除</button></div></li>
+                        <li><div><span>广告名:</span><input type="text" value="王五"><button>修改</button><button>删除</button></div></li>
+                </ul>
+                <div class="add-user">
+                    <span style="font-size: 16px;">&nbsp;修改广告</span>
+                    <button id="add-user-btn">+</button>                   
+                    <div class="input-user"><input type="text" placeholder="输入用户" /><button>修改</button></div>
+                </div> 
             </div>
         </div>
         <div class="floor"></div>
@@ -250,5 +247,18 @@
     <script src="myadmin/assets/js/morris/morris.js"></script> -->
       <!-- Custom Js -->
     <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
+    <script>
+        var user_btn = document.getElementById("add-user-btn");
+        user_btn.onclick = function(e){
+            console.log("new user",user_btn.innerHTML);
+            if(user_btn.innerHTML == "+"){
+                user_btn.innerHTML = "-";
+                document.getElementsByClassName("add-user")[0].style="overflow:visible";                
+            }else{
+                user_btn.innerHTML = "+";
+                document.getElementsByClassName("add-user")[0].style="overflow:hidden;"; 
+            }
+        }
+    </script>
 </body>
 </html>

@@ -71,6 +71,19 @@
             line-height: 45px;
             color: #666;
         }
+        .query{
+            float: right;
+            width: 30px;
+            height: 30px;
+            background: url(./images/bill-icon.png) no-repeat -5px -65px;
+            margin: 10px 10px 0px 0px;
+            background-size: 500px 750px;
+        }
+        .address{
+         position: absolute;
+         cursor: pointer;
+         background: #fff;
+        }
         .footer a{
             text-decoration: none;
             display: inline-block;
@@ -141,6 +154,7 @@
         .position1 a{
             color:#ff712b ;
         }
+
         /* @media screen andmax-width: ;{
             
         } */
@@ -158,7 +172,7 @@
     <div class="view-home">
         <div class="head-nav">
         <div class="home-nav">
-            <div class="input-select"><div>送至：滨海花园(珠山南路)</div></div>
+            <div class="input-select"><div class="address" id="address">不支持地理位置服务</div><div class="query"></div></div>
             <ul class="home-nav-ul">
                 <li class="home-nav-li active">联家超市</li>
             </ul>
@@ -172,10 +186,87 @@
     <div class="footer">
             <ul>
                 <li class="position1"><a href="./i.index.html"><div class="home-img1"></div><div>首页</div></a></li>
-                <li class="position2"><a href="#"><div class="home-img2"></div><div>订单</div></a></li>
+                <li class="position2"><a href="./i.order.html"><div class="home-img2"></div><div>订单</div></a></li>
                 <li class="position4"><a href="#"><div class="home-img4"></div><div>购物车</div></a></li>
                 <li class="position5"><a href="./i.user.html"><div class="home-img5"></div><div>我的</div></a></li>       
             </ul>
         </div>
 </body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=65zdgImABAZoTaGRybwPLvYagLIUQ5dz"></script>  
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>  
+<script type="text/javascript">
+
+    var map;  
+    var gpsPoint;  
+    var baiduPoint;  
+    var gpsAddress;  
+    var baiduAddress;  
+
+    function getLocation() {
+        //根据IP获取城市  
+        var myCity = new BMap.LocalCity();
+        // console.log(myCity);
+        myCity.get(getCityByIP);  
+
+        //获取GPS坐标
+        alert(navigator.geolocation);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showMap, handleError, { enableHighAccuracy: true, maximumAge: 1000 });  
+        } else { 
+            alert("您的浏览器不支持使用HTML 5来获取地理位置服务");  
+        }  
+    }  
+    
+    function showMap(value) {  
+        var longitude = value.coords.longitude;  
+        var latitude = value.coords.latitude;  
+        map = new BMap.Map("address");  
+        //alert("坐标经度为：" + latitude + "， 纬度为：" + longitude );  
+        baiduPoint = new BMap.Point(longitude, latitude);    // 创建点坐标  
+        map.centerAndZoom(baiduPoint, 15);  
+
+        //根据坐标逆解析地址  
+
+        var geoc = new BMap.Geocoder();  
+        geoc.getLocation(baiduPoint, getCityByBaiduCoordinate);   
+
+    }
+
+    function getCityByBaiduCoordinate(rs) {
+        baiduAddress = rs.addressComponents;
+        console.log("送至："+  baiduAddress.province + "," + baiduAddress.city + "," + baiduAddress.district + "," + baiduAddress.street + "," + baiduAddress.streetNumber);
+        document.getElementById("address").innerHTML = "送至："+  baiduAddress.province + "," + baiduAddress.city + "," + baiduAddress.district + "," + baiduAddress.street + "," + baiduAddress.streetNumber;
+        document.getElementById("address").style.cssText="background:#fff";
+    }  
+
+    //根据IP获取城市  
+    function getCityByIP(rs){
+        var cityName = rs.name;
+        // console.log(rs);
+        // alert("根据IP定位您所在的城市为:" + cityName);
+    }  
+
+    function handleError(value) { 
+        switch (value.code) {  
+            case 1:  
+                document.getElementById("address").innerHTML = "位置服务被拒绝";  
+                break;  
+            case 2:  
+                document.getElementById("address").innerHTML = "暂时获取不到位置信息";  
+                break;  
+            case 3:  
+                document.getElementById("address").innerHTML = "获取信息超时";  
+                break;  
+            case 4:  
+                document.getElementById("address").innerHTML = "未知错误";  
+                break;  
+        }  
+    }  
+
+    function init() {
+        getLocation();  
+    }  
+
+    window.onload = init;  
+</script> 
 </html>

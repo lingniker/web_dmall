@@ -65,7 +65,7 @@
         }
         .regedit-input input{
             display: inline-block;
-            width: 60%;
+            width: 50%;
             outline:none;
             border: none;
             height: 59px;
@@ -75,7 +75,7 @@
         .user-protocol{
             float: right;
         }
-        .user-protocol span{
+        .user-protocol a{
             color:#ff712b;
             cursor: pointer;            
         }
@@ -105,20 +105,21 @@
         }
         .check{
             display: inline-block;
-            float: right;
+            float:right;
             /* padding: 10px; */
             margin: 10px;
         }
-        .check span{
+        .check input{
             display: inline-block;
-            width: 94px;
+            width: 120px;
             height: 35px;
             border-radius:4px;
             border: 1px solid #ff712b;
             text-align: center;
             line-height: 33px;
             color: #ff712b;
-            cursor: pointer;     
+            cursor: pointer;
+            background-color: white;
         }
         @media screen and (max-width: 750px) {
             .regedit-box{
@@ -135,14 +136,44 @@
     <div class="regedit-box">
         <img src="./images/login-top.jpg" alt="">
         <div class='regedit-input'>
-            <div class="regedit-div"><input type="text" placeholder="请输入您的手机号"><div class="check"><span>验证码</span></div></div>
+            <div class="regedit-div">
+                <input type="text" placeholder="请输入您的手机号">
+                <div class="check">
+                    <input id="btnSendCode" type="button" value="发送验证码" onclick="sendMessage()" />
+                <!--<span id="btnSendCode" onclick="sendMessage()" value="">发送验证码</span>-->
+              </div>
+            </div>
             <div class="regedit-div"><input type="password" type="text" placeholder="验证码"></div>            
             <div class="regedit-div"><input type="password" type="text" placeholder="请输入密码"></div>
         </div>
-        <p class="user-protocol-p"><a href="./i.login.html" class="register">返回登陆</a><span class="user-protocol">验证手机视为已阅读并同意<span>用户协议</span></span></p>
+        <p class="user-protocol-p"><a href="./i.login.html" class="register">返回登陆</a><span class="user-protocol">验证手机视为已阅读并同意<a href="./i.agreement.html">用户协议</a></span></p>
         <div class="regedit-btn-box"><div class="regedit-btn">注册</div></div>
     </div>
-</body>
-</html>
+    <script src="https://cdn.bootcss.com/jquery/1.8.2/jquery.min.js"></script>
+    <script>
+            var InterValObj; //timer变量，控制时间
+            var count = 30; //间隔函数，1秒执行
+            var curCount;//当前剩余秒数
+            function sendMessage() {
+                curCount = count;
+                //设置button效果，开始计时
+                $("#btnSendCode").attr("disabled", "true");
+                $("#btnSendCode").val(curCount + "秒后可重新发送");
+                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                //请求后台发送验证码 TODO
+            }
+            //timer处理函数
+            function SetRemainTime() {
+                if (curCount == 0) {
+                    window.clearInterval(InterValObj);//停止计时器
+                    $("#btnSendCode").removeAttr("disabled");//启用按钮
+                    $("#btnSendCode").val("重新发送验证码");
+                }
+                else {
+                    curCount--;
+                    $("#btnSendCode").val(curCount + "秒后可重新发送");
+                }
+            }
+    </script>
 </body>
 </html>
