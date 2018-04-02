@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>search</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .toolbar {
+            font-size: 16px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0,0,0,.2);
+            height: 44px;
+            background-color: #fff;
+            z-index: 999;
+            line-height: 44px;
+            text-align: center;
+        }
+        .toolbar_a{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            background: #333;
+            border-radius: 50%;
+            color: #fff;
+            display: block;
+        }
+        .back_f{
+            text-align: center;
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 32px;
+        }
+.content{
+    width: 100%;
+    height: 100%;
+    margin-top: 44px;
+}
+        .content a{
+           text-decoration: none;
+            display: inline-block;
+            background-color: #eeeeee;
+            color: black;
+            padding: 1%;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+.search_1{
+    text-align: center;
+    line-height:44px;
+}
+        #search{
+            /*background-color: #eeeeee;*/
+            width:65%;
+          height: 30px;
+            margin: 0 auto;
+            padding-left: 10px;
+
+        }
+.btn{
+    background: white;
+    border: 0;
+    color: black;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.search_title{
+    width: 100%;
+    margin-top:4rem;
+    /*height: 50px;*/
+
+}
+        .search_title2{
+            width: 100%;
+            margin-top:2%;
+            /*height: 50px;*/
+
+        }
+        h4{
+            margin-left: 20px;
+
+        }
+
+    </style>
+</head>
+<body>
+<div class="wap">
+<div class="toolbar">
+    <a  href="./i.index.html" class="toolbar_a">
+        <div class="back_f"><</div></a>
+    <div class="search_1">
+        <input type="text" placeholder="搜索想要的商品" value="" id="search" />
+        <button class="btn" onclick="fun1()">搜索</button>
+
+
+    </div>
+</div>
+    <div class="content">
+        <div class="search_title">
+
+            <h4>历史搜索</h4>
+              <div class="lishijilu" id="lishijilu">
+            <!--<a href="#"> 老干妈辣椒酱</a>-->
+                  <!--<a href="#" class="lishi"></a>-->
+            </div>
+        </div>
+<div class="search_title2">
+    <h4>热门搜索</h4>
+
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+
+
+    </div>
+
+    </div>
+
+
+</div>
+<script src="js/jquery-1.8.2.js"></script>
+<script>
+    function  fun1() {
+        var search=document.getElementById("search").value;
+        var lishijilu=document.getElementById("lishijilu");
+        // alert(search);
+        // lishijilu.innerHTML="<a href='#'>"+search+"</a>";
+        // search.appendChild(lishijilu);
+
+
+
+        var para = document.createElement("a");
+        para.attr="href='#'";
+        para.style.marginLeft="5px";
+        // img.setAttribute("id", "newImg");
+        var txt1 = document.createTextNode(search);
+        para.appendChild(txt1);
+       lishijilu.appendChild(para);
+    }
+</script>
+</body>
+</html>

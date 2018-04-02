@@ -22,7 +22,7 @@
         body{
             background: #f6f6f6;
             /* overflow:-Scroll;
-            overflow-y:hidden; */
+            overflow-y:hidden */
         }
         .back{
             height: 32px;
@@ -69,6 +69,9 @@
         .user-protocol{
             float: right;
         }
+        .user-protocol_1{
+            float: left;
+        }
         .user-protocol span{
             color:#ff712b;
             cursor: pointer;            
@@ -77,18 +80,25 @@
             padding: 20px 15px;
             font-size: 13px;
             margin-bottom: 10px;
-            color: grey;             
+            color: grey;
         }
         .register{
             cursor: pointer;
             color:#ff712b;
+
+
+        }
+        .register_1{
+            cursor: pointer;
+            color:#ff712b;
+            padding: 0;
+            margin: 0;
         }
         .login-btn-box{
             width: 100%;
             height: 39px;
             padding: 0px 15px;
-            margin-bottom: 15px;
-            cursor: pointer;       
+            margin-bottom: 15px;          
         }
         .login-btn{
             width: 100%;
@@ -104,8 +114,76 @@
             .login-box{
                  width: 100%;
             }
-        }   
+        }
+        .login-input span{
+            color: red;
+            font-size: 12px;
+        }
+
+
+        .wechartimg{
+            width: 100%;
+            height: 40px;
+            padding: 0;
+            /*border: 1px black solid;*/
+
+            text-align: center;
+            margin-top: 0px;
+
+        }
+        .wechartimg img{
+            width: 40px;
+            height: 40px;
+            float: left;
+        }
+        .wechartimg a{
+            text-decoration: none;
+            display: inline-block;
+            color: black;
+            line-height: 40px;
+            margin-top: -20px;
+            background-color: #f6f6f6;
+        }
+        .wechartimg_span{
+            display: inline-block;
+            margin-left: 10px;
+            font-size: 13px;
+            float: left;
+        }
+        .wechartborder{
+            width: 95%;
+            border: 1px dashed rgba(0, 0, 0, 0.69);
+            margin-top: 20px;
+            margin-left: 20px;
+            float: left;
+        }
     </style>
+
+
+    <script>
+
+        function login() {
+            var phone = document.getElementById('phone').value;
+            var psw = document.getElementById('psw').value;
+
+            if(!(/^1[34578]\d{9}$/.test(phone))){
+               alert("手机号码有误,请重新输入");
+              // document.getElementById('tip1').innerHTML="手机号码有误,请重新输入";
+                return false;
+            }
+            if(!(/^[0-9_a-zA-Z!@#$%^&*+-/,.<>?;:'"|{}[()`~]{6,18}$/.test(psw))){
+
+                alert("请输入六到二十位数字或字母或下划线密码");
+               // document.getElementById('tip2').innerHTML="请输入六到二十位数字或字母或下划线密码";
+                return false;
+            }
+            alert("手机号"+phone+"密码"+psw);
+            location.href="i.user.html";
+        }
+
+
+
+    </script>
 </head>
 <body>
     <div class="nav">    
@@ -115,32 +193,31 @@
     <div class="login-box">
         <img src="./images/login-top.jpg" alt="">
         <div class='login-input'>
-            <input type="text" id="phone" placeholder="请输入您的手机号">
-            <input type="password" id="psw" type="text" placeholder="请输入密码">
+            <span id="tip1"></span>
+            <input type="text" placeholder="请输入您的手机号" value="" id="phone" onblur="">
+            <span id="tip2"></span>
+            <input type="password" placeholder="请输入密码" value="" id="psw" onblur="">
         </div>
-        <p class="user-protocol-p"><span class="user-protocol"><span><a href="./i.regedit.html" class="register">去注册</a></span></span></p>
-        <div class="login-btn-box" id="login-btn-box"><div class="login-btn">登录</div></div>
-        <!-- <div class="login-btn-box"><div class="">微信登录</div></div> -->
+        <p class="user-protocol-p">
+            <span class="user-protocol_1" >
+
+                <a href="./i.forgetpsw.html" class="register_1">找回密码</a>
+            </span>
+            <span class="user-protocol"><span>
+            <a href="./i.regedit.html" class="register">去注册</a>
+        </span></span>
+        </p>
+        <div class="login-btn-box"  onclick="login()"><div class="login-btn">登录</div></div>
+
+        <div class="wechartimg">
+            <div  class="wechartborder"></div>
+            <a href="#">
+            <img src="images/wechart_1.png">
+
+                <span class="wechartimg_span">微信登录</span>
+            </a>
+        </div>
+
     </div>
 </body>
-<script>
-        document.getElementsByClassName('login-btn-box')[0].onclick = function(){
-            login();
-        }
-        function login() {
-            var phone = document.getElementById('phone').value;
-            var psw = document.getElementById('psw').value;
-
-            if(!(/^1[34578]\d{9}$/.test(phone))){
-                alert("手机号码有误,请重新输入");
-                return false;
-            }
-            if(!(/^[0-9_a-zA-Z!@#$%^&*+-/,.<>?;:'"|{}[()`~]{6,18}$/.test(psw))){
-                alert("请输入六到二十位数字或字母或下划线密码");
-                return false;
-            }
-            alert("手机号"+phone+"密码"+psw);
-            location.href="i.user.html";
-        }
-    </script>
 </html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        ul{
+            list-style: none;
+        }
+        .caroulse{
+            width: 100%;
+            height:500px;
+            position: relative;
+        }
+        .li:nth-child(1){
+            width: 100%;
+            height:100%;
+            display: none;
+            border:1px solid gray;
+        }
+        .li:nth-child(2){
+            width: 100%;
+            height:100%;
+            display: none;
+        }
+        .li:nth-child(3){
+            width: 100%;
+            height:100%;
+            display: none;
+        }
+        .li:nth-child(4){
+            width: 100%;
+            height:100%;
+            display: none;
+        }
+        .port_box{
+            width: 100px;
+            height: 20px;
+            position: absolute;
+            bottom:10px;
+            left: 50%;
+            margin-left:-50px;
+        }
+        .port_box li{
+            list-style: none;
+            float:left;
+            width: 18px;
+            margin: 1px;
+            box-sizing: content-box;
+            height: 18px;
+            border-radius:50%;
+            background: chocolate;
+        }
+    </style>
+</head>
+<body>
+    <div class="caroulse">
+        <div class="li"></div>
+        <div class="li"></div>
+        <div class="li"></div>
+        <div class="li"></div>
+        <div class="port_box"></div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+           console.log($(".caroulse .li").length);
+           for(var i=0;i<$(".caroulse .li").length;i++){
+            $(".port_box").append($("<li>"));
+           }
+
+    </script>
+</body>
+</html>
