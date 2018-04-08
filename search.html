@@ -22,7 +22,7 @@
             line-height: 44px;
             text-align: center;
         }
-        .toolbar_a{
+        .back{
             height: 32px;
             width: 32px;
             position: absolute;
@@ -33,16 +33,17 @@
             color: #fff;
             display: block;
         }
-        .back_f{
-            text-align: center;
+        .back-into{
             height: 32px;
             width: 32px;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0px;
+            left: 0px;
             border-radius: 50%;
             color: #fff;
             line-height: 32px;
+            background: url(images/bill-icon.png) no-repeat -3px -177px;
+            background-size: 500px 700px;
         }
 .content{
     width: 100%;
@@ -100,8 +101,8 @@
 <body>
 <div class="wap">
 <div class="toolbar">
-    <a  href="./i.index.html" class="toolbar_a">
-        <div class="back_f"><</div></a>
+    <a  href="./i.index.html" class="back">
+        <div class="back-into"></div></a>
     <div class="search_1">
         <input type="text" placeholder="搜索想要的商品" value="" id="search" />
         <button class="btn" onclick="fun1()">搜索</button>
@@ -134,7 +135,8 @@
 
 
 </div>
-<script src="js/jquery-1.8.2.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>-->
+<!--<script src="js/jquery-1.8.2.js"></script>-->
 <script>
     function  fun1() {
         var search=document.getElementById("search").value;
@@ -142,13 +144,10 @@
         // alert(search);
         // lishijilu.innerHTML="<a href='#'>"+search+"</a>";
         // search.appendChild(lishijilu);
-
-
-
         var para = document.createElement("a");
         para.attr="href='#'";
         para.style.marginLeft="5px";
-        // img.setAttribute("id", "newImg");
+        para.setAttribute("href", "#");
         var txt1 = document.createTextNode(search);
         para.appendChild(txt1);
        lishijilu.appendChild(para);

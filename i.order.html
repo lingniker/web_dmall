@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>Title</title>
     <style>
         *{
@@ -127,7 +128,7 @@
             height: 45px;
         }
         .footer ul li{
-            width: 25%;
+            width: 33.33%;
             height: 45px;
             float: left;
             text-align: center;
@@ -191,6 +192,30 @@
                 width: 100%;
             }
         }
+
+/***************分割线*****************************************************************/
+/*.orderlist{*/
+    /*display: block;*/
+/*}*/
+        .unpaid{
+            display: none;
+            width: 750px;
+            margin: auto;
+        }
+        .Pendingdistribution{
+            display: none;
+            width: 750px;
+            margin: auto;
+
+        }
+        .completed{
+            display: none;
+            width: 750px;
+            margin: auto;
+
+        }
+
+
     </style>
 </head>
 <body>
@@ -202,10 +227,10 @@
     </div>
     <div class="nav">
         <ul class="nav-ul">
-            <li style="color:#8cc63f;">全部</li>
-            <li>待支付</li>
-            <li>待配送</li>
-            <li>已完成</li>
+            <li id="orderlist" style="color:#8cc63f;">全部</li>
+            <li id="unpaid">待支付</li>
+            <li id="Pendingdistribution">待配送</li>
+            <li id="completed">已完成</li>
         </ul>
     </div>
     <div class="orderlist">
@@ -239,14 +264,107 @@
                 </li>
             </ul>
     </div>
+
+    <div class="unpaid">
+        <ul class="order-list-ul">
+            <li data-play="pendingPayment">
+                <div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>
+                <div class="order-msg">
+                    <div class="ordername order-div"><span class="product">酥脆饼干</span><span class="product_right">待支付</span></div>
+                    <div class="ordertime order-div"><span class="product">2017-07-01/</span><span class="product">20:36</span></div>
+                    <div class="orderprice order-div"><span class="product">价格：</span><span class="product_right">12.2 元</span></div>
+                    <div class="ordermore order-div"><span>再来一单</span></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="Pendingdistribution">
+        <ul class="order-list-ul">
+            <li data-play="delivered">
+                <div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>
+                <div class="order-msg">
+                    <div class="ordername order-div"><span class="product">酥脆饼干</span><span class="product_right">配送中</span></div>
+                    <div class="ordertime order-div"><span class="product">2017-07-01/</span><span class="product">20:36</span></div>
+                    <div class="orderprice order-div"><span class="product">价格：</span><span class="product_right">12.2 元</span></div>
+                    <div class="ordermore order-div"><span>再来一单</span></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="completed">
+        <ul class="order-list-ul">
+            <li data-play="wing_payment">
+                <div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>
+                <div class="order-msg">
+                    <div class="ordername order-div"><span class="product">草莓</span><span class="product_right">支付完成</span></div>
+                    <div class="ordertime order-div"><span class="product">2017-07-01/</span><span class="product">20:36</span></div>
+                    <div class="orderprice order-div"><span class="product">价格：</span><span class="product_right">12.2 元</span></div>
+                    <div class="ordermore order-div"><span>去支付</span></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 </div>
 <div class="footer">
     <ul>
         <li class="position1"><a href="./i.index.html"><div class="home-img1"></div><div>首页</div></a></li>
         <li class="position2"><a href="./i.order.html"><div class="home-img2"></div><div>订单</div></a></li>
-        <li class="position4"><a href="#"><div class="home-img4"></div><div>购物车</div></a></li>
         <li class="position5"><a href="./i.user.html"><div class="home-img5"></div><div>我的</div></a></li>       
     </ul>
 </div>
+
+<script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
+<!--<script type="application/javascript" src="js/jquery-1.8.2.js"></script>-->
+<script>
+    $(document).ready(function(){
+        $("#orderlist").click(function(){
+            $("#orderlist").css({'color':'#8cc63f'});
+            $("#unpaid").css({'color':'black'});
+            $("#Pendingdistribution").css({'color':'black'});
+            $("#completed").css({'color':'black'});
+            $(".orderlist").show();
+            $(".unpaid").hide();
+            $(".Pendingdistribution").hide();
+            $(".completed").hide();
+        });
+
+        $("#unpaid").click(function(){
+            $("#orderlist").css({'color':'black'});
+            $("#unpaid").css({'color':'#8cc63f'});
+            $("#Pendingdistribution").css({'color':'black'});
+            $("#completed").css({'color':'black'});
+            $(".orderlist").hide();
+            $(".unpaid").show();
+            $(".Pendingdistribution").hide();
+            $(".completed").hide();
+        });
+
+        $("#Pendingdistribution").click(function(){
+            $("#orderlist").css({'color':'black'});
+            $("#unpaid").css({'color':'black'});
+            $("#Pendingdistribution").css({'color':'#8cc63f'});
+            $("#completed").css({'color':'black'});
+            $(".orderlist").hide();
+            $(".unpaid").hide();
+            $(".Pendingdistribution").show();
+            $(".completed").hide();
+        })
+
+        $("#completed").click(function(){
+            $("#orderlist").css({'color':'black'});
+            $("#unpaid").css({'color':'black'});
+            $("#Pendingdistribution").css({'color':'black'});
+            $("#completed").css({'color':'#8cc63f'});
+            $(".orderlist").hide();
+            $(".unpaid").hide();
+            $(".Pendingdistribution").hide();
+            $(".completed").show();
+        })
+    })
+
+</script>
 </body>
 </html>

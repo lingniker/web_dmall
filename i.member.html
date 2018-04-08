@@ -11,26 +11,162 @@
             padding: 0px;
             box-sizing: border-box;
         }
-        .member-top{
+        .nav{
+            height: 44px;
             width: 100%;
-            height: 253px;
-            background: linear-gradient(135deg,#fdad72 0,#fc8b53 280px);
-        }
-        .welcome-title{
+            line-height: 44px;
+            border-bottom: 1px solid gray;
             text-align: center;
+            position: relative;
+            z-index: 999;
+            background-color: white;
+        }
+        body{
+            background: #f6f6f6;
+            /* overflow:-Scroll;
+            overflow-y:hidden */
+        }
+        .back{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            background: #333;
+            border-radius: 50%;
             color: #fff;
-            height: 40px;
-            line-height: 40px;
-            padding: 10px 15px 0;
-            font-size: 16px;
-            font-weight: 400;
+            display: block;
+        }
+        .back-into{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 32px;
+            background: url(images/bill-icon.png) no-repeat -3px -177px;
+            background-size: 500px 700px;
+        }
+        .wap{
+            width: 100%;
+            height: 100%;
+            /*border: 1px red solid;*/
+            background: white;
+            margin-top: 2%;
+        }
+        @media screen and (max-width: 750px) {
+            .wap{
+                width: 100%;
+            }
+        }
+        .member_img a{
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            color: black;
         }
 
+
+        .member_img{
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            position: relative;
+            border: 1px white solid;
+
+        }
+        .member_img_1{
+           float: left;
+            margin-left: 1%;
+        }
+        .member_img_2{
+            width: 50px;
+            height: 50px;
+            border: 1px rgba(0, 0, 0, 0.47) solid;
+            border-radius: 50%;
+            float: right;
+            margin-right: 2%;
+            position: relative;
+            top: 15%;
+
+        }
+        .member_img_3{
+           float: right;
+            font-size: 20px;
+            color: grey;
+            margin-right: 1%;
+        }
+        .member_img_4{
+            width: 98%;
+            border: 1px grey solid;
+            position: relative;
+           top: 100%;
+            left: 1%;
+        }
+        .member_name_2{
+            color: grey;
+            float: right;
+            margin-right: 2%;
+            position: relative;
+        }
+        .member_psw_2{
+            color: grey;
+            float: right;
+            margin-right: 2%;
+            position: relative;
+        }
+        .member_phone_2{
+            color: grey;
+            float: right;
+            margin-right: 2%;
+            position: relative;
+        }
     </style>
+
 </head>
 <body>
-    <div class="member-top">
-        <h3 class="welcome-title">hello 普通会员</h3>
+<div class="nav">
+    <a class="back" href="./i.user.html"><div class="back-into"><</div></a>
+    会员中心
+</div>
+<div class="wap">
+    <div class="member_img">
+        <a href="i.modifyimg.html">
+        <div class="member_img_1">头像</div>
+        <div class="member_img_3">></div>
+        <div class="member_img_2"></div>
+        <div class="member_img_4"></div>
+        </a>
     </div>
+
+    <div class="member_img">
+        <a href="i.modifyusername.html">
+        <div class="member_img_1">昵称</div>
+        <div class="member_img_3">></div>
+        <div class="member_name_2">灵皇</div>
+        <div class="member_img_4"></div>
+        </a>
+    </div>
+
+    <div class="member_img">
+        <a href="i.modifypassword.html">
+        <div class="member_img_1">账号密码</div>
+        <div class="member_img_3">></div>
+        <div class="member_psw_2">设置</div>
+        <div class="member_img_4"></div>
+        </a>
+    </div>
+
+    <div class="member_img">
+        <a href="i.modifyphone.html">
+        <div class="member_img_1">手机号</div>
+        <div class="member_img_3">></div>
+        <div class="member_phone_2">修改</div>
+        </a>
+    </div>
+</div>
 </body>
 </html>
