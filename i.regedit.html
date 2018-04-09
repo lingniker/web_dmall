@@ -137,12 +137,14 @@
 
 
     <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 
     <!--<script src="js/jquery-1.8.2.js"></script>-->
     <script>
         var InterValObj; //timer变量，控制时间
         var count = 30; //间隔函数，1秒执行
         var curCount;//当前剩余秒数
+        var $30 = jQuery.noConflict(true);
 
         function sendMessage() {
             var phone_1 = document.getElementById('phone').value;

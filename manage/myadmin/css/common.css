@@ -89,5 +89,5 @@ ul{
 }
 .body-right-data{
     width: 100%;
-    overflow: auto;
+    /* overflow: auto; */
 }
