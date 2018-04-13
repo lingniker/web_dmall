@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="myadmin/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="myadmin/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link href="myadmin/css/common.css" rel="stylesheet">
+    <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
+    <title>Document</title>
+</head>
+<style>
+    .data-title{
+        height: 44px;
+        margin-bottom: 20px;
+        background: #fff;
+    }
+    .data-title p{
+        padding:12px 0 0 12px;
+    }
+    .data-body{
+        width: 100px;
+        overflow: auto;
+    }
+    .body-left-ul li:hover{
+        background: #575757;
+        color: #F36A5A;  
+    }
+    .body-data-box{
+        height: 120px;
+        width: 100%;
+        padding-right: 10px;
+        background: white;
+    }
+    .row-box{
+        padding:15px;
+    }
+    .body-data-num{
+        padding: 0px;
+    }
+    .body-data-name{
+        padding: 0px 0px 0px 20px;
+        font-size: 16px;
+        color: #AAB5BC;
+        font-weight: 600;
+        text-transform: uppercase;        
+    }
+    .body-data-num{
+        padding: 30px 0px 0px 20px;
+        font-size: 32px;
+        font-weight: 600;
+        color: #676767;
+    }
+    .user-manage li{
+        height: 40px;
+        line-height: 40px;
+        padding: 5px 0px;
+        margin: 20px 0px;     
+    }
+    .user-manage li input{
+        width: 450px;
+        margin-right: 20px;
+        padding-left: 10px;
+    }
+    .add-user {
+        height: 24px;
+        position: relative;
+        overflow: hidden;
+        margin-top:40px;
+        /* overflow:visible; */
+    }
+    #add-user-btn{
+        display: inline-block;
+        padding: 0 10px;
+        width: 35px;
+        height: 24px;
+        margin-left: 20px;
+    }
+    .input-user{
+        width: 450px;
+        height: 30px;
+        position: absolute;
+        top: 30px;
+    }
+    .input-user input{
+        width: 400px;
+        height: 35px;
+        padding-left: 10px;
+    }
+    .user-manage button{
+        padding: 0px 10px;
+        margin: 0px 2px;
+    }
+    .input-user button{
+        height: 34px;
+        margin: 0 2px;
+        padding: 0 5px;
+    }
+
+    .page-ul li{
+        float: left;
+        /* width: 24px; */
+        height: 24px;
+        padding: 0px 6px;
+        border: 1px solid gray;
+        text-align: center;
+        cursor: pointer;
+    }
+    .page-ul li:hover{
+        background: #fff;
+    }
+    .mymodal{
+        margin-top:50px;
+    }
+</style>
+<body>
+    <div class="admin-container">
+        <div class="admin-nav">
+            <div class="admin-nav-left">联家管理系统</div>
+            <div class="admin-nav-right">
+            <div class="back-login"><a href="./manage.html">退出登录</a></div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body-left">
+                <ul class="body-left-ul">
+                    <li><a href="./index.html">首页</a></li>
+                    <li><a href="./control.html">控制面板</a></li>
+                    <li><a href="./store.html">店铺管理</a></li>
+                    <li><a href="./commodity.html">商品管理</a></li>
+                    <li><a href="./order.html">订单详情</a></li>
+                    <li><a href="./user.html">用户管理</a></li>
+                    <li><a href="./address.html">地址管理</a></li>
+                    <li class="active"><a href="./advertising.html">广告公告</a></li>
+                    <li><a href="./classification.html">商品分类</a></li>
+                    <li><a href="./store_manage.html">店长管理</a></li>                  
+                    <li><a href="./courier.html">店员管理</a></li>
+                    <li><a href="./integral.html">积分管理</a></li>
+                </ul>
+            </div>
+            <div class="body-right">
+            <div class="body-right-title">广告公告</div>
+            <div class="body-right-data">
+                    <div class="add-advertising" style="padding-bottom:30px;">
+                        <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="添加广告" 
+                        data-list="desc_描述:0&%_%&time_开始时间:8&%_%&endtime_结束时间:8&%_%&sort_广告次序:2&%_%&img_图片:9&%_%&url_网址:0">添加广告</button>                   
+                    </div>
+                    <ul class="store-manage">                        
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                      <div class="panel-heading" role="tab" id="headingOne1">
+                                        <h4 class="panel-title">
+                                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                             生鲜水果全场五折
+                                          </a>
+                                        </h4>
+                                      </div>
+                                      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                                <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <span>描述:</span>
+                                                            <span class="store-num">生鲜水果全场五折</span>
+                                                            <button>修改</button>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <span>上传人:</span>
+                                                            <span>张三 </span>
+                                                            <span>电话：1888888888888</span>
+                                                            <button>修改</button>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <span>截止时间：</span>
+                                                            <span>2018.12.31 / 00:00</span>
+                                                            <button>修改</button>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <span class="">广告顺序</span>
+                                                            <span class="">1</span>
+                                                            <button>修改</button>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <span class="">图片路径</span>
+                                                            <span class="">http://www.lianjianshangwu.com/images/1.png</span>
+                                                            <button>修改</button>
+                                                        </li>                                                 
+                                                </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+    
+    
+    
+                                    <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                              <h4 class="panel-title store-panel">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                                    各种好品 全场9折 可享折上折
+                                                </a>
+                                              </h4>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                              <div class="panel-body">
+                                                    <ul class="list-group">
+                                                            <li class="list-group-item">
+                                                                <span>描述:</span>
+                                                                <span class="store-num"> 各种好品 全场9折 可享折上折</span>
+                                                                <button>修改</button>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                    <span>上传人:</span>
+                                                                    <span>张四 </span>
+                                                                    <button>修改</button>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <span>截至时间：</span>
+                                                                <span>2018.12.31/00：00：00</span>
+                                                                <button>修改</button>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                                    店铺商品
+                                                                </a>
+                                                                <button class="">增加商品</button>
+                                                                <div id="collapseSix" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSix">
+                                                                    <div class="panel-body">
+                                                                            <ul class="list-group">
+                                                                                <li class="list-group-item">
+                                                                                    <span>西红柿： </span>
+                                                                                    <span class="store-num">库存：50斤</span>
+                                                                                    <span class="float right"></span>
+                                                                                    <span class="right">售价：5元/斤</span>
+                                                                                </li>
+                                                                                <li class="list-group-item">
+                                                                                    <span>红牛维生素功能饮料250毫升  </span>
+                                                                                    <span class="store-num"> 库存：200瓶</span>
+                                                                                    <span class="float right"> </span>
+                                                                                    <span class="right">售价：6元每瓶</span>
+                                                                                </li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+        
+                                                            <li class="list-group-item">
+                                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                                                    店铺店员
+                                                                </a>
+                                                                <button class="">增加店员</button>
+                                                                <div id="collapseSeven" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSeven">
+                                                                    <div class="panel-body">
+                                                                            <ul class="list-group">
+                                                                                <li class="list-group-item">
+                                                                                    <span>王六： </span>
+                                                                                    <span class="store-num">年龄：25岁</span>
+                                                                                    <span class="float right">职位：配送员</span>
+                                                                                    <span class="right">电话：1888888888888</span>
+                                                                                    <button>修改</button>
+                                                                                </li>
+                                                                                <li class="list-group-item">
+                                                                                    <span>李六： </span>
+                                                                                    <span class="store-num">年龄：25岁</span>
+                                                                                    <span class="float right">职位：收银员</span>
+                                                                                    <span class="right">电话：1888888888888</span>
+                                                                                    <button>修改</button>
+                                                                                </li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </li>                                                       
+                                                    </ul>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="page" style="padding-top:10px;">
+                                              <ul class="page-ul">
+                                              </ul>
+                                              <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
+                                          </div>
+                                  </div>
+                    </ul>
+                <!-- <div class="add-advertising">
+                    <span style="font-size: 16px;">&nbsp;修改广告</span>
+                    <button id="add-advertising-btn">+</button>                   
+                    <div class="input-advertising-btn" id="input-advertising-btn"><input type="text" placeholder="输入用户" /><button>修改</button></div>
+                </div>   -->
+            </div>
+        </div>
+        <div class="floor"></div>
+
+        <div class="modal fade mymodal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">消息</h4>
+                </div>
+                <div class="modal-body append-form">
+                    <!-- <div class="form-group">
+                        <label for="recipient-name" class="control-label">修改客户</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+    
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                <label for="index" class="control-label">姓名</label>
+                                <input type="text" class="form-control" id="index">
+                            </div>
+                            <div class="form-group">
+                                <label for="index1" class="control-label">手机号</label>
+                                <input type="text" class="form-control" id="index1">
+                            </div>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="modal-commit">提交</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="myadmin/assets/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Js -->
+    <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
+    <!-- Chart Js -->
+    <!-- <script type="text/javascript" src="myadmin/assets/js/Chart.min.js"></script>   -->
+    <!-- <script type="text/javascript" src="myadmin/assets/js/chartjs.js"></script>  -->
+     <!-- Morris Chart Js -->
+     <!-- <script src="myadmin/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="myadmin/assets/js/morris/morris.js"></script> -->
+      <!-- Custom Js -->
+    <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script>
+        var $_331 = jQuery.noConflict();
+        var url = "http://140.143.27.25:8080/";
+        var mykey = "union_supermarket_2018";
+        (function(){
+        //动态生成page页
+        $('.page ul').append("<li><</li>");
+        for(var i = 0; i<5;i++){
+            $('.page ul').append("<li>"+i+"</li>");
+        };
+        $('.page ul').append("<li>></li>");
+        $("#headingOne1").on("click",function(){
+            $('#collapseOne').collapse('toggle');
+        });
+        $('.collapse').collapse();
+
+
+        //模态框的弹出
+        $('#exampleModal').on('show.bs.modal', function(event){
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var list = button.data('list');
+            var a = list.split('&%_%&');
+            console.log(a);
+            var obj = {};
+            
+            //增加节点name_名字:0&%_%&age_年龄:1&%_%&phone_手机:2
+            var appendNode = '<div class="form-group"><label for="recipient-name" class="control-label">内容'
+            +'</label><input type="button" class="form-control" id="recipient-name" value="'+recipient
+            +'" style="text-align:start"></div><ul class="list-group"><li class="list-group-item" id="modal-list">';
+            
+            for(var i = 0; i<a.length ;i++){
+                if(a[i].split(':')[1] == 9){
+                    console.log("添加图片"); 
+                    appendNode +='<div class="form-group"><label for="exampleInputFile">选择图片</label><input id="img-input" type="file" id="exampleInputFile" name="'+a[i].split(':')[0].split('_')[0]+'"><p class="help-block"></p><button class="btn_img btn">点击上传</button></div>';
+                }else if(a[i].split(':')[1] == 8){
+                    appendNode +='<div class="form-group"><label for="'+a[i].split(':')[0].split('_')[0]+'" class="control-label">'+a[i].split(':')[0].split('_')[1]
+                    +'</label><input type="text" data-enable-time=true data-time_24hr=true class="form-control flatpickr" id="index" name="'+a[i].split(':')[0].split('_')[0]+'" value="'+a[i].split(':')[1]+'"></div>';
+                }else{
+                    appendNode += '<div class="form-group"><label for="'+a[i].split(':')[0].split('_')[0]+'" class="control-label">'+a[i].split(':')[0].split('_')[1]
+                    +'</label><input type="text" class="form-control" id="index" name="'+a[i].split(':')[0].split('_')[0]+'" value="'+a[i].split(':')[1]+'"></div>';
+                };
+            }
+            appendNode += '</li></ul>';
+            $(".append-form").html(appendNode);
+            // document.getElementsByClassName("flatpickr").flatpickr();
+            var modal = $(this);
+            modal.find('.modal-title').text("管理");
+            // modal.find('.modal-body input').val(recipient);
+        });
+
+        // var data = new FormData();
+        // var file = document.querySelector(".upfile input").files[0];
+        // data.append("fileUpload", file);
+
+
+        //模态框内容的提交
+        $("#modal-commit").on('click',function(){
+            var data = {};
+            console.log($("#modal-list input").length);
+            for(var i=0; i<$("#modal-list .form-group").length;i++){
+                if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                    console.log("is file");
+                    var fr = new FileReader();
+                    fr = "";
+                }else{
+                    if($("#modal-list input").eq(i).val() == ""){
+                        alert("不能为空");
+                        return;
+                    }else{
+                        data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
+                    }
+                    
+                }      
+            };
+            console.log("this is file",data);
+            var newObj = srotKeyObj(data);
+            var str = objmd5(newObj);
+
+            var newUrl = url + "banner/add" + str;
+            console.log(newUrl);            
+        });
+
+        /*
+		 *对象key值排序
+		 *@paremet 对象
+		 */
+		function srotKeyObj(obj){
+            var arr = [];
+            var newobj = {};
+            for(var key in obj){
+                arr.push(key);
+            }
+            arr.sort();
+            var i=0;
+            for(var key in obj){
+                newobj[arr[i]] = obj[arr[i]];
+                i++;
+            };
+            return newobj;
+        }
+        /*
+         *加密获取签名
+         *@paramet 对象
+         */
+         function objmd5(obj){
+            var str = '';
+            for(var key in obj){
+                str +=  key +"="+ obj[key] + "&";
+            }
+            var newstr = str.substr(0,str.length-1);
+            var encodeStr = encodeURIComponent(newstr) + mykey;
+            var sign = md5(encodeStr);
+            newstr += "&sign=" + sign;
+            return newstr;
+        }
+
+
+        $(document).on('click','.btn_img',function(){
+            console.log("上传图片");
+            var formData=new FormData();
+            formData.append('timestamp',parseInt(new Date().getTime()/1000));
+            formData.append("access_token","d3ba726f-3cfe-4bed-82ba-303521f67253");
+            formData.append('file', $("#img-input").files[0]);  /*获取上传的图片对象*/
+            var data = {};
+            data.access_token = "d3ba726f-3cfe-4bed-82ba-303521f67253";
+            // data.file = formData;
+            $_331.ajax({
+                  url: 'http://140.143.25.27:8080/attachment/upload/',
+                  type: 'POST',
+                  data: formData,
+                  contentType: false,
+                  processData: false,
+                  success:function(args){
+                    console.log(args);  /*服务器端的图片地址*/
+                    //$("#avatarPreview").attr('src','/'+args);  /*预览图片*/
+                    //$("#avatar").val('/'+args);  /*将服务端的图片url赋值给form表单的隐藏input标签*/
+                   },
+                    error:function(err){
+                        console.log(err);
+                    }
+            });
+        });
+    })();
+    </script>
+
+    <!-- <script>
+    $(function () {
+          bindAvatar();
+     });
+    function bindAvatar() {
+          if(window.URL.createObjectURL){
+            bindAvatar3();
+          }else if(window.FileReader){
+            bindAvatar2();
+          }else {
+            bindAvatar1();
+          }
+     }
+      /*Ajax上传至后台并返回图片的url*/
+      function bindAvatar1() {
+        $("#avatarSlect").change(function () {
+        var csrf = $("input[name='csrfmiddlewaretoken']").val();
+        var formData=new FormData();
+        formData.append('avatar', $("#avatarSlect")[0].files[0]);  /*获取上传的图片对象*/
+        $.ajax({
+          url: '/upload_avatar/',
+              type: 'POST',
+              data: formData,
+              contentType: false,
+              processData: false,
+              success: function (args) {
+                  console.log(args);  /*服务器端的图片地址*/
+                  $("#avatarPreview").attr('src','/'+args);  /*预览图片*/
+                  $("#avatar").val('/'+args);  /*将服务端的图片url赋值给form表单的隐藏input标签*/
+         }
+          })
+     })
+    }
+      /*window.FileReader本地预览*/
+      function bindAvatar2() {
+        console.log(2);
+           $("#avatarSlect").change(function () {
+               var obj=$("#avatarSlect")[0].files[0];
+               var fr=new FileReader();
+               fr.onload=function () {
+                   $("#avatarPreview").attr('src',this.result);
+                   console.log(this.result);
+                   $("#avatar").val(this.result);
+          };
+          fr.readAsDataURL(obj);
+        })
+     }
+     /*window.URL.createObjectURL本地预览*/
+     function bindAvatar3() {
+       console.log(3);
+          $("#avatarSlect").change(function () {
+              var obj=$("#avatarSlect")[0].files[0];
+              var wuc=window.URL.createObjectURL(obj);
+               $("#avatarPreview").attr('src',wuc);
+               $("#avatar").val(wuc);
+    //           $("#avatarPreview").load(function () {  /*当图片加载后释放内存空间，但在jQuery3.2.1中会报错。浏览器关闭后也会自动释放*/
+    //            window.URL.revokeObjectURL(wuc);
+    //       }) 
+       })
+     }
+    </script> -->
+</body>
+</html>

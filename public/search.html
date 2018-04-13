@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>search</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/ys.css">
+</head>
+<body>
+<div >
+<div class="toolbar">
+    <a  href="./i.index.html" class="back">
+        <div class="back-into"></div></a>
+    <div class="search_1">
+        <input type="text" placeholder="搜索想要的商品" value="" id="search" />
+        <button class="btn_search" onclick="fun1()">搜索</button>
+
+
+    </div>
+</div>
+    <div class="content_search">
+        <div class="search_title">
+
+            <h4>历史搜索</h4><button onclick="fun2()" id="clear">清空记录</button>
+              <div class="lishijilu" id="lishijilu">
+            <!--<a href="#"> 老干妈辣椒酱</a>-->
+                  <!--<a href="#" class="lishi"></a>-->
+            </div>
+        </div>
+<div class="search_title2">
+    <h4>热门搜索</h4>
+
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+        <a href="#"> 老干妈辣椒酱</a>
+
+
+    </div>
+
+    </div>
+
+
+</div>
+
+<script>
+    function  fun1() {
+        var search=document.getElementById("search").value;
+        var lishijilu=document.getElementById("lishijilu");
+        var clear=document.getElementById("clear");
+        // alert(search);
+        // lishijilu.innerHTML="<a href='#'>"+search+"</a>";
+        // search.appendChild(lishijilu);
+        var para = document.createElement("a");
+        para.attr="href='#'";
+        para.style.marginLeft="5px";
+        para.setAttribute("href", "#");
+        var txt1 = document.createTextNode(search);
+        para.appendChild(txt1);
+       lishijilu.appendChild(para);
+       clear.style.display="block";
+    }
+    function fun2() {
+        var clear=document.getElementById("clear");
+        if(confirm("确认删除全部历史记录？")){
+            // alert("1111111111111");
+        document.getElementById("lishijilu").innerHTML="";
+            clear.style.display="none";
+        }else {
+        }
+    }
+
+</script>
+</body>
+</html>

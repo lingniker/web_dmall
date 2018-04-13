@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
+    <title>Document</title>
+    <link rel="stylesheet" href="css/ys.css">
+    <link rel="stylesheet" href="css/common.css">
+    <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var url = "http://140.143.25.27:8080/";
+        var mykey = "union_supermarket_2018";
+        // "access_token":"d3ba726f-3cfe-4bed-82ba-303521f67253","token_type":"bearer","refresh_token":"a892c6bc-e5e2-41e1-92b6-d7e0830168df","expires_in":315303893,"scope":"select"}
+        function login() {
+            $_331 = jQuery.noConflict();
+            var phone = document.getElementById('phone').value;
+            var psw = document.getElementById('psw').value;
+            
+            if(/^1[34578]\d{9}$/.test(phone)){
+                if(/^[0-9_a-zA-Z!@#$%^&*+-/,.<>?;:'"|{}[()`~]{6,18}$/.test(psw)){
+
+                    var obj = {};
+                    obj.username = phone;
+                    obj.password = md5(psw); 
+                    obj.grant_type = "password";
+                    obj.scope="select";
+                    obj.client_id="web";
+                    obj.client_secret="union_supermarket_web";
+                    obj.timestamp=parseInt(new Date().getTime()/1000);
+
+                    var newobj = srotKeyObj(obj);
+                    var str = objmd5(newobj);
+
+                    
+                    var newUrl = url+"oauth/token?"+str;
+                    console.log(newUrl);
+                    // window.sessionStorage.token = "token";
+                    // window.location="i.user.html";
+                    // sessionStorage.access_token="d3ba726f-3cfe-4bed-82ba-303521f67253";
+                    // sessionStorage.token_type="bearer";
+                    // sessionStorage.refresh_token="a892c6bc-e5e2-41e1-92b6-d7e0830168df";
+                    // sessionStorage.expires_in="315303893";
+                    // sessionStorage.scope="select";
+
+                    
+
+                    var newUrl111 = "http://140.143.25.27:8080/oauth/token?from=2&password=e10adc3949ba59abbe56e057f20f883e&scope=select&grant_type=password&username=18378743641&timestamp=1523327465&client_id=ios&client_secret=union_supermarket_ios&sign=7185225076b40e4fbbeb5ef0d680b60a";
+                    //var urlll = "http://140.143.25.27:8080/register?from=0&passWord=e10adc3949ba59abbe56e057f20f883e&phone=18378743641&phoneCode=1234&timestamp=1523351951&sign=72ca245f52d6e6d9d38eceffca051013";
+                    $_331.ajax({
+                        url:newUrl,
+                        type:"get",
+                        dataTtype:"json",
+                        success:function(data){
+                            console.log(data);
+                            console.log("ok");
+                            sessionStorage.access_token=data.access_token;
+                            sessionStorage.token_type=data.token_type;
+                            sessionStorage.refresh_token=data.refresh_token;
+                            sessionStorage.expires_in=data.expires_in;
+                            sessionStorage.scope=data.scope;
+                            location.href="i.user.html";
+                        },
+                        error:function(err){
+                            console.log(err);
+                            // {"access_token":"363c5a7e-335b-4d2a-a8d4-4db4af244a67","token_type":"bearer","refresh_token":"a3352680-e3d2-48b0-9bf7-b01b107ee7d9","expires_in":43200,"scope":"select"}
+                            console.log("请求错误");
+                            // location.href="i.user.html";
+                            console.log("i.index.html");
+                            // $_331.ajax({
+                            //     url:"http://140.143.25.27:8080/address/get?access_token=363c5a7e-335b-4d2a-a8d4-4db4af244a67",
+                            //     type:"get",
+                            //     success:function(data){
+                            //         console.log(data);
+                            //     }
+                            // });
+                        }        
+                    });
+
+                    // function CORSRequest(method,url,opation,callback) {
+                    //     var xhr = new XMLHttpRequest();
+                    //     if ("withCredentials" in xhr) {
+                    //     // 此时即支持CORS的情况
+                    //     // 检查XMLHttpRequest对象是否有“withCredentials”属性
+                    //     // “withCredentials”仅存在于XMLHTTPRequest level 2对象里
+                    //     } else {
+                    //     // 否则检查是否支持XDomainRequest
+                    //     // XDomainRequest仅存在于IE中，是IE用于支持CORS请求的方式
+                    //     xhr = new XDomainRequest();
+                    //     }
+                    //     xhr.open(method, url, true);
+                    //     if(method=="POST"){
+                    //         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                    //         xhr.send(opation);
+                    //     }else{
+                    //         xhr.send();
+                    //         console.log("发送");
+                    //     }
+                    //     xhr.onload = function(){
+                    //         callback(xhr.responseText);    
+                    //     }
+                    // }
+                    // CORSRequest("get",newUrl,{},function(res){console.log(res)});
+
+                    
+                }else{
+                    alert("请输入六到二十位数字或字母或下划线密码");
+                }            
+            }else{
+                alert("手机号码有误,请重新输入");
+            }
+        }
+
+        function srotKeyObj(obj){
+            var arr = [];
+            var newobj = {};
+            for(var key in obj){
+                arr.push(key);
+            }
+            arr.sort();
+            var i=0;
+            for(var key in obj){
+                newobj[arr[i]] = obj[arr[i]];
+                i++;
+            };
+            return newobj;
+        }
+        /*
+         *加密获取签名
+         *@paramet 对象
+         */
+         function objmd5(obj){
+            var str = '';
+            for(var key in obj){
+                str +=  key +"="+ obj[key] + "&";
+            }
+            var newstr = str.substr(0,str.length-1);
+
+            var encodeStr = encodeURIComponent(newstr) + mykey;
+            var sign = md5(encodeStr);
+            newstr += "&sign=" + sign;
+            return newstr;
+        }
+        
+    </script>
+</head>
+<body  style="background-color: #f6f6f6">
+    <div class="toolbar">
+        <a class="back" href="./i.user.html"><div class="back-into"></div></a>
+        用户登录
+    </div>
+    <div class="login-box" style="margin-top: 45px">
+        <img src="./images/login-top.jpg" alt="">
+        <div class='login-input'>
+            <span id="tip1"></span>
+            <input type="text" placeholder="请输入您的手机号" value="" id="phone" onblur="">
+            <span id="tip2"></span>
+            <input type="password" placeholder="请输入密码" value="" id="psw" onblur="">
+        </div>
+        <p class="user-protocol-p">
+            <span class="user-protocol_1" >
+
+                <a href="./i.forgetpsw.html" class="register_1">找回密码</a>
+            </span>
+            <span class="user-protocol"><span>
+            <a href="./i.regedit.html" class="register">去注册</a>
+        </span></span>
+        </p>
+        <div class="login-btn-box"  onclick="login()"><div class="login-btn">登录</div></div>
+
+        <div class="wechartimg">
+            <div  class="wechartborder"></div>
+            <a href="#">
+            <img src="images/wechart_1.png">
+
+                <span class="wechartimg_span">微信登录</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- <script type="text/plain" src="http://140.143.25.27:8080/oauth/token?from=2&password=e10adc3949ba59abbe56e057f20f883e&scope=select&grant_type=password&username=18378743641&timestamp=1523327465&client_id=ios&client_secret=union_supermarket_ios&sign=7185225076b40e4fbbeb5ef0d680b60a"></script> -->
+    
+    <script type="text/javascript">
+        // console.log(access_token);
+        // $.ajax({
+        //         async : true,
+        //         url : "http://140.143.25.27:8080/oauth/token?from=web&password=e10adc3949ba59abbe56e057f20f883e&scope=select&grant_type=password&username=18378743641&timestamp=1523327465&client_id=web&client_secret=union_supermarket_web&sign=7185225076b40e4fbbeb5ef0d680b60a",
+        //         type : "GET",
+        //         dataType : "json", // 返回的数据类型，设置为JSONP方式
+        //         jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+        //         jsonpCallback: 'handleResponse', //设置回调函数名
+        //         data : {
+        //             q : "javascript", 
+        //             count : 1
+        //         }, 
+        //         success: function(response, status, xhr){
+        //             console.log('状态为：' + status + ',状态是：' + xhr.statusText);
+        //             console.log(response);
+        //         }
+        //     });
+    </script>
+    
+</body>
+</html>

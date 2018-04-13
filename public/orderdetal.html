@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+      .body{
+
+          padding: 0;
+          margin: 0 auto;
+          width: 100%;
+          height:100%;
+          /*border: 1px red solid;*/
+
+      }
+      .orderdetal_main{
+          width: 750px;
+          height: 100%;
+          margin: 0 auto;
+          padding: 0;
+
+      }
+        .orderdetal_header{
+            width: 100%;
+            height: 45px;
+            padding: 0;
+            margin: 0;
+            background-color:#ff712b ;
+            border: 1px #ff712b solid;
+            line-height: 45px;
+            /*text-align: center;*/
+            /*position: fixed;*/
+            /*top: 0;*/
+
+        }
+        .orderdetal_header h{
+            color: white;
+            font-size: 20px;
+            font-weight: bolder;
+
+            -webkit-flex: 1;
+            flex: 1;
+            text-align: center;
+            color: #f0f0f0;
+        }
+        .orderdetal_title{
+            margin-top: 50px;
+            width: 750px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border: 1px rgba(0, 0, 0, 0.14) solid;
+
+        }
+
+
+        .orderdetal_label{
+           width: 750px;
+            height: 250px;
+            margin-top: 10px;
+            border: 1px rgba(0, 0, 0, 0.29) solid;
+
+        }
+        .orderdetal_label h3{
+            margin-left: 20px;
+        }
+       .ordernum{
+        line-height: 50px;
+           margin-left: 20px;
+           height: 50px;
+           width: 700px;
+           border-bottom: 1px rgba(0, 0, 0, 0.29) solid;
+       }
+        .ordernum_1{
+            margin-left: 485px;
+        }
+        .orderpay{
+            line-height: 50px;
+            margin-left: 20px;
+            height: 50px;
+            width: 700px;
+            border-bottom: 1px rgba(0, 0, 0, 0.29) solid;
+        }
+        .order_paytype{
+            margin-left: 560px;
+        }
+        .ordertime{
+            line-height: 50px;
+            margin-left: 20px;
+            height: 50px;
+            width: 700px;
+            border-bottom: 1px rgba(0, 0, 0, 0.29) solid;
+        }
+        .ordertime_01{
+            margin-left: 500px;
+        }
+
+        .orderdetal_product{
+            line-height: 50px;
+            margin-left: 20px;
+            height: 50px;
+            width: 700px;
+            border-bottom: 1px rgba(0, 0, 0, 0.29) solid;
+
+        }
+        .orderdetal_product div{
+            float: left;
+        }
+        .orderdetal_product img{
+            width: 40px;
+            height: 40px;
+            float: left;
+        }
+        .orderdetal_productname{
+           margin-left: 10px;
+
+
+        }
+        .orderdetal_num{
+            margin-left: 250px;
+        }
+        .orderdetal_price{
+            margin-left: 270px;
+        }
+
+        .orderdetal_labe2{
+            width: 750px;
+            height: 350px;
+            margin-top: 10px;
+            border: 1px rgba(0, 0, 0, 0.29) solid;
+
+        }
+        .orderpay01{
+            margin-left: 610px;
+        }
+        .orderpay02{
+            margin-left: 625px;
+        }
+        .orderpay03{
+            margin-left: 530px;
+        }
+        .orderpay04{
+            font-weight: bolder;
+            margin-left: 610px;
+        }
+        .orderpay04{
+            font-weight: bolder;
+            margin-left: 610px;
+        }
+        .orderpay05{
+            margin-left: 560px;
+        }
+        .orderpay06{
+            margin-left: 580px;
+        }
+        .orderpay07{
+            margin-left: 580px;
+        }
+
+
+        .orderdetal_header a{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+            top: 6px;
+            left: 10px;
+            background: #333;
+            border-radius: 50%;
+            color: #fff;
+            display: block;
+        }
+        .orderdetal_header h{
+            margin-left: 50%;
+        }
+        .back_f{
+            height: 32px;
+            width: 32px;
+            position: absolute;
+          text-align: center;
+            border-radius: 50%;
+            color: #fff;
+            line-height: 32px;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .orderdetal_label{
+            display: inline-block;
+        }
+
+        .ordermore{
+          margin-left: 87%;
+        }
+        .ordermore a{
+            color: red;
+        }
+        /************订单ul***********************************/
+
+
+
+    </style>
+</head>
+<body>
+<div class="body">
+
+
+<div class="orderdetal_header">
+    <a  href="./i.order.html">
+        <div class="back_f"><</div></a>
+    <h>订单已完成</h>
+</div>
+
+    <div class="orderdetal_main">
+    <div class="orderdetal_title">
+
+       <h2> 感谢您对我们的信任，期待再次光临</h2>
+    </div>
+
+
+    <div class="orderdetal_label">
+        <h3>订单信息</h3>
+        <div class="ordernum"><span>订单号</span><span class="ordernum_1" name="ordernum">0123 4567 8912 345</span></div>
+        <div class="orderpay"><span>支付方式</span><span class="order_paytype">在线支付</span></div>
+        <div class="ordertime"><span>下单时间</span><span class="ordertime_01" name="ordertime">2017-07-01 20:36</span></div>
+    </div>
+
+
+        <div class="orderdetal_labe2">
+            <h3>商品信息</h3>
+            <div class="orderdetal_product"><img src="images/menu1.jpg">
+                <div class="orderdetal_productname" name="productname">酥脆饼干</div> <div class="orderdetal_num">x1</div>
+                <div class="orderdetal_price" name="price">12.2</div><div>元</div></div>
+
+            <div class="ordernum"><span>塑料袋</span><span class="orderpay01" name="orderpay01">0.2元</span></div>
+            <div class="orderpay"><span>配送费</span><span class="orderpay02" name="orderpay02">0元</span></div>
+            <div class="ordertime"><span>在线支付立减优惠</span><span class="orderpay03" name="orderpay03">- 0元</span></div>
+            <div class="ordertime"><span>实付</span><span class="orderpay04" name="courtpay">12.4元</span></div>
+
+            <div class="ordermore order-div"><a href="#" class="ordermore_1">再来一单</a></div>
+        </div>
+
+        <div class="orderdetal_label">
+            <h3>配送信息</h3>
+            <div class="ordernum"><span>发送时间</span><span class="orderpay05">尽快送达</span></div>
+            <div class="orderpay"><span>收货地址</span><span class="orderpay06" name="orderaddress">XXXXX</span></div>
+            <div class="ordertime"><span>配送方式</span><span class="orderpay07">XX专送</span></div>
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+</html>
