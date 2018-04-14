@@ -9,7 +9,7 @@
     <style>
         *{
             margin: 0px;
-            padding: 0px;
+            padding: 0p;
             box-sizing: border-box;
         }
         .nav{
@@ -84,7 +84,7 @@
         .location{
             height: 25px;
             background: #fff;
-            list-style: none;
+            list-style: 25px;
             width: 750px;
             color: #888;
             padding-left: 10px;           
@@ -100,46 +100,18 @@
             background: url(./images/bill-icon.png) no-repeat -444px -121px;
             background-size: 500px 700px;
         }
-        .commit-address{
-            width: 750px;
-            margin: auto;
-            margin-top: 15px;
-            height:40px;
-            line-height: 40px;
-            text-align: center;
-            background: #ff712b;
-            color: #fff;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        @media screen and (max-width: 750px){
-            .address{
-                width: 100%;
-            }
-            .location{
-                width: 100%;
-            }
-            .map-box{
-                width: 100%;
-            }
-            .commit-address{
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="nav">    
-        <a class="back" href="./i.address.html"><div class="back-into"></div></a>
+        <a class="back" href="./i.user.html"><div class="back-into"></div></a>
         添加地址
     </div>
     <div class="address">
         <div class="user-address">
             <div class="add-name"><input type="text" name="name" placeholder="请输入收件人姓名"></div>           
             <div class="add-phone"><input type="text" name="name" placeholder="请输入手机号"></div>           
-            <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请输入收件人具体地址"></div>
-            <div class="add-name"><input type="text" name="name2" id="houseNumber" placeholder="请输入门牌号"></div>     
+            <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请输入收件人具体地址"></div>           
         </div>
     </div>
     <div class="location">
@@ -149,7 +121,6 @@
     <div class="map-box">
             <div id="allmap"></div>
     </div>
-    <div class="commit-address">保存地址</div>
     
     <script type="text/javascript">
         // 百度地图API功能
@@ -185,9 +156,6 @@
                 // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
             });        
         });
-        document.getElementsByClassName("commit-address")[0].onclick = function(){
-            console.log("提交地址");
-        }
     </script>
 </body>
 </html>

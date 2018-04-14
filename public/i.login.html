@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/ys.css">
     <link rel="stylesheet" href="css/common.css">
     <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
     <script>
         var url = "http://140.143.25.27:8080/";
         var mykey = "union_supermarket_2018";
@@ -36,7 +36,7 @@
                     var str = objmd5(newobj);
 
                     
-                    var newUrl = url+"oauth/token?"+str;
+                    var newUrl = url+"user/login?"+str;
                     console.log(newUrl);
                     // window.sessionStorage.token = "token";
                     // window.location="i.user.html";
@@ -57,11 +57,31 @@
                         success:function(data){
                             console.log(data);
                             console.log("ok");
-                            sessionStorage.access_token=data.access_token;
-                            sessionStorage.token_type=data.token_type;
-                            sessionStorage.refresh_token=data.refresh_token;
-                            sessionStorage.expires_in=data.expires_in;
-                            sessionStorage.scope=data.scope;
+                            // headimgurl
+                            //     :
+                            //     null
+                            // id
+                            //     :
+                            //     20
+                            // nickname
+                            //     :
+                            //     "反抗军的数据库"
+                            // phone
+                            //     :
+                            //     "18378743641"
+                            // token
+                            //     :
+                            //     "28c6debf-ea42-47d4-a531-b4366e05e987"
+                            // userName
+                            //     :
+                            //     "18378743641"
+
+                            sessionStorage.access_token=data.data.token;
+                            sessionStorage.nickname=data.data.nickname;
+                            sessionStorage.phone=data.data.phone;
+                            sessionStorage.userName=data.data.userName;
+                            sessionStorage.id=data.data.id;
+                            sessionStorage.headimgurl=data.data.headimgurl;
                             location.href="i.user.html";
                         },
                         error:function(err){

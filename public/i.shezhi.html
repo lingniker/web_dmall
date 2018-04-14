@@ -19,21 +19,106 @@
     <div class="member_img_1">账号密码</div>
     <div class="member_img_3">></div>
     <div class="member_psw_2">设置</div>
-    <div class="member_img_4"></div>
+    <!--<div class="member_img_4"></div>-->
     </a>
     </div>
 
-    <div class="member_img">
-    <a href="i.modifyphone.html">
-    <div class="member_img_1">手机号</div>
-    <div class="member_img_3">></div>
-    <div class="member_phone_2">修改</div>
-    </a>
-    </div>
+    <!--<div class="member_img">-->
+    <!--<a href="i.modifyphone.html">-->
+    <!--<div class="member_img_1">手机号</div>-->
+    <!--<div class="member_img_3">></div>-->
+    <!--<div class="member_phone_2">修改</div>-->
+    <!--</a>-->
+    <!--</div>-->
 </div>
 <div  class="address_addnew0">
-    <a class="address_addnew" href="i.user.html">退出账号</a>
+    <a class="address_addnew"  onclick="zhuxiao()">退出账号</a>
 
 </div>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var $_331 = jQuery.noConflict();
+</script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+
+
+    var mykey = "union_supermarket_2018";
+    var url = "http://140.143.25.27:8080/";
+    
+    function zhuxiao() {
+        
+   if (confirm("确定退出账号？")) {
+       if (sessionStorage.access_token !== undefined) {
+           var obj = {};
+           obj.access_token = sessionStorage.access_token;
+           obj.timestamp = parseInt(new Date().getTime() / 1000);
+           obj.from = "web";
+           var str = srotKeyObjAndMd5(obj);
+           var newUrl = url + "cancel?" + str;
+           $_331.ajax({
+               url: newUrl,
+               type: "get",
+               dataType: "json",
+               success: function (data) {
+                   console.log(data);
+                   if(data.code == 200){
+                       sessionStorage.access_token = undefined;
+                       sessionStorage.nickname= undefined;
+                       sessionStorage.phone= undefined;
+                       sessionStorage.userName= undefined;
+                       sessionStorage.id= undefined;
+                       sessionStorage.headimgurl= undefined;
+                       location.href="i.user.html";
+                   }
+
+                   // confirm("确定退出账号？");
+                   // ("确定退出账号？")
+
+                   // console.log(data.data.nickname);
+                   // if(data.data.nickname==""){
+                   //     document.getElementById("member_name_Nickname").innerHTML="hello";
+                   // }else {
+                   //     document.getElementById("member_name_Nickname").innerHTML=data.data.nickname;
+                   // }
+                   // document.getElementById("member_phone01").innerHTML=data.data.phone.slice(0,3)+"****"+data.data.phone.slice(7,11);
+               },
+               error: function (err) {
+                   console.log(err);
+
+               }
+           });
+       }
+   }
+    else{
+    }
+
+
+    }
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+</script>

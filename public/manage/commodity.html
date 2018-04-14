@@ -148,7 +148,7 @@
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
                     <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="增加商品" 
-                    data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:#0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                   
+                    data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                 
                 </div>
                 <ul class="commodity-manage">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -156,9 +156,14 @@
                                   <div class="panel-heading" role="tab" id="headingOne1">
                                     <h4 class="panel-title">
                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                          维生素红牛功能饮料250毫升
+                                          维生素红牛功能饮料250毫升                    
                                       </a>
+                                      <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品" 
+                                      data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">修改商品</button>
+                                      <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品" 
+                                      data-list="name_商品名称:^:红牛维生素供能饮料225ml0">删除商品</button>             
                                     </h4>
+                                    
                                   </div>
                                   <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                     <div class="panel-body">
@@ -362,6 +367,8 @@
 
         //模态框的弹出
         $('#exampleModal').on('show.bs.modal',function(event){
+            event.stopPropagation();
+            // event.preventDefault();
             var button = $(event.relatedTarget);
             var recipient = button.data('whatever');
             var list = button.data('list');
@@ -422,7 +429,8 @@
 
 
         //模态框内容的提交
-        $("#modal-commit").on('click',function(){
+        $("#modal-commit").on('click',function(event){
+            event.preventDefault();
             var data = {};
             // console.log($("#modal-list input").length);
             for(var i=0; i<$("#modal-list .form-group").length;i++){
@@ -442,12 +450,12 @@
             console.log("this is file",data);
             data.access_token = sessionStorage.access_token;
             data.status = 0;
-            data.from = "web";
+            data.form = "web";
             data.timestamp = parseInt(new Date().getTime()/1000);
             var newObj = srotKeyObj(data);
             var str = objmd5(newObj);
 
-            var newUrl = url + "banner/add?" + str;
+            var newUrl = url + "product/add?" + str;
             console.log(newUrl);
             // $.ajax({
             //     url:newUrl,
@@ -465,48 +473,140 @@
         });
         
         $(document).on('click','.btn_img',function(){//上传图片
-                if($("#img-input")[0].files[0]){
-                var reg = /image\/*/;
-                var bloe = reg.test($("#img-input")[0].files[0].type);
-                if(bloe){
-                    var obj = {};
-                    obj.access_token = sessionStorage.access_token;
-                    obj.timestamp = parseInt(new Date().getTime()/1000);
-                    obj.from = "web";
+            //     if($("#img-input")[0].files[0]){
+            //     var reg = /image\/*/;
+            //     var bloe = reg.test($("#img-input")[0].files[0].type);
+            //     if(bloe){
+            //         var obj = {};
+            //         obj.access_token = sessionStorage.access_token;
+            //         obj.timestamp = parseInt(new Date().getTime()/1000);
+            //         obj.form = "web";
 
-                    var newobj = srotKeyObj(obj);
-                    var str = objmd5(newobj);
+            //         var newobj = srotKeyObj(obj);
+            //         var str = objmd5(newobj);
 
-                    var arr = str.split("&");
+            //         var arr = str.split("&");
 
-                    var formData = new FormData();
-                    for(var i = 0;i<arr.length;i++){
-                        formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
-                    }
-                    formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
-                    $_331.ajax({
-                          url: 'http://192.168.1.102:8080/attachment/upload?',
-                          type: 'POST',
-                          data: formData,
-                          contentType: false,
-                          processData: false,
-                          success:function(args){
-                              console.log(args);  /*服务器端的图片地址*/
-                              console.log("ok");
-                     },
-                        error:function(err){
-                            console.log(err);
-                            console.log("err");
-                        }
-                  });
+            //         var formData = new FormData();
+            //         for(var i = 0;i<arr.length;i++){
+            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+            //         }
+            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
+            //         $_331.ajax({
+            //               url: 'http://192.168.1.102:8080/attachment/upload?',
+            //               type: 'POST',
+            //               data: formData,
+            //               contentType: false,
+            //               processData: false,
+            //               success:function(args){
+            //                   console.log(args);  /*服务器端的图片地址*/
+            //                   console.log("ok");
+            //          },
+            //             error:function(err){
+            //                 console.log(err);
+            //                 console.log("err");
+            //             }
+            //       });
 
-                }else{
-                    alert("请选择图片");
-                }
-            }else{
-                alert("请选择图片");
-            }
+            //     }else{
+            //         alert("请选择图片");
+            //     }
+            // }else{
+            //     alert("请选择图片");
+            // }
+            var str = "http://140.143.25.27:8080/attachment/view/47";
+            var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                    +str+
+                    '">';
+            $(this).parent().html(node);
+
         });
+
+        function findCommodity(){
+            var obj = {};
+            obj.categoryId = 2;
+            obj.pageNum = 1;
+            obj.pageSize = 10;
+            obj.access_token = sessionStorage.access_token;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.form = "web";
+
+            var newobj = srotKeyObj(obj);
+            var str = objmd5(newobj);
+
+            var newUrl = url + "product/findByCategoryId?" + str ;
+            console.log(newUrl);
+
+            var data = {"code": 200,"message": "请求成功",
+                       "data": {"pageNum": 1,"pageSize": 1,"size": 1,"startRow": 1,"endRow": 1,"total": 2,"pages": 2,
+                                "list": [{  "id": 2,"deleted": "0","createTime": "2018-04-13 14:54:30",
+                                            "createUser": 12,"updateTime": "2018-04-13 14:57:59",
+                                            "updateUser": 12,"name": "222",
+                                            "imagePath": "http://140.143.25.27:8080/attachment/view/8",
+                                            "cost": 20.5,"price": 25,"introduction": "","weight": null,
+                                            "categoryId": 1,"remarks": "","hot": -1
+                                            }
+                                        ],
+                                "prePage": 0,"nextPage": 2,"isFirstPage": true,"isLastPage": false,
+                                "hasPreviousPage": false,"hasNextPage": true,"navigatePages": 8,
+                                "navigatepageNums": [1,2],"navigateFirstPage": 1,"navigateLastPage": 2,
+                                "lastPage": 2,"firstPage": 1
+                            }}
+            //添加长list
+            var logNode = '';
+
+            for(var i = 0; i < data.data.list.length;i++){
+                logNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="headingOne1"><h4 class="panel-title">'
+                
+            }
+            
+            //<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            //维生素红牛功能饮料250毫升                    
+            //</a>
+            //<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品" 
+            //data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">修改商品</button>
+            //<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品" 
+            //data-list="name_商品名称:^:红牛维生素供能饮料225ml0">删除商品</button>             
+            //</h4>                               
+            //</div>
+            //<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            //<div class="panel-body">
+            //<ul class="list-group">
+            //<li class="list-group-item">
+            //<span>描述:</span>
+            //<span class="store-num">维生素红牛功能饮料250毫升</span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span>上传人:</span>
+            //<span>张三 </span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span>售价：</span>
+            //<span>20元</span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span>分类：</span>
+            //<span>饮料</span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span class="">图片路径</span>
+            //<span class="">http://www.lianjianshangwu.com/images/1.png</span>
+            //<button>修改</button>
+            //</li>
+            //</ul>
+            //</div>
+            //</div>
+            //</div>
+
+
+        }
+
+        findCommodity();
+
 
         /*
 		 *对象key值排序
