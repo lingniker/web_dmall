@@ -8,7 +8,7 @@
     <link href="myadmin/assets/css/font-awesome.css" rel="stylesheet" />
     <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" >
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link href="myadmin/css/common.css" rel="stylesheet">
     <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
@@ -148,7 +148,7 @@
             <div class="body-right-data">
                     <div class="add-advertising" style="padding-bottom:30px;">
                         <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="添加广告" 
-                        data-list="desc_描述:0&%_%&time_开始时间:8&%_%&endtime_结束时间:8&%_%&sort_广告次序:2&%_%&img_图片:9&%_%&url_网址:0">添加广告</button>                   
+                        data-list="name_名称:^:|*-*|0&%_%&url_链接地址:^:|*-*|0&%_%&order_显示顺序:^:|*-*|0&%_%&begin_开始显示时间:^:|*-*|8&%_%&end_结束显示时间:^:|*-*|8&%_%&img_图片:^:|*-*|9">添加广告</button>                   
                     </div>
                     <ul class="store-manage">                        
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -346,7 +346,7 @@
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
     <script>
         var $_331 = jQuery.noConflict();
-        var url = "http://140.143.27.25:8080/";
+        var url = "http://140.143.25.27:8080/";
         var mykey = "union_supermarket_2018";
         (function(){
         //动态生成page页
@@ -367,65 +367,129 @@
             var recipient = button.data('whatever');
             var list = button.data('list');
             var a = list.split('&%_%&');
-            console.log(a);
+            // console.log(a);
             var obj = {};
+            var arr = [];
+            for(var i in a){
+                // console.log(a[i]);
+                arr[i] = [];
+                arr[i][0] = a[i].split(":^:")[0];
+                arr[i][1] = a[i].split(":^:")[1].substr(0,a[i].split(":^:")[1].length-1) == "|*-*|" ? "" : a[i].split(":^:")[1].substr(0,a[i].split(":^:")[1].length-1);
+                arr[i][2] = a[i].split(":^:")[1].substr(a[i].split(":^:")[1].length-1,1);
+            }
+            // console.log(arr);
             
             //增加节点name_名字:0&%_%&age_年龄:1&%_%&phone_手机:2
             var appendNode = '<div class="form-group"><label for="recipient-name" class="control-label">内容'
             +'</label><input type="button" class="form-control" id="recipient-name" value="'+recipient
             +'" style="text-align:start"></div><ul class="list-group"><li class="list-group-item" id="modal-list">';
             
-            for(var i = 0; i<a.length ;i++){
-                if(a[i].split(':')[1] == 9){
-                    console.log("添加图片"); 
-                    appendNode +='<div class="form-group"><label for="exampleInputFile">选择图片</label><input id="img-input" type="file" id="exampleInputFile" name="'+a[i].split(':')[0].split('_')[0]+'"><p class="help-block"></p><button class="btn_img btn">点击上传</button></div>';
-                }else if(a[i].split(':')[1] == 8){
-                    appendNode +='<div class="form-group"><label for="'+a[i].split(':')[0].split('_')[0]+'" class="control-label">'+a[i].split(':')[0].split('_')[1]
-                    +'</label><input type="text" data-enable-time=true data-time_24hr=true class="form-control flatpickr" id="index" name="'+a[i].split(':')[0].split('_')[0]+'" value="'+a[i].split(':')[1]+'"></div>';
+            for(var i = 0; i<arr.length ;i++){
+                if(arr[i][2] == 9){
+                    // console.log("添加图片");
+                    appendNode +='<div class="form-group"><label for="exampleInputFile">选择图片</label><input id="img-input" type="file" filetype="image/*" name="'
+                    +arr[i][0].split('_')[0]
+                    +'"><p class="help-block"></p><button class="btn_img btn">点击上传</button></div>';
+                }else if(arr[i][2] == 8){
+                    appendNode +='<div class="form-group"><label for="'
+                    +a[i].split(':^:')[0].split('_')[0]
+                    +'" class="control-label">'
+                    +a[i].split(':^:')[0].split('_')[1]
+                    +'</label><input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index" name="'
+                    +a[i].split(':^:')[0].split('_')[0]+'"></div>';
                 }else{
-                    appendNode += '<div class="form-group"><label for="'+a[i].split(':')[0].split('_')[0]+'" class="control-label">'+a[i].split(':')[0].split('_')[1]
-                    +'</label><input type="text" class="form-control" id="index" name="'+a[i].split(':')[0].split('_')[0]+'" value="'+a[i].split(':')[1]+'"></div>';
+                    appendNode += '<div class="form-group"><label for="'
+                    +arr[i][0].split('_')[0]+'" class="control-label">'
+                    +arr[i][0].split('_')[1]
+                    +'</label><input type="text" class="form-control" id="'
+                    +arr[i][0].split('_')[0]+'" name="'
+                    +arr[i][0].split('_')[0]+
+                    '" value="'
+                    +arr[i][1]+
+                    '"></div>';
                 };
             }
             appendNode += '</li></ul>';
             $(".append-form").html(appendNode);
-            // document.getElementsByClassName("flatpickr").flatpickr();
+            document.getElementsByClassName("flatpickr").flatpickr();
             var modal = $(this);
             modal.find('.modal-title').text("管理");
             // modal.find('.modal-body input').val(recipient);
         });
 
-        // var data = new FormData();
-        // var file = document.querySelector(".upfile input").files[0];
-        // data.append("fileUpload", file);
 
 
         //模态框内容的提交
         $("#modal-commit").on('click',function(){
             var data = {};
-            console.log($("#modal-list input").length);
+            // console.log($("#modal-list input").length);
             for(var i=0; i<$("#modal-list .form-group").length;i++){
                 if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
-                    console.log("is file");
-                    var fr = new FileReader();
-                    fr = "";
+                    alert("请先上传图片");
+                    return;
                 }else{
                     if($("#modal-list input").eq(i).val() == ""){
-                        alert("不能为空");
+                        alert("参数不能为空");
                         return;
                     }else{
                         data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
                     }
                     
-                }      
+                }
             };
             console.log("this is file",data);
+            data.access_token = sessionStorage.access_token;
+            data.status = 0;
+            data.from = "web";
+            data.timestamp = parseInt(new Date().getTime()/1000);
             var newObj = srotKeyObj(data);
             var str = objmd5(newObj);
 
-            var newUrl = url + "banner/add" + str;
-            console.log(newUrl);            
+            var newUrl = url + "banner/add?" + str;
+            console.log(newUrl);
+            $.ajax({
+                url:newUrl,
+                type:'get',
+                success:function(data){
+                    console.log(data);
+                    console.log("ok");
+                },
+                error:function(err){
+                    console.log(err);
+                    console.log("err");
+                    
+                }
+            });
         });
+
+        function findAdvAll(){
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.from = "web";
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            var newObj = srotKeyObj(obj);
+            var str = objmd5(newObj);
+
+            var newUrl = url+"banner/listAll?"+str;
+            console.log(newUrl);
+
+            $.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                console.log("ok");
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+
+        }
+        findAdvAll();
+        
+
 
         /*
 		 *对象key值排序
@@ -462,94 +526,56 @@
         }
 
 
-        $(document).on('click','.btn_img',function(){
-            console.log("上传图片");
-            var formData=new FormData();
-            formData.append('timestamp',parseInt(new Date().getTime()/1000));
-            formData.append("access_token","d3ba726f-3cfe-4bed-82ba-303521f67253");
-            formData.append('file', $("#img-input").files[0]);  /*获取上传的图片对象*/
-            var data = {};
-            data.access_token = "d3ba726f-3cfe-4bed-82ba-303521f67253";
-            // data.file = formData;
-            $_331.ajax({
-                  url: 'http://140.143.25.27:8080/attachment/upload/',
-                  type: 'POST',
-                  data: formData,
-                  contentType: false,
-                  processData: false,
-                  success:function(args){
-                    console.log(args);  /*服务器端的图片地址*/
-                    //$("#avatarPreview").attr('src','/'+args);  /*预览图片*/
-                    //$("#avatar").val('/'+args);  /*将服务端的图片url赋值给form表单的隐藏input标签*/
-                   },
-                    error:function(err){
-                        console.log(err);
-                    }
-            });
+        $(document).on('click','.btn_img',function(){//上传图片
+            // if($("#img-input")[0].files[0]){
+            //     var reg = /image\/*/;
+            //     var bloe = reg.test($("#img-input")[0].files[0].type);
+            //     if(bloe){
+            //         var obj = {};
+            //         obj.access_token = sessionStorage.access_token;
+            //         obj.timestamp = parseInt(new Date().getTime()/1000);
+            //         obj.from = "web";
+
+            //         var newobj = srotKeyObj(obj);
+            //         var str = objmd5(newobj);
+
+            //         var arr = str.split("&");
+
+            //         var formData = new FormData();
+            //         for(var i = 0;i<arr.length;i++){
+            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+            //         }
+            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
+            //         $_331.ajax({
+            //               url: 'http://140.143.25.27:8080/attachment/upload',
+            //               type: 'POST',
+            //               data: formData,
+            //               contentType: false,
+            //               processData: false,
+            //               success:function(args){
+            //                   console.log(args);  /*服务器端的图片地址*/
+            //          },
+            //             error:function(err){
+            //                 console.log(err);
+            //             }
+            //       });
+
+            //     }else{
+            //         alert("请选择图片");
+            //     }
+            // }else{
+            //     alert("请选择图片");
+            // }
+
+            var str = "http://140.143.25.27:8080/attachment/view/46";
+            var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                    +str+
+                    '">';
+            $(this).parent().html(node);
+            
+            
         });
     })();
     </script>
-
-    <!-- <script>
-    $(function () {
-          bindAvatar();
-     });
-    function bindAvatar() {
-          if(window.URL.createObjectURL){
-            bindAvatar3();
-          }else if(window.FileReader){
-            bindAvatar2();
-          }else {
-            bindAvatar1();
-          }
-     }
-      /*Ajax上传至后台并返回图片的url*/
-      function bindAvatar1() {
-        $("#avatarSlect").change(function () {
-        var csrf = $("input[name='csrfmiddlewaretoken']").val();
-        var formData=new FormData();
-        formData.append('avatar', $("#avatarSlect")[0].files[0]);  /*获取上传的图片对象*/
-        $.ajax({
-          url: '/upload_avatar/',
-              type: 'POST',
-              data: formData,
-              contentType: false,
-              processData: false,
-              success: function (args) {
-                  console.log(args);  /*服务器端的图片地址*/
-                  $("#avatarPreview").attr('src','/'+args);  /*预览图片*/
-                  $("#avatar").val('/'+args);  /*将服务端的图片url赋值给form表单的隐藏input标签*/
-         }
-          })
-     })
-    }
-      /*window.FileReader本地预览*/
-      function bindAvatar2() {
-        console.log(2);
-           $("#avatarSlect").change(function () {
-               var obj=$("#avatarSlect")[0].files[0];
-               var fr=new FileReader();
-               fr.onload=function () {
-                   $("#avatarPreview").attr('src',this.result);
-                   console.log(this.result);
-                   $("#avatar").val(this.result);
-          };
-          fr.readAsDataURL(obj);
-        })
-     }
-     /*window.URL.createObjectURL本地预览*/
-     function bindAvatar3() {
-       console.log(3);
-          $("#avatarSlect").change(function () {
-              var obj=$("#avatarSlect")[0].files[0];
-              var wuc=window.URL.createObjectURL(obj);
-               $("#avatarPreview").attr('src',wuc);
-               $("#avatar").val(wuc);
-    //           $("#avatarPreview").load(function () {  /*当图片加载后释放内存空间，但在jQuery3.2.1中会报错。浏览器关闭后也会自动释放*/
-    //            window.URL.revokeObjectURL(wuc);
-    //       }) 
-       })
-     }
-    </script> -->
 </body>
 </html>

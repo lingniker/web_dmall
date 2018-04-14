@@ -146,6 +146,10 @@
             <div class="body-right">
             <div class="body-right-title">店铺管理</div>
             <div class="body-right-data">
+                <div class="add-advertising" style="padding-bottom:30px;">
+                    <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="增加商品" 
+                    data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.58&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:#0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                   
+                </div>
                 <ul class="store-manage">                        
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
@@ -395,15 +399,16 @@
     <script src="myadmin/assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
     <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
-    <!-- Chart Js -->
-    <script type="text/javascript" src="myadmin/assets/js/Chart.min.js"></script>  
-    <script type="text/javascript" src="myadmin/assets/js/chartjs.js"></script> 
-     <!-- Morris Chart Js -->
-     <!-- <script src="myadmin/assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="myadmin/assets/js/morris/morris.js"></script> -->
-      <!-- Custom Js -->
-    <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
     <script>
+
+        var $_331 = jQuery.noConflict();
+        var url = "http://140.143.25.27:8080/";
+        var mykey = "union_supermarket_2018";
+
+        (function(){
+        //动态生成page页
         $('.page ul').append("<li><</li>");
         for(var i = 0; i<5;i++){
             $('.page ul').append("<li>"+i+"</li>");
@@ -413,41 +418,223 @@
             $('#collapseOne').collapse('toggle');
         });
         $('.collapse').collapse();
-        var store_btn = document.getElementById("add-store-btn");
-        store_btn.onclick = function(e){
-            console.log("new store",store_btn.innerHTML);
-            if(store_btn.innerHTML == "+"){
-                store_btn.innerHTML = "-";
-                document.getElementsByClassName("add-store")[0].style="overflow:visible";                
-            }else{
-                store_btn.innerHTML = "+";
-                document.getElementsByClassName("add-store")[0].style="overflow:hidden;"; 
-            }
-        }
-        $('#exampleModal').on('show.bs.modal', function (event) {
+
+
+        //模态框的弹出
+        $('#exampleModal').on('show.bs.modal', function(event){
             var button = $(event.relatedTarget);
             var recipient = button.data('whatever');
             var list = button.data('list');
             var a = list.split('&%_%&');
-            console.log(a);
+            // console.log(a);
             var obj = {};
+            var arr = [];
+            for(var i in a){
+                // console.log(a[i]);
+                arr[i] = [];
+                arr[i][0] = a[i].split(":^:")[0];
+                arr[i][1] = a[i].split(":^:")[1].substr(0,a[i].split(":^:")[1].length-1) == "|*-*|" ? "" : a[i].split(":^:")[1].substr(0,a[i].split(":^:")[1].length-1);
+                arr[i][2] = a[i].split(":^:")[1].substr(a[i].split(":^:")[1].length-1,1);
+            }
+            // console.log(arr);
             
             //增加节点name_名字:0&%_%&age_年龄:1&%_%&phone_手机:2
             var appendNode = '<div class="form-group"><label for="recipient-name" class="control-label">内容'
             +'</label><input type="button" class="form-control" id="recipient-name" value="'+recipient
-            +'" style="text-align:start"></div><ul class="list-group"><li class="list-group-item">';
+            +'" style="text-align:start"></div><ul class="list-group"><li class="list-group-item" id="modal-list">';
             
-            for(var i = 0; i<a.length ;i++){
-            appendNode += '<div class="form-group"><label for="'+a[i].split(':')[0].split('_')[0]+'" class="control-label">'+a[i].split(':')[0].split('_')[1]
-            +'</label><input type="text" class="form-control" id="index" value="'+a[i].split(':')[1]+'"></div>';
+            for(var i = 0; i<arr.length ;i++){
+                if(arr[i][2] == 9){
+                    // console.log("添加图片");
+                    appendNode +='<div class="form-group"><label for="exampleInputFile">选择图片</label><input id="img-input" type="file" filetype="image/*" name="'
+                    +arr[i][0].split('_')[0]
+                    +'"><p class="help-block"></p><button class="btn_img btn">点击上传</button></div>';
+                }else if(arr[i][2] == 8){
+                    appendNode +='<div class="form-group"><label for="'
+                    +a[i].split(':^:')[0].split('_')[0]
+                    +'" class="control-label">'
+                    +a[i].split(':^:')[0].split('_')[1]
+                    +'</label><input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index" name="'
+                    +a[i].split(':^:')[0].split('_')[0]+'"></div>';
+                }else{
+                    appendNode += '<div class="form-group"><label for="'
+                    +arr[i][0].split('_')[0]+'" class="control-label">'
+                    +arr[i][0].split('_')[1]
+                    +'</label><input type="text" class="form-control" id="'
+                    +arr[i][0].split('_')[0]+'" name="'
+                    +arr[i][0].split('_')[0]+
+                    '" value="'
+                    +arr[i][1]+
+                    '"></div>';
+                };
             }
             appendNode += '</li></ul>';
-            $(".append-form").append(appendNode);
-            // console.log(obj);
+            $(".append-form").html(appendNode);
+            // document.getElementsByClassName("flatpickr").flatpickr();
             var modal = $(this);
             modal.find('.modal-title').text("管理");
             // modal.find('.modal-body input').val(recipient);
         });
+
+
+
+        //模态框内容的提交
+        $("#modal-commit").on('click',function(){
+            var data = {};
+            // console.log($("#modal-list input").length);
+            for(var i=0; i<$("#modal-list .form-group").length;i++){
+                if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                    alert("请先上传图片");
+                    return;
+                }else{
+                    if($("#modal-list input").eq(i).val() == ""){
+                        alert("参数不能为空");
+                        return;
+                    }else{
+                        data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
+                    }
+                    
+                }
+            };
+            console.log("this is file",data);
+            data.access_token = sessionStorage.access_token;
+            data.status = 0;
+            data.from = "web";
+            data.timestamp = parseInt(new Date().getTime()/1000);
+            var newObj = srotKeyObj(data);
+            var str = objmd5(newObj);
+
+            var newUrl = url + "banner/add?" + str;
+            console.log(newUrl);
+            $.ajax({
+                url:newUrl,
+                type:'get',
+                success:function(data){
+                    console.log(data);
+                    console.log("ok");
+                },
+                error:function(err){
+                    console.log(err);
+                    console.log("ok");
+                    
+                }
+            });
+        });
+
+        function findAdvAll(){
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.from = "web";
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            var newObj = srotKeyObj(obj);
+            var str = objmd5(newObj);
+
+            var newUrl = url+"banner/listAll?"+str;
+            console.log(newUrl);
+
+            $.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                console.log("ok");
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+
+        }
+        findAdvAll();
+        
+
+
+        /*
+		 *对象key值排序
+		 *@paremet 对象
+		 */
+		function srotKeyObj(obj){
+            var arr = [];
+            var newobj = {};
+            for(var key in obj){
+                arr.push(key);
+            }
+            arr.sort();
+            var i=0;
+            for(var key in obj){
+                newobj[arr[i]] = obj[arr[i]];
+                i++;
+            };
+            return newobj;
+        }
+        /*
+         *加密获取签名
+         *@paramet 对象
+         */
+         function objmd5(obj){
+            var str = '';
+            for(var key in obj){
+                str +=  key +"="+ obj[key] + "&";
+            }
+            var newstr = str.substr(0,str.length-1);
+            var encodeStr = encodeURIComponent(newstr) + mykey;
+            var sign = md5(encodeStr);
+            newstr += "&sign=" + sign;
+            return newstr;
+        }
+
+
+        $(document).on('click','.btn_img',function(){//上传图片
+            // if($("#img-input")[0].files[0]){
+            //     var reg = /image\/*/;
+            //     var bloe = reg.test($("#img-input")[0].files[0].type);
+            //     if(bloe){
+            //         var obj = {};
+            //         obj.access_token = sessionStorage.access_token;
+            //         obj.timestamp = parseInt(new Date().getTime()/1000);
+            //         obj.from = "web";
+
+            //         var newobj = srotKeyObj(obj);
+            //         var str = objmd5(newobj);
+
+            //         var arr = str.split("&");
+
+            //         var formData = new FormData();
+            //         for(var i = 0;i<arr.length;i++){
+            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+            //         }
+            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
+            //         $_331.ajax({
+            //               url: 'http://140.143.25.27:8080/attachment/upload?',
+            //               type: 'POST',
+            //               data: formData,
+            //               contentType: false,
+            //               processData: false,
+            //               success:function(args){
+            //                   console.log(args);  /*服务器端的图片地址*/
+            //          },
+            //             error:function(err){
+            //                 console.log(err);
+            //             }
+            //       });
+
+            //     }else{
+            //         alert("请选择图片");
+            //     }
+            // }else{
+            //     alert("请选择图片");
+            // }
+
+            var str = "http://140.143.25.27:8080/attachment/view/46";
+            var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                    +str+
+                    '">';
+            $(this).parent().html(node);
+            
+            
+        });
+    })();
     </script>
 </body>
 </html>
