@@ -373,7 +373,8 @@
             var str = objmd5(newObj);
 
             var newUrl = url + "category/update?" + str;
-
+            
+            console.log(newUrl);
             $.ajax({
                 url:newUrl,
                 type:"get",
@@ -389,7 +390,7 @@
                 }
 
             });
-            console.log(newUrl);
+            
 
 
         });

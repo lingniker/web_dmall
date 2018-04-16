@@ -7,10 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/ys.css">
-    <style>
 
-    </style>
-
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var $_331 = jQuery.noConflict();
+    </script>
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
 </head>
 <body style="background-color: #eee">
 <div class="toolbar">
@@ -19,84 +21,67 @@
     <!--<a href="i.addaddress.html" class="addadress">新增地址</a>-->
 </div>
 <div class="wap_coupon">
-    <!--<div class="member_img">-->
-        <!--<a href="i.modifyaddress.html">-->
-            <!--<div class="member_img_1">-->
-                <!--<div class="adress" id="adress">山东省青岛市水灵山路87号深蓝星商务酒店</div>-->
-                <!--<div class="username"><span class="uname" id="uname">韦某某</span><span class="usex" id="usex">先生</span><span class="uphone" id="uphone">185****0786</span></div>-->
-            <!--</div>-->
-            <!--<div class="member_img_3"><img src="images/right_member.png" class="right_member"></div>-->
-            <!--&lt;!&ndash;<div class="member_img_2"></div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="member_img_4"></div>&ndash;&gt;-->
-        <!--</a>-->
-    <!--</div>-->
 <ul id="address_ul">
-    <li >
-    <div class="address_1" id="address_1">
-        <div class="address_2">
-            <div class="address_2_1"><span class="address_2_1_1">史超</span><span class="address_2_1_2">185****0786</span></div>
-            <div class="address_2_2">山东省青岛市水灵山路87号深蓝星商务酒店</div>
-        </div>
-        <div class="address_3">
-            <div class="address_3_1"><input type="radio" checked class="address_3_1_1" name="r"><span class="address_3_1_2">默认地址</span></div>
-            <div class="address_3_2">
-                <a href="#" class="address_3_2_a2" onclick="del(1)" ><div class="address_3_2_img2"></div><button  >删除</button></a>
-                <a href="i.modifyaddress.html" class="address_3_2_a1"><div class="address_3_2_img1"></div><span >编辑</span></a>
-
-            </div>
-        </div>
-    </div>
-    </li>
-    <li>
-    <div class="address_1" id="address_2">
-        <div class="address_2">
-            <div class="address_2_1"><span class="address_2_1_1">史超</span><span class="address_2_1_2">185****0786</span></div>
-            <div class="address_2_2">山东省青岛市水灵山路87号深蓝星商务酒店山东省青岛市水灵山路87号深蓝星商务酒店</div>
-        </div>
-        <div class="address_3">
-            <div class="address_3_1"><input type="radio"  class="address_3_1_1" name="r"  value="设为默认">
-                <span class="address_3_1_2" id="sheweimoren1">设为默认</span>
-
-            </div>
-            <div class="address_3_2">
-                <a href="#" class="address_3_2_a2" onclick="del(2)" ><div class="address_3_2_img2"></div><button >删除</button></a>
-                <a href="i.modifyaddress.html" class="address_3_2_a1"><div class="address_3_2_img1"></div><span >编辑</span></a>
-
-            </div>
-        </div>
-    </div>
-    </li>
-    <li>
-    <div class="address_1" id="address_3">
-        <div class="address_2">
-            <div class="address_2_1"><span class="address_2_1_1">史超</span><span class="address_2_1_2">185****0786</span></div>
-            <div class="address_2_2">山东省青岛市水灵山路87号深蓝星商务酒店山东省青岛市水灵山路87号深蓝星商务酒店</div>
-        </div>
-        <div class="address_3">
-            <div class="address_3_1"><input type="radio"  class="address_3_1_1" name="r" ><span class="address_3_1_2" id="sheweimoren2">设为默认</span></div>
-            <div class="address_3_2">
-                <a href="#" class="address_3_2_a2" onclick="del(3)" ><div class="address_3_2_img2"></div><button >删除</button></a>
-                <a href="i.modifyaddress.html" class="address_3_2_a1"><div class="address_3_2_img1"></div><span >编辑</span></a>
-
-            </div>
-        </div>
-    </div>
-    </li>
 </ul>
-
 <div  class="address_addnew0">
     <a class="address_addnew" href="i.addaddress.html">+ 新建地址</a>
-
 </div>
 </div>
 </body>
 </html>
-<!--<script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script>
-// function sheweimoren1() {
-//     document.getElementById("sheweimoren1").write="";
-// }
-     function del(n) {
+    var $3_3_1 = jQuery.noConflict(true);
+    var mykey = "union_supermarket_2018";
+    var url = "http://140.143.25.27:8080/";
+    if(sessionStorage.access_token !== undefined){
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.timestamp= parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "address/get?" + str;
+        $_331.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                console.log(data.data);
+
+                var nodestr = "";
+                for(var i=0;i<data.data.length;i++){
+                    nodestr += "<li>"+"<div class='address_1'>"+
+                        "<div class='address_2'>"+
+                        "<div class='address_2_1'>"+"<span class='address_2_1_1'>"+data.data[i].name+"</span>"+"<span class='address_2_1_2'>"+
+                        data.data[i].phone.slice(0,3)+"****"+data.data[i].phone.slice(7,11)+"</span>"+"</div>"+
+                        "<div class='address_2_2'>"+data.data[i].addres+" "+data.data[i].doorplate+"</div>"+
+                        "</div>"+
+                        "<div class='address_3'>"+
+                        "<div class='address_3_1'>"+"<input type='radio' name='r' class='address_3_1_1' id=''>"+"<span class='address_3_1_2'>"+"设为默认"+"</span>"+"</div>"+
+                        "<div class='address_3_2'>"+
+                        "<a href='#' class='address_3_2_a2' onclick='del(i)'>"+"<div class='address_3_2_img2'>"+"</div>"+"<button>"+"删除"+"</button>"+"</a>"+
+                        "<a href='i.modifyaddress.html' class='address_3_2_a1' >"+"<div class='address_3_2_img1'>"+"</div>"+"<span>"+"编辑"+"</span>"+"</a>"
+                        +"</div>"
+                        +"</div>"
+                        +"</div>"+"</li>"
+                }
+
+                $_331(document).ready(function(){
+                    $_331("#address_ul").html(nodestr)
+                });
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }else{
+
+    }
+
+
+    function del(n) {
          // var wap=document.getElementById("wap");
          if(confirm("地址删除后无法恢复，是否要删除地址？")){
              // alert("1111111111111");
@@ -130,4 +115,28 @@
      }
 
 
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
 </script>

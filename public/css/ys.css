@@ -67,7 +67,7 @@ ul{
 #header_menue li{
     float: left;
     height: 50px ;
-    width: 16.6666667%;
+    width: 20%;
     /*border: 1px red solid;*/
     line-height: 50px;
     text-align: center;
@@ -2775,7 +2775,10 @@ margin-left: 2%;
     left: 1%;
 }
 
-
+#address_ul{
+    margin-top: 50px;
+    margin-bottom: 55px;
+}
 
 .address_1{
     width: 100%;
@@ -2897,6 +2900,7 @@ margin-right: 5%;
     text-align: center;
     position: fixed;
     bottom: 0;
+    background-color: white;
 
 }
 .address_addnew{
