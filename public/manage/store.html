@@ -147,8 +147,8 @@
             <div class="body-right-title">店铺管理</div>
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
-                    <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="增加商品" 
-                    data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.58&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:#0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                   
+                    <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="增加店铺" 
+                    data-list="storeName_商品名称:^:高密联家超市1号店0&%_%&longitude_经度坐标:^:119.1070780&%_%&latitude_纬度坐标:^:36.709250&%_%&positionName_地址名称:^:山东省潍坊市潍城区城关街道胜利西街9号潍坊百货大楼和平路0">增加</button>                   
                 </div>
                 <ul class="store-manage">                        
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -341,13 +341,13 @@
                                                 </ul>
                                           </div>
                                         </div>
-                                      </div>
-                                      <div class="page" style="padding-top:10px;">
-                                          <ul class="page-ul">
-                                          </ul>
-                                          <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
-                                      </div>
-                              </div>
+                                </div>
+                                <div class="page" style="padding-top:10px;">
+                                    <ul class="page-ul">
+                                    </ul>
+                                    <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
+                                </div>
+                        </div>
                 </ul>
                 <div class="add-store">
                     <span style="font-size: 16px;">&nbsp;查找店铺</span>
@@ -387,7 +387,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-              <button type="button" class="btn btn-primary">提交</button>
+              <button type="button" class="btn btn-primary" id="modal-commit">提交</button>
             </div>
           </div>
         </div>
@@ -404,7 +404,9 @@
     <script>
 
         var $_331 = jQuery.noConflict();
-        var url = "http://140.143.25.27:8080/";
+        // var url = "http://140.143.25.27:8080/";
+        // var url = "http://192.168.1.109:8080/";
+        var url = "http://192.168.1.108:8080/";
         var mykey = "union_supermarket_2018";
 
         (function(){
@@ -441,7 +443,7 @@
             //增加节点name_名字:0&%_%&age_年龄:1&%_%&phone_手机:2
             var appendNode = '<div class="form-group"><label for="recipient-name" class="control-label">内容'
             +'</label><input type="button" class="form-control" id="recipient-name" value="'+recipient
-            +'" style="text-align:start"></div><ul class="list-group"><li class="list-group-item" id="modal-list">';
+            +'" style="text-align:start"></div><ul class="list-group" id="modal-list"><li class="list-group-item" id="modal-list">';
             
             for(var i = 0; i<arr.length ;i++){
                 if(arr[i][2] == 9){
@@ -498,13 +500,13 @@
             };
             console.log("this is file",data);
             data.access_token = sessionStorage.access_token;
-            data.status = 0;
             data.from = "web";
+            data.createUser = sessionStorage.id;
             data.timestamp = parseInt(new Date().getTime()/1000);
             var newObj = srotKeyObj(data);
             var str = objmd5(newObj);
 
-            var newUrl = url + "banner/add?" + str;
+            var newUrl = url + "store/add?" + str;
             console.log(newUrl);
             $.ajax({
                 url:newUrl,
@@ -521,32 +523,219 @@
             });
         });
 
-        function findAdvAll(){
+        //根据商店id进行数据查询
+        function findStortAll(){
             var obj = {};
             obj.access_token = sessionStorage.access_token;
-            obj.from = "web";
             obj.timestamp = parseInt(new Date().getTime()/1000);
-            var newObj = srotKeyObj(obj);
-            var str = objmd5(newObj);
+            obj.form = "web";
 
-            var newUrl = url+"banner/listAll?"+str;
+            var newobj = srotKeyObj(obj);
+            var str = objmd5(newobj);
+
+            var newUrl = url + "product/findByCategoryId?" + str ;
             console.log(newUrl);
 
+
             $.ajax({
-            url:newUrl,
-            type:"get",
-            dataType:"json",
-            success:function(data){
-                console.log(data);
-                console.log("ok");
-            },
-            error:function(err){
-                console.log(err);
-            }
-        });
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    console.log("ok");
+                    console.log(data);
+                    // var data = {"code": 200,"message": "请求成功",
+                    //    "data": {"pageNum": 1,"pageSize": 1,"size": 1,"startRow": 1,"endRow": 1,"total": 2,"pages": 2,
+                    //             "list": [{  "id": 2,"deleted": "0","createTime": "2018-04-13 14:54:30",
+                    //                         "createUser": 12,"updateTime": "2018-04-13 14:57:59",
+                    //                         "updateUser": 12,"name": "222",
+                    //                         "imagePath": "http://140.143.25.27:8080/attachment/view/8",
+                    //                         "cost": 20.5,"price": 25,"introduction": "","weight": null,
+                    //                         "categoryId": 1,"remarks": "","hot": -1
+                    //                         },
+                    //                      {  "id": 3,"deleted": "0","createTime": "2018-04-13 14:54:30",
+                    //                         "createUser": 12,"updateTime": "2018-04-13 14:57:59",
+                    //                         "updateUser": 12,"name": "红牛维生素供能饮料225ml红牛维生素供能饮料225ml",
+                    //                         "imagePath": "http://140.143.25.27:8080/attachment/view/8",
+                    //                         "cost": 20.5,"price": 25,"introduction": "","weight": null,
+                    //                         "categoryId": 1,"remarks": "","hot": -1
+                    //                     },
+                    //                      {  "id": 4,"deleted": "0","createTime": "2018-04-13 14:54:30",
+                    //                         "createUser": 12,"updateTime": "2018-04-13 14:57:59",
+                    //                         "updateUser": 12,"name": "红牛维生素供能饮料225ml红牛维生素供能饮料225ml",
+                    //                         "imagePath": "http://140.143.25.27:8080/attachment/view/8",
+                    //                         "cost": 20.5,"price": 25,"introduction": "","weight": null,
+                    //                         "categoryId": 1,"remarks": "","hot": -1
+                    //                         }
+
+                    //                     ],
+                    //             "prePage": 0,"nextPage": 2,"isFirstPage": true,"isLastPage": false,
+                    //             "hasPreviousPage": false,"hasNextPage": true,"navigatePages": 8,
+                    //             "navigatepageNums": [1,2],"navigateFirstPage": 1,"navigateLastPage": 2,
+                    //             "lastPage": 2,"firstPage": 1
+                    //         }}
+                    //添加长list
+                    var listNode = '';
+                    for(var i = 0; i < data.data.list.length;i++){
+                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'"><h4 class="panel-title">'
+                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data.list[i].id+'">'
+                        + data.data.list[i].name 
+                        + '</a>'
+                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
+                        + 'data-list="name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'0">修改商品</button>'
+                        + '<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
+                        + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
+                        + '</h4></div>' 
+                        + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
+                        + '<div class="panel-body">'
+                        + '<div class="panel-body">'
+                        + '<li class="list-group-item">' 
+                        + '<span>商品名称:</span>'
+                        + '<span class="store-num">'+data.data.list[i].name+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>成本价:</span>'
+                        + '<span class="store-num">'+data.data.list[i].cost+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>零售价:</span>'
+                        + '<span class="store-num">'+data.data.list[i].price+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>重量:</span>'
+                        + '<span class="store-num">'+data.data.list[i].weight+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>热度:</span>'
+                        + '<span class="store-num">'+data.data.list[i].hot+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>备注:</span>'
+                        + '<span class="store-num">'+data.data.list[i].remarks+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>图片路径:</span>'
+                        + '<span class="store-num">'+data.data.list[i].imagePath+'</span>'
+                        + '</li>'
+                        + '</ul></div></div></div></div>'
+                    }
+
+                    listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
+
+                    $('.panel-group').html(listNode);
+                    $('.collapse').collapse();
+
+                    $('.page ul').append("<li><</li>");
+
+                    if(data.data.pages > 5){
+                        if(data.data.pageNum < 3){
+                          for(var i = 1 ; i < 4 ; i++){
+                              if(data.data.pageNum == i){
+                                $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
+                              }else{
+                                $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
+                              }                         
+                          }
+                          $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                          $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                        }else if(data.data.pageNum == 3){
+                            $('.page ul').append("<li data-id="+1+">"+1+"</li>");                           
+                            $('.page ul').append("<li data-id="+2+">"+2+"</li>");
+                            $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
+                            $('.page ul').append("<li data-id="+4+">"+4+"</li>");
+                            $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
+                        }else if(data.data.pageNum-3 > 0){
+                                $('.page ul').append("<li data-id="+1+">"+1+"</li>");
+                                $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                            if(data.data.pages-data.data.pageNum >= 3){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 2){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 1){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 0){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
+                            }                            
+                        }
+                    }else{
+                        for(let i = 0; i<data.data.pages;i++){
+                            var k = i + 1;
+                            if(k == data.data.pageNum){
+                            $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
+                            }else{
+                            $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
+                            }
+                        };          
+                }
+                $('.page ul').append("<li>></li>");
+
+
+                },
+                error:function(err){
+                    console.log("err");
+                    console.log(err);
+                }
+            });
+
+            
+
+            
+            //<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            //维生素红牛功能饮料250毫升                    
+            //</a>
+            //<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品" 
+            //data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">修改商品</button>
+            //<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品" 
+            //data-list="name_商品名称:^:红牛维生素供能饮料225ml0">删除商品</button>             
+            //</h4>                               
+            //</div>
+
+            //<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            //<div class="panel-body">
+            //<ul class="list-group">
+            //<li class="list-group-item">
+            //<span>描述:</span>
+            //<span class="store-num">维生素红牛功能饮料250毫升</span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span>上传人:</span>
+            //<span>张三 </span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span>售价：</span>
+            //<span>20元</span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span>分类：</span>
+            //<span>饮料</span>
+            //<button>修改</button>
+            //</li>
+            //<li class="list-group-item">
+            //<span class="">图片路径</span>
+            //<span class="">http://www.lianjianshangwu.com/images/1.png</span>
+            //<button>修改</button>
+            //</li>
+            //</ul>
+            //</div>
+            //</div>
+            //</div>
+
 
         }
-        findAdvAll();
         
 
 
@@ -572,68 +761,18 @@
          *加密获取签名
          *@paramet 对象
          */
-         function objmd5(obj){
+         function objmd5(obj){ 
             var str = '';
             for(var key in obj){
                 str +=  key +"="+ obj[key] + "&";
             }
             var newstr = str.substr(0,str.length-1);
             var encodeStr = encodeURIComponent(newstr) + mykey;
+            console.log(encodeStr);
             var sign = md5(encodeStr);
             newstr += "&sign=" + sign;
             return newstr;
-        }
-
-
-        $(document).on('click','.btn_img',function(){//上传图片
-            // if($("#img-input")[0].files[0]){
-            //     var reg = /image\/*/;
-            //     var bloe = reg.test($("#img-input")[0].files[0].type);
-            //     if(bloe){
-            //         var obj = {};
-            //         obj.access_token = sessionStorage.access_token;
-            //         obj.timestamp = parseInt(new Date().getTime()/1000);
-            //         obj.from = "web";
-
-            //         var newobj = srotKeyObj(obj);
-            //         var str = objmd5(newobj);
-
-            //         var arr = str.split("&");
-
-            //         var formData = new FormData();
-            //         for(var i = 0;i<arr.length;i++){
-            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
-            //         }
-            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
-            //         $_331.ajax({
-            //               url: 'http://140.143.25.27:8080/attachment/upload?',
-            //               type: 'POST',
-            //               data: formData,
-            //               contentType: false,
-            //               processData: false,
-            //               success:function(args){
-            //                   console.log(args);  /*服务器端的图片地址*/
-            //          },
-            //             error:function(err){
-            //                 console.log(err);
-            //             }
-            //       });
-
-            //     }else{
-            //         alert("请选择图片");
-            //     }
-            // }else{
-            //     alert("请选择图片");
-            // }
-
-            var str = "http://140.143.25.27:8080/attachment/view/46";
-            var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-                    +str+
-                    '">';
-            $(this).parent().html(node);
-            
-            
-        });
+         }
     })();
     </script>
 </body>

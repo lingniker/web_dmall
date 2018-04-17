@@ -352,6 +352,8 @@
         var $_331 = jQuery.noConflict();
         var url = "http://140.143.25.27:8080/";
         var mykey = "union_supermarket_2018";
+        var pageNum = 2;
+        var pageSize = 1;
         (function(){
         //动态生成page页
         $('.page ul').append("<li><</li>");
@@ -458,9 +460,6 @@
             // modal.find('.modal-body input').val(recipient);
         });
 
-        // var data = new FormData();
-        // var file = document.querySelector(".upfile input").files[0];
-        // data.append("fileUpload", file);
 
 
         //模态框内容的提交
@@ -494,75 +493,77 @@
 
             var newUrl = url + "product/add?" + str;
             console.log(newUrl);
-            // $.ajax({
-            //     url:newUrl,
-            //     type:'get',
-            //     success:function(data){
-            //         console.log(data);
-            //         console.log("ok");
-            //     },
-            //     error:function(err){
-            //         console.log(err);
-            //         console.log("err");
-                    
-            //     }
-            // });
+            
+            $.ajax({
+                url:newUrl,
+                type:'get',
+                success:function(data){
+                    console.log(data);
+                    console.log("ok");
+                    $('.modal').modal('hide');
+                    alert("提交成功");
+                },
+                error:function(err){
+                    console.log(err);
+                    console.log("err");
+                }
+            });
         });
 
         
         
         $(document).on('click','.btn_img',function(){//上传图片
-            //     if($("#img-input")[0].files[0]){
-            //     var reg = /image\/*/;
-            //     var bloe = reg.test($("#img-input")[0].files[0].type);
-            //     if(bloe){
-            //         var obj = {};
-            //         obj.access_token = sessionStorage.access_token;
-            //         obj.timestamp = parseInt(new Date().getTime()/1000);
-            //         obj.form = "web";
+                if($("#img-input")[0].files[0]){
+                var reg = /image\/*/;
+                var bloe = reg.test($("#img-input")[0].files[0].type);
+                if(bloe){
+                    var obj = {};
+                    obj.access_token = sessionStorage.access_token;
+                    obj.timestamp = parseInt(new Date().getTime()/1000);
+                    obj.form = "web";
 
-            //         var newobj = srotKeyObj(obj);
-            //         var str = objmd5(newobj);
+                    var newobj = srotKeyObj(obj);
+                    var str = objmd5(newobj);
 
-            //         var arr = str.split("&");
+                    var arr = str.split("&");
 
-            //         var formData = new FormData();
-            //         for(var i = 0;i<arr.length;i++){
-            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
-            //         }
-            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
-            //         $_331.ajax({
-            //               url: 'http://http://140.143.25.27:8080/attachment/upload?',
-            //               type: 'POST',
-            //               data: formData,
-            //               contentType: false,
-            //               processData: false,
-            //               success:function(data){
-            //                   console.log(data);  /*服务器端的图片地址*/
-            //                   var str = data.data;
-            //                   var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-            //                   +str+
-            //                   '">';
-            //                   $('.btn_img').parent().html(node);
-            //                   console.log("ok");
-            //             },
-            //             error:function(err){
-            //                 console.log(err);
-            //                 console.log("err");
-            //             }
-            //       });
+                    var formData = new FormData();
+                    for(var i = 0;i<arr.length;i++){
+                        formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+                    }
+                    formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
+                    $_331.ajax({
+                          url: 'http://140.143.25.27:8080/attachment/upload?',
+                          type: 'POST',
+                          data: formData,
+                          contentType: false,
+                          processData: false,
+                          success:function(data){
+                              console.log(data);  /*服务器端的图片地址*/
+                              var str = data.data;
+                              var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                              +str+
+                              '">';
+                              $('.btn_img').parent().html(node);
+                              console.log("ok");
+                        },
+                        error:function(err){
+                            console.log(err);
+                            console.log("err");
+                        }
+                  });
 
-            //     }else{
-            //         alert("请选择图片");
-            //     }
-            // }else{
-            //     alert("请选择图片");
-            // }
-            var str = "http://140.143.25.27:8080/attachment/view/49";
-            var node = '<label for="imagePath select" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-                       +str+
-                       '">';
-             $('.btn_img').parent().html(node);
+                }else{
+                    alert("请选择图片");
+                }
+            }else{
+                alert("请选择图片");
+            }
+            // var str = "http://140.143.25.27:8080/attachment/view/49";
+            // var node = '<label for="imagePath select" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+            //            +str+
+            //            '">';
+            //  $('.btn_img').parent().html(node);
            
 
         });
@@ -570,8 +571,8 @@
         function findCommodity(){
             var obj = {};
             obj.categoryId = 2;
-            obj.pageNum = 1;
-            obj.pageSize = 10;
+            obj.pageNum = 5;
+            obj.pageSize = pageSize;
             obj.access_token = sessionStorage.access_token;
             obj.timestamp = parseInt(new Date().getTime()/1000);
             obj.form = "web";
@@ -666,22 +667,65 @@
                         + '</ul></div></div></div></div>'
                     }
 
-                    listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div></div>'
+                    listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
 
-                    // $('.panel-group').html(listNode);
-                    // $('.collapse').collapse();
+                    $('.panel-group').html(listNode);
+                    $('.collapse').collapse();
 
                     $('.page ul').append("<li><</li>");
-                    for(let i = 0; i<data.data.pages;i++){
-                        if(i == data.data.pageNum){
-                           var k = i + 1;
-                           $('.page ul').append("<li>"+k+"</li>").find("li").eq(i+1).css({"color":"red"});                            
-                        }else{
-                            var k = i + 1;
-                           $('.page ul').append("<li>"+k+"</li>");                            
+
+                    if(data.data.pages > 5){
+                        if(data.data.pageNum < 3){
+                          for(var i = 1 ; i < 4 ; i++){
+                              if(data.data.pageNum == i){
+                                $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
+                              }else{
+                                $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
+                              }                         
+                          }
+                          $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                          $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                        }else if(data.data.pageNum == 3){
+                            $('.page ul').append("<li data-id="+1+">"+1+"</li>");                           
+                            $('.page ul').append("<li data-id="+2+">"+2+"</li>");
+                            $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
+                            $('.page ul').append("<li data-id="+4+">"+4+"</li>");
+                            $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
+                        }else if(data.data.pageNum-3 > 0){
+                                $('.page ul').append("<li data-id="+1+">"+1+"</li>");
+                                $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                            if(data.data.pages-data.data.pageNum >= 3){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 2){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 1){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 0){
+                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
+                            }                            
                         }
-                    };
-                    $('.page ul').append("<li>></li>");
+                    }else{
+                        for(let i = 0; i<data.data.pages;i++){
+                            var k = i + 1;
+                            if(k == data.data.pageNum){
+                            $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
+                            }else{
+                            $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
+                            }
+                        };          
+                }
+                $('.page ul').append("<li>></li>");
 
 
                 },
@@ -741,6 +785,11 @@
         }
 
         findCommodity();
+
+        //选择分页
+        $(document).on("click",".page-ul li",function(evev){
+            console.log($(this).data("id"));
+        })
 
 
         /*
