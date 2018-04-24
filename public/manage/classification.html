@@ -123,6 +123,7 @@
                     <li><a href="./store_manage.html">店长管理</a></li>                  
                     <li><a href="./courier.html">店员管理</a></li>
                     <li><a href="./integral.html">积分管理</a></li>
+                    <li><a href="./coupon.html">优惠券管理</a></li>
                 </ul>
             </div>
             <div class="body-right">
@@ -282,9 +283,6 @@
             console.log($("#modal-list input").length);
             for(var i=0; i<$("#modal-list .form-group").length;i++){
                 if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
-                    console.log("is file");
-                    var fr = new FileReader();
-                    fr = "";
                 }else{
                     data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
                 }           

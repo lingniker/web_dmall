@@ -49,27 +49,139 @@
             success:function(data){
                 console.log(data);
                 console.log(data.data);
-
+                //动态添加地址
                 var nodestr = "";
+                var AddresId="";
                 for(var i=0;i<data.data.length;i++){
-                    nodestr += "<li>"+"<div class='address_1'>"+
+                    nodestr += "<li class='address_li' data-id='"+data.data[i].addresId+"' >"+"<div class='address_1'>"+
                         "<div class='address_2'>"+
                         "<div class='address_2_1'>"+"<span class='address_2_1_1'>"+data.data[i].name+"</span>"+"<span class='address_2_1_2'>"+
                         data.data[i].phone.slice(0,3)+"****"+data.data[i].phone.slice(7,11)+"</span>"+"</div>"+
-                        "<div class='address_2_2'>"+data.data[i].addres+" "+data.data[i].doorplate+"</div>"+
+                        "<div class='address_2_2'>"+data.data[i].addres+" "+" "+"<span class='address_2_2_span'>"+data.data[i].doorplate+"</span>"+"</div>"+
                         "</div>"+
                         "<div class='address_3'>"+
-                        "<div class='address_3_1'>"+"<input type='radio' name='r' class='address_3_1_1' id=''>"+"<span class='address_3_1_2'>"+"设为默认"+"</span>"+"</div>"+
+                        "<div class='address_3_1'>"+"<input type='radio' name='r' class='address_3_1_1' data-id='"+data.data[i].addresId+"' >"+"<span class='address_3_1_2' >"+"设为默认"+"</span>"+"</div>"+
                         "<div class='address_3_2'>"+
-                        "<a href='#' class='address_3_2_a2' onclick='del(i)'>"+"<div class='address_3_2_img2'>"+"</div>"+"<button>"+"删除"+"</button>"+"</a>"+
-                        "<a href='i.modifyaddress.html' class='address_3_2_a1' >"+"<div class='address_3_2_img1'>"+"</div>"+"<span>"+"编辑"+"</span>"+"</a>"
+                        "<a href='#' class='address_3_2_a2' data-id='"+data.data[i].addresId+"'>"+"<div class='address_3_2_img2'>"+"</div>"+"<span>"+"删除"+"</span>"+"</a>"+
+                        "<a  class='address_3_2_a1  modifyAddress' data-id='"+data.data[i].addresId+"'>"+"<div class='address_3_2_img1'>"+"</div>"+"<span>"+"编辑"+"</span>"+"</a>"
                         +"</div>"
                         +"</div>"
-                        +"</div>"+"</li>"
+                        +"</div>"+"</li>";
+                    AddresId=data.data[i].addresId;
+                    AddresId_input="默认地址";
                 }
 
+                //设置默认地址
                 $_331(document).ready(function(){
-                    $_331("#address_ul").html(nodestr)
+                    $_331("#address_ul").html(nodestr);
+                    for(var i=0;i<data.data.length;i++){
+                        if(data.data[i].isDefault == 1){
+                            $_331("#address_ul li").eq(i).find(".address_3_1_1").attr("checked",true);
+                        }
+                    }
+                    $_331(document).on("click",".address_3_1_1",function () {
+                           var self = this;
+                            var obj = {};
+                            obj.access_token = sessionStorage.access_token;
+                            obj.AddresId = $_331(this).data("id");
+                            obj.from = "web";
+                            obj.timestamp = Math.floor((new Date().getTime())/1000);
+                            var str = srotKeyObjAndMd5(obj);
+                            var newUrl = url + "address/modifyIsDefault?"+str;
+                            console.log(newUrl);
+                            $3_3_1.ajax({
+                                url:newUrl,
+                                type:"GET",
+                                dataType:"json",
+                                success:function(data){
+                                    console.log(data);
+                                    console.log("ok");
+                                    alert("成功设置为默认地址！");
+                                    $_331(self).parent().find(".address_3_1_1").attr("checked","true");
+                                    $_331(self).parent().find(".address_3_1_2").html(AddresId_input);
+                                    $_331(self).parent().parent().parent().parent().siblings().find(".address_3_1_2").html("设为默认");
+                                },
+                                error:function(err){
+                                    console.log(err);
+                                }
+                            })
+                    });
+                    //删除地址
+                    $_331(document).on("click",".address_3_2_a2",function () {
+                        if(confirm("地址删除后无法恢复，是否要删除地址？")){
+                        //     alert("111111");
+                        var self = this;
+                        var obj = {};
+                        obj.access_token = sessionStorage.access_token;
+
+                        obj.AddresId = $_331(this).data("id");
+                        obj.from = "web";
+                        obj.timestamp = Math.floor((new Date().getTime())/1000);
+                        var str = srotKeyObjAndMd5(obj);
+                        var newUrl = url + "address/delete?"+str;
+                        console.log(newUrl);
+                        $3_3_1.ajax({
+                            url:newUrl,
+                            type:"GET",
+                            dataType:"json",
+                            success:function(data){
+                                console.log(data);
+                                console.log("ok");
+                                alert("成功删除地址！");
+                                $_331(self).parent().parent().parent().parent().remove();
+                            },
+                            error:function(err){
+                                console.log(err);
+                            }
+                        });
+                        }else {}
+                    });
+
+                    //编辑地址
+                    $_331(document).on("click",".modifyAddress",function(){
+                        sessionStorage.addressId = $_331(this).data("id");
+                        sessionStorage.addressName = $_331(this).parent().parent().parent().parent().find(".address_2_1_1").text();
+                        sessionStorage.addressPhone=$_331(this).parent().parent().parent().parent().find(".address_2_1_2").text();
+                        sessionStorage.address=$_331(this).parent().parent().parent().parent().find(".address_2_2").text();
+                        sessionStorage.Doorplate=$_331(this).parent().parent().parent().parent().find(".address_2_2_span").text();
+                        location.href = "i.modifyaddress.html";
+                    });
+
+
+                    // $_331(document).on("click",".address_3_2_a1",function () {
+                            // var self = this;
+                        // obj.AddresId = $_331(this).data("id");
+                        // sessionStorage.access_token=data.data[i].token;
+                        // sessionStorage.name=data.data[i].name;
+                        // sessionStorage.phone=data.data[i].phone;
+                        // sessionStorage.addres=data.data[i].addres;
+                        // sessionStorage.doorplate=data.data[i].doorplate;
+                        // sessionStorage.addresId=data.data[i].addresId;
+                        //        location.href="i.modifyaddress.html";
+                            // var obj = {};
+                            // obj.access_token = sessionStorage.access_token;
+                            // obj.AddresId = $_331(this).data("id");
+                            // obj.from = "web";
+                            // obj.timestamp = Math.floor((new Date().getTime())/1000);
+                            // var str = srotKeyObjAndMd5(obj);
+                            // var newUrl = url + "address/modify?"+str;
+                            // console.log(newUrl);
+                            // $3_3_1.ajax({
+                            //     url:newUrl,
+                            //     type:"GET",
+                            //     dataType:"json",
+                            //     success:function(data){
+                            //         console.log(data);
+                            //         console.log("ok");
+                            //         alert("编辑地址！");
+                            //         // location.href="i.modifyaddress.html";
+                            //         // $_331(self).parent().parent().parent().parent().remove();
+                            //     },
+                            //     error:function(err){
+                            //         console.log(err);
+                            //     }
+                            // });
+                    // });
                 });
             },
             error:function(err){
@@ -81,38 +193,23 @@
     }
 
 
-    function del(n) {
-         // var wap=document.getElementById("wap");
-         if(confirm("地址删除后无法恢复，是否要删除地址？")){
-             // alert("1111111111111");
-             // document.getElementById("address_1").innerHTML="";
-             // clear.style.display="none";
-             // location.href="i.address.html";
-             // document.getElementById("address_1").style.display="none";
 
-
-             var s=document.getElementById("address_ul");
-             var t=s.childNodes.length;
-             // var list=document.getElementsByTagName("li");
-             for ( var i=0;i<t;i++){
-                 // list[i].index=i;
-                 if(i==n)
-                 {
-                     // this.style.display="none";
-                     s.removeChild(s.childNodes[i]);
-                     // s.style.display="none";
-
-                 }
-
-             }
-
-             // document.getElementById("address_1").style.display="none";
-
-         }else {
-         }
-
-
-     }
+    // function del(n) {
+    //      // var wap=document.getElementById("wap");
+    //      if(confirm("地址删除后无法恢复，是否要删除地址？")){
+    //          var s=document.getElementById("address_ul");
+    //          var t=s.childNodes.length;
+    //          for ( var i=0;i<t;i++){
+    //              // list[i].index=i;
+    //              if(i==n)
+    //              {
+    //                  s.removeChild(s.childNodes[i]);
+    //              }
+    //          }
+    //          // document.getElementById("address_1").style.display="none";
+    //      }else {
+    //      }
+    //  }
 
 
 

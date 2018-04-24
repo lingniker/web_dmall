@@ -1,509 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!--HTML4.01-->
-	<!-- <meta htt-equiv='Content-Type' content='text/html'  charset="UTF-8"> -->
-	<!--HTML5-->
-	<meta charset="UTF-8" />
-	<meta name='viewport' content="width=device-width,initial-scale=1,user-scalable=no" />
-	<title>联家超市-我的购物车</title>
-	<link href="css/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="css/stylesheets/mobile.css" media='screen ' />
-	<!--<link rel="stylesheet" href="css/stylesheets/mobile.css" media='screen and (max-width:1080px)' />-->
-
-	<style>
-		.toolbar {
-			font-size: 16px;
-			position: fixed;
-			top: 0;
-			width: 100%;
-			box-shadow: 0 0 10px rgba(0,0,0,.2);
-			height: 44px;
-			background-color: #fff;
-			z-index: 999;
-			line-height: 44px;
-			text-align: center;
-		}
-		.back{
-			height: 32px;
-			width: 32px;
-			position: absolute;
-			top: 6px;
-			left: 10px;
-			background: #333;
-			border-radius: 50%;
-			color: #fff;
-			display: block;
-		}
-		.back-into{
-			height: 32px;
-			width: 32px;
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			border-radius: 50%;
-			color: #fff;
-			line-height: 32px;
-			background: url(./images/bill-icon.png) no-repeat -3px -177px;
-			background-size: 500px 700px;
-		}
-
-
-
-
-		.footer_shopping a{
-			text-decoration: none;
-			display: inline-block;
-			color: rgba(0, 0, 0, 0.28);
-		}
-		.footer_shopping{
-			width: 100%;
-			height: 45px;
-			position: fixed;
-			background: #fff;
-			border-top:0.5px solid lightgray;
-			bottom: 0;
-		}
-		.footer_shopping ul {
-			list-style: none;
-			width: 100%;
-			height: 45px;
-		}
-		.footer_shopping ul li{
-			width: 33.33%;
-			height: 45px;
-			float: left;
-			text-align: center;
-			font-size: 14px;
-			line-height: 10px;
-			font-weight: 400;
-		}
-		.home-img1{
-			background-image: url("images/footerimg.png") ;
-			background-repeat: no-repeat;
-			background-position: 0px 0px;
-			background-size: 250px 100px;
-			width: 30px;
-			height: 30px;
-		}
-		.home-img2{
-			background-image: url("images/footerimg.png") ;
-			background-repeat: no-repeat;
-			background-position: -50px 0px;
-			background-size: 250px 100px;
-			width: 30px;
-			height: 30px;
-		}
-		.home-img3{
-			background-image: url("images/footerimg.png") ;
-			background-repeat: no-repeat;
-			background-position: -100px 0px;
-			background-size: 250px 100px;
-			width: 30px;
-			height: 30px;
-		}
-		.home-img4{
-			background-image: url("images/footerimg.png") ;
-			background-repeat: no-repeat;
-			background-position: -150px -50px;
-			background-size: 250px 100px;
-			width: 30px;
-			height: 30px;
-		}
-		.home-img5{
-			background-image: url("images/footerimg.png") ;
-			background-repeat: no-repeat;
-			background-position: -200px 0px;
-			background-size: 250px 100px;
-			width: 30px;
-			height: 30px;
-		}
-		.position4 a{
-			color:#ff712b ;
-		}
-		.user-button a{
-			text-decoration: none;
-			color:#ff712b ;
-
-		}
-		/* @media screen andmax-width: ;{
-
-        } */
-		@media screen and (max-width: 750px) {
-			.content{
-				width: 100%;
-			}
-			.content-bg{
-				width: 100%;
-			}
-		}
-
-
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>购物车</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mycss/shopping.css">
+    <!-- <link rel="stylesheet" href="css/ys.css"> -->
 
 </head>
-<body>
-	<div class='main'>
-		<div class="site-nav">
-			<a  href="./i.index.html" class="back">
-				<div class="back-into"></div></a>
+<body style="background-color: #eee">
+<div class="wap_shopping">
+    <div class="toolbar">
+        <a class="back" href="./i.index.html"><div class="back-into"></div></a>
+        <span>购物车</span>
+    </div>
+    <div class="shopping_main">
+        <ul id="shopping_ul">
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
 
-			<div class="navCenter">购物车<span>(7)</span></div>
-			<div class="navRight"></div>
-		</div>
-		<div class="container">
-			<div class="content">
-				<div class="tbMain">
-					<div class='commodityContainer'>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
 
-									<input type="checkbox" name="shopMsg" id='shopMsg' class='shopMsg-input' autocomplete="off">
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-									<label for="shopMsg">商品：
-									<a href="#">生如海洋 men sho</a>
-									</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" value='1' autocomplete="off"><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='boyShoes'>
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#">夏日拖鞋潮男韩版潮流男士一字拖防滑凉鞋夏天个性沙滩潮拖凉拖男</a>
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>颜色分类：028黑蜂窝</p>
-											<p>尺码：41</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>49.00</p>
-											<p class='non-discount'>￥79.00</p>
-											<em class='unitPrice'>49.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
-										<input type="checkbox" name="shopMsg" id='chaoyi' class='shopMsg-input' autocomplete="off">
-										<label for="chaoyi">商品：
-									<a href="#">nixu服饰旗舰店</a>
-										</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" value='1' autocomplete="off"><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='fashionClo'>
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#">韩版中长款纯色休闲青年风衣英伦秋冬男毛呢料宽松外套时尚大衣 </a>
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>颜色分类：卡其色有纽扣</p>
-											<p>尺码：L</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>208.00</p>
-											<p class='non-discount'>￥416.00</p>
-											<em class='unitPrice'>208.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
-										<input type="checkbox" name="shopMsg" id='lining' class='shopMsg-input' autocomplete="off">
-										<label for="lining">商品：
-									<a href="#">李宁官方网店</a>
-										</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" autocomplete="off" value='1'><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='lining-bas'>
-											
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#"> 李宁2016新款男子篮球鞋音速3高帮反弹篮球场地鞋ABAL031</a>
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>颜色分类：荧光果粉/木梅红</p>
-											<p>尺码：42</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>339.00</p>
-											<p class='non-discount'>￥539.00</p>
-											<em class='unitPrice'>339.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
-										<input type="checkbox" name="shopMsg" id='adidas' class='shopMsg-input' autocomplete="off">
-										<label for="adidas">商品：
-									<a href="#">adidas官方旗舰店</a>
-										</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" autocomplete="off" value='1'><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='adidas'>
-												
+</div>
+<div class="shoping_footer">
+    <div class="shoping_footer_1">
+        <div class="shopping_li_checked_01 " style="margin-top:7px;margin-left: -20px;float: left" id="allSelected">
+            <div class="shopping_check">
+                <div data-check="show" class="shopping_check_div_all">
+                    <div class="shopping_check_yes"></div>
+                </div>
+            </div>
+        </div>
+        <div class="shopping_li_checked_02">&nbsp;全选</div>
 
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#"> adidas 阿迪达斯 篮球 男子 篮球鞋 Regulate</a>
+    </div>
+    <div class="shoping_footer_2">
+        <div class="shoping_footer_2_2"><a href="#" style="color: white">结算
+            <!-- (<span>0</span>) -->
+        </a></div>
+        <div class="shoping_footer_2_1">
+            <div class="shoping_footer_2_1_1">合计：<span>￥</span><span class="cart_sum">0.00</span></div>
+            <!-- <div class="shoping_footer_2_1_2">
+                <input type="checkbox" value="">
+                <span>携带垃圾</span>
+            </div> -->
+        </div>
 
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>颜色分类：银金属/深藏青蓝</p>
-											<p>尺码：43.5</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>419.00</p>
-											<em class='unitPrice'>419.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
-										<input type="checkbox" name="shopMsg" id='nike' class='shopMsg-input' autocomplete="off">
-										<label for="nike">商品：
-									<a href="#">NIKE官方旗舰店</a>
-										</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" autocomplete="off" value='1'><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='nike'>
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#"> Nike 耐克官方 ZOOM KOBE VENOMENON 5 EP 男子篮球鞋</a>
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>颜色分类：氯蓝/鲜红橙/煤黑</p>
-											<p>尺码：42.5</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>949.00</p>
-											<em class='unitPrice'>949.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
-										<input type="checkbox" name="shopMsg" id='changxue' class='shopMsg-input' autocomplete="off">
-										<label for="changxue">商品：
-									<a href="#">生如海洋 men sho</a>
-										</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" autocomplete="off" value= '1'><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='xuezi'>
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#"> Z．Suo/走索男鞋马丁靴男秋冬户外靴子沙漠靴男军靴皮靴情侣款潮</a>
+    </div>
 
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>颜色分类：ZS988H黑色</p>
-											<p>尺码：42</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>339.00</p>
-											<p class='non-discount'>￥452.00</p>
-											<em class='unitPrice'>339.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="mainCommodity">
-							<div class="shopInfo1">
-								<div class="shopMsg">
-										<input type="checkbox" name="shopMsg" id='zhangjunya' class='shopMsg-input' autocomplete="off">
-										<label for="zhangjunya">商品：
-									<a href="#">张君雅小妹妹旗舰</a>
-										</label>
-								</div>
-								<div class="changeCount">
-									<a href="#" class="substrCount">-</a><!--
-									--><input type="text" autocomplete="off" value='1'><!--
-									--><a href="#" class="plusCount">+</a>
-								</div>
-							</div>
-							<div class="commodityInfo">
-								<ul>
-									<li class='td-chk'>
-										<div class="td-inner1">
-											<input type="checkbox" name='checkbox' autocomplete="off" >
-											</div>
-									</li>
-									<li class='td-item1'>
-											<a href="#" class='zhangjunya'>
-											</a>
-									</li>
-									<li class='td-info1'>
-										<div class="item-info">
-											<div class="item-basis-info">
-												<a href="#"> 台湾进口零食张君雅小妹妹12包零食组合甜甜圈捏脆面点心面礼包</a>
-											</div>
-										</div>
-										<div class="td-info-msg">
-											<p>口味：12包零食组合</p>
-										</div>
-										<div class="td-innerMoney">
-											<span>￥</span><p class='discount'>39.00</p>
-											<p class='non-discount'>￥79.00</p>
-											<em class='unitPrice'>39.00</em>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer">
-				<div class="all-selected1">
-					<input type="checkbox" name='all-selected' id='all-selected' class='allSelected2' autocomplete="off">
-					<label for="all-selected">全选</label>
-				</div>
-				<div class="totalNum">
-					<p class='quantity'>
-						<span class='totalAccount'>合计</span>
-						<span class='moneySym'>￥</span>
-						<span class='total-sum'>0.00</span>
-					</p>
-					<p>不含运费</p>
-				</div>
-				<div class="btn-area1">
-					<a href="#">结 算 (<span class='totalSum'>0</span>)</a>
-				</div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    var $3_3_1 = jQuery.noConflict();
+    var url = "http://192.168.1.108:8080/";
+    var mykey = "union_supermarket_2018";  
+    if(sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined"){
+        console.log("sessionStorage.access_token");
+    }else{
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.storeId = 10;
+        obj.timestamp = parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "shoppingCart/get?" + str;
+        console.log(newUrl);
+        $3_3_1.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log("ok");
+                console.log(data);
+                // data = {"code": 200,
+                //         "message": "请求成功",
+                //         "data": {
+                //             "id": 2,
+                //             "deleted": "0",
+                //             "createTime": "2018-04-19 17:14:58",
+                //             "createUser": 11,
+                //             "updateTime": "2018-04-19 17:17:36",
+                //             "updateUser": 11,
+                //             "storeId": 10,
+                //             "sum": 2.5,
+                //             "discountedPrice": 2.5,
+                //             "amount": 5,
+                //             "weight": 0.12,
+                //             "garbage": null,
+                //             "list": [
+                //                 {
+                //                     "id": 3,
+                //                     "deleted": "0",
+                //                     "createTime": "2018-04-19 17:14:58",
+                //                     "createUser": 11,
+                //                     "updateTime": "2018-04-19 17:17:36",
+                //                     "updateUser": 11,
+                //                     "shoppingCartId": 2,
+                //                     "productId": 7,
+                //                     "amount": 5,
+                //                     "outOfStock": "0",
+                //                     "selected": "1",
+                //                     "sum": 2.5,
+                //                     "discountedPrice": 0.5,
+                //                     "weight": 0.12,
+                //                     "product": {
+                //                         "id": 7,
+                //                         "deleted": null,
+                //                         "createTime": null,
+                //                         "createUser": null,
+                //                         "updateTime": null,
+                //                         "updateUser": null,
+                //                         "name": "魔法士鲜香小葱味干脆面24克",
+                //                         "imagePath": "http://140.143.25.27:8080/attachment/view/61",
+                //                         "cost": 0.4,
+                //                         "price": 0.5,
+                //                         "introduction": null,
+                //                         "weight": 0.024,
+                //                         "categoryId": 2,
+                //                         "remarks": null,
+                //                         "hot": -1,
+                //                         "storeId": null,
+                //                         "storeProductId": null
+                //                     }
+                //                 }
+                //             ]
+                //         }
+                //     };
+            
+            var list = '';
+            var allCheck = 'show';
+            for(var i =0 ; i< data.data.list.length;i++){
+                var check = data.data.list[i].selected == 1 ? "show" : "hide";
+                if(data.data.list[i].selected == 0){
+                    allCheck = "hide";             
+                }
+                list += '<li class="cart-li" data-cartId='+data.data.list[i].id+'>'
+                        +'<div class="shopping_li_checked">'
+                        +'<div class="shopping_li_checked_01  item01">'
+                        +'<div class="shopping_check">'
+                        +'<div data-check="'+check+'" data-shopping-cart-item-id = "'+data.data.list[i].id+'" class="shopping_check_div">'
+                        +'<div class="shopping_check_yes"></div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</div>'
+                        +'<div class="shoping_li_img">'
+                        +'<img src="'+data.data.list[i].product.imagePath+'" class="shoping_li_img_01">'
+                        +'</div>'
+                        +'<div class="shopping_value">'
+                        +'<div class="shopping_cart_1"><span>'+data.data.list[i].product.name+'</span><span></span><span></span></div>'
+                        +'<div class="shopping_cart_2">'
+                        +'<div class="shopping_cart_2_1">￥<span>'+data.data.list[i].product.price+'</span></div>'
+                        +'<div class="shopping_cart_2_2"><div class="shoping_reduce" data-shopping-cart-id="'
+                        +data.data.id+'" data-shopping-cart-item-id="'
+                        +data.data.list[i].id+'">-</div><input type="button" value="'
+                        +data.data.list[i].amount+'" class="shoping_quantity"><div data-shopping-cart-id="'
+                        +data.data.id+'" data-shopping-cart-item-id="'
+                        +data.data.list[i].id+'" class="shopping_add">+</div></div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</li>'
+            }
+            $3_3_1('#shopping_ul').html(list);
+            console.log($3_3_1('.shopping_check_div').length);
+            for(var i = 0; i< $3_3_1('.shopping_check_div').length;i++){
+                if($3_3_1('.shopping_check_div').eq(i).data("check")=="show"){
+                    check_show($3_3_1('.shopping_check_div').eq(i));
+                }else{
+                    check_hide($3_3_1('.shopping_check_div').eq(i));
+                }
+            }
+            if(allCheck == "show"){
+                check_show($3_3_1('.shopping_check_div_all'));
+                $3_3_1('.shopping_check_div_all').data("check","show");
+            }else{
+                check_hide($3_3_1('.shopping_check_div_all'));
+                $3_3_1('.shopping_check_div_all').data("check","hide");
+            }
+            $3_3_1(".cart_sum").html(data.data.sum);
+            },
+            error:function(err){
+                console.log(err);
+                console.log("err");
+            }
+        });
 
-			</div>
+    }
 
-			<div class="footer_shopping">
-				<ul>
-					<li class="position1"><a href="./i.index.html"><div class="home-img1"></div><div>首页</div></a></li>
-					<li class="position2"><a href="./i.order.html"><div class="home-img2"></div><div>订单</div></a></li>
-					<li class="position5"><a href="./i.user.html"><div class="home-img5"></div><div>我的</div></a></li>
-				</ul>
-			</div>
+    //商品数量的增加
+    $3_3_1(document).on('click','.shopping_add',function(e){
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartItemId"));
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartId"));
+        if($3_3_1(this).parent().find("input").val() == 10){
+            console.log("不能提交太多");
+        }else{
+            var self = this;
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.shoppingCartItemId = $3_3_1(this).data("shoppingCartItemId");
+            obj.shoppingCartId = $3_3_1(this).data("shoppingCartId");
+            obj.type = 1;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.from = "web";
+            var str = srotKeyObjAndMd5(obj);
+            var newUrl = url + "shoppingCart/changeAmount?" + str;
+            console.log(newUrl);
+            $3_3_1.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    console.log("add goods",data);
+                    var num = parseInt($3_3_1(self).parent().find("input").val())+1;
+                    $3_3_1(self).parent().find("input").val(num);
+                    $3_3_1(".cart_sum").text(data.data.sum);
+                    check_show($3_3_1(self).parents(".cart-li").find(".shopping_check_div").get(0));
+                    $3_3_1(self).parents(".cart-li").find(".shopping_check_div").data("check","show");
+                    allSelect();
+                },
+                error:function(err){
+                    console.log(err);
+                }
+                });
+        }
+    });
 
-		</div>
+    //商品数量的减少
+    $3_3_1(document).on('click','.shoping_reduce',function(e){
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartItemId"));
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartId"));
+        if($3_3_1(this).parent().find("input").val() == 1){
+            console.log("不能提交了");
+        }else{
+            var self = this;
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.shoppingCartItemId = $3_3_1(this).data("shoppingCartItemId");
+            obj.shoppingCartId = $3_3_1(this).data("shoppingCartId");
+            obj.type = -1;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.from = "web";
+            var str = srotKeyObjAndMd5(obj);
+            var newUrl = url + "shoppingCart/changeAmount?" + str;
+            console.log(newUrl);
+            $3_3_1.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    console.log(data);
+                    var num = parseInt($3_3_1(self).parent().find("input").val())-1;
+                    $3_3_1(self).parent().find("input").val(num);
+                    $3_3_1(".cart_sum").text(data.data.sum);
+                    check_show($3_3_1(self).parents(".cart-li").find(".shopping_check_div").get(0));
+                    $3_3_1(self).parents(".cart-li").find(".shopping_check_div").data("check","show");
+                    allSelect();
+                },
+                error:function(err){
+                    console.log(err);
+                }
+                });
+        }      
+    });
+
+    //check节点展示
+    function check_show(node){
+        $3_3_1(node).addClass("shopping_check_div_yes");
+        $3_3_1(node).children(".shopping_check_yes").css({"display":"block"});
+    }
+    //check节点隐藏
+    function check_hide(node){
+        $3_3_1(node).removeClass("shopping_check_div_yes");
+        $3_3_1(node).children(".shopping_check_yes").css({"display":"none"});
+    }
+
+    //全选与非全选
+    function allSelect(){
+        for(var i = 0 ;i<$3_3_1(".shopping_check_div").length;i++){
+            if($3_3_1(".shopping_check_div").eq(i).data("check") == "hide"){
+                check_hide($3_3_1(".shopping_check_div_all").get(0));
+                $3_3_1(".shopping_check_div_all").data("check","hide");
+                break;
+            };
+            if($3_3_1(".shopping_check_div").length-1 == i ){
+                check_show($3_3_1(".shopping_check_div_all").get(0));
+                $3_3_1(".shopping_check_div_all").data("check","show");
+            }
+        }
+    };
 
 
-	</div>
+    //选择或取消购物车里的商品
+    $3_3_1(document).on("click",".shopping_check_div",function(e){
+        // console.log("--------");
+        if($3_3_1(this).data("check") == "show"){
+            // console.log($3_3_1(this).data('shoppingCartItemId'));
+            var self = this;
+            var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartItemId = $3_3_1(this).data('shoppingCartItemId');
+                obj.type = 0;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selected?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        check_hide($3_3_1(self).get(0));
+                        $3_3_1(self).data("check","hide");
+                        $3_3_1(".cart_sum").text(data.data.sum);
+                        allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                    });
 
-	<script src='scripts/jquery-2.2.1.min.js'></script>
-	<script src='scripts/myOrder.js'></script>
-	<!--<script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>-->
+            // check_hide($3_3_1(this).get(0));
+            // $3_3_1(this).data("check","hide");
+
+        }else{
+            var self = this;
+            var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartItemId = $3_3_1(this).data('shoppingCartItemId');
+                obj.type = 1;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selected?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        $3_3_1(self).data("check","show");
+                        check_show($3_3_1(self).get(0));
+                        $3_3_1(".cart_sum").text(data.data.sum);
+                        allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });    
+        }    
+    });
+
+    //全选或者非全选
+    $3_3_1(document).on("click",".shopping_check_div_all",function(e){
+        console.log($3_3_1(this).data("check"));
+        if($3_3_1(this).data("check") == "show"){
+            var self = this;
+            var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartItemId = $3_3_1(this).data('shoppingCartItemId');
+                obj.type = 1;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selectAll?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        $3_3_1(self).data("check","show");
+                        check_show($3_3_1(self).get(0));
+                        $3_3_1(".cart_sum").text(data.data.sum);
+                        // for(var i = 0;i < $3_3_1(".shopping_check_div").length;i++){
+                        //     console.log("this is",i);
+                        //     if($3_3_1(".shopping_check_div").eq(i).data("check") !== "show"){
+                        //     }
+                        // }
+                        allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+        }else{
+
+        };
+    });
+    
+
+    function srotKeyObjAndMd5(obj){
+    var arr = [];
+    var newobj = {};
+    for(var key in obj){
+        arr.push(key);
+    }
+    arr.sort();
+    var i=0;
+    for(var key in obj){
+        newobj[arr[i]] = obj[arr[i]];
+        i++;
+    };
+    var str = '';
+    for(var key in newobj){
+        str += key +"="+ newobj[key] + "&";
+    }
+    var newstr = str.substr(0,str.length-1);
+
+    var encodeStr = encodeURIComponent(newstr) + mykey;
+    var sign = md5(encodeStr);
+    newstr += "&sign=" + sign;
+    return newstr;
+}
+</script>
 </body>
 </html>

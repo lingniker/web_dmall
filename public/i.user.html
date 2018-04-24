@@ -23,7 +23,7 @@
     <div class="usercenter-view-mine">
          <div class="page-top-box">
              <div class="mantop">
-                 <a href="i.shezhi.html" class="shezhiimg">
+                 <a  class="shezhiimg" id="shezhi_01">
                      <img src="images/shezhiimg.png" class="shezhiimg_1">
                  </a>
                  <a href="#" class="fenxiang">
@@ -53,19 +53,19 @@
                     <div class="content-frist-box">
                         <ul class="bill-ul">
                             <li>
-                                <a href="i.order.html">
+                                <a  id="order_a01">
                                 <div class="bill-img-1"></div>
                                 <p>待支付</p>
                             </a>
                             </li>
                             <li>
-                                <a href="i.order.html" >
+                                <a  id="order_a02">
                                 <div class="bill-img-2"></div>
                                 <p>待配送</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="i.order.html">
+                                <a  id="order_a03">
                                 <div class="bill-img-3"></div>
                                 <p>已完成</p>
                                 </a>
@@ -79,20 +79,20 @@
                     <div class="content-frist-box">
                         <ul class="bill-ul bull-tow-ul">
                             <li>
-                                <a href="i.remainingsum.html">
+                                <a  id="myremainingsum">
                                     <div class="bill-img-2_1"></div>
                                 <p>余额</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="i.integral.html">
+                                <a  id="myintegral">
                                     <div class="bill-img-2_2"></div>
                                 <p>积分</p>
                                 </a>
                             </li>
                            
                             <li>
-                                <a href="i.coupon.html">
+                                <a id="mycoupon" >
                                     <div class="bill-img-2_3"></div>
                                 <p>优惠卷</p>
                                 </a>
@@ -110,7 +110,7 @@
                                 <!--<p>会员中心</p></a>-->
                             <!--</li>-->
                             <li>
-                                <a href="i.address.html">
+                                <a href="" id="myaddress_01">
                                 <div class="bill-img-2"></div>
                                 <p>收货地址</p>
                                 </a>
@@ -142,10 +142,9 @@
         </div>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    angular.module('starter', ['ionic'])
-
-        .run(function($ionicPlatform) {
+    angular.module('starter', ['ionic']).run(function($ionicPlatform) {
             $ionicPlatform.ready(function() {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -157,9 +156,7 @@
                 }
             });
         })
-
         .controller( 'actionsheetCtl',['$scope','$timeout' ,'$http',function($scope,$timeout,$http){
-
             $scope.doRefresh = function() {
                 $http.get('i.user.html')  //注意改为自己本站的地址，不然会有跨域问题
                     .success(function(newItems) {
@@ -177,46 +174,79 @@
     var url = "http://140.143.25.27:8080/";
     var flag = sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined";
     if(!flag){
-
-
-
         document.getElementsByClassName("top-box")[0].style="display:none;";
         document.getElementsByClassName("top-box_login")[0].style="display:block;";
         if(sessionStorage.nickname==""){
             document.getElementById("top-box_login-hello").innerHTML="hello";
-
         }else {
             document.getElementById("top-box_login-hello").innerHTML=sessionStorage.nickname;
-
         }
         document.getElementById("top-box_login_phone").innerHTML=sessionStorage.phone.slice(0,3)+"****"+sessionStorage.phone.slice(7,11);
-
-
-        // var obj = {};
-        // obj.access_token = sessionStorage.access_token;
-        // obj.timestamp= parseInt(new Date().getTime()/1000);
-        // obj.from = "web";
-
-        // var newObj = sortKeyObj(obj);
-        // var str = srotKeyObjAndMd5(obj);
-
-        // var newUrl = url + "user/currentUser?" + str;
-
-// var newUrl = url + "?token/access_token" + sessionStorage.access_token + "&expires_in=" + sessionStorage.expires_in + "&refresh_token=" + sessionStorage.refresh_token;
-//         $_331.ajax({
-//             url:newUrl,
-//             type:"get",
-//             dataType:"json",
-//             success:function(data){
-        //     },
-        //     error:function(err){
-        //         console.log(err);
-        //     }
-        // });
     }else{
         document.getElementsByClassName("top-box")[0].style="display:block";
         document.getElementsByClassName("top-box_login")[0].style="display:none";
     }
+
+    $(document).ready(function () {
+        $("#order_a01").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.order.html";
+            }
+        });
+        $("#order_a02").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.order.html";
+            }
+        });
+        $("#order_a03").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.order.html";
+            }
+        });
+        $("#myremainingsum").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.remainingsum.html";
+            }
+        });
+        $("#myintegral").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.integral.html";
+            }
+        });
+        $("#mycoupon").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.coupon.html";
+            }
+        });
+        $("#myaddress_01").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.address.html";
+            }
+        });
+        $("#shezhi_01").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.shezhi.html";
+            }
+        });
+    });
+
+
 
 
     function srotKeyObjAndMd5(obj){

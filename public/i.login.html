@@ -32,24 +32,11 @@
                     obj.client_secret="union_supermarket_web";
                     obj.timestamp=parseInt(new Date().getTime()/1000);
 
-                    var newobj = srotKeyObj(obj);
-                    var str = objmd5(newobj);
+                    var str = srotKeyObjAndMd5(obj);
 
                     
                     var newUrl = url+"user/login?"+str;
                     console.log(newUrl);
-                    // window.sessionStorage.token = "token";
-                    // window.location="i.user.html";
-                    // sessionStorage.access_token="d3ba726f-3cfe-4bed-82ba-303521f67253";
-                    // sessionStorage.token_type="bearer";
-                    // sessionStorage.refresh_token="a892c6bc-e5e2-41e1-92b6-d7e0830168df";
-                    // sessionStorage.expires_in="315303893";
-                    // sessionStorage.scope="select";
-
-                    
-
-                    var newUrl111 = "http://140.143.25.27:8080/oauth/token?from=2&password=e10adc3949ba59abbe56e057f20f883e&scope=select&grant_type=password&username=18378743641&timestamp=1523327465&client_id=ios&client_secret=union_supermarket_ios&sign=7185225076b40e4fbbeb5ef0d680b60a";
-                    //var urlll = "http://140.143.25.27:8080/register?from=0&passWord=e10adc3949ba59abbe56e057f20f883e&phone=18378743641&phoneCode=1234&timestamp=1523351951&sign=72ca245f52d6e6d9d38eceffca051013";
                     $_331.ajax({
                         url:newUrl,
                         type:"get",
@@ -57,25 +44,6 @@
                         success:function(data){
                             console.log(data);
                             console.log("ok");
-                            // headimgurl
-                            //     :
-                            //     null
-                            // id
-                            //     :
-                            //     20
-                            // nickname
-                            //     :
-                            //     "反抗军的数据库"
-                            // phone
-                            //     :
-                            //     "18378743641"
-                            // token
-                            //     :
-                            //     "28c6debf-ea42-47d4-a531-b4366e05e987"
-                            // userName
-                            //     :
-                            //     "18378743641"
-
                             sessionStorage.access_token=data.data.token;
                             sessionStorage.nickname=data.data.nickname;
                             sessionStorage.phone=data.data.phone;
@@ -90,13 +58,6 @@
                             console.log("请求错误");
                             // location.href="i.user.html";
                             console.log("i.index.html");
-                            // $_331.ajax({
-                            //     url:"http://140.143.25.27:8080/address/get?access_token=363c5a7e-335b-4d2a-a8d4-4db4af244a67",
-                            //     type:"get",
-                            //     success:function(data){
-                            //         console.log(data);
-                            //     }
-                            // });
                         }        
                     });
 
@@ -134,7 +95,7 @@
             }
         }
 
-        function srotKeyObj(obj){
+        function srotKeyObjAndMd5(obj){
             var arr = [];
             var newobj = {};
             for(var key in obj){
@@ -146,16 +107,9 @@
                 newobj[arr[i]] = obj[arr[i]];
                 i++;
             };
-            return newobj;
-        }
-        /*
-         *加密获取签名
-         *@paramet 对象
-         */
-         function objmd5(obj){
             var str = '';
-            for(var key in obj){
-                str +=  key +"="+ obj[key] + "&";
+            for(var key in newobj){
+                str += key +"="+ newobj[key] + "&";
             }
             var newstr = str.substr(0,str.length-1);
 
@@ -164,7 +118,38 @@
             newstr += "&sign=" + sign;
             return newstr;
         }
-        
+
+        // function srotKeyObj(obj){
+        //     var arr = [];
+        //     var newobj = {};
+        //     for(var key in obj){
+        //         arr.push(key);
+        //     }
+        //     arr.sort();
+        //     var i=0;
+        //     for(var key in obj){
+        //         newobj[arr[i]] = obj[arr[i]];
+        //         i++;
+        //     };
+        //     return newobj;
+        // }
+        // /*
+        //  *加密获取签名
+        //  *@paramet 对象
+        //  */
+        //  function objmd5(obj){
+        //     var str = '';
+        //     for(var key in obj){
+        //         str +=  key +"="+ obj[key] + "&";
+        //     }
+        //     var newstr = str.substr(0,str.length-1);
+        //
+        //     var encodeStr = encodeURIComponent(newstr) + mykey;
+        //     var sign = md5(encodeStr);
+        //     newstr += "&sign=" + sign;
+        //     return newstr;
+        // }
+
     </script>
 </head>
 <body  style="background-color: #f6f6f6">

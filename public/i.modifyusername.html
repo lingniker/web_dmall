@@ -39,17 +39,24 @@
 
                 var str = objmd5(newobj);
                 var newUrl = url + "user/modifyNickname?"+str;
-                // var newUrl = url + "user/currentUser?"+str;
                 console.log(newUrl);
                 $3_3_1.ajax({
                     url:newUrl,
-                    // url:newUrl_2,
                     type:"GET",
                     dataType:"json",
-                    success:function(data,status,res){
+                    success:function(data){
                         console.log("data",data);
                         console.log("ok");
-                        // console.log("access_token");
+                        // alert("修改成功！");
+                        if(data.code == 200){
+                        //     sessionStorage.access_token = undefined;
+                            sessionStorage.nickname= undefined;
+                        //     sessionStorage.phone= undefined;
+                        //     sessionStorage.userName= undefined;
+                        //     sessionStorage.id= undefined;
+                        //     sessionStorage.headimgurl= undefined;
+                        }
+                        console.log("access_token");
                         // location.href="i.member.html";
                         var newUrl_2 = url + "user/currentUser?"+str;
                         console.log(newUrl_2);
@@ -57,11 +64,19 @@
                             url:newUrl_2,
                             type:"GET",
                             dataType:"json",
-                            success:function(data,status,res){
+                            success:function(data){
                                 console.log("data",data);
                                         console.log("ok");
                                         console.log("access_token");
-                                        alert("修改成功！")
+                                        console.log(data);
+                                        console.log(data.data);
+                                if(data.code == 200){
+                                    sessionStorage.nickname=nickname;
+                                    alert("修改成功！");
+                                }
+
+
+                                  // sessionStorage.nickname=data.data.nickname;
                                 // location.href="i.member.html";
                             },
                             error:function(err){

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=65zdgImABAZoTaGRybwPLvYagLIUQ5dz"></script>
+    <title>Document</title>
+    <style>
+        .address{
+            width: 750px;
+            margin: auto;
+        }
+        .user-address{
+            width: 100%;
+            overflow: auto;
+        }
+        .add-name input{
+            width:100%;
+            border: none;
+            outline:none;
+            height: 59px;
+            padding-left: 10px;
+            margin-bottom:1px;
+        }
+        .add-phone input{
+            width:100%;
+            border: none;
+            outline:none;
+            height: 59px;
+            padding-left: 10px;
+            margin-bottom:1px;
+        }
+        .map-box{
+            width: 750px;
+            height: 200px;
+            margin: auto;
+        }
+        #allmap{
+            width:100%;
+            height: 200px;
+        }
+        .location{
+            height: 25px;
+            background: #fff;
+            list-style: none;
+            width: 750px;
+            color: #888;
+            padding-left: 10px;
+            margin: auto;
+            margin-bottom: 10px;
+            margin-top:10px;
+        }
+        .loca-icon{
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            position:absolute;
+            background: url(./images/bill-icon.png) no-repeat -444px -121px;
+            background-size: 500px 700px;
+        }
+        .commit-address{
+            width: 750px;
+            margin: auto;
+            margin-top: 15px;
+            height:40px;
+            line-height: 40px;
+            text-align: center;
+            background: #ff712b;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        @media screen and (max-width: 750px){
+            .address{
+                width: 100%;
+            }
+            .location{
+                width: 100%;
+            }
+            .map-box{
+                width: 100%;
+            }
+            .commit-address{
+                width: 100%;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/ys.css">
+    <link rel="stylesheet" href="css/common.css">
+
+</head>
+<body style="background-color: #eee">
+<div class="toolbar">
+    <a class="back" href="./i.modifyaddress.html"><div class="back-into"></div></a>
+    添加收货人地址
+</div>
+<div class="address" style="margin-top: 48px">
+    <div class="user-address">
+        <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请输入收件人具体地址" value=""></div>
+    </div>
+</div>
+<div class="location">
+    <span class="loca-icon"></span>
+    <div style="line-height:25px;height:25px;padding-left:30px;">自动地位</div>
+</div>
+<div class="map-box">
+    <div id="allmap"></div>
+</div>
+<div class="commit-address" >确定</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(116.331398,39.897445);
+    console.log(point);
+    map.centerAndZoom(point,12);
+    var geoc = new BMap.Geocoder();
+
+    var $3_3_1 = jQuery.noConflict(true);
+    var longitude="";
+    var latitude=""
+    ;
+    document.getElementsByClassName("location")[0].onclick=function(){
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+            console.log(r.latitude);
+            console.log(r.longitude);
+            longitude=r.longitude;
+            latitude=r.latitude;
+
+            var mk = new BMap.Marker(r.point);
+            map.addOverlay(mk);
+            map.panTo(r.point);
+            geoc.getLocation(r.point, function(rs){
+                var addComp = rs.addressComponents;
+                document.getElementById("address-input").value = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+            });
+        });
+
+    };
+    map.addEventListener("click", function(e){
+        console.log(e.point);
+        var pt = e.point;
+        geoc.getLocation(pt, function(rs){
+            var addComp = rs.addressComponents;
+            document.getElementById("address-input").value = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+            // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+        });
+    });
+    //判断添加
+    document.getElementsByClassName("commit-address")[0].onclick = function(){
+        var addres=document.getElementById("address-input").value;
+        sessionStorage.longitude=longitude;
+        sessionStorage.latitude=latitude;
+        sessionStorage.address=addres;
+        location.href="i.modifyaddress.html";
+    }
+</script>
+</body>
+</html>
+

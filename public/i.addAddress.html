@@ -171,9 +171,6 @@
         var longitude="";
         var latitude=""
 ;
-
-
-
         document.getElementsByClassName("location")[0].onclick=function(){
             var geolocation = new BMap.Geolocation();
 	            geolocation.getCurrentPosition(function(r){
@@ -217,7 +214,6 @@
         if((/^1[34578]\d{9}$/.test(phone))){
             if(addres!==""){
                 if ((/^[A-Za-z0-9\u4e00-\u9fa5\-]{0,20}$/.test(doorplate))){
-
                     if (sessionStorage.access_token !== undefined) {
                         var obj = {};
                         obj.access_token = sessionStorage.access_token;
@@ -263,10 +259,7 @@
         alert("姓名只能为2至10个汉字或1至30个英文单词!");
   }
 
-
         }
-
-
 
         function srotKeyObjAndMd5(obj){
             var arr = [];

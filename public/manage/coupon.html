@@ -132,7 +132,7 @@
                     <li><a href="./index.html">首页</a></li>
                     <li><a href="./control.html">控制面板</a></li>
                     <li><a href="./store.html">店铺管理</a></li>
-                    <li class="active"><a href="./commodity.html">商品管理</a></li>
+                    <li><a href="./commodity.html">商品管理</a></li>
                     <li><a href="./order.html">订单详情</a></li>
                     <li><a href="./user.html">用户管理</a></li>
                     <li><a href="./address.html">地址管理</a></li>
@@ -141,15 +141,16 @@
                     <li><a href="./store_manage.html">店长管理</a></li>
                     <li><a href="./courier.html">店员管理</a></li>
                     <li><a href="./integral.html">积分管理</a></li>
-                    <li><a href="./coupon.html">优惠券管理</a></li>
+                    <li class="active"><a href="./coupon.html">优惠券管理</a></li>
                 </ul>
             </div>
             <div class="body-right">
-            <div class="body-right-title">商品管理</div>
+            <div class="body-right-title">优惠券管理</div>
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
-                    <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-api="product/add?" data-target="#exampleModal" data-whatever="增加商品" 
-                    data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价(元):^:50&%_%&price_零售价(元):^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量(kg):^:0.50&%_%&categoryId_商品分类ID:^:27&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                 
+                        <!-- &%_%&powerDays_有效期:^:20&%_%&startDate_有效期开始时间:^:18&%_%&endDate_有效期结束时间:^:18 -->
+                    <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-api="coupon/add?" data-whatever="增加商品" 
+                    data-list="name_名称:^:水果蔬菜满20减50&%_%&type_类型:^:果蔬券0&%_%&catId_商品类别权限:^:67&%_%&limit_金额:^:50&%_%&executeLimit_使用金额:^:200&%_%&dateType_时间类型:^:-6&%_%&condition_使用条件介绍:^:-0">添加优惠券</button>                 
                 </div>
                 <ul class="commodity-manage">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -159,7 +160,7 @@
                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                           维生素红牛功能饮料250毫升                    
                                       </a>
-                                      <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品" 
+                                      <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-api="coupon/update?" data-target="#exampleModal" data-whatever="修改商品" 
                                       data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:27&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">修改商品</button>
                                       <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品" 
                                       data-list="name_商品名称:^:红牛维生素供能饮料225ml0">删除商品</button>             
@@ -282,11 +283,6 @@
                                           </div>
                                         </div>
                                       </div>
-                                      <div class="page" style="padding-top:10px;">
-                                          <ul class="page-ul">
-                                          </ul>
-                                          <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
-                                      </div>
                               </div>
                 </ul>
                 <!-- <div class="add-commodity">
@@ -300,38 +296,38 @@
         <div class="floor"></div>
 
         <div class="modal fade mymodal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">消息</h4>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">消息</h4>
+                </div>
+                <div class="modal-body append-form">
+                    <!-- <div class="form-group">
+                        <label for="recipient-name" class="control-label">修改客户</label>
+                        <input type="text" class="form-control" id="recipient-name">
                     </div>
-                    <div class="modal-body append-form">
-                        <!-- <div class="form-group">
-                            <label for="recipient-name" class="control-label">修改客户</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-        
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <div class="form-group">
-                                    <label for="index" class="control-label">姓名</label>
-                                    <input type="text" class="form-control" id="index">
-                                </div>
-                                <div class="form-group">
-                                    <label for="index1" class="control-label">手机号</label>
-                                    <input type="text" class="form-control" id="index1">
-                                </div>
-                            </li>
-                        </ul> -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="modal-commit">提交</button>
-                    </div>
-                    </div>
+    
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                <label for="index" class="control-label">姓名</label>
+                                <input type="text" class="form-control" id="index">
+                            </div>
+                            <div class="form-group">
+                                <label for="index1" class="control-label">手机号</label>
+                                <input type="text" class="form-control" id="index1">
+                            </div>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="modal-commit">提交</button>
+                </div>
                 </div>
             </div>
+        </div>
     </div>
 
     <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
@@ -351,7 +347,9 @@
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
     <script>
         var $_331 = jQuery.noConflict();
-        var url = "http://140.143.25.27:8080/";
+        // var url = "http://140.143.25.27:8080/";
+        var url = "http://192.168.1.109:8080/";
+        // var url = "http://192.168.1.108:8080/";
         var mykey = "union_supermarket_2018";
         var pageNum = 2;
         var pageSize = 10;
@@ -400,13 +398,14 @@
                     +arr[i][0].split('_')[0]
                     +'"><p class="help-block"></p><button class="btn_img btn">点击上传</button></div>';
                 }else if(arr[i][2] == 8){
+
                     appendNode +='<div class="form-group"><label for="'
                     +a[i].split(':^:')[0].split('_')[0]
                     +'" class="control-label">'
                     +a[i].split(':^:')[0].split('_')[1]
-                    +'</label><input type="text" data-enable-time=true data-time_24hr=true class="form-control flatpickr" id="index" name="'
-                    +a[i].split(':^:')[0].split('_')[0]+'" value="'
-                    +a[i].split(':^:')[1]+'"></div>';
+                    +'</label><input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index" name="'
+                    +a[i].split(':^:')[0].split('_')[0]+'" data-default-date="'+arr[i][1]+' GMT"></div>';
+
                 }else if(arr[i][2] == 7){
 
                         var data1 = {};
@@ -428,7 +427,7 @@
                             async: false,
                             success:function(data,status){
                                 if(data.code == 200){
-                                    appendNode += '<div class="form-group select">商品分类</div><select id="okko" class="form-control" name="categoryId">';
+                                    appendNode += '<div class="form-group select">商品分类</div><select id="okko" class="form-control" name="catId"><option value="hao">'+'通用'+'</option>';
                                     for(var i = 0 ; i<data.data.length ;i++){
                                          appendNode +=  '<option value="'+data.data[i].catId+'">'+data.data[i].catName+'</option>';
                                     }
@@ -441,6 +440,41 @@
                                 console.log(err);
                             }
                         });
+
+                }else if(arr[i][2] == 6){
+
+                    appendNode += '<div class="form-group" style="height:120px;padding:10px 15px;border:1px solid #ddd;border-radius:5px;"><input style="width:46%;margin-left:0px;float:left;color:#337ab7;" type="button" class="form-control" id="index" name="'
+                    +arr[i][0].split('_')[0]+
+                    '" value="'
+                    +'时间段'+
+                    '"><input type="button" style="width:44%;margin-left:280px;" class="form-control" id="index" name="'
+                    +arr[i][0].split('_')[0]+
+                    '" value="'
+                    +'时间长'
+                    +'">'
+
+                    +'<div class="form-group" style="display:none;"><label for="index11" class="control-label">'
+                    +'有效期(/天)'
+                    +'</label><input type="text" class="form-control" id="index11" name="'
+                    +arr[i][0].split('_')[0]+
+                    '" value="'
+                    +arr[i][1]+
+                    '"></div>'
+
+                    +'<div style="padding-top:10px;">'
+                    +'<div class="form-group" style="width:46%;float:left;"><label for="index12" class="control-label">'
+                    +'优惠券开始时间'
+                    +'</label>'
+                    +'<input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index12" name="'+a[i].split(':^:')[0].split('_')[0]+'" GMT">'
+                    +'</div>'
+
+                    +'<div class="form-group" style="width:44%;float:right;"><label for="index13" class="control-label">'
+                    +'优惠券结束时间'
+                    +'</label>'
+                    +'<input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index13" name="'+a[i].split(':^:')[0].split('_')[0]+'" GMT">'
+                    +'</div>'
+                    +'</div>'
+                    +'</div>';        
 
                 }else{
                     appendNode += '<div class="form-group"><label for="'
@@ -458,47 +492,49 @@
             document.getElementsByClassName("flatpickr").flatpickr();
             var modal = $(this);
             modal.find('.modal-title').text("管理");
+            console.log(button.data("api"));
             $("#modal-commit").data("api",button.data("api"));
             // modal.find('.modal-body input').val(recipient);
         });
 
 
-
         //模态框内容的提交
         $("#modal-commit").on('click',function(event){
+
+            var api =  $(this).data("api");
             event.preventDefault();
-            var api = $("#modal-commit").data("api");
-            console.log(api);
-            if(api == "product/add?"){ //商品的增加
-                
-                var data = {};
-                // console.log($("#modal-list input").length);
+            var data = {};
+
+
+            if(api == "coupon/add?"){//增加优惠券       
                 for(var i=0; i<$("#modal-list .form-group").length;i++){
-                    if($("#modal-list .form-group").eq(i).hasClass('select')){
-                        data.categoryId = $("#okko").val();
-                    }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
-                        alert("请先上传图片");
-                        return;
-                    }else{
-                        if($("#modal-list input").eq(i).val() == ""){
-                            alert("参数不能为空");
+                        if($("#modal-list .form-group").eq(i).hasClass('select')){
+                            data.catId = $("#okko").val();
+                        }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                            alert("请先上传图片");
                             return;
                         }else{
-                            data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
+                            if($("#modal-list input").eq(i).val() == ""){
+                                alert("参数不能为空");
+                                return;
+                            }else{
+                                data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
+                            }
+                            
                         }
-                        
-                    }
                 };
                 console.log("this is file",data);
                 data.access_token = sessionStorage.access_token;
-                data.status = 0;
                 data.form = "web";
                 data.timestamp = parseInt(new Date().getTime()/1000);
+
+
                 var newObj = srotKeyObj(data);
                 var str = objmd5(newObj);
 
-                var newUrl = url + "product/add?" + str;
+                var newUrl = url + "coupon/add?" + str;
                 console.log(newUrl);
+                alert(newUrl);
                 
                 // $.ajax({
                 //     url:newUrl,
@@ -516,78 +552,124 @@
                 // });
 
 
-            }else if(api == "product/modify?"){ //商品修改
-            console.log("modify product");
 
-            }else if(api == "product/del?"){
+            }else if(api == "coupon/update?"){
+
+
+                for(var i=0; i<$("#modal-list .form-group").length;i++){
+                        if($("#modal-list .form-group").eq(i).hasClass('select')){
+                            data.catId = $("#okko").val();
+                        }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                            alert("请先上传图片");
+                            return;
+                        }else{
+                            if($("#modal-list input").eq(i).val() == ""){
+                                alert("参数不能为空");
+                                return;
+                            }else{
+                                data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
+                            }
+                            
+                        }
+                };
+                console.log("this is file",data);
+                data.access_token = sessionStorage.access_token;
+                data.form = "web";
+                data.timestamp = parseInt(new Date().getTime()/1000);
+
+
+                var newObj = srotKeyObj(data);
+                var str = objmd5(newObj);
+
+                var newUrl = url + "coupon/update?" + str;
+                console.log(newUrl);
+                alert(newUrl);
+                
+                // $.ajax({
+                //     url:newUrl,
+                //     type:'get',
+                //     success:function(data){
+                //         console.log(data);
+                //         console.log("ok");
+                //         $('.modal').modal('hide');
+                //         alert("提交成功");
+                //     },
+                //     error:function(err){
+                //         console.log(err);
+                //         console.log("err");
+                //     }
+                // });
 
             }
+
+            
+            // console.log($("#modal-list input").length);
             
         });
 
         
         
         $(document).on('click','.btn_img',function(){//上传图片
-            //     if($("#img-input")[0].files[0]){
-            //     var reg = /image\/*/;
-            //     var bloe = reg.test($("#img-input")[0].files[0].type);
-            //     if(bloe){
-            //         var obj = {};
-            //         obj.access_token = sessionStorage.access_token;
-            //         obj.timestamp = parseInt(new Date().getTime()/1000);
-            //         obj.form = "web";
+                if($("#img-input")[0].files[0]){
+                var reg = /image\/*/;
+                var bloe = reg.test($("#img-input")[0].files[0].type);
+                if(bloe){
+                    var obj = {};
+                    obj.access_token = sessionStorage.access_token;
+                    obj.timestamp = parseInt(new Date().getTime()/1000);
+                    obj.form = "web";
 
-            //         var newobj = srotKeyObj(obj);
-            //         var str = objmd5(newobj);
+                    var newobj = srotKeyObj(obj);
+                    var str = objmd5(newobj);
 
-            //         var arr = str.split("&");
+                    var arr = str.split("&");
 
-            //         var formData = new FormData();
-            //         for(var i = 0;i<arr.length;i++){
-            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
-            //         }
-            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
-            //         $_331.ajax({
-            //               url: 'http://140.143.25.27:8080/attachment/upload?',
-            //               type: 'POST',
-            //               data: formData,
-            //               contentType: false,
-            //               processData: false,
-            //               success:function(data){
-            //                   console.log(data);  /*服务器端的图片地址*/
-            //                   var str = data.data;
-            //                   var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-            //                   +str+
-            //                   '">';
-            //                   $('.btn_img').parent().html(node);
-            //                   console.log("ok");
-            //             },
-            //             error:function(err){
-            //                 console.log(err);
-            //                 console.log("err");
-            //             }
-            //       });
+                    var formData = new FormData();
+                    for(var i = 0;i<arr.length;i++){
+                        formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+                    }
+                    formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
+                    $_331.ajax({
+                          url: 'http://140.143.25.27:8080/attachment/upload?',
+                          type: 'POST',
+                          data: formData,
+                          contentType: false,
+                          processData: false,
+                          success:function(data){
+                              console.log(data);  /*服务器端的图片地址*/
+                              var str = data.data;
+                              var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                              +str+
+                              '">';
+                              $('.btn_img').parent().html(node);
+                              console.log("ok");
+                        },
+                        error:function(err){
+                            console.log(err);
+                            console.log("err");
+                        }
+                  });
 
-            //     }else{
-            //         alert("请选择图片");
-            //     }
-            // }else{
-            //     alert("请选择图片");
-            // }
-            var str = "http://140.143.25.27:8080/attachment/view/49";
-            var node = '<label for="imagePath select" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-                       +str+
-                       '">';
-             $('.btn_img').parent().html(node);
+                }else{
+                    alert("请选择图片");
+                }
+            }else{
+                alert("请选择图片");
+            }
+            // var str = "http://140.143.25.27:8080/attachment/view/49";
+            // var node = '<label for="imagePath select" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+            //            +str+
+            //            '">';
+            //  $('.btn_img').parent().html(node);
            
 
         });
 
-        function findCommodity(){
+
+        //查询优惠券
+        function findCoupon(){
             var obj = {};
-            obj.categoryId = 2;
-            obj.pageNum = 1;
-            obj.pageSize = pageSize;
+
             obj.access_token = sessionStorage.access_token;
             obj.timestamp = parseInt(new Date().getTime()/1000);
             obj.form = "web";
@@ -595,7 +677,7 @@
             var newobj = srotKeyObj(obj);
             var str = objmd5(newobj);
 
-            var newUrl = url + "product/findByCategoryId?" + str ;
+            var newUrl = url + "coupon/getAllCoupon?" + str ;
             console.log(newUrl);
 
 
@@ -606,78 +688,104 @@
                 success:function(data){
                     console.log("ok");
                     console.log(data);
-                    // var data = {"code": 200,"message": "请求成功",
-                    //    "data": {"pageNum": 1,"pageSize": 1,"size": 1,"startRow": 1,"endRow": 1,"total": 2,"pages": 2,
-                    //             "list": [{  "id": 2,"deleted": "0","createTime": "2018-04-13 14:54:30",
-                    //                         "createUser": 12,"updateTime": "2018-04-13 14:57:59",
-                    //                         "updateUser": 12,"name": "222",
-                    //                         "imagePath": "http://140.143.25.27:8080/attachment/view/8",
-                    //                         "cost": 20.5,"price": 25,"introduction": "","weight": null,
-                    //                         "categoryId": 1,"remarks": "","hot": -1
-                    //                         },
-                    //                      {  "id": 3,"deleted": "0","createTime": "2018-04-13 14:54:30",
-                    //                         "createUser": 12,"updateTime": "2018-04-13 14:57:59",
-                    //                         "updateUser": 12,"name": "红牛维生素供能饮料225ml红牛维生素供能饮料225ml",
-                    //                         "imagePath": "http://140.143.25.27:8080/attachment/view/8",
-                    //                         "cost": 20.5,"price": 25,"introduction": "","weight": null,
-                    //                         "categoryId": 1,"remarks": "","hot": -1
-                    //                     },
-                    //                      {  "id": 4,"deleted": "0","createTime": "2018-04-13 14:54:30",
-                    //                         "createUser": 12,"updateTime": "2018-04-13 14:57:59",
-                    //                         "updateUser": 12,"name": "红牛维生素供能饮料225ml红牛维生素供能饮料225ml",
-                    //                         "imagePath": "http://140.143.25.27:8080/attachment/view/8",
-                    //                         "cost": 20.5,"price": 25,"introduction": "","weight": null,
-                    //                         "categoryId": 1,"remarks": "","hot": -1
-                    //                         }
 
-                    //                     ],
-                    //             "prePage": 0,"nextPage": 2,"isFirstPage": true,"isLastPage": false,
-                    //             "hasPreviousPage": false,"hasNextPage": true,"navigatePages": 8,
-                    //             "navigatepageNums": [1,2],"navigateFirstPage": 1,"navigateLastPage": 2,
-                    //             "lastPage": 2,"firstPage": 1
-                    //         }}
+                //     var data ={
+                //     "code": 200,
+                //     "message": "请求成功",
+                //     "data": [
+                //                 {
+                //                 "id": 123,
+                //                 "type": "新用户劵",
+                //                 "name": "首次下单立减",
+                //                 "cat_id": null,
+                //                 "limit": 10.00,
+                //                 "power_days": null,
+                //                 "start_date": "2018-05-01 00:00:00",
+                //                 "end_date": "2118-05-01 00:00:00",
+                //                 "condition": "首单立减10元",
+                //                 "execute_limit": 30.00,
+                //                 "deleted": 0
+                //                 },
+                //                 {
+                //                 "id": 1234,
+                //                 "type": "满减",
+                //                 "name": "满100减20元",
+                //                 "cat_id": null,
+                //                 "limit": 20.00,
+                //                 "power_days": 10,
+                //                 "start_date": null,
+                //                 "end_date": null,
+                //                 "condition": "无限制",
+                //                 "execute_limit": 100.00,
+                //                 "deleted": 0
+                //                 },
+                //                 {
+                //                 "id": 12345,
+                //                 "type": "满减",
+                //                 "name": "满100减20元(果蔬类)",
+                //                 "cat_id": 2,
+                //                 "limit": 20.00,
+                //                 "power_days": 10,
+                //                 "start_date": null,
+                //                 "end_date": null,
+                //                 "condition": "限果蔬类",
+                //                 "execute_limit": 100.00,
+                //                 "deleted": 0
+                //                 }
+                //             ]
+
+                // }
+
                     //添加长list
                     var listNode = '';
-                    for(var i = 0; i < data.data.list.length;i++){
-                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'"><h4 class="panel-title">'
-                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data.list[i].id+'">'
-                        + data.data.list[i].name 
+                    for(var i = 0; i < data.data.length;i++){
+                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title">'
+                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data[i].id+'">'
+                        + data.data[i].name 
                         + '</a>'
-                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
-                        + 'data-list="name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'0">修改商品</button>'
-                        + '<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
-                        + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
+                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="coupon/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
+                        + 'data-list="id_优惠券ID:^:'+data.data[i].id+'0&%_%&type_类型:^:'+data.data[i].type+'0&%_%&name_名称:^:'+data.data[i].name+'0&%_%&catId_商品类别权限:^:'+data.data[i].cat_id+'7&%_%&limit_优惠券金额:^:'+data.data[i].limit+'0&%_%&executeLimit_使用条件金额:^:'+data.data[i].executeLimit+'0&%_%&powerDays_有效期(/天):^:'+data.data[i].powerDays+'0&%_%&startDate_有效期开始时间(年月日时分秒):^:'+data.data[i].startDate+'8&%_%&endDate_有效期结束时间(年月日时分秒):^:'+data.data[i].endDate+'8&%_%&condition_使用条件介绍:^:'+data.data[i].condition+'0">修改优惠券</button>'
+                        + '<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
+                        + 'data-list="name_商品名称:^:'+data.data[i].name+'0&%_%&id_ID:^:'+data.data[i].id+'0">删除商品</button>'
                         + '</h4></div>' 
-                        + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
+                        + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
                         + '<div class="panel-body">'
                         + '<div class="panel-body">'
                         + '<li class="list-group-item">' 
-                        + '<span>商品名称:</span>'
-                        + '<span class="store-num">'+data.data.list[i].name+'</span>'
+                        + '<span>类型:</span>'
+                        + '<span class="store-num">'+data.data[i].type+'</span>'
                         + '</li>'
                         + '<li class="list-group-item">'
-                        + '<span>成本价:</span>'
-                        + '<span class="store-num">'+data.data.list[i].cost+'</span>'
+                        + '<span>名称:</span>'
+                        + '<span class="store-num">'+data.data[i].name+'</span>'
                         + '</li>'
                         + '<li class="list-group-item">'
-                        + '<span>零售价:</span>'
-                        + '<span class="store-num">'+data.data.list[i].price+'</span>'
+                        + '<span>商品类别权限:</span>'
+                        + '<span class="store-num">'+data.data[i].catId+'</span>'
                         + '</li>'
                         + '<li class="list-group-item">'
-                        + '<span>重量:</span>'
-                        + '<span class="store-num">'+data.data.list[i].weight+'</span>'
+                        + '<span>使用条件金额:</span>'
+                        + '<span class="store-num">'+data.data[i].executeLimit+'</span>'
                         + '</li>'
                         + '<li class="list-group-item">'
-                        + '<span>热度:</span>'
-                        + '<span class="store-num">'+data.data.list[i].hot+'</span>'
+                        + '<span>优惠券金额:</span>'
+                        + '<span class="store-num">'+data.data[i].limit+'</span>'
                         + '</li>'
                         + '<li class="list-group-item">'
-                        + '<span>备注:</span>'
-                        + '<span class="store-num">'+data.data.list[i].remarks+'</span>'
+                        + '<span>有效期(/天):</span>'
+                        + '<span class="store-num">'+data.data[i].powerDays+'</span>'
                         + '</li>'
                         + '<li class="list-group-item">'
-                        + '<span>图片路径:</span>'
-                        + '<span class="store-num">'+data.data.list[i].imagePath+'</span>'
+                        + '<span>有效期_开始时间(年月日时分秒):</span>'
+                        + '<span class="store-num">'+data.data[i].startDate+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>有效期_结束时间(年月日时分秒):</span>'
+                        + '<span class="store-num">'+data.data[i].endDate+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>使用条件介绍:</span>'
+                        + '<span class="store-num">'+data.data[i].condition+'</span>'
                         + '</li>'
                         + '</ul></div></div></div></div>'
                     }
@@ -687,60 +795,60 @@
                     $('.panel-group').html(listNode);
                     $('.collapse').collapse();
 
-                    $('.page ul').append("<li><</li>");
+                //     $('.page ul').append("<li><</li>");
 
-                    if(data.data.pages > 5){
-                        if(data.data.pageNum < 3){
-                          for(var i = 1 ; i < 4 ; i++){
-                              if(data.data.pageNum == i){
-                                $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
-                              }else{
-                                $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
-                              }                         
-                          }
-                          $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                          $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                        }else if(data.data.pageNum == 3){
-                            $('.page ul').append("<li data-id="+1+">"+1+"</li>");                           
-                            $('.page ul').append("<li data-id="+2+">"+2+"</li>");
-                            $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
-                            $('.page ul').append("<li data-id="+4+">"+4+"</li>");
-                            $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
-                        }else if(data.data.pageNum-3 > 0){
-                                $('.page ul').append("<li data-id="+1+">"+1+"</li>");
-                                $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                            if(data.data.pages-data.data.pageNum >= 3){
-                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
-                                $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                            }else if(data.data.pages-data.data.pageNum == 2){
-                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                            }else if(data.data.pages-data.data.pageNum == 1){
-                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                            }else if(data.data.pages-data.data.pageNum == 0){
-                                $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                                $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
-                            }                            
-                        }
-                    }else{
-                        for(let i = 0; i<data.data.pages;i++){
-                            var k = i + 1;
-                            if(k == data.data.pageNum){
-                            $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
-                            }else{
-                            $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
-                            }
-                        };          
-                }
-                $('.page ul').append("<li>></li>");
+                //     if(data.data.pages > 5){
+                //         if(data.data.pageNum < 3){
+                //           for(var i = 1 ; i < 4 ; i++){
+                //               if(data.data.pageNum == i){
+                //                 $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
+                //               }else{
+                //                 $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
+                //               }                         
+                //           }
+                //           $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                //           $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                //         }else if(data.data.pageNum == 3){
+                //             $('.page ul').append("<li data-id="+1+">"+1+"</li>");                           
+                //             $('.page ul').append("<li data-id="+2+">"+2+"</li>");
+                //             $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
+                //             $('.page ul').append("<li data-id="+4+">"+4+"</li>");
+                //             $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                //             $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
+                //         }else if(data.data.pageNum-3 > 0){
+                //                 $('.page ul').append("<li data-id="+1+">"+1+"</li>");
+                //                 $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                //             if(data.data.pages-data.data.pageNum >= 3){
+                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                //                 $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                //             }else if(data.data.pages-data.data.pageNum == 2){
+                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                //             }else if(data.data.pages-data.data.pageNum == 1){
+                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                //             }else if(data.data.pages-data.data.pageNum == 0){
+                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                //                 $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
+                //             }                            
+                //         }
+                //     }else{
+                //         for(let i = 0; i<data.data.pages;i++){
+                //             var k = i + 1;
+                //             if(k == data.data.pageNum){
+                //             $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
+                //             }else{
+                //             $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
+                //             }
+                //         };          
+                // }
+                // $('.page ul').append("<li>></li>");
 
 
                 },
@@ -749,57 +857,12 @@
                     console.log(err);
                 }
             });
-
-            
-
-            
-            //<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            //维生素红牛功能饮料250毫升                    
-            //</a>
-            //<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品" 
-            //data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价:^:50&%_%&price_零售价:^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:20&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">修改商品</button>
-            //<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品" 
-            //data-list="name_商品名称:^:红牛维生素供能饮料225ml0">删除商品</button>             
-            //</h4>                               
-            //</div>
-
-            //<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            //<div class="panel-body">
-            //<ul class="list-group">
-            //<li class="list-group-item">
-            //<span>描述:</span>
-            //<span class="store-num">维生素红牛功能饮料250毫升</span>
-            //<button>修改</button>
-            //</li>
-            //<li class="list-group-item">
-            //<span>上传人:</span>
-            //<span>张三 </span>
-            //<button>修改</button>
-            //</li>
-            //<li class="list-group-item">
-            //<span>售价：</span>
-            //<span>20元</span>
-            //<button>修改</button>
-            //</li>
-            //<li class="list-group-item">
-            //<span>分类：</span>
-            //<span>饮料</span>
-            //<button>修改</button>
-            //</li>
-            //<li class="list-group-item">
-            //<span class="">图片路径</span>
-            //<span class="">http://www.lianjianshangwu.com/images/1.png</span>
-            //<button>修改</button>
-            //</li>
-            //</ul>
-            //</div>
-            //</div>
-            //</div>
-
-
         }
 
-        findCommodity();
+        findCoupon();
+
+        
+
 
         //选择分页
         $(document).on("click",".page-ul li",function(evev){
