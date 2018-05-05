@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .content{
+            width: 750px;
+            height: 100px;
+            margin: 200px auto;
+            border: 1px solid gray;
+            padding: 0 60px;
+
+        }
+        @media screen and (max-width: 750px){
+            .content{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title">
+            <div class="from">
+                <label for="input-name">名&nbsp;&nbsp;&nbsp;:</label>
+                <input id="input-name" type="text">
+                <br>
+                <label for="input-pwd">密码</label>
+                <input id="input-pwd" type="password">
+                <br>
+                <input type="button" value="登录">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -34,7 +34,9 @@
 <script>
     var $3_3_1 = jQuery.noConflict(true);
     var mykey = "union_supermarket_2018";
-    var url = "http://140.143.25.27:8080/";
+    // var url = "http://140.143.25.27:8080/";
+
+    var url = "http://192.168.1.108:8080/";
     if(sessionStorage.access_token !== undefined){
         var obj = {};
         obj.access_token = sessionStorage.access_token;
@@ -49,6 +51,7 @@
             success:function(data){
                 console.log(data);
                 console.log(data.data);
+
                 //动态添加地址
                 var nodestr = "";
                 var AddresId="";
@@ -63,7 +66,7 @@
                         "<div class='address_3_1'>"+"<input type='radio' name='r' class='address_3_1_1' data-id='"+data.data[i].addresId+"' >"+"<span class='address_3_1_2' >"+"设为默认"+"</span>"+"</div>"+
                         "<div class='address_3_2'>"+
                         "<a href='#' class='address_3_2_a2' data-id='"+data.data[i].addresId+"'>"+"<div class='address_3_2_img2'>"+"</div>"+"<span>"+"删除"+"</span>"+"</a>"+
-                        "<a  class='address_3_2_a1  modifyAddress' data-id='"+data.data[i].addresId+"'>"+"<div class='address_3_2_img1'>"+"</div>"+"<span>"+"编辑"+"</span>"+"</a>"
+                        "<a  class='address_3_2_a1  modifyAddress' data-phone='"+data.data[i].phone+"' data-lng='"+data.data[i].longitude+"' data-lat='"+data.data[i].latitude+"' data-id='"+data.data[i].addresId+"'>"+"<div class='address_3_2_img1'>"+"</div>"+"<span>"+"编辑"+"</span>"+"</a>"
                         +"</div>"
                         +"</div>"
                         +"</div>"+"</li>";
@@ -79,6 +82,7 @@
                             $_331("#address_ul li").eq(i).find(".address_3_1_1").attr("checked",true);
                         }
                     }
+
                     $_331(document).on("click",".address_3_1_1",function () {
                            var self = this;
                             var obj = {};
@@ -140,8 +144,12 @@
                     //编辑地址
                     $_331(document).on("click",".modifyAddress",function(){
                         sessionStorage.addressId = $_331(this).data("id");
+                        // alert($_331(this).data("lng"));
+                        // alert($_331(this).data("lat"));
+                        sessionStorage.longitude=$_331(this).data("lng");
+                        sessionStorage.latitude=$_331(this).data("lat");
+                        sessionStorage.addressPhone=$_331(this).data("phone");
                         sessionStorage.addressName = $_331(this).parent().parent().parent().parent().find(".address_2_1_1").text();
-                        sessionStorage.addressPhone=$_331(this).parent().parent().parent().parent().find(".address_2_1_2").text();
                         sessionStorage.address=$_331(this).parent().parent().parent().parent().find(".address_2_2").text();
                         sessionStorage.Doorplate=$_331(this).parent().parent().parent().parent().find(".address_2_2_span").text();
                         location.href = "i.modifyaddress.html";

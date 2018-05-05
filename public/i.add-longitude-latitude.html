@@ -99,7 +99,7 @@
 </div>
 <div class="address" style="margin-top: 48px">
     <div class="user-address">
-        <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请输入收件人具体地址" value=""></div>
+        <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请点击地图获取收件人具体地址" value="" disabled style="background-color: white"></div>
     </div>
 </div>
 <div class="location">
@@ -123,8 +123,7 @@
 
     var $3_3_1 = jQuery.noConflict(true);
     var longitude="";
-    var latitude=""
-    ;
+    var latitude="";
     document.getElementsByClassName("location")[0].onclick=function(){
         var geolocation = new BMap.Geolocation();
         geolocation.getCurrentPosition(function(r){
@@ -150,6 +149,11 @@
             var addComp = rs.addressComponents;
             document.getElementById("address-input").value = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
             // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+            longitude=pt.lng;
+            latitude=pt.lat;
+            // alert(longitude);
+            // alert(latitude);
+
         });
     });
     //判断添加
@@ -158,6 +162,8 @@
         sessionStorage.longitude=longitude;
         sessionStorage.latitude=latitude;
         sessionStorage.address=addres;
+        // alert(sessionStorage.longitude);
+        // alert(sessionStorage.latitude);
         location.href="i.modifyaddress.html";
     }
 </script>

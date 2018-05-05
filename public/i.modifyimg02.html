@@ -7,25 +7,27 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/ys.css">
 </head>
-<body style="background-color: #eee">
+<body style="background-color: black">
 <div class="toolbar">
     <a class="back" href="./i.member.html"><div class="back-into"></div></a>
     <span>修改头像</span>
     <!--<a href="i.addaddress.html" class="addadress">新增地址</a>-->
 </div>
-<div class="modifyimg_1">
-    <!--<div class="modifyimg_2">-->
-        <!--<input type="file" class="modifyimg_3">-->
-        <!--<button class="modifyimg_3">上传头像</button>-->
-    <!--</div>-->
+<div class="modifyimg_1" style="margin-top: 50px">
+    <div class="modifyimg_0">
+        <div class="file-box">
+        <input type="file" id="chooseImage"  value="">
+            选择文件
+        </div>
+        <button class="modifyimg_4">上传头像</button>
+    </div>
 
 
-    <form class="container" enctype="multipart/form-data" method="post" id='formBox' name="form">
-        <input type="file" id="chooseImage" name="file" value="">
-        <button class="modifyimg_2">上传</button>
-        <!-- 保存用户自定义的背景图片 -->
-        <img id="cropedBigImg" value='custom' alt="" data-address='' title="自定义背景"/>
-    </form>
+  <div class="modifyimg_xianshi">
+      <img src="" id="modifyimg_xianshi">
+      <!--<div id="js-pictureUpload-bg" class="pictureUpload-bg"></div>-->
+      <!--<div id="js-pictureUpload-mask" class="pictureUpload-mask"></div>-->
+  </div>
 </div>
 </body>
 </html>
@@ -33,7 +35,9 @@
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
 
 <script>
-    var $_331 = jQuery.noConflict();
+    var $_331 = jQuery.noConflict(true);
+    var mykey = "union_supermarket_2018";
+
     $_331('#chooseImage').on('change',function(){
         var filePath = $_331(this).val(),         //获取到input的value，里面是文件的路径
             fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
@@ -43,14 +47,14 @@
             error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
             return;
         }
-        $_331('#cropedBigImg').attr('src',filePath);
-        $_331('#loding').show();
-        $_331('#cropedBigImg').attr('src',src);
+        //显示上传图片
+        $_331('#modifyimg_xianshi').attr('src',filePath);
+        $_331('#modifyimg_xianshi').css({'display':'block'});
+        $_331('#modifyimg_xianshi').attr('src',src);
     });
 
-    var mykey = "union_supermarket_2018";
-    var $_331 = jQuery.noConflict(true);
-    $_331(document).on('click','.modifyimg_2',function(){//上传图片
+
+    $_331(document).on('click','.modifyimg_4',function(){//上传图片
         if($_331("#chooseImage")[0].files[0]){
             var reg = /image\/*/;
             var bloe = reg.test($_331("#chooseImage")[0].files[0].type);
@@ -76,7 +80,32 @@
                     success:function(data){
                         console.log(data);  /*服务器端的图片地址*/
                         console.log("ok");
-                        alert("上传成功!");
+                        // alert("上传成功!");
+                        var obj={};
+                        sessionStorage.headimgurl=data.data;
+                        // document.getElementById("modifyimg_xianshi").style.display="block";
+                        // document.getElementById("modifyimg_xianshi").src=data.data;
+
+                        obj.access_token = sessionStorage.access_token;
+                        obj.headimgurl=sessionStorage.headimgurl;
+                        obj.timestamp = parseInt(new Date().getTime()/1000);
+                        obj.form = "web";
+                        var str = srotKeyObjAndMd5(obj);
+                        $_331.ajax({
+                            url: 'http://192.168.1.108:8080/user/modifyheadimgurl?'+str,
+                            type: 'get',
+                            success:function(data){
+                                console.log(data);  /*服务器端的图片地址*/
+                                console.log("ok");
+                                alert("修改成功!");
+                                // location.href="i.member.html";
+
+                            },
+                            error:function(err){
+                                console.log(err);
+                                console.log("err");
+                            }
+                        });
                     },
                     error:function(err){
                         console.log(err);

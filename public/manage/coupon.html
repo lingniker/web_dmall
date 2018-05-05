@@ -9,7 +9,9 @@
     <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" >
+    <!-- <link href="../cdn/flatpickr.min.css" rel="stylesheet"> -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- <script> src="../cdn/flatpickr.js"</script> -->
     <link href="myadmin/css/common.css" rel="stylesheet">
     <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
     <title>Document</title>
@@ -101,7 +103,6 @@
         margin: 0 2px;
         padding: 0 5px;
     }
-
     .page-ul li{
         float: left;
         /* width: 24px; */
@@ -117,13 +118,53 @@
     .mymodal{
         margin-top:50px;
     }
+    .select-time-one{
+        width:46%;
+        margin-left:0px;
+        float:left;
+    }
+    .select-time-two{
+        width:44%;
+        margin-left:280px;
+    }
+    .select-time{
+        color:#337ab7;
+    }
+    .myhide{
+        display:none;
+    }
+    .goods-li{
+        width:45%;
+        margin: 10px 10px 0 10px;
+        height:30px;
+        line-height: 30px;
+        border:1px solid gray;
+        overflow: hidden;
+        padding: 0px 18px 0px 5px;
+        border-radius: 4px;
+        position: relative;
+    }
+    .goodsCheck{
+        position:absolute;
+        width: 10px;
+        height: 30px;
+        top:0px;
+        right:10px;
+    }
+    .active{
+        color:#F36A5A;
+    }
+    .mymodal{
+        margin-top:50px;
+    }
+
 </style>
 <body>
     <div class="admin-container">
         <div class="admin-nav">
             <div class="admin-nav-left">联家管理系统</div>
             <div class="admin-nav-right">
-            <div class="back-login"><a href="./manage.html">退出登录</a></div>
+            <div class="back-login"><a href="#">退出登录</a></div>
             </div>
         </div>
         <div class="body">
@@ -150,10 +191,17 @@
                 <div class="add-advertising" style="padding-bottom:30px;">
                         <!-- &%_%&powerDays_有效期:^:20&%_%&startDate_有效期开始时间:^:18&%_%&endDate_有效期结束时间:^:18 -->
                     <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-api="coupon/add?" data-whatever="增加商品" 
-                    data-list="name_名称:^:水果蔬菜满20减50&%_%&type_类型:^:果蔬券0&%_%&catId_商品类别权限:^:67&%_%&limit_金额:^:50&%_%&executeLimit_使用金额:^:200&%_%&dateType_时间类型:^:-6&%_%&condition_使用条件介绍:^:-0">添加优惠券</button>                 
+                    data-list="name_名称:^:水果蔬菜满20减50&%_%&type_类型:^:满减券5&%_%&catId_适用类型:^:67&%_%&executeLimit_满多少:^:200&%_%&limit_减多少:^:50&%_%&dateType_时间类型:^:-6&%_%&condition_使用条件介绍:^:-0">添加优惠券</button>
+                    <button class="btn btn-primary findCouponUse-1">查看优惠券</button>
+                    <button class="btn btn-primary findCouponUse-2">查询使用情况</button>               
                 </div>
                 <ul class="commodity-manage">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <table class="table table-hover myhide-1 myhide">
+                            <tr><th>名称</th><th>类型</th><th>使用数</th><th>未使用</th><th>总数</th><th>查看</th></tr>
+                            <tr><td>11</td><td>22</td><td>22</td><td>22</td><td>22</td><td><button class="findCouponUse1">查看</button></td></tr>
+                            <tr><td>44</td><td>33</td><td>22</td><td>22</td><td>77</td><td><button>查看</button></td></tr>
+                        </table>
+                        <div class="panel-group myhide-2" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
                                   <div class="panel-heading" role="tab" id="headingOne1">
                                     <h4 class="panel-title">
@@ -295,6 +343,7 @@
         </div>
         <div class="floor"></div>
 
+        <!-- 公共模态框的弹出 -->
         <div class="modal fade mymodal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -328,6 +377,50 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- 模态框弹出优惠券的使用情况 -->        
+        <div class="modal fade bs-example-modal-lg couponModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">          
+                <div class="modal-content" style="padding:0 10px">
+                    <h3>优惠券使用的详情</h3>
+                    <hr>
+                    <table class="table table-hover table-modal">
+                        <tr><th>手机号</th><th>昵称</th><th>使用数</th><th>未使用</th></tr>
+                        <tr><td>11</td><td>22</td><td>22</td><td>22</td></tr>
+                        <tr><td>44</td><td>33</td><td>22</td><td>22</td></tr>
+                    </table>       
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 发放优惠券 -->
+        <div class="modal fade bs-example-modal-lg couponModal1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">      
+            <div class="modal-content" style="padding:0 10px">
+            <h3>发放优惠券</h3>
+            <hr>
+                <button class="btn onSale active goodsOne" data-api="product/findOnSaleByStoreId?">发放优惠券</button>
+                <button class="btn notSold goodsTwo" data-api="product/findNoSaleByStoreId?">单个发放优惠券</button>
+                <div class="goodsBox" style="width:100%;padding-bottom:32px;height:auto;position:relative;">
+                    <ul style="width:100%;display:flex;flex-wrap:wrap;" class="coupon-ul">
+                            <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                    </ul>
+                    <button class="btn btn-primary modifyCoupon" data-api="storeProduct/saveList?" style="position:absolute;bottom:4px;right:57px;">发给选中用户</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
     </div>
 
     <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
@@ -345,12 +438,12 @@
     <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script type="text/javascript" src="myadmin/js/config.js"></script>
+    <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
+    <script src="../cdn/md5.min.js"></script> -->
     <script>
         var $_331 = jQuery.noConflict();
-        // var url = "http://140.143.25.27:8080/";
-        var url = "http://192.168.1.109:8080/";
-        // var url = "http://192.168.1.108:8080/";
-        var mykey = "union_supermarket_2018";
+        console.log("url",url);
         var pageNum = 2;
         var pageSize = 10;
         (function(){
@@ -365,6 +458,82 @@
         });
         $('.collapse').collapse();
 
+        //发放购物券
+        $('.modifyCoupon').on("click",function(){
+
+            var userIds = [];
+            for(let i = 0;i<$(this).parents().find('ul li input').length;i++){
+                if($(this).parents().find('ul li input').eq(i).is(':checked')){
+                    userIds.push($(this).parents().find('ul li input').eq(i).data("id"));
+                };
+            }
+            console.log(userIds);
+            if(userIds.length!=0){
+                var obj = {};
+                obj.userIds = userIds;
+                obj.couponIds = sessionStorage.couponId;
+                obj.access_token = sessionStorage.access_token;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+
+                var newobj = srotKeyObj(obj);
+                var str = objmd5(newobj);
+
+                var newUrl = url + "coupon/sendCoupon?" + str ;
+                console.log(newUrl);
+            }else{
+                alert("请勾选下架的商品");
+            }
+            // var obj = {};
+            // obj.couponIds = 1;
+            // obj.userIds = [11,17,18];
+            // obj.access_token = sessionStorage.access_token;
+            // obj.timestamp = parseInt(new Date().getTime()/1000);
+            // obj.from = "web";
+
+            // var newobj = srotKeyObj(obj);
+            // var str = objmd5(newobj);
+
+            // var newUrl = url + "coupon/sendCoupon?" + str;
+            console.log("+++++++",newUrl);
+
+        });
+
+        //查找所有的用户并将其展示在模态框上
+        function getAllUser(){
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.pageNum  = 1;
+            obj.pageSize = 10;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.from = "wed";
+            var newobj = srotKeyObj(obj);
+            var str = objmd5(newobj);
+            var newUrl = url + "user/customerList?" + str;
+            console.log("+++++++",newUrl);
+
+            $.ajax({
+                url:newUrl,
+                type:'get',
+                success:function(data){
+                    console.log(data);
+                    var userList = "";
+                    for(var i = 0; i < data.data.list.length;i++){
+                        
+                        userList += '<li class="goods-li" >'+data.data.list[i].nickname+'<div class="goodsCheck"><input value="'+data.data.list[i].userId+'" data-id="'+data.data.list[i].userId+'" type="checkbox"></div></li>';
+                    }
+                    console.log(userList);
+                    $(".coupon-ul").html(userList);
+
+                    console.log("ok");
+                },
+                error:function(err){
+                    console.log(err);
+                    console.log("err");
+                }
+            });
+        };
+        
 
         //模态框的弹出
         $('#exampleModal').on('show.bs.modal',function(event){
@@ -427,7 +596,7 @@
                             async: false,
                             success:function(data,status){
                                 if(data.code == 200){
-                                    appendNode += '<div class="form-group select">商品分类</div><select id="okko" class="form-control" name="catId"><option value="hao">'+'通用'+'</option>';
+                                    appendNode += '<div class="form-group select">适用类型</div><select id="okko" style="margin-bottom:10px;" class="form-control" name="catId"><option value="0">'+'通用'+'</option>';
                                     for(var i = 0 ; i<data.data.length ;i++){
                                          appendNode +=  '<option value="'+data.data[i].catId+'">'+data.data[i].catName+'</option>';
                                     }
@@ -443,38 +612,44 @@
 
                 }else if(arr[i][2] == 6){
 
-                    appendNode += '<div class="form-group" style="height:120px;padding:10px 15px;border:1px solid #ddd;border-radius:5px;"><input style="width:46%;margin-left:0px;float:left;color:#337ab7;" type="button" class="form-control" id="index" name="'
+
+                    appendNode += '<div class="" style="margin-bottom: 15px;height:130px;padding:10px 15px;border:1px solid #ddd;border-radius:5px;">'
+                    +'<input type="button" class="form-control select-time-one select-time" id="index" name="'
                     +arr[i][0].split('_')[0]+
                     '" value="'
-                    +'时间段'+
-                    '"><input type="button" style="width:44%;margin-left:280px;" class="form-control" id="index" name="'
+                    +'有效期'+
+                    '"><input type="button" class="form-control select-time-two" id="index" name="'
                     +arr[i][0].split('_')[0]+
                     '" value="'
-                    +'时间长'
+                    +'时间段'
                     +'">'
 
-                    +'<div class="form-group" style="display:none;"><label for="index11" class="control-label">'
+                    +'<div class="form-group time-one" style="padding-top:10px;display:block;"><label for="index11" class="control-label">'
                     +'有效期(/天)'
-                    +'</label><input type="text" class="form-control" id="index11" name="'
-                    +arr[i][0].split('_')[0]+
-                    '" value="'
+                    +'</label><input type="text" class="form-control" id="index11" name="powerDays" value="'
                     +arr[i][1]+
                     '"></div>'
 
-                    +'<div style="padding-top:10px;">'
+                    +'<div class="time-two" style="padding-top:10px;display:none;">'
                     +'<div class="form-group" style="width:46%;float:left;"><label for="index12" class="control-label">'
                     +'优惠券开始时间'
                     +'</label>'
-                    +'<input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index12" name="'+a[i].split(':^:')[0].split('_')[0]+'" GMT">'
+                    +'<input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index12" name="startDate">'
                     +'</div>'
 
                     +'<div class="form-group" style="width:44%;float:right;"><label for="index13" class="control-label">'
                     +'优惠券结束时间'
                     +'</label>'
-                    +'<input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index13" name="'+a[i].split(':^:')[0].split('_')[0]+'" GMT">'
+                    +'<input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index13" name="endDate" >'
                     +'</div>'
                     +'</div>'
                     +'</div>';        
+
+                }else if(arr[i][2] == 5){
+                    appendNode += '<div class="form-group select1">券类型</div><select id="okko1" style="margin-bottom:10px;" class="form-control" name="catId">';
+                    appendNode +=  '<option value="满减券">满减券</option>';
+                    appendNode +=  '<option value="新用户券">新用户券</option>';
+                    appendNode += '</select>';         
 
                 }else{
                     appendNode += '<div class="form-group"><label for="'
@@ -502,59 +677,134 @@
         $("#modal-commit").on('click',function(event){
 
             var api =  $(this).data("api");
+            console.log(api);
             event.preventDefault();
             var data = {};
 
 
-            if(api == "coupon/add?"){//增加优惠券       
+            if(api == "coupon/add?"){//增加优惠券
+
                 for(var i=0; i<$("#modal-list .form-group").length;i++){
                         if($("#modal-list .form-group").eq(i).hasClass('select')){
                             data.catId = $("#okko").val();
-                        }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                        }else if($("#modal-list .form-group").eq(i).hasClass('select1')){
+                            data.type = $("#okko1").val();
+                        }else if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
                             alert("请先上传图片");
                             return;
                         }else{
-                            if($("#modal-list input").eq(i).val() == ""){
-                                alert("参数不能为空");
-                                return;
-                            }else{
-                                data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
-                            }
-                            
+                            data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();  
                         }
                 };
-                console.log("this is file",data);
-                data.access_token = sessionStorage.access_token;
-                data.form = "web";
-                data.timestamp = parseInt(new Date().getTime()/1000);
+                console.log(data);
+                var numReg = /^[0-9]+.?[0-9]*$/;;
+                if(data.name !== "" && data.name.length < 150){
+                    if(numReg.test(data.executeLimit)){
+                        if(numReg.test(data.limit)){
+                            if(data.condition.length <= 200  && data.condition.length > 0){
+                                if($(".select-time-one").hasClass("select-time")){//优惠券时间的类型选择 为有效期
+                                    data.time_type = 0;
+                                    if(data.powerDays==""){
+                                        alert("有效期请输入数据");
+                                        return;
+                                    }else{
+                                        console.log("data");
+                                        delete data.startDate;
+                                        delete data.endDate;
+
+                                        console.log("this is file",data);
+                                        data.access_token = sessionStorage.access_token;
+                                        data.form = "web";
+                                        data.timestamp = parseInt(new Date().getTime()/1000);
 
 
-                var newObj = srotKeyObj(data);
-                var str = objmd5(newObj);
+                                        var newObj = srotKeyObj(data);
+                                        var str = objmd5(newObj);
 
-                var newUrl = url + "coupon/add?" + str;
-                console.log(newUrl);
-                alert(newUrl);
-                
-                // $.ajax({
-                //     url:newUrl,
-                //     type:'get',
-                //     success:function(data){
-                //         console.log(data);
-                //         console.log("ok");
-                //         $('.modal').modal('hide');
-                //         alert("提交成功");
-                //     },
-                //     error:function(err){
-                //         console.log(err);
-                //         console.log("err");
-                //     }
-                // });
+                                        var newUrl = url + "coupon/add?" + str;
+                                        console.log(newUrl);
+                                        alert(newUrl);
+                                        
+                                        $.ajax({
+                                            url:newUrl,
+                                            type:'get',
+                                            success:function(data){
+                                                console.log(data);
+                                                console.log("ok");
+                                                $('.modal').modal('hide');
+                                                alert("优惠券添加成功");
+                                            },
+                                            error:function(err){
+                                                console.log(err);
+                                                console.log("err");
+                                                alert("优惠券添加失败");
+                                            }
+                                        });
+                                    }
+                                }else if($(".select-time-two").hasClass("select-time")){//优惠券时间的类型选择 为时间段
+                                    if(data.startDate == ""){
+                                        alert("请输入开始时间");
+                                        return;
+                                    };
+                                    if(data.endDate == ""){
+                                        alert("请输入结束时间");
+                                        return;
+                                    };
+                                    console.log((new Date(data.endDate).getTime()-new Date(data.startDate).getTime()));
+                                    if(((new Date(data.endDate).getTime()-new Date(data.startDate).getTime())/1000/60/60/24 > 49) || ((new Date(data.endDate).getTime()-new Date(data.startDate).getTime()) < 0)){
+                                        console.log("输入的时间不要跨度太大");
+                                        return;
+                                    }
+                                    delete data.powerDays;
+                                    data.time_type = 1;
+
+                                    console.log("data");
+
+                                    console.log("this is file",data);
+                                    data.access_token = sessionStorage.access_token;
+                                    data.form = "web";
+                                    data.timestamp = parseInt(new Date().getTime()/1000);
 
 
+                                    var newObj = srotKeyObj(data);
+                                    var str = objmd5(newObj);
 
-            }else if(api == "coupon/update?"){
+                                    var newUrl = url + "coupon/add?" + str;
+                                    console.log(newUrl);
+                                    alert(newUrl);
+                                    
+                                    $.ajax({
+                                        url:newUrl,
+                                        type:'get',
+                                        success:function(data){
+                                            console.log(data);
+                                            console.log("ok");
+                                            $('.modal').modal('hide');
+                                            alert("优惠券添加成功");
+                                        },
+                                        error:function(err){
+                                            console.log(err);
+                                            console.log("err");
+                                            console.log("优惠券添加失败");
+                                        }
+                                    });
+                                };
 
+                            }else{
+                                alert("请输入条件介绍");
+                            }
+                        }else{
+                            alert("'减多少'请输入正确的数字");
+                        }           
+                    }else{
+                        alert("'满多少'请输入正确的数字");
+                    }
+
+                }else{
+                    alert("输入的名称不能为空");
+                }
+
+            }else if(api == "coupon/update?"){//修改优惠券
 
                 for(var i=0; i<$("#modal-list .form-group").length;i++){
                         if($("#modal-list .form-group").eq(i).hasClass('select')){
@@ -583,31 +833,115 @@
 
                 var newUrl = url + "coupon/update?" + str;
                 console.log(newUrl);
-                alert(newUrl);
+                // alert(newUrl);
                 
-                // $.ajax({
-                //     url:newUrl,
-                //     type:'get',
-                //     success:function(data){
-                //         console.log(data);
-                //         console.log("ok");
-                //         $('.modal').modal('hide');
-                //         alert("提交成功");
-                //     },
-                //     error:function(err){
-                //         console.log(err);
-                //         console.log("err");
-                //     }
-                // });
+                $.ajax({
+                    url:newUrl,
+                    type:'get',
+                    success:function(data){
+                        console.log(data);
+                        console.log("ok");
+                        $('.modal').modal('hide');
+                        alert("提交成功");
+                    },
+                    error:function(err){
+                        console.log(err);
+                        console.log("err");
+                        alert("提交失败");
+                    }
+                });
 
             }
-
-            
             // console.log($("#modal-list input").length);
             
         });
 
+
+
+        //查看用户使用详情
+        $(document).on('click',".findCouponUse1",function(e){
+            // console.log("nihao");
+            $(".couponModal").modal("show");
+            console.log($(this).data("catId"));
+            console.log($(this).data("name"));
+            console.log($(this).data("type"));
+
+            var obj = {};
+            obj.catId = $(this).data("catId");
+            obj.name = $(this).data("name");
+            obj.type = $(this).data("type");
+            obj.access_token = sessionStorage.access_token;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.form = "web";
+
+            var newobj = srotKeyObj(obj);
+            var str = objmd5(newobj);
+
+            var newUrl = url + "coupon/findUserByCoupon?" + str ;
+            console.log(newUrl);
+
+            $.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    // {"userId":18,"phone":"15010582681","nickName":"6666","couponAmount":1,"usedNumber":0,"unusedNumber":1},{"userId":21,"phone":"18515430786","nickName":"反抗军的数据库","couponAmount":1,"usedNumber":0,"unusedNumber":1}]        
+                    // console.log("就是这里");
+                    console.log(data);
+                    var userUseCoupon = "";
+                    userUseCoupon += '<tr><th>手机号</th><th>昵称</th><th>使用数</th><th>未使用</th></tr>';
+                    for(var i = 0 ; i< data.data.length;i++){
+                        userUseCoupon += '<tr><td>'+data.data[i].phone+'</td><td>'+data.data[i].nickName+'</td><td>'+data.data[i].usedNumber+'</td><td>'+data.data[i].unusedNumber+'</td></tr>';                    
+                    }
+
+                    $(".table-modal").html(userUseCoupon);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        });
+
+
         
+        //查询优惠券使用的情况
+        function findCouponUse(){
+            var obj = {};
+
+            obj.access_token = sessionStorage.access_token;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.form = "web";
+
+            var newobj = srotKeyObj(obj);
+            var str = objmd5(newobj);
+
+            var newUrl = url + "coupon/findCoupon?" + str ;
+            console.log(newUrl);
+            $.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    // console.log("就是这里");
+                    console.log(data);
+                    var table_list = "";
+                    table_list += '<tr><th>名称</th><th>类型</th><th>使用数</th><th>未使用</th><th>总数</th><th>查看</th></tr>';                    
+                    for(var i = 0;i<data.data.length;i++){
+                        table_list += '<tr><td>'+data.data[i].name+'</td><td>满减</td><td>'
+                        +data.data[i].usedNumber+'</td><td>'+data.data[i].unusedNumber+'</td><td>'
+                        +data.data[i].userAmount+'</td><td><button data-name="'
+                        +data.data[i].name+'" data-type="'
+                        +data.data[i].type+'" data-cat-id="'+data.data[i].catId+'" class="findCouponUse1">查看</button></td></tr>'
+                    };
+                    $(".myhide-1").html(table_list);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        }
+        findCouponUse();
+
         
         $(document).on('click','.btn_img',function(){//上传图片
                 if($("#img-input")[0].files[0]){
@@ -627,10 +961,10 @@
                     var formData = new FormData();
                     for(var i = 0;i<arr.length;i++){
                         formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
-                    }
+                    };
                     formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
                     $_331.ajax({
-                          url: 'http://140.143.25.27:8080/attachment/upload?',
+                          url: url+'attachment/upload?',
                           type: 'POST',
                           data: formData,
                           contentType: false,
@@ -638,7 +972,7 @@
                           success:function(data){
                               console.log(data);  /*服务器端的图片地址*/
                               var str = data.data;
-                              var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                              var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" disabled class="form-control" id="imagePath"  name="imagePath" value="'
                               +str+
                               '">';
                               $('.btn_img').parent().html(node);
@@ -689,69 +1023,91 @@
                     console.log("ok");
                     console.log(data);
 
-                //     var data ={
-                //     "code": 200,
-                //     "message": "请求成功",
-                //     "data": [
-                //                 {
-                //                 "id": 123,
-                //                 "type": "新用户劵",
-                //                 "name": "首次下单立减",
-                //                 "cat_id": null,
-                //                 "limit": 10.00,
-                //                 "power_days": null,
-                //                 "start_date": "2018-05-01 00:00:00",
-                //                 "end_date": "2118-05-01 00:00:00",
-                //                 "condition": "首单立减10元",
-                //                 "execute_limit": 30.00,
-                //                 "deleted": 0
-                //                 },
-                //                 {
-                //                 "id": 1234,
-                //                 "type": "满减",
-                //                 "name": "满100减20元",
-                //                 "cat_id": null,
-                //                 "limit": 20.00,
-                //                 "power_days": 10,
-                //                 "start_date": null,
-                //                 "end_date": null,
-                //                 "condition": "无限制",
-                //                 "execute_limit": 100.00,
-                //                 "deleted": 0
-                //                 },
-                //                 {
-                //                 "id": 12345,
-                //                 "type": "满减",
-                //                 "name": "满100减20元(果蔬类)",
-                //                 "cat_id": 2,
-                //                 "limit": 20.00,
-                //                 "power_days": 10,
-                //                 "start_date": null,
-                //                 "end_date": null,
-                //                 "condition": "限果蔬类",
-                //                 "execute_limit": 100.00,
-                //                 "deleted": 0
-                //                 }
-                //             ]
-
-                // }
+                    //     var data ={
+                    //     "code": 200,
+                    //     "message": "请求成功",
+                    //     "data": [
+                    //                 {
+                    //                 "id": 123,
+                    //                 "type": "新用户劵",
+                    //                 "name": "首次下单立减",
+                    //                 "cat_id": null,
+                    //                 "limit": 10.00,
+                    //                 "power_days": null,
+                    //                 "start_date": "2018-05-01 00:00:00",
+                    //                 "end_date": "2118-05-01 00:00:00",
+                    //                 "condition": "首单立减10元",
+                    //                 "execute_limit": 30.00,
+                    //                 "deleted": 0
+                    //                 },
+                    //                 {
+                    //                 "id": 1234,
+                    //                 "type": "满减",
+                    //                 "name": "满100减20元",
+                    //                 "cat_id": null,
+                    //                 "limit": 20.00,
+                    //                 "power_days": 10,
+                    //                 "start_date": null,
+                    //                 "end_date": null,
+                    //                 "condition": "无限制",
+                    //                 "execute_limit": 100.00,
+                    //                 "deleted": 0
+                    //                 },
+                    //                 {
+                    //                 "id": 12345,
+                    //                 "type": "满减",
+                    //                 "name": "满100减20元(果蔬类)",
+                    //                 "cat_id": 2,
+                    //                 "limit": 20.00,
+                    //                 "power_days": 10,
+                    //                 "start_date": null,
+                    //                 "end_date": null,
+                    //                 "condition": "限果蔬类",
+                    //                 "execute_limit": 100.00,
+                    //                 "deleted": 0
+                    //                 }
+                    //             ]
+                    // }
 
                     //添加长list
                     var listNode = '';
                     for(var i = 0; i < data.data.length;i++){
+                        var startDateStr="";
+                        var endDateStr="";
+                        var powerDaysSty="";
+                        var startStr = "";
+                        var endStr = "";
+                        var powerStr = "";
+                        if(data.data[i].startDate != null && data.data[i].startDate !=""){
+                            startDateStr += '<li class="list-group-item"><span>有效期_开始时间(年月日时分秒):</span><span class="store-num">'+data.data[i].startDate+'</span></li>';
+                            startStr += "&%_%&startDate_有效期开始时间(年月日时分秒):^:"+data.data[i].startDate+"8";
+                        };
+                        if(data.data[i].endDate != null && data.data[i].endDate !=""){
+                            endDateStr += '<li class="list-group-item"><span>有效期_结束时间(年月日时分秒):</span><span class="store-num">'+data.data[i].endDate+'</span></li>';
+                            endStr += "&%_%&startDate_有效期开始时间(年月日时分秒):^:"+data.data[i].endDate+"8";
+                        };
+                        if(data.data[i].powerDays != 0){
+                            console.log(data.data[i].powerDays);
+                            powerDaysSty += '<li class="list-group-item"><span>有效期(/天):</span><span class="store-num">'+data.data[i].powerDays+'</span></li>';
+                            powerStr += '&%_%&powerDays_有效期(/天):^:'+data.data[i].powerDays+'0';
+                        };
+
+
+
                         listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title">'
-                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data[i].id+'">'
-                        + data.data[i].name 
+                        + '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data[i].id+'">'
+                        + data.data[i].name
                         + '</a>'
-                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="coupon/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
-                        + 'data-list="id_优惠券ID:^:'+data.data[i].id+'0&%_%&type_类型:^:'+data.data[i].type+'0&%_%&name_名称:^:'+data.data[i].name+'0&%_%&catId_商品类别权限:^:'+data.data[i].cat_id+'7&%_%&limit_优惠券金额:^:'+data.data[i].limit+'0&%_%&executeLimit_使用条件金额:^:'+data.data[i].executeLimit+'0&%_%&powerDays_有效期(/天):^:'+data.data[i].powerDays+'0&%_%&startDate_有效期开始时间(年月日时分秒):^:'+data.data[i].startDate+'8&%_%&endDate_有效期结束时间(年月日时分秒):^:'+data.data[i].endDate+'8&%_%&condition_使用条件介绍:^:'+data.data[i].condition+'0">修改优惠券</button>'
-                        + '<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
-                        + 'data-list="name_商品名称:^:'+data.data[i].name+'0&%_%&id_ID:^:'+data.data[i].id+'0">删除商品</button>'
-                        + '</h4></div>' 
+                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="coupon/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改优惠券"'
+                        + 'data-list="id_优惠券ID:^:'+data.data[i].id+'0&%_%&type_类型:^:'+data.data[i].type+'0&%_%&name_名称:^:'+data.data[i].name+'0&%_%&catId_商品类别权限:^:'+data.data[i].cat_id+'7&%_%&limit_优惠券金额:^:'+data.data[i].limit+'0'+startStr+endStr+powerStr+'&%_%&condition_使用条件介绍:^:'+data.data[i].condition+'0">修改优惠券</button>'
+                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary couponManage" data-toggle="modal" data-target=".bs-example-modal-lg0" data-id = '+data.data[i].id+'>发放优惠券</button>'
+                        + '<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除优惠券"'
+                        + 'data-list="name_商品名称:^:'+data.data[i].name+'0&%_%&id_ID:^:'+data.data[i].id+'0">删除优惠券</button>'
+                        + '</h4></div>'
                         + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
                         + '<div class="panel-body">'
                         + '<div class="panel-body">'
-                        + '<li class="list-group-item">' 
+                        + '<li class="list-group-item">'
                         + '<span>类型:</span>'
                         + '<span class="store-num">'+data.data[i].type+'</span>'
                         + '</li>'
@@ -771,18 +1127,21 @@
                         + '<span>优惠券金额:</span>'
                         + '<span class="store-num">'+data.data[i].limit+'</span>'
                         + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>有效期(/天):</span>'
-                        + '<span class="store-num">'+data.data[i].powerDays+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>有效期_开始时间(年月日时分秒):</span>'
-                        + '<span class="store-num">'+data.data[i].startDate+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>有效期_结束时间(年月日时分秒):</span>'
-                        + '<span class="store-num">'+data.data[i].endDate+'</span>'
-                        + '</li>'
+                        // + '<li class="list-group-item">'
+                        // + '<span>有效期(/天):</span>'
+                        // + '<span class="store-num">'+data.data[i].powerDays+'</span>'
+                        // + '</li>'
+                        // + '<li class="list-group-item">'
+                        // + '<span>有效期_开始时间(年月日时分秒):</span>'
+                        // + '<span class="store-num">'+data.data[i].startDate+'</span>'
+                        // + '</li>'
+                        +startDateStr
+                        +endDateStr
+                        +powerDaysSty
+                        // + '<li class="list-group-item">'
+                        // + '<span>有效期_结束时间(年月日时分秒):</span>'
+                        // + '<span class="store-num">'+data.data[i].endDate+'</span>'
+                        // + '</li>'
                         + '<li class="list-group-item">'
                         + '<span>使用条件介绍:</span>'
                         + '<span class="store-num">'+data.data[i].condition+'</span>'
@@ -795,60 +1154,60 @@
                     $('.panel-group').html(listNode);
                     $('.collapse').collapse();
 
-                //     $('.page ul').append("<li><</li>");
+                    //     $('.page ul').append("<li><</li>");
 
-                //     if(data.data.pages > 5){
-                //         if(data.data.pageNum < 3){
-                //           for(var i = 1 ; i < 4 ; i++){
-                //               if(data.data.pageNum == i){
-                //                 $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
-                //               }else{
-                //                 $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
-                //               }                         
-                //           }
-                //           $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                //           $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                //         }else if(data.data.pageNum == 3){
-                //             $('.page ul').append("<li data-id="+1+">"+1+"</li>");                           
-                //             $('.page ul').append("<li data-id="+2+">"+2+"</li>");
-                //             $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
-                //             $('.page ul').append("<li data-id="+4+">"+4+"</li>");
-                //             $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                //             $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
-                //         }else if(data.data.pageNum-3 > 0){
-                //                 $('.page ul').append("<li data-id="+1+">"+1+"</li>");
-                //                 $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                //             if(data.data.pages-data.data.pageNum >= 3){
-                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
-                //                 $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                //             }else if(data.data.pages-data.data.pageNum == 2){
-                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                //             }else if(data.data.pages-data.data.pageNum == 1){
-                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                //             }else if(data.data.pages-data.data.pageNum == 0){
-                //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                //                 $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
-                //             }                            
-                //         }
-                //     }else{
-                //         for(let i = 0; i<data.data.pages;i++){
-                //             var k = i + 1;
-                //             if(k == data.data.pageNum){
-                //             $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
-                //             }else{
-                //             $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
-                //             }
-                //         };          
-                // }
-                // $('.page ul').append("<li>></li>");
+                    //     if(data.data.pages > 5){
+                    //         if(data.data.pageNum < 3){
+                    //           for(var i = 1 ; i < 4 ; i++){
+                    //               if(data.data.pageNum == i){
+                    //                 $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
+                    //               }else{
+                    //                 $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
+                    //               }                         
+                    //           }
+                    //           $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                    //           $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                    //         }else if(data.data.pageNum == 3){
+                    //             $('.page ul').append("<li data-id="+1+">"+1+"</li>");                
+                    //             $('.page ul').append("<li data-id="+2+">"+2+"</li>");
+                    //             $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
+                    //             $('.page ul').append("<li data-id="+4+">"+4+"</li>");
+                    //             $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                    //             $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
+                    //         }else if(data.data.pageNum-3 > 0){
+                    //                 $('.page ul').append("<li data-id="+1+">"+1+"</li>");
+                    //                 $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                    //             if(data.data.pages-data.data.pageNum >= 3){
+                    //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                    //                 $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                    //             }else if(data.data.pages-data.data.pageNum == 2){
+                    //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                    //             }else if(data.data.pages-data.data.pageNum == 1){
+                    //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                    //             }else if(data.data.pages-data.data.pageNum == 0){
+                    //                 $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                    //                 $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
+                    //             }
+                    //         }
+                    //     }else{
+                    //         for(let i = 0; i<data.data.pages;i++){
+                    //             var k = i + 1;
+                    //             if(k == data.data.pageNum){
+                    //             $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                         
+                    //             }else{
+                    //             $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
+                    //             }
+                    //         };          
+                    // }
+                    // $('.page ul').append("<li>></li>");
 
 
                 },
@@ -857,18 +1216,52 @@
                     console.log(err);
                 }
             });
-        }
-
+        };
         findCoupon();
 
+        //展示要发放的优惠券
+        $(document).on("click",".couponManage",function(e){
+            console.log($(this).data("id"));
+            sessionStorage.couponId = $(this).data("id");
+            $(".couponModal1").modal("show");
+            // $(".coupon-ul").html();
+            getAllUser();
+        });
+
+        //优惠券时间类型选择
+        $(document).on("click",".select-time-one",function(e){
+            $(".select-time-one").addClass("select-time");
+            $(".select-time-two").removeClass("select-time");
+            $(".time-one").css({"display":"block"});
+            $(".time-two").css({"display":"none"});
+        });
         
+        //优惠券时间类型第二种类型
+        $(document).on("click",".select-time-two",function(e){
+            $(".select-time-two").addClass("select-time");
+            $(".select-time-one").removeClass("select-time");
+            $(".time-two").css({"display":"block"});
+            $(".time-one").css({"display":"none"});
+        });
 
 
         //选择分页
         $(document).on("click",".page-ul li",function(evev){
             console.log($(this).data("id"));
-        })
+        });
 
+
+        //查看优惠券
+        $(".findCouponUse-1").on('click',function(e){
+            $(".myhide-1").addClass("myhide");
+            $(".myhide-2").removeClass("myhide");
+        });
+
+        //查询使用情况
+        $(".findCouponUse-2").on('click',function(e){
+            $(".myhide-2").addClass("myhide");
+            $(".myhide-1").removeClass("myhide");
+        });
 
         /*
 		 *对象key值排序

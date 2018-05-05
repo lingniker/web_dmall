@@ -6,6 +6,12 @@
     margin-top: 48px;
     padding: 0;
 }
+.shoping_clear{
+    float: right;
+    margin-right: 2%;
+    font-size: 15px;
+    color: grey;
+}
 .shopping_main{
     width: 100%;
     height: 100%;
@@ -13,6 +19,7 @@
 #shopping_ul{
     width: 100%;
     height: 100%;
+    padding-bottom: 65px;
 }
 #shopping_ul li{
     width: 100%;
@@ -212,8 +219,12 @@
     color: white;
 }
 .shoping_footer_2_1_1{
-    margin-top: 17px;
-    margin-right: 5px;
+    /*margin-top: 17px;*/
+    /*margin-right: 5px;*/
+    position: absolute;
+    top: 17px;
+    right: 150px;
+    /*width: 120px;*/
 }
 .shoping_footer_2_1_1 span{
     color: #f57d41;

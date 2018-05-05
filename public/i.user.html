@@ -37,7 +37,7 @@
                  </div>
                  <div class="top-box_login" id="top-box_login">
                      <a href="i.member.html" class="top-box_login_a">
-                         <img src="images/persionalimg.png" class="top-box_login_img">
+                         <img src="" class="top-box_login_img" id="persional_img">
                      </a>
                      <div class="top-box_login_1">
                          <div class="top-box_login-hello" id="top-box_login-hello">Hello</div>
@@ -170,12 +170,19 @@
         ]);
 
 
-    var mykey = "union_supermarket_2018";
-    var url = "http://140.143.25.27:8080/";
+    // var mykey = "union_supermarket_2018";
+    // var url = "http://192.168.1.108:8080/";
     var flag = sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined";
     if(!flag){
         document.getElementsByClassName("top-box")[0].style="display:none;";
         document.getElementsByClassName("top-box_login")[0].style="display:block;";
+        if(sessionStorage.headimgurl==""){
+            document.getElementById("persional_img").src="images/persionalimg.png";
+
+        }else {
+            document.getElementById("persional_img").src=sessionStorage.headimgurl;
+        }
+
         if(sessionStorage.nickname==""){
             document.getElementById("top-box_login-hello").innerHTML="hello";
         }else {
@@ -249,27 +256,27 @@
 
 
 
-    function srotKeyObjAndMd5(obj){
-        var arr = [];
-        var newobj = {};
-        for(var key in obj){
-            arr.push(key);
-        }
-        arr.sort();
-        var i=0;
-        for(var key in obj){
-            newobj[arr[i]] = obj[arr[i]];
-            i++;
-        };
-        var str = '';
-        for(var key in newobj){
-            str += key +"="+ newobj[key] + "&";
-        }
-        var newstr = str.substr(0,str.length-1);
-
-        var encodeStr = encodeURIComponent(newstr) + mykey;
-        var sign = md5(encodeStr);
-        newstr += "&sign=" + sign;
-        return newstr;
-    }
+    // function srotKeyObjAndMd5(obj){
+    //     var arr = [];
+    //     var newobj = {};
+    //     for(var key in obj){
+    //         arr.push(key);
+    //     }
+    //     arr.sort();
+    //     var i=0;
+    //     for(var key in obj){
+    //         newobj[arr[i]] = obj[arr[i]];
+    //         i++;
+    //     };
+    //     var str = '';
+    //     for(var key in newobj){
+    //         str += key +"="+ newobj[key] + "&";
+    //     }
+    //     var newstr = str.substr(0,str.length-1);
+    //
+    //     var encodeStr = encodeURIComponent(newstr) + mykey;
+    //     var sign = md5(encodeStr);
+    //     newstr += "&sign=" + sign;
+    //     return newstr;
+    // }
 </script>

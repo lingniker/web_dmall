@@ -1625,8 +1625,9 @@ h4{
     float: left;
 }
 .pruduct_value_img img{
-    width: 25%;
+    width: 50px;
     height: 50px;
+    margin-left: 20px;
 }
 .pruduct_value_sum{
     width: 18%;
@@ -1767,7 +1768,7 @@ h4{
     background-position:260px 10px;
     background-size: 100px 60px;
     color: white!important;
-    margin-top: 45px;
+    margin-top: -10px;
 }
 .receipt_information04{
     border: 1px white solid;
@@ -1895,6 +1896,117 @@ h4{
     width: 50%;
     height: 100%;
     text-align: center;
+}
+.acknowledgement_of_peisongshijian{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.acknowledgement_of_peisongshijian01{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    background-color: black;
+
+}
+.acknowledgement_of_peisongshijian02{
+    width: 100%;
+    height: 250px;
+    background-color:white;
+    position: fixed;
+    bottom: 0;
+}
+.acknowledgement_of_peisongshijian02_left{
+    width: 40%;
+    height: 100%;
+    background-color: #eee;
+    float: left;
+    text-align: center;
+}
+.acknowledgement_of_peisongshijian02_left_meue1{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+}
+.acknowledgement_of_peisongshijian02_left_meue2{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+.acknowledgement_of_peisongshijian02_left_meue3{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+.acknowledgement_of_peisongshijian02_right{
+    width:60%;
+    height: 100%;
+    background-color: white;
+    float: right;
+}
+.acknowledgement_of_peisongshijian02_right_time01{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    list-style: none;
+
+}
+.acknowledgement_of_peisongshijian02_right_time01::-webkit-scrollbar{
+    display: none;
+}
+.acknowledgement_of_peisongshijian02_right_time02::-webkit-scrollbar{
+    display: none;
+}
+.acknowledgement_of_peisongshijian02_right_time01 li{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px #eee solid;
+    margin-left: 5%;
+    list-style: none;
+}
+.acknowledgement_of_peisongshijian02_right_time02{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.acknowledgement_of_peisongshijian02_right_time02 li{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px #eee solid;
+    margin-left: 5%;
+}
+.acknowledgement_of_peisongshijian02_right_time03{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.acknowledgement_of_peisongshijian02_right_time03 li{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px #eee solid;
+    margin-left: 5%;
+}
+.listTime01{
+    color: #f15a25;
 }
 /***********i.payment-order.html*********************************************************/
 .payment-order01{
@@ -2145,6 +2257,7 @@ ul{
 .top-box_login_img{
     width: 50px;
     height: 50px;
+    border-radius: 50%;
 }
 .top-box_login_1{
     float: left;
@@ -3209,7 +3322,7 @@ margin-left: 2%;
     height: 100%;
     /*border: 1px red solid;*/
     /*background: white;*/
-    margin-top: 45px;
+    margin-top: 50px;
 }
 @media screen and (max-width: 750px) {
     .wap_coupon{
@@ -3246,12 +3359,12 @@ margin-left: 2%;
 /*}*/
 
 .coupon_1{
-    border-radius: 10px;
+    border-radius: 5px;
     width: 90%;
     height: 110px;
     margin-left: 5%;
     background: white;
-    margin-top: 2%;
+    margin-top: 3%;
     /*border: 1px red solid;*/
 }
 .coupon_2{
@@ -3312,7 +3425,8 @@ margin-left: 2%;
     height: 30px;
     background-color: #f1f2f4;
     color: #e6b056;
-    border-radius: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     /*border-radius-bottomright:10px ;*/
     /*border-radius-bottomleft: 10px;*/
     /*-moz-border-radius-bottomright:10px ;*/
@@ -3322,7 +3436,7 @@ margin-left: 2%;
 }
 .coupon_6_1{
     /*display: inline-block;*/
-    width: 30%;
+    width: 40%;
     /*margin-left: 50%;*/
     text-align: center;
     font-size: 15px;
@@ -3369,10 +3483,15 @@ margin-left: 2%;
     margin-right: 2%;
     position: relative;
     top: 15%;
-    background-image: url("../images/persionalimg.png") ;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    /*background-image: url("../images/persionalimg.png") ;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100%;*/
 
+}
+.member_img_2_member img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 
 }
 .member_img_3{
@@ -3419,13 +3538,13 @@ margin-left: 2%;
     margin-left: 1%;
 }
 .member-phone{
-    width: 50%;
-    height: 50%;
+    width: 50px;
+    height: 50px;
     margin-top: 25%;
 }
 .member-weixin{
-    width: 60%;
-    height: 60%;
+    width: 50px;
+    height: 50px;
     margin-top: 25%;
     /*border: 1px red solid;*/
     /*border-radius: 50%;*/
@@ -3442,6 +3561,86 @@ margin-left: 2%;
     height: 100%;
     display: inline-block;
     color: black;
+}
+.file-box{
+    display: inline-block;
+    position: relative;
+    padding: 3px 5px;
+    overflow: hidden;
+    color:#fff;
+    background-color: green;
+    border-radius: 5px;
+    margin-left: 2%;
+}
+#chooseImage{
+    width: 80px;
+    height: 30px;
+    margin-left: 2%;
+    line-height: 27px;
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: none;
+    background-color: transparent;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity: 0;
+    opacity: 0;
+
+
+}
+
+/*.pictureUpload-bg {*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    /*-webkit-background-size: contain;*/
+    /*background-size: contain;*/
+/*}*/
+
+.modifyimg_4{
+    border: 0;
+    float: right;
+    width: 75px;
+    height: 27px;
+    line-height: 27px;
+    font-size: 15px;
+    color:#fff;
+    background-color: green;
+    border-radius: 5px;
+    margin-right: 2%;
+}
+.modifyimg_xianshi{
+    width: 100%;
+    height: 200px;
+    margin-top: 100px;
+    background-color: black;
+    text-align: center;
+
+
+}
+#modifyimg_xianshi{
+    width: 50%;
+    height: 50%;
+    display: none;
+    margin-left: 100px;
+}
+.pictureUpload-mask {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 38%;
+    top: 250px;
+    /*margin-left: -100px;*/
+    /*margin-top: -100px;*/
+    /*margin: 0 auto;*/
+    border-radius: 50%;
+    border: 1px solid #CFCFCF;
 }
 /******************i.modifyusername.html*******************************************/
 .regedit-box_modifyusername{

@@ -10,10 +10,10 @@
 <body style="background-color: #eee">
 <div class="wap_coupon">
     <div class="toolbar">
-        <a class="back" href="./i.orderdetail.html"><div class="back-into"></div></a>
+        <a class="back" href="./i.acknowledgement-of-order.html"><div class="back-into"></div></a>
         <span>商品详情</span>
     </div>
-    <div style="margin-top: 46px">
+    <div style="margin-top: 46px" class="listGoods">
         <div class="commodity_details">
         <div class="commodity_details_img"><img src="images/shangpinshengnvguo.png"></div>
         <div class="commodity_details02">
@@ -38,6 +38,10 @@
                 <div class="commodity_details02_value03"> ￥39.6</div>
             </div>
         </div>
+
+
+
+
         <div class="commodity_details">
             <div class="commodity_details_img"><img src="images/shangpinshengnvguo.png"></div>
             <div class="commodity_details02">
@@ -51,3 +55,22 @@
 
 </body>
 </html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var flag = sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined";
+    if(!flag){
+        var arr = JSON.parse(sessionStorage.cartImgArr);
+        var listGoods="";
+        for(var i=0;i<arr.length;i++){
+            listGoods+='<div class="commodity_details">'+
+                    '<div class="commodity_details_img">'+'<img src="'+arr[i].imgSrc+'">'+'</div>'+
+                    '<div class="commodity_details02">'+
+                       '<div class="commodity_details02_value01">'+arr[i].name+'</div>'+
+                      '<div class="commodity_details02_value02">'+'x'+arr[i].number+'</div>'+
+                      '<div class="commodity_details02_value03">'+'￥'+arr[i].price+'</div>'
+                    +'</div>'
+                   +'</div>';
+        }
+        $(".listGoods").html(listGoods);
+    }
+</script>

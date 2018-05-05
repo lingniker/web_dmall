@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="myadmin/assets/css/bootstrap.css" rel="stylesheet" />
-    <link href="myadmin/assets/css/font-awesome.css" rel="stylesheet" />
-    <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
-    <link href="myadmin/css/common.css" rel="stylesheet">
+    <link href="../manage/myadmin/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="../manage/myadmin/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../manage/myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="../manage/myadmin/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href="../manage/myadmin/css/common.css" rel="stylesheet">
     <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
     <title>Document</title>
 </head>
@@ -197,43 +197,23 @@
 <body>
     <div class="admin-container">
         <div class="admin-nav">
-            <div class="admin-nav-left">联家管理系统</div>
+            <div class="admin-nav-left">店铺管理</div>
             <div class="admin-nav-right">
-            <div class="back-login"><a href="#">退出登录</a></div>
+            <div class="back-login"><a href="./manage.html">退出登录</a></div>
             </div>
         </div>
         <div class="body">
             <div class="body-left">
                 <ul class="body-left-ul">
-                    <li><a href="./index.html">首页</a></li>
-                    <li><a href="./control.html">控制面板</a></li>
                     <li class="active"><a href="./store.html">店铺管理</a></li>
-                    <li><a href="./commodity.html">商品管理</a></li>
-                    <li><a href="./order.html">订单详情</a></li>
-                    <li><a href="./user.html">用户管理</a></li>
-                    <li><a href="./address.html">地址管理</a></li>
-                    <li><a href="./advertising.html">广告公告</a></li>
-                    <li><a href="./classification.html">商品分类</a></li>
-                    <li><a href="./store_manage.html">店长管理</a></li>                  
-                    <li><a href="./courier.html">店员管理</a></li>
-                    <li><a href="./integral.html">积分管理</a></li>
-                    <li><a href="./coupon.html">优惠券管理</a></li>
                 </ul>
             </div>
             <div class="body-right">
             <div class="body-right-title">店铺管理</div>
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
-                    <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-api="store/add?" data-whatever="增加店铺" 
-                    data-list="storeName_商品名称:^:例：高密联家超市1号店4&%_%&longitude_经度坐标:^:例：119.1070784&%_%&latitude_纬度坐标:^:例：36.709254&%_%&positionName_地址名称:^:例：山东省潍坊市潍城区城关街道胜利西街9号潍坊百货大楼和平路4">增加店铺</button>                   
-                <div class="search_store">
-                    <span class="search_span">店铺查找:</span>
-                    <button class="findStort">查找</button>
-                    <input type="text" class="search_input2" placeholder="按店铺地址查找" id="search_input2" value="">
-                    <input type="text" class="search_input1" placeholder="按店铺名称查找" id="search_input1" value="">
                 </div>
-                </div>
-                <ul class="store-manage">                        
+                <ul  class="store-manage">                        
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                 <div class="panel panel-default">
                                   <div class="panel-heading" role="tab" id="headingOne1">
@@ -505,20 +485,22 @@
 </div>
 
 
-    <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
+    <script src="../manage/myadmin/assets/js/jquery-1.10.2.js"></script>
       <!-- Bootstrap Js -->
-    <script src="myadmin/assets/js/bootstrap.min.js"></script>
+    <script src="../manage/myadmin/assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
-    <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
+    <script src="../manage/myadmin/assets/js/jquery.metisMenu.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-    <script type="text/javascript" src="myadmin/js/config.js"></script>
     <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
     <script src="../cdn/md5.min.js"></script> -->
     <script>
 
         var $_331 = jQuery.noConflict();
-        console.log("url",url);
+        // var url = "http://140.143.25.27:8080/";
+        // var url = "http://192.168.1.109:8080/";
+        var url = "http://192.168.1.108:8080/";
+        var mykey = "union_supermarket_2018";
         var storeId = 0;
         var state = "on";
 
@@ -581,25 +563,6 @@
                     +a[i].split(':^:')[0].split('_')[1]
                     +'</label><input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index" name="'
                     +a[i].split(':^:')[0].split('_')[0]+'"></div>';
-                }else if(arr[i][2]==3){
-                    appendNode += '<div class="form-group"><label for="'
-                    +arr[i][0].split('_')[0]+'" class="control-label">'
-                    +arr[i][0].split('_')[1]
-                    +'</label><input type="text" readonly="readonly" class="form-control" id="'
-                    +arr[i][0].split('_')[0]+'" name="'
-                    +arr[i][0].split('_')[0]+
-                    '" value="'
-                    +arr[i][1]+
-                    '"></div>';
-                }else if(arr[i][2] == 4){
-                    appendNode += '<div class="form-group"><label for="'
-                    +arr[i][0].split('_')[0]+'" class="control-label">'
-                    +arr[i][0].split('_')[1]
-                    +'</label><input type="text" class="form-control" id="index" name="'
-                    +arr[i][0].split('_')[0]
-                    +'" placeholder="'
-                    +arr[i][1]
-                    +'"></div>';
                 }else{
                     appendNode += '<div class="form-group"><label for="'
                     +arr[i][0].split('_')[0]+'" class="control-label">'
@@ -673,17 +636,19 @@
                                         console.log("err");                                       
                                     }
                                 });
+
                              }else {
-                                 alert("店铺地址输入错误且不能超过50个字符!");
+                                 alert("店铺地址输入错误且不能超过50个字符!")
                              }
                         }else {
-                            alert("店铺名称输入错误且不能超过40个字符!");
+                            alert("店铺名称输入错误且不能超过40个字符!")
                         }
+
                     } else {
-                         alert("纬度输入错误!");
+                         alert("纬度输入错误!")
                     }
                 }else {
-                    alert("经度输入错误!");
+                    alert("经度输入错误!")
                 }
 
             }else if(api == "store/update?"){//商店更新
@@ -845,11 +810,11 @@
                         + data.data[i].storeName 
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="修改店铺"'
-                        + 'data-list="id_店铺id:^:'+data.data[i].id+'3&%_%&storeName_店铺名:^:'+data.data[i].storeName+'0&%_%&longitude_经度坐标:^:'+data.data[i].longitude+'0&%_%&latitude_纬度坐标:^:'+data.data[i].latitude+'0&%_%&positionName_地址名称:^:'+data.data[i].positionName+'0">修改店铺</button>'
+                        + 'data-list="id_店铺id:^:'+data.data[i].id+'0&%_%&storeName_店铺名:^:'+data.data[i].storeName+'0&%_%&longitude_经度坐标:^:'+data.data[i].longitude+'0&%_%&latitude_纬度坐标:^:'+data.data[i].latitude+'0&%_%&positionName_地址名称:^:'+data.data[i].positionName+'0">修改店铺</button>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除店铺"'
-                        + 'data-list="id_ID:^:'+data.data[i].id+'3">删除店铺</button>'
-                        // + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal"  data-target="#exampleModal" data-whatever="商品管理"'
-                        // + 'data-list="id_ID:^:'+data.data[i].id+'0">商品管理</button>'
+                        + 'data-list="id_ID:^:'+data.data[i].id+'0">删除店铺</button>'
+                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal"  data-target="#exampleModal" data-whatever="商品管理"'
+                        + 'data-list="id_ID:^:'+data.data[i].id+'0">商品管理</button>'
                         + '<button type="button" class="btn btn-primary goodsManage" data-toggle="modal" data-target=".bs-example-modal-lg" data-id = '+data.data[i].id+'>商品管理</button>'
                         + '</h4></div>' 
                         + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'

@@ -57,60 +57,116 @@
       // alert("ajax上传base64");
       /*java https://www.cnblogs.com/mr-wuxiansheng/p/6931034.html*/
 
-  /* node.js
-      app.post('/upload', function(req, res){
-          //接收前台POST过来的base64
-          var imgData = req.body.imgData;
-          //过滤data:URL
-          var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
-          var dataBuffer = new Buffer(base64Data, 'base64');
-          fs.writeFile("image.png", dataBuffer, function(err) {
-              if(err){
-                res.send(err);
-              }else{
-                res.send("保存成功！");
-              }
-          });
-      });
-       */
+ //node.js
+ //      app.post('/upload', function(req, res){
+ //          //接收前台POST过来的base64
+ //          var imgData = req.body.imgData;
+ //          //过滤data:URL
+ //          var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+ //          var dataBuffer = new Buffer(base64Data, 'base64');
+ //          fs.writeFile("image.png", dataBuffer, function(err) {
+ //              if(err){
+ //                res.send(err);
+ //              }else{
+ //                res.send("保存成功！");
+ //              }
+ //          });
+ //      });
+
         // sessionStorage.headimgurl=base64Url;
         //接收前台POST过来的base64
-        // var imgData = base64Url;
+        var imgData = base64Url;
         //过滤data:URL
-        // var base64Data =  base64Url.replace(/^data:image\/\w+;base64,/, "");
-        // var Buffer = new Buffer(base64Data, 'base64');
-        if(sessionStorage.access_token !== undefined){
-            var obj = {};
+        var base64Data =  base64Url.replace(/^data:image\/\w+;base64,/, "");
+        var Buffer = new Buffer(base64Data, 'base64');
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.timestamp = parseInt(new Date().getTime()/1000);
+        obj.form = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var arr = str.split("&");
+        var formData = new FormData();
+        for(var i = 0;i<arr.length;i++){
+            formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+        }
+        formData.append('file', $_331("#chooseImage")[0].files[0]);  /*获取上传的图片对象*/
+        $_331.ajax({
+            url: 'http://140.143.25.27:8080/attachment/upload?',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success:function(data){
+                console.log(data);  /*服务器端的图片地址*/
+                console.log("ok");
+                // alert("上传成功!");
+                var obj={};
+                sessionStorage.headimgurl=data.data;
+                document.getElementById("modifyimg_xianshi").style.display="block";
+                document.getElementById("modifyimg_xianshi").src=data.data;
 
-            obj.access_token = sessionStorage.access_token;
-            obj.headimgurl=base64Url;
-            obj.timestamp= parseInt(new Date().getTime()/1000);
-            obj.from = "web";
-            var str = srotKeyObjAndMd5(obj);
-            var newUrl = url + "user/modifyheadimgurl?" + str;
-            $_331.ajax({
-                url:newUrl,
-                type:"get",
-                dataType:"json",
-                success:function(data){
-                    console.log(data);
-                    console.log("ok");
-                    alert("上传成功!");
-                    // console.log(data.data.nickname);
-                    sessionStorage.headimgurl=base64Url;
-                    // document.getElementById("member_phone01").innerHTML=sessionStorage.phone.slice(0,3)+"****"+sessionStorage.phone.slice(7,11);
-                },
-                error:function(err){
-                    console.log(err);
-                    alert("上传失败!");
-                }
-            });
-        }else{}
+                obj.access_token = sessionStorage.access_token;
+                obj.headimgurl=sessionStorage.headimgurl;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.form = "web";
+                var str = srotKeyObjAndMd5(obj);
+                $_331.ajax({
+                    url: 'http://192.168.1.108:8080/user/modifyheadimgurl?'+str,
+                    type: 'get',
+                    success:function(data){
+                        console.log(data);  /*服务器端的图片地址*/
+                        console.log("ok");
+                        alert("修改成功!");
+                        // location.href="i.member.html";
+
+                    },
+                    error:function(err){
+                        console.log(err);
+                        console.log("err");
+                    }
+                });
+
+
+
+
+            },
+            error:function(err){
+                console.log(err);
+                console.log("err");
+            }
+        });
+
+        // if(sessionStorage.access_token !== undefined){
+        //     var obj = {};
+        //
+        //     obj.access_token = sessionStorage.access_token;
+        //     obj.headimgurl=base64Url;
+        //     obj.timestamp= parseInt(new Date().getTime()/1000);
+        //     obj.from = "web";
+        //     var str = srotKeyObjAndMd5(obj);
+        //     var newUrl = url + "user/modifyheadimgurl?" + str;
+        //     $_331.ajax({
+        //         url:newUrl,
+        //         type:"get",
+        //         dataType:"json",
+        //         success:function(data){
+        //             console.log(data);
+        //             console.log("ok");
+        //             alert("上传成功!");
+        //             // console.log(data.data.nickname);
+        //             sessionStorage.headimgurl=base64Url;
+        //             // document.getElementById("member_phone01").innerHTML=sessionStorage.phone.slice(0,3)+"****"+sessionStorage.phone.slice(7,11);
+        //         },
+        //         error:function(err){
+        //             console.log(err);
+        //             alert("上传失败!");
+        //         }
+        //     });
+        // }
 
 
 
     }
-
     var $container = $("#js-pictureUpload");
     var $mask = $("#js-pictureUpload-mask");
     var $fileElem = $("#js-fileElem");
@@ -130,21 +186,34 @@
         height: $mask.height()
       },
       imgQuality:1
-    }
+    };
 
     var txUpload = avatarUpload($,Hammer,options);
     $select.click(txUpload.selectImg);
+
     $submit.click(function(){
       txUpload.submit(sendFile);
-    })
+      // alert(base64Url);
+
+
+    });
     
     //文件 onchange事件
     $fileElem.on("change", function(){
       txUpload.handleFiles(function(){
         $submit.addClass('active');
+         //点击使用事件
+
+          $("#js-submit").on("click",function () {
+           alert(imgObjectURL);
+
+          });
+
       })
     });
-  })
+
+
+  });
 
 
 

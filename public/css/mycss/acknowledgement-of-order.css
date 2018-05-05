@@ -1,0 +1,150 @@
+/****************i.acknowledgement-of-order.html**********************************************/
+.acknowledgement_of_order{
+    width: 100%;
+    height: 80px;
+    background-color: #f7931e;
+    background-image: url("../images/acknowledgement_of_orderimg.png");
+    background-repeat: no-repeat;
+    background-position:260px 10px;
+    background-size: 100px 60px;
+    color: white!important;
+    margin-top: 45px;
+}
+.acknowledgement_of_order1{
+    width: 100%;
+    height: 80px;
+    background-color: #f7931e;
+    background-image: url("../images/acknowledgement_of_orderimg.png");
+    background-repeat: no-repeat;
+    background-position:260px 10px;
+    background-size: 100px 60px;
+    color: white!important;
+    margin-top: 45px;
+}
+.receipt_information04{
+    border: 1px white solid;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 5%;
+    margin-top: -10px;
+}
+.acknowledgement_of_order_peisongtime{
+    padding-left: 2%;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 1px;
+    font-size: 13px;
+    background-color: white;
+}
+.acknowledgement_of_order_peisongtime a{
+    display: inline-block;
+    color: #4d4d4d ;
+    font-size: 13px;
+   float: right;
+}
+.acknowledgement_of_order_peisongtime01img{
+    float: right;
+    width: 15px;
+    height: 15px;
+    margin-top: 7px;
+    margin-right: 12px;
+}
+.acknowledgement_of_order01_span{
+    margin-right: 5px;
+}
+.acknowledgement_of_order_biehzhu{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    font-size: 13px;
+    background-color: white;
+    padding-left: 2%;
+}
+.acknowledgement_of_order_biehzhu01{
+
+}
+.acknowledgement_of_order_biehzhu_input{
+    width: 80%;
+    float: right;
+    margin-right: 12px;
+    margin-top: 8px;
+    text-align: right;
+    padding-right: 15px;
+    font-size: 11px;
+    outline:none;
+    border: 0;
+}
+.acknowledgement_of_order_youhuiquan{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    font-size: 13px;
+    background-color: white;
+    padding-left: 2%;
+
+}
+.acknowledgement_of_order_youhuiquan01_span{
+    font-size: 13px;
+    float: left;
+}
+.acknowledgement_of_order_youhuiquan02{
+    float: left;
+    background: url("../images/youhuiquanimg01.jpg")no-repeat;
+    background-size: 100px 15px;
+    width: 20%;
+    height: 15px;
+    margin-top: 8px;
+    margin-left: 5px;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    line-height: 15px;
+}
+.acknowledgement_of_order_youhuiquan01 a{
+    float: right;
+    display: inline-block;
+    color: #4d4d4d ;
+    font-size: 13px;
+
+}
+.acknowledgement_of_order_laji{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+    font-size: 13px;
+    background-color: white;
+    padding-left: 2%;
+}
+.acknowledgement_of_order_laji_input{
+    float: right;
+    margin-right: 12px;
+    margin-top: 8px;
+}
+.acknowledgement_of_order_footer{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    font-size: 18px;
+    color: black;
+}
+.acknowledgement_of_order_footer span{
+    color: #f15a25;
+}
+.acknowledgement_of_order_payment{
+    display: inline-block;
+   float: right;
+    background-color: #f15a25;
+    color: white;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+}

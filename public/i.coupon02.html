@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: rgba(135,135,135,0.35)">
 <div class="toolbar">
-    <a class="back" href="./i.user.html"><div class="back-into"></div></a>
+    <a class="back" href="./i.acknowledgement-of-order.html"><div class="back-into"></div></a>
     <span>优惠券</span>
 </div>
 <div class="wap_coupon">
@@ -23,7 +23,8 @@
 <script>
     var $_331 = jQuery.noConflict(true);
     var mykey = "union_supermarket_2018";
-    var url = "http://192.168.1.108:8080/";
+    // var url = "http://192.168.1.108:8080/";
+    var url = "http://192.168.1.109:8080/";
     if(sessionStorage.access_token !== undefined){
         var obj = {};
         obj.access_token = sessionStorage.access_token;
@@ -43,32 +44,39 @@
                 var nodestr = "";
                 // var AddresId="";
                 for(var i=0;i<data.data.length;i++){
-                    nodestr += "<div class='coupon_1'  data-id='"+data.data[i].id+"' >"
-                       +"<div class='coupon_2'>"+
+                    nodestr += "<div class='coupon_1'  data-id='"+data.data[i].id+"' data-name='"+data.data[i].name+"' >"
+                        +"<div class='coupon_2'>"+
 
-                            "<div class='coupon_3'>"+
-                            "<div class='coupon_3_1'>"+
-                              "<span class='coupon_3_2'>"+"￥"+"</span>"+"<span class='coupon_3_3'>"+data.data[i].limit+"</span>"
-                             +"</div>"+
-                            "<div class='coupon_4'>"+"优惠券"+"</div>"
-                             +"</div>"+
+                        "<div class='coupon_3'>"+
+                        "<div class='coupon_3_1'>"+
+                        "<span class='coupon_3_2'>"+"￥"+"</span>"+"<span class='coupon_3_3'>"+data.data[i].limit+"</span>"
+                        +"</div>"+
+                        "<div class='coupon_4'>"+"优惠券"+"</div>"
+                        +"</div>"+
 
-                             "<div class='coupon_5'>"+
-                                  "<div class='coupon_5_1'>"+data.data[i].condition+"</div>"+
-                                  "<div class='coupon_5_2'>"+"满"+data.data[i].executeLimit +"元可用"+"</div>"+
-                              "</div>"+
+                        "<div class='coupon_5'>"+
+                        "<div class='coupon_5_1'>"+data.data[i].condition+"</div>"+
+                        "<div class='coupon_5_2'>"+"满"+data.data[i].executeLimit +"元可用"+"</div>"+
+                        "</div>"+
                         "</div>"+
 
 
-                          "<div class='coupon_6'>"+
-                            "<div class='coupon_6_1'>"+data.data[i].deadline +"天后过期"+"</div>"+
+                        "<div class='coupon_6'>"+
+                        "<div class='coupon_6_1'>"+data.data[i].deadline +"天后过期"+"</div>"+
                         "</div>"
                         +"</div>";
 
                     // AddresId=data.data[i].addresId;
 
                 }
-
+                //点击获取优惠券信息
+                $_331(document).on("click",".coupon_1",function () {
+                    // alert($_331(this).data("id"));
+                    // alert($_331(this).data("name"));
+                    sessionStorage.CouponId=$_331(this).data("id");
+                    sessionStorage.CouponName=$_331(this).data("name");
+                    location.href="i.acknowledgement-of-order.html";
+                });
                 //添加优惠券
                 $_331(document).ready(function(){
                     $_331(".wap_coupon").html(nodestr);
@@ -116,27 +124,6 @@
     }else{
 
     }
-
-
-
-    // function del(n) {
-    //      // var wap=document.getElementById("wap");
-    //      if(confirm("地址删除后无法恢复，是否要删除地址？")){
-    //          var s=document.getElementById("address_ul");
-    //          var t=s.childNodes.length;
-    //          for ( var i=0;i<t;i++){
-    //              // list[i].index=i;
-    //              if(i==n)
-    //              {
-    //                  s.removeChild(s.childNodes[i]);
-    //              }
-    //          }
-    //          // document.getElementById("address_1").style.display="none";
-    //      }else {
-    //      }
-    //  }
-
-
 
     function srotKeyObjAndMd5(obj){
         var arr = [];

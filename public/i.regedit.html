@@ -18,8 +18,7 @@
         var curCount;//当前剩余秒数
         var $3_3_1 = jQuery.noConflict(true);
         var mykey = "union_supermarket_2018";
-        var url = "http://140.143.25.27:8080/";
-
+        var url = "http://192.168.1.108:8080/";
         function sendMessage(){
             var phone_1 = document.getElementById('phone').value;
             if(!(/^1[34578]\d{9}$/.test(phone_1))){
@@ -31,9 +30,6 @@
             $("#btnSendCode").attr("disabled", "true");
             $("#btnSendCode").val(curCount + "秒后可重新发送");
             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-
-
-
             var obj = {};
             obj.phone = phone_1;
             obj.from = "web";

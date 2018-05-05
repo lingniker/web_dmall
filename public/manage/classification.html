@@ -105,7 +105,7 @@
         <div class="admin-nav">
             <div class="admin-nav-left">联家管理系统</div>
             <div class="admin-nav-right">
-            <div class="back-login"><a href="./manage.html">退出登录</a></div>
+            <div class="back-login"><a href="#">退出登录</a></div>
             </div>
         </div>
         <div class="body">
@@ -120,7 +120,7 @@
                     <li><a href="./address.html">地址管理</a></li>
                     <li><a href="./advertising.html">广告公告</a></li>
                     <li class="active"><a href="./classification.html">商品分类</a></li>
-                    <li><a href="./store_manage.html">店长管理</a></li>                  
+                    <li><a href="./store_manage.html">店长管理</a></li>
                     <li><a href="./courier.html">店员管理</a></li>
                     <li><a href="./integral.html">积分管理</a></li>
                     <li><a href="./coupon.html">优惠券管理</a></li>
@@ -147,63 +147,55 @@
         </div>
         <div class="floor"></div>
 
+        <!-- 模态框的弹出 -->
         <div class="modal fade mymodal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="exampleModalLabel">消息</h4>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">消息</h4>
+                </div>
+                <div class="modal-body append-form">
+                    <!-- <div class="form-group">
+                        <label for="recipient-name" class="control-label">修改客户</label>
+                        <input type="text" class="form-control" id="recipient-name">
                     </div>
-                    <div class="modal-body append-form">
-                        <!-- <div class="form-group">
-                            <label for="recipient-name" class="control-label">修改客户</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-        
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <div class="form-group">
-                                    <label for="index" class="control-label">姓名</label>
-                                    <input type="text" class="form-control" id="index">
-                                </div>
-                                <div class="form-group">
-                                    <label for="index1" class="control-label">手机号</label>
-                                    <input type="text" class="form-control" id="index1">
-                                </div>
-                            </li>
-                        </ul> -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary" id="modal-commit">提交</button>
-                    </div>
-                    </div>
+    
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="form-group">
+                                <label for="index" class="control-label">姓名</label>
+                                <input type="text" class="form-control" id="index">
+                            </div>
+                            <div class="form-group">
+                                <label for="index1" class="control-label">手机号</label>
+                                <input type="text" class="form-control" id="index1">
+                            </div>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="modal-commit">提交</button>
+                </div>
                 </div>
             </div>
+        </div>
     </div>
 
     <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
     <script src="myadmin/assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
     <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
-    <!-- Chart Js -->
-    <!-- <script type="text/javascript" src="myadmin/assets/js/Chart.min.js"></script>  
-    <script type="text/javascript" src="myadmin/assets/js/chartjs.js"></script>  -->
-     <!-- Morris Chart Js -->
-     <!-- <script src="myadmin/assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="myadmin/assets/js/morris/morris.js"></script> -->
-      <!-- Custom Js -->
-    <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script type="text/javascript" src="myadmin/js/config.js"></script>
+    <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
+    <script src="../cdn/md5.min.js"></script> -->
     <script>
         var $_331 = jQuery.noConflict();
 
         (function(){
-        // var url = "http://192.168.1.103:8080/";
-        var url = "http://140.143.25.27:8080/";
-        var mykey = "union_supermarket_2018";
+        console.log(url);
         //动态生成page页
         $('.page ul').append("<li><</li>");
         for(var i = 0; i<5;i++){
@@ -222,18 +214,14 @@
             var recipient = button.data('whatever');
             var list = button.data('list');
             var a = list.split('&%_%&');
-            console.log(a);
             var obj = {};
             var arr = [];
             for(var i in a){
-                console.log(a[i]);
                 arr[i] = [];
                 arr[i][0] = a[i].split(":^:")[0];
                 arr[i][1] = a[i].split(":^:")[1].substr(0,a[i].split(":^:",2)[1].length-1) == "|*-*|" ? "" : a[i].split(":^:")[1].substr(0,a[i].split(":^:")[1].length-1);
                 arr[i][2] = a[i].split(":^:")[1].substr(a[i].split(":^:",2)[1].length-1,1);
-            }
-            console.log(arr);
-            
+            }       
             //增加节点name_名字:0&%_%&age_年龄:1&%_%&phone_手机:2
             var appendNode = '<div class="form-group"><label for="recipient-name" class="control-label">内容'
             +'</label><input type="button" class="form-control" id="recipient-name" value="'+recipient
@@ -272,11 +260,6 @@
             // modal.find('.modal-body input').val(recipient);
         });
 
-        // var data = new FormData();
-        // var file = document.querySelector(".upfile input").files[0];
-        // data.append("fileUpload", file);
-
-
         //模态框内容的提交
         $("#modal-commit").on('click',function(){//增加分类
             var data = {};
@@ -287,35 +270,45 @@
                     data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
                 }           
             };
-            console.log("this is file",data);
-            data.access_token = sessionStorage.access_token;
-            data.timestamp=parseInt(new Date().getTime()/1000);
-            data.from="web";
 
-            var newObj = srotKeyObj(data);
-            var str = objmd5(newObj);
+            // alert($(".form-group input[name='catName']").val());
+            if (/^[\u4E00-\u9FA5]{1,5}$/.test($(".form-group input[name='catName']").val())){
+                console.log("this is file",data);
+                data.access_token = sessionStorage.access_token;
+                data.timestamp=parseInt(new Date().getTime()/1000);
+                data.from="web";
 
-            var newUrl = url + "category/add?" + str;
-            // var newUrl = url + "category/find?" + str;
-            console.log(newUrl);
+                var newObj = srotKeyObj(data);
+                var str = objmd5(newObj);
 
-            $.ajax({
-                url:newUrl,
-                type:"get",
-                dataType:"json",
-                success:function(data,status){
-                    console.log(data);
-                    console.log("ok");
-                },
-                error:function(err){
-                    console.log(err);
-                }
-            });
+                var newUrl = url + "category/add?" + str;
+                // var newUrl = url + "category/find?" + str;
+                console.log(newUrl);
+                $.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data,status){
+                        console.log(data);
+                        console.log("ok");
+                        alert("分类添加成功");
+                        $('.modal').modal("hide");
+                        findCategory();
+                    },
+                    error:function(err){
+                        console.log(err);
+                        alert("分类添加失败");
+                    }
+                });
+                 alert("提交成功!");
 
+            }else {
+                alert("只能输入1-5中文汉字");
+            }
 
         });
 
-        var findCategory = function(){//查找分类
+        function findCategory(){//查找分类
 
             // <li><div><span>商品类名: &nbsp;</span><input type="text" value="张三"><button>修改</button><button>删除</button></div></li>
             var data1 = {};
@@ -339,7 +332,7 @@
                     console.log("ok",data.data.length);
                     var a = '';
                     for(var i = 0;i<data.data.length;i++){
-                        a += '<li><div><span>商品类名: &nbsp;</span><input type="text" value="'+data.data[i].catName+'"><button class="categoryUpdate" data-id="'
+                        a += '<li><div><span>商品类名: &nbsp;</span><input type="text" value="'+data.data[i].catName+'" ><button class="categoryUpdate" data-id="'
                         +data.data[i].catId+
                         '">修改</button><button class="categoryDelete" data-id="'
                         +data.data[i].catId+
@@ -360,35 +353,72 @@
 
         $(document).on("click",".categoryUpdate",function(){//更新分类
             console.log("categoryUpdate");
-            var obj = {};
-            obj.access_token = sessionStorage.access_token;
-            obj.catId = $(this).data("id");
-            obj.catName = $(this).parent().find("input").val();
-            obj.timestamp = parseInt(new Date().getTime()/1000);
-            obj.from = "web";
+            // console.log($(this).data("id"));
+            // alert($(this).data("id"));
+            // alert($(".category_input").val());
+            if (/^[\u4E00-\u9FA5]{1,5}$/.test($(this).parent().find("input").val())){
 
-            var newObj = srotKeyObj(obj);
-            var str = objmd5(newObj);
+                var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.catId = $(this).data("id");
+                obj.catName = $(this).parent().find("input").val();
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var newObj = srotKeyObj(obj);
+                var str = objmd5(newObj);
+                var newUrl = url + "category/update?" + str;
+                console.log(newUrl);
+                $.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        console.log("request ok");
+                        alert("更新成功");
+                        findCategory();
+                    },
+                    error:function(er){
+                        console.log(err);
+                        console.log("请求错误");
+                    }
+                
+                });
+                 alert("修改成功!");
 
-            var newUrl = url + "category/update?" + str;
-            
-            console.log(newUrl);
-            $.ajax({
-                url:newUrl,
-                type:"get",
-                dataType:"json",
-                success:function(data){
-                    console.log(data);
-                    console.log("request ok");
-                    findCategory();
-                },
-                error:function(er){
-                    console.log(err);
-                    console.log("请求错误");
-                }
+            }else {
+                alert("只能输入1-5中文汉字");
+            }
 
-            });
-            
+
+
+
+            // var obj = {};
+            // obj.access_token = sessionStorage.access_token;
+            // obj.catId = $(this).data("id");
+            // obj.catName = $(this).parent().find("input").val();
+            // obj.timestamp = parseInt(new Date().getTime()/1000);
+            // obj.from = "web";
+            // var newObj = srotKeyObj(obj);
+            // var str = objmd5(newObj);
+            // var newUrl = url + "category/update?" + str;
+            // console.log(newUrl);
+            // $.ajax({
+            //     url:newUrl,
+            //     type:"get",
+            //     dataType:"json",
+            //     success:function(data){
+            //         console.log(data);
+            //         console.log("request ok");
+            //         findCategory();
+            //     },
+            //     error:function(er){
+            //         console.log(err);
+            //         console.log("请求错误");
+            //     }
+            //
+            // });
+            //
 
 
         });

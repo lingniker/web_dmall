@@ -123,7 +123,7 @@
         <div class="admin-nav">
             <div class="admin-nav-left">联家管理系统</div>
             <div class="admin-nav-right">
-            <div class="back-login"><a href="./manage.html">退出登录</a></div>
+            <div class="back-login"><a href="#">退出登录</a></div>
             </div>
         </div>
         <div class="body">
@@ -148,7 +148,7 @@
             <div class="body-right-title">广告公告</div>
             <div class="body-right-data">
                     <div class="add-advertising" style="padding-bottom:30px;">
-                        <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="添加广告" 
+                        <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-api="banner/add?" data-target="#exampleModal" data-whatever="添加广告"
                         data-list="name_名称:^:|*-*|0&%_%&url_链接地址:^:|*-*|0&%_%&order_显示顺序:^:|*-*|0&%_%&begin_开始显示时间:^:|*-*|8&%_%&end_结束显示时间:^:|*-*|8&%_%&img_图片:^:|*-*|9">添加广告</button>                   
                     </div>
                     <ul class="store-manage">                        
@@ -281,7 +281,7 @@
                                           <div class="page" style="padding-top:10px;">
                                               <ul class="page-ul">
                                               </ul>
-                                              <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
+                                              <div><input type="text" style="margin:0 5px 0px 20px;width:30px;text-align: center"><button>跳转</button></div>
                                           </div>
                                   </div>
                     </ul>
@@ -327,28 +327,23 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
-    
 
     <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
     <script src="myadmin/assets/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Js -->
     <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
-    <!-- Chart Js -->
-    <!-- <script type="text/javascript" src="myadmin/assets/js/Chart.min.js"></script>   -->
-    <!-- <script type="text/javascript" src="myadmin/assets/js/chartjs.js"></script>  -->
-     <!-- Morris Chart Js -->
-     <!-- <script src="myadmin/assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="myadmin/assets/js/morris/morris.js"></script> -->
-      <!-- Custom Js -->
-    <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
+    
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script type="text/javascript" src="myadmin/js/config.js"></script>
+    <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
+    <script src="../cdn/md5.min.js"></script> -->
     <script>
         var $_331 = jQuery.noConflict();
-        var url = "http://140.143.25.27:8080/";
-        var mykey = "union_supermarket_2018";
+        // var url = "http://192.168.1.108:8080/";
+        // var mykey = "union_supermarket_2018";
+        console.log(url);
         (function(){
         //动态生成page页
         $('.page ul').append("<li><</li>");
@@ -415,6 +410,7 @@
             document.getElementsByClassName("flatpickr").flatpickr();
             var modal = $(this);
             modal.find('.modal-title').text("管理");
+            $("#modal-commit").data("api",button.data("api"));
             // modal.find('.modal-body input').val(recipient);
         });
 
@@ -422,6 +418,10 @@
 
         //模态框内容的提交
         $("#modal-commit").on('click',function(){
+
+            var api = $(this).data("api");
+            console.log(api);
+
             var data = {};
             // console.log($("#modal-list input").length);
             for(var i=0; i<$("#modal-list .form-group").length;i++){
@@ -429,38 +429,169 @@
                     alert("请先上传图片");
                     return;
                 }else{
-                    if($("#modal-list input").eq(i).val() == ""){
-                        alert("参数不能为空");
-                        return;
-                    }else{
-                        data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
-                    }
-                    
+                    // if($("#modal-list input").eq(i).val() == ""){
+                    //     alert("参数不能为空");
+                    //     return;
+                    // }else{
+                    data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
+                    // }
+
                 }
             };
-            console.log("this is file",data);
-            data.access_token = sessionStorage.access_token;
-            data.status = 0;
-            data.from = "web";
-            data.timestamp = parseInt(new Date().getTime()/1000);
-            var newObj = srotKeyObj(data);
-            var str = objmd5(newObj);
 
-            var newUrl = url + "banner/add?" + str;
-            console.log(newUrl);
-            $.ajax({
-                url:newUrl,
-                type:'get',
-                success:function(data){
-                    console.log(data);
-                    console.log("ok");
-                },
-                error:function(err){
-                    console.log(err);
-                    console.log("err");
-                    
+            if(api == "banner/add?"){ //广告添加
+
+                // var data = {};
+                // // console.log($("#modal-list input").length);
+                // for(var i=0; i<$("#modal-list .form-group").length;i++){
+                //     if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                //         alert("请先上传图片");
+                //         return;
+                //     }else{
+                //         // if($("#modal-list input").eq(i).val() == ""){
+                //         //     alert("参数不能为空");
+                //         //     return;
+                //         // }else{
+                //         data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list input").eq(i).val();
+                //         // }
+                //
+                //     }
+                // };
+
+                // alert($("#name").val());
+                // alert($("#url").val());
+                //  alert($("#order").val());
+                //  alert($(".form-group input[name='begin']").val());
+                //  alert($(".form-group input[name='end']").val());
+                if ($("#name").val()!==""){
+                    if(/^[1-9]\d*$/.test($("#order").val())){
+
+                        if ($(".form-group input[name='begin']").val()!==""){
+                            if ($(".form-group input[name='end']").val()){
+                                // if(/^[1-9]\d*$/.test($("#order").val())){
+
+
+                                console.log("this is file",data);
+                                data.access_token = sessionStorage.access_token;
+                                data.status = 0;
+                                data.from = "web";
+                                data.timestamp = parseInt(new Date().getTime()/1000);
+                                var newObj = srotKeyObj(data);
+                                var str = objmd5(newObj);
+
+                                var newUrl = url + "banner/add?" + str;
+                                console.log(newUrl);
+                                $.ajax({
+                                    url:newUrl,
+                                    type:'get',
+                                    success:function(data){
+                                        console.log(data);
+                                        console.log("ok");
+                                        alert("广告添加成功");
+                                    },
+                                    error:function(err){
+                                        console.log(err);
+                                        console.log("err");
+                                        alert("广告添加失败");
+                                
+                                    }
+                                });
+                                // alert("提交成功!");
+
+                                // }else {
+                                //     alert("广告显示顺序只能输入正整数!");
+                                // }
+
+                            }else {
+                                alert("广告结束显示时间不能为空!");
+                            }
+
+                        }else {
+                            alert("广告开始显示时间不能为空!");
+                        }
+
+                    }else {
+                        alert("广告显示顺序只能输入正整数!");
+                    }
+
+                }else {
+                    alert("广告名称不能为空!")
                 }
-            });
+
+            }else if(api == "banner/modify?"){//广告修改
+
+                // alert($(".form-group input[name='id']").val());
+                // alert($(".form-group input[name='id']").val());
+
+                // if ($(".form-group input[name='id']").val()==data.data[i].id){
+                //
+                // }else {
+                //     alert("广告id不允许修改!")
+                // }
+
+                if ($("#name").val()!==""){
+                    if ($(".form-group input[name='imagePath']").val()!==""){
+                    if(/^[1-9]\d*$/.test($("#order").val())){
+                        if ($(".form-group input[name='begin']").val()!==""){
+                            if ($(".form-group input[name='end']").val()){
+                                if ($(".form-group input[name='status']").val()!==""){
+
+                                    console.log("this is file",data);
+                                    data.access_token = sessionStorage.access_token;
+                                    data.status = 0;
+                                    data.from = "web";
+                                    data.timestamp = parseInt(new Date().getTime()/1000);
+                                    var newObj = srotKeyObj(data);
+                                    var str = objmd5(newObj);
+
+                                    var newUrl = url + "banner/modify?" + str;
+                                    console.log(newUrl);
+                                    $.ajax({
+                                        url:newUrl,
+                                        type:'get',
+                                        success:function(data){
+                                            console.log(data);
+                                            console.log("ok");
+                                            alert("广告提交成功");
+                                            findAdvAll();
+                                            $(".modal").modal("hide");
+                                        },
+                                        error:function(err){
+                                            console.log(err);
+                                            console.log("err");
+                                            alert("广告提交失败");
+                                        }
+                                    });
+                                    alert("提交成功!");
+
+                                }else {
+                                    alert("广告结束显示时间(状态)不能为空!");
+                                }
+                            }else {
+                                alert("广告结束显示时间不能为空!");
+                            }
+
+                        }else {
+                            alert("广告开始显示时间不能为空!");
+                        }
+
+                    }else {
+                        alert("广告显示顺序只能输入正整数!");
+                    }
+
+                 }else {
+                    alert("广告图片路径不能为空!")
+                }
+                }else {
+                    alert("广告名称不能为空!")
+                }
+
+
+
+            }else if(api == "banner/del?"){
+
+            }
+
         });
 
         function findAdvAll(){
@@ -481,6 +612,59 @@
             success:function(data){
                 console.log(data);
                 console.log("ok");
+
+
+
+                var listNode = '';
+                for(var i = 0; i < data.data.length;i++){
+                    listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title">'
+                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data[i].id+'">'
+                        + data.data[i].name
+                        + '</a>'
+                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="banner/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改广告"'
+                        + 'data-list="id_广告id:^:'+data.data[i].id+'0&%_%&name_名称:^:'+data.data[i].name+'0&%_%&url_链接地址:^:'+data.data[i].url+'0&%_%&imagePath_图片路径:^:'+data.data[i].imagePath+'0&%_%&order_广告显示顺序:^:'+data.data[i].order+'0&%_%&begin_广告开始显示时间:^:'+data.data[i].begin+'0&%_%&end_广告结束显示时间:^:'+data.data[i].end+'0&%_%&status_结束显示时间(状态):^:'+data.data[i].status+'0">修改广告</button>'
+                        + '<button type="button" class="btn btn-primary admin-btn" data-api="banner/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除广告"'
+                        + 'data-list="id_广告id:^:'+data.data[i].id+'0">删除广告</button>'
+                        + '</h4></div>'
+                        + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
+                        + '<div class="panel-body">'
+                        + '<div class="panel-body">'
+                        + '<li class="list-group-item">'
+                        + '<span>名称:</span>'
+                        + '<span class="store-num">'+data.data[i].name+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>链接地址:</span>'
+                        + '<span class="store-num">'+data.data[i].url+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>广告显示顺序:</span>'
+                        + '<span class="store-num">'+data.data[i].order+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>广告开始显示时间:</span>'
+                        + '<span class="store-num">'+data.data[i].begin+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>广告结束显示时间:</span>'
+                        + '<span class="store-num">'+data.data[i].end+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>图片路径:</span>'
+                        + '<span class="store-num">'+data.data[i].imagePath+'</span>'
+                        + '</li>'
+                        + '<li class="list-group-item">'
+                        + '<span>结束显示时间(0 启用，1 禁用):</span>'
+                        + '<span class="store-num">'+data.data[i].status+'</span>'
+                        + '</li>'
+                        + '</ul></div></div></div></div>'
+                }
+
+                // listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
+
+                $('.panel-group').html(listNode);
+                $('.collapse').collapse();
+
             },
             error:function(err){
                 console.log(err);
@@ -536,31 +720,38 @@
                     obj.access_token = sessionStorage.access_token;
                     obj.timestamp = parseInt(new Date().getTime()/1000);
                     obj.from = "web";
-
+            
                     var newobj = srotKeyObj(obj);
                     var str = objmd5(newobj);
-
+            
                     var arr = str.split("&");
-
+            
                     var formData = new FormData();
                     for(var i = 0;i<arr.length;i++){
                         formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
                     }
                     formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
                     $_331.ajax({
-                          url: 'http://140.143.25.27:8080/attachment/upload',
+                          url: url+'attachment/upload',
                           type: 'POST',
                           data: formData,
                           contentType: false,
                           processData: false,
-                          success:function(args){
-                              console.log(args);  /*服务器端的图片地址*/
+                          success:function(data){
+                              console.log(data);  /*服务器端的图片地址*/
+                              alert("图片上传成功");
+                              var str = data.data;
+                              var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                              +str+
+                              '">';
+                              $('.btn_img').parent().html(node);
                      },
                         error:function(err){
                             console.log(err);
+                            alert("图片上传失败");
                         }
                   });
-
+            
                 }else{
                     alert("请选择图片");
                 }

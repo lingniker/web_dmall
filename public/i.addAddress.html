@@ -142,7 +142,11 @@
         <div class="user-address">
             <div class="add-name"><input type="text" name="name" placeholder="请输入收件人姓名" value="" id="user_name"></div>
             <div class="add-phone"><input type="text" name="name" placeholder="请输入手机号" value=""    id="user_phone"></div>
-            <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请输入收件人具体地址" value=""></div>
+            <div class="add-name"><input type="text" name="name1" id="address-input" placeholder="请点击地图获取收件人具体地址" value="" disabled style="background-color: white"></div>
+
+
+
+
             <div class="add-name"><input type="text" name="name2" id="houseNumber" placeholder="请输入门牌号" value=""></div>
         </div>
     </div>
@@ -169,15 +173,19 @@
 
         var $3_3_1 = jQuery.noConflict(true);
         var longitude="";
-        var latitude=""
-;
+        var latitude="";
+
         document.getElementsByClassName("location")[0].onclick=function(){
             var geolocation = new BMap.Geolocation();
 	            geolocation.getCurrentPosition(function(r){
                     console.log(r.latitude);
                     console.log(r.longitude);
-                    longitude=r.longitude;
-                    latitude=r.latitude;
+                   // var longitude=r.longitude;
+                   // var  latitude=r.latitude;
+                    //自动定位获取的经纬度
+                    // alert(longitude);
+                    // alert(latitude);
+
 
                     var mk = new BMap.Marker(r.point);
                     map.addOverlay(mk);
@@ -193,15 +201,25 @@
         map.addEventListener("click", function(e){
             console.log(e.point);
             var pt = e.point;
+            // console.log(pt.lng);
             geoc.getLocation(pt, function(rs){
                 var addComp = rs.addressComponents;
                 document.getElementById("address-input").value = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
                 // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                // alert(longitude);
+                // alert(latitude);
+                // alert(addComp);
+                // alert(pt.lng);
+                // alert(pt.lat);
+                longitude=pt.lng;
+                latitude=pt.lat;
+
             });        
         });
         //判断添加
             var mykey = "union_supermarket_2018";
-            var url = "http://140.143.25.27:8080/";
+            var url = "http://192.168.1.108:8080/";
+
         document.getElementsByClassName("commit-address")[0].onclick = function(){
             // console.log("提交地址");
             //     alert("124512");
@@ -221,12 +239,13 @@
                         obj.phone = phone;
                         obj.addres = addres;
                         obj.doorplate = doorplate;
+                        // alert(longitude);
+                        // alert(latitude);
                         obj.longitude = longitude;
                         obj.latitude = latitude;
                         obj.from = "web";
                         obj.timestamp = Math.floor((new Date().getTime()) / 1000);
                         var str = srotKeyObjAndMd5(obj);
-
                         var newUrl = url + "address/add?" + str;
                         console.log(newUrl);
                         $3_3_1.ajax({
@@ -243,14 +262,12 @@
                                 console.log(err);
                             }
                         });
-                    }else {}
-
-
+                    }
                 }else {
-                    alert("只能输入字母数字汉字及符号-，例如3号楼-1011室")
+                    alert("只能输入字母数字汉字及符号-，例如3号楼-1011室");
                 }
             }else {
-                alert("收货地址输入错误!")
+                alert("收货地址输入错误!");
             }
         }else {
             alert("手机号码格式输入错误！");
@@ -258,9 +275,7 @@
     }else {
         alert("姓名只能为2至10个汉字或1至30个英文单词!");
   }
-
-        }
-
+        };
         function srotKeyObjAndMd5(obj){
             var arr = [];
             var newobj = {};

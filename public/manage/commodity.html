@@ -123,7 +123,7 @@
         <div class="admin-nav">
             <div class="admin-nav-left">联家管理系统</div>
             <div class="admin-nav-right">
-            <div class="back-login"><a href="./manage.html">退出登录</a></div>
+            <div class="back-login"><a href="#">退出登录</a></div>
             </div>
         </div>
         <div class="body">
@@ -149,7 +149,7 @@
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
                     <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-api="product/add?" data-target="#exampleModal" data-whatever="增加商品" 
-                    data-list="name_商品名称:^:红牛维生素供能饮料225ml0&%_%&cost_成本价(元):^:50&%_%&price_零售价(元):^:60&%_%&introduction_商品简介:^:红牛维生素供能饮料0&%_%&weight_重量(kg):^:0.50&%_%&categoryId_商品分类ID:^:27&%_%&hot_热度:^:10&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                 
+                    data-list="name_商品名称:^:例：红牛维生素供能饮料225ml4&%_%&cost_成本价(元):^:例：54&%_%&price_零售价(元):^:例：64&%_%&introduction_商品简介:^:例：红牛维生素供能饮料4&%_%&weight_重量(kg):^:例：0.54&%_%&categoryId_商品分类ID:^:27&%_%&hot_热度:^:例：-14&%_%&remarks_备注:^:-0&%_%&imagePath_图片:^:|*-*|9">增加商品</button>                 
                 </div>
                 <ul class="commodity-manage">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -283,10 +283,10 @@
                                         </div>
                                       </div>
                                       <div class="page" style="padding-top:10px;">
-                                          <ul class="page-ul">
-                                          </ul>
-                                          <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
-                                      </div>
+                                        <ul class="page-ul">
+                                        </ul>
+                                        <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
+                                    </div>
                               </div>
                 </ul>
                 <!-- <div class="add-commodity">
@@ -298,7 +298,6 @@
             </div>
         </div>
         <div class="floor"></div>
-
         <div class="modal fade mymodal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -333,7 +332,7 @@
                 </div>
             </div>
     </div>
-
+    </div>
     <script src="myadmin/assets/js/jquery-1.10.2.js"></script>
       <!-- Bootstrap Js -->
     <script src="myadmin/assets/js/bootstrap.min.js"></script>
@@ -349,12 +348,16 @@
     <!-- <script src="myadmin/assets/js/custom-scripts.js"></script> -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script type="text/javascript" src="myadmin/js/config.js"></script>
+    <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
+    <script src="../cdn/md5.min.js"></script> -->
     <script>
         var $_331 = jQuery.noConflict();
-        var url = "http://140.143.25.27:8080/";
-        var mykey = "union_supermarket_2018";
-        var pageNum = 2;
-        var pageSize = 10;
+        // var url = "http://140.143.25.27:8080/";
+        // var mykey = "union_supermarket_2018";
+        console.log(url);
+        var pageNum = 1;
+        var pageSize = 1;
         (function(){
         //动态生成page页
         $('.page ul').append("<li><</li>");
@@ -442,6 +445,15 @@
                             }
                         });
 
+                }else if(arr[i][2] == 4){
+                    appendNode += '<div class="form-group"><label for="'
+                    +arr[i][0].split('_')[0]+'" class="control-label">'
+                    +arr[i][0].split('_')[1]
+                    +'</label><input type="text" class="form-control" id="index" name="'
+                    +arr[i][0].split('_')[0]
+                    +'" placeholder="'
+                    +arr[i][1]
+                    +'"></div>';
                 }else{
                     appendNode += '<div class="form-group"><label for="'
                     +arr[i][0].split('_')[0]+'" class="control-label">'
@@ -480,25 +492,102 @@
                         alert("请先上传图片");
                         return;
                     }else{
-                        if($("#modal-list input").eq(i).val() == ""){
-                            alert("参数不能为空");
-                            return;
-                        }else{
+
                             data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
-                        }
+
                         
                     }
                 };
-                console.log("this is file",data);
-                data.access_token = sessionStorage.access_token;
-                data.status = 0;
-                data.form = "web";
-                data.timestamp = parseInt(new Date().getTime()/1000);
-                var newObj = srotKeyObj(data);
-                var str = objmd5(newObj);
 
-                var newUrl = url + "product/add?" + str;
-                console.log(newUrl);
+
+                // var goodsName=document.getElementsByClassName("");
+                // $("#modal-list .form-group").eq(i).find("input").attr("name")=="name";
+                // $(".form-group input[name='name']").value;
+                // alert($(".form-group input[name='name']").val());
+                // alert($(".form-group input[name='cost']").val());
+                // alert($(".form-group input[name='price']").val());
+                // alert($(".form-group input[name='introduction']").val());
+                // alert($(".form-group input[name='weight']").val());
+                // alert($(".form-group input[name='hot']").val());
+                // alert($(".form-group input[name='remarks']").val());
+
+                if(/^(([0-9]{1,5})|(([0]\.\d{1,2}|[0-9]{1,5}\.\d{1,2})))$/.test($(".form-group input[name='cost']").val())){
+                    if(/^(([0-9]{1,5})|(([0]\.\d{1,2}|[0-9]{1,5}\.\d{1,2})))$/.test($(".form-group input[name='price']").val())){
+                        if(/^(([1-9][0-9]*)|(([0]\.\d{1,4}|[1-9][0-9]*\.\d{1,4})))$/.test($(".form-group input[name='weight']").val())){
+                            if ($(".form-group input[name='name']").val()!==""){
+                                if ($(".form-group input[name='introduction']").val()!==""){
+                                    if($(".form-group input[name='remarks']").val().length<100){
+                                        if($(".form-group input[name='hot']").val()==''){
+                                            delete data.hot;
+                                            alert("提交成功!");
+                                            // alert("删除热度成功"+data.hot);
+                                            console.log(data);
+                                            }else {
+                                            alert("提交成功2!");
+                                            console.log("this is file",data);
+                                            data.access_token = sessionStorage.access_token;
+                                            data.status = 0;
+                                            data.form = "web";
+                                            data.timestamp = parseInt(new Date().getTime()/1000);
+                                            var newObj = srotKeyObj(data);
+                                            var str = objmd5(newObj);
+                                            var newUrl = url + "product/add?" + str;
+                                            console.log(newUrl);
+                                            $.ajax({
+                                                url:newUrl,
+                                                type:'get',
+                                                success:function(data){
+                                                    console.log(data);
+                                                    console.log("ok");
+                                                    $('.modal').modal('hide');
+                                                    alert("商品添加提交成功");
+                                                },
+                                                error:function(err){
+                                                    console.log(err);
+                                                    console.log("err");
+                                                    alert("商品添加失败");
+                                                }
+                                            });
+                                        }
+
+                                    }else {
+                                        alert("备注只能输入100个字符");
+                                    }
+                                }else {
+                                    alert("商品简介不能为空!");
+                                }
+
+                            }else {
+                                alert("商品名称不能为空!");
+                            }
+
+                        }else {
+                            alert("重量输入错误!请输入整数或保留整数小数点后两位！");
+                        }
+
+                    }else {
+                        alert("零售价输入错误!请输入整数或保留整数小数点后两位！");
+                    }
+
+                                      // alert("提交成功!")
+                }else {
+                       alert("成本价输入错误!请输入整数且最大为五位或保留整数小数点后两位！");
+                }
+
+                // console.log(data);
+                // // if(data.hot==''){
+                // //     delete data.hot;
+                // // }
+                // console.log("this is file",data);
+                // data.access_token = sessionStorage.access_token;
+                // data.status = 0;
+                // data.form = "web";
+                // data.timestamp = parseInt(new Date().getTime()/1000);
+                // var newObj = srotKeyObj(data);
+                // var str = objmd5(newObj);
+                //
+                // var newUrl = url + "product/add?" + str;
+                // console.log(newUrl);
                 
                 // $.ajax({
                 //     url:newUrl,
@@ -517,10 +606,142 @@
 
 
             }else if(api == "product/modify?"){ //商品修改
-            console.log("modify product");
 
+                var data = {};
+                // console.log($("#modal-list input").length);
+                for(var i=0; i<$("#modal-list .form-group").length;i++){
+                    if($("#modal-list .form-group").eq(i).hasClass('select')){
+                        data.categoryId = $("#okko").val();
+                    }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                        alert("请先上传图片");
+                        return;
+                    }else{
+
+                        data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
+
+
+                    }
+                };
+            // console.log("modify product");
+
+                // alert($(".form-group input[name='name']").val());
+                // alert($(".form-group input[name='cost']").val());
+                // alert($(".form-group input[name='price']").val());
+                // alert($(".form-group input[name='introduction']").val());
+                // alert($(".form-group input[name='weight']").val());
+                // alert($(".form-group input[name='hot']").val());
+                // alert($(".form-group input[name='remarks']").val());
+                // alert($(".form-group input[name='imagePath']").val());
+
+                if(/^(([0-9]{1,5})|(([0]\.\d{1,2}|[0-9]{1,5}\.\d{1,2})))$/.test($(".form-group input[name='cost']").val())){
+                    if(/^(([0-9]{1,5})|(([0]\.\d{1,2}|[0-9]{1,5}\.\d{1,2})))$/.test($(".form-group input[name='price']").val())){
+                        if(/^(([1-9][0-9]*)|(([0]\.\d{1,4}|[1-9][0-9]*\.\d{1,4})))$/.test($(".form-group input[name='weight']").val())){
+                            if ($(".form-group input[name='name']").val()!==""){
+                                if ($(".form-group input[name='introduction']").val()!==""){
+                                    if($(".form-group input[name='remarks']").val().length<100){
+                                        if($(".form-group input[name='imagePath']").val()!==""){
+                                            if($(".form-group input[name='hot']").val()==''){
+                                                delete data.hot;
+                                                alert("提交成功!");
+                                                // alert("删除热度成功"+data.hot);
+                                                console.log(data);
+                                            }
+                                                alert("提交成功2!");
+                                                console.log("this is file",data);
+                                                data.access_token = sessionStorage.access_token;
+                                                data.status = 0;
+                                                data.form = "web";
+                                                data.timestamp = parseInt(new Date().getTime()/1000);
+                                                var newObj = srotKeyObj(data);
+                                                var str = objmd5(newObj);
+                                                var newUrl = url + "product/modify?" + str;
+                                                console.log(newUrl);
+                                                $.ajax({
+                                                    url:newUrl,
+                                                    type:'get',
+                                                    success:function(data){
+                                                        console.log(data);
+                                                        console.log("ok");
+                                                        $('.modal').modal('hide');
+                                                        alert("商品修改成功");
+                                                    },
+                                                    error:function(err){
+                                                        console.log(err);
+                                                        console.log("err");
+                                                        alert("商品修改失败");
+                                                        $('.modal').modal('hide');                                                        
+                                                    }
+                                                });
+
+
+                                        }else {
+                                            alert("图片地址不能为空!");
+                                        }
+                                    }else {
+                                        alert("备注只能输入100个字符");
+                                    }
+                                }else {
+                                    alert("商品简介不能为空!");
+                                }
+
+                            }else {
+                                alert("商品名称不能为空!");
+                            }
+
+                        }else {
+                            alert("重量输入错误!请输入整数或保留整数小数点后两位！");
+                        }
+
+                    }else {
+                        alert("零售价输入错误!请输入整数或保留整数小数点后两位！");
+                    }
+
+                    // alert("提交成功!")
+                }else {
+                    alert("成本价输入错误!请输入整数且最大为五位或保留整数小数点后两位！");
+                }
             }else if(api == "product/del?"){
+                console.log("删除商品");
+                var data = {};
+                // console.log($("#modal-list input").length);
+                for(var i=0; i<$("#modal-list .form-group").length;i++){
+                    if($("#modal-list .form-group").eq(i).hasClass('select')){
+                        data.categoryId = $("#okko").val();
+                    }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                        alert("请先上传图片");
+                        return;
+                    }else{
 
+                        data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
+
+
+                    }
+                };
+
+                data.access_token = sessionStorage.access_token;
+                data.form = "web";
+                data.timestamp = parseInt(new Date().getTime());
+                
+                var newObj = srotKeyObj(data);
+                var str = objmd5(newObj);
+
+                var newUrl = url + "product/del?" + str ;
+                $.ajax({
+                    url:newUrl,
+                    type:'get',
+                    dataType:'json',
+                    success:function(data){
+                        console.log(data);
+                        console.log("ok");
+                        alert("商品删除成功");
+                        $(".modal").modal("hide");
+                    },
+                    error:function(fn){
+                        console.log(fn);
+                        console.log("err");
+                        alert("商品删除失败");
+                    }
+                });
             }
             
         });
@@ -528,66 +749,68 @@
         
         
         $(document).on('click','.btn_img',function(){//上传图片
-            //     if($("#img-input")[0].files[0]){
-            //     var reg = /image\/*/;
-            //     var bloe = reg.test($("#img-input")[0].files[0].type);
-            //     if(bloe){
-            //         var obj = {};
-            //         obj.access_token = sessionStorage.access_token;
-            //         obj.timestamp = parseInt(new Date().getTime()/1000);
-            //         obj.form = "web";
+                if($("#img-input")[0].files[0]){
+                var reg = /image\/*/;
+                var bloe = reg.test($("#img-input")[0].files[0].type);
+                if(bloe){
+                    var obj = {};
+                    obj.access_token = sessionStorage.access_token;
+                    obj.timestamp = parseInt(new Date().getTime()/1000);
+                    obj.form = "web";
 
-            //         var newobj = srotKeyObj(obj);
-            //         var str = objmd5(newobj);
+                    var newobj = srotKeyObj(obj);
+                    var str = objmd5(newobj);
 
-            //         var arr = str.split("&");
+                    var arr = str.split("&");
 
-            //         var formData = new FormData();
-            //         for(var i = 0;i<arr.length;i++){
-            //             formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
-            //         }
-            //         formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
-            //         $_331.ajax({
-            //               url: 'http://140.143.25.27:8080/attachment/upload?',
-            //               type: 'POST',
-            //               data: formData,
-            //               contentType: false,
-            //               processData: false,
-            //               success:function(data){
-            //                   console.log(data);  /*服务器端的图片地址*/
-            //                   var str = data.data;
-            //                   var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-            //                   +str+
-            //                   '">';
-            //                   $('.btn_img').parent().html(node);
-            //                   console.log("ok");
-            //             },
-            //             error:function(err){
-            //                 console.log(err);
-            //                 console.log("err");
-            //             }
-            //       });
+                    var formData = new FormData();
+                    for(var i = 0;i<arr.length;i++){
+                        formData.append(arr[i].split("=")[0],arr[i].split("=")[1]);
+                    }
+                    formData.append('file', $("#img-input")[0].files[0]);  /*获取上传的图片对象*/
+                    $_331.ajax({
+                          url: url+'attachment/upload?',
+                          type: 'POST',
+                          data: formData,
+                          contentType: false,
+                          processData: false,
+                          success:function(data){
+                              console.log(data);  /*服务器端的图片地址*/
+                              var str = data.data;
+                              var node = '<label for="imagePath" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+                              +str+
+                              '">';
+                              $('.btn_img').parent().html(node);
+                              console.log("ok");
+                              alert("图片上传成功");
+                        },
+                        error:function(err){
+                            console.log(err);
+                            console.log("err");
+                            alert("图片上传失败");
+                        }
+                  });
 
-            //     }else{
-            //         alert("请选择图片");
-            //     }
-            // }else{
-            //     alert("请选择图片");
-            // }
-            var str = "http://140.143.25.27:8080/attachment/view/49";
-            var node = '<label for="imagePath select" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
-                       +str+
-                       '">';
-             $('.btn_img').parent().html(node);
+                }else{
+                    alert("请选择图片");
+                }
+            }else{
+                alert("请选择图片");
+            }
+            // var str = "http://140.143.25.27:8080/attachment/view/49";
+            // var node = '<label for="imagePath select" class="control-label">图片路径</label><input type="text" class="form-control" id="imagePath"  name="imagePath" value="'
+            //            +str+
+            //            '">';
+            //  $('.btn_img').parent().html(node);
            
 
         });
 
-        function findCommodity(){
+        function findCommodity(pageNum){
             var obj = {};
-            obj.categoryId = 2;
-            obj.pageNum = 1;
-            obj.pageSize = pageSize;
+            obj.categoryId = 3;
+            obj.pageNum = pageNum;
+            obj.pageSize = 10;
             obj.access_token = sessionStorage.access_token;
             obj.timestamp = parseInt(new Date().getTime()/1000);
             obj.form = "web";
@@ -644,7 +867,7 @@
                         + data.data.list[i].name 
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
-                        + 'data-list="name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'0">修改商品</button>'
+                        + 'data-list="id_商品id:^:'+data.data.list[i].id+'0&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'0">修改商品</button>'
                         + '<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
                         + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
                         + '</h4></div>' 
@@ -682,12 +905,12 @@
                         + '</ul></div></div></div></div>'
                     }
 
-                    listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
+                    listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>'
 
                     $('.panel-group').html(listNode);
                     $('.collapse').collapse();
 
-                    $('.page ul').append("<li><</li>");
+                    $('.page ul').append("<li data-id='"+data.data.prePage+"'><</li>");
 
                     if(data.data.pages > 5){
                         if(data.data.pageNum < 3){
@@ -740,7 +963,7 @@
                             }
                         };          
                 }
-                $('.page ul').append("<li>></li>");
+                $('.page ul').append("<li data-id='"+data.data.nextPage+"'>></li>");
 
 
                 },
@@ -799,13 +1022,49 @@
 
         }
 
-        findCommodity();
+        findCommodity(pageNum);
 
         //选择分页
         $(document).on("click",".page-ul li",function(evev){
             console.log($(this).data("id"));
-        })
+            if($(this).data("id")=="..."||$(this).data("id")=="0"){
+            }else{
+                findCommodity($(this).data("id"));
+            }
+            // findCommodity($(this).data("id"));
+        });
 
+        //跳转
+        $(document).on("click",".btnPage",function(evev){
+              // alert($(".inputPage").val());
+              // alert($(".sumPage").text());
+                console.log($(this).data("id"));
+                if(/^[1-9]\d*$/.test($(".inputPage").val())){
+                    // alert($(".inputPage").val());
+                    var bottom_num=parseInt($(".inputPage").val());
+                    var sumpage=parseInt($(".sumPage").text());
+                    if($(".inputPage").val()==""||bottom_num>sumpage){
+                        alert("大于总页数不能跳转!");
+                    }else {
+                        // alert("跳转成功到第"+bottom_num+"页!");
+                        console.log(bottom_num);
+                        findCommodity(bottom_num);
+                    }
+
+                }else {
+                    alert("只能输入正整数!");
+                }
+
+                // if($(".inputPage").val()!==""||$(".inputPage").val()<pageNum){
+                //
+                // }
+                // console.log($(this).data("id"));
+                // if($(this).data("id")=="..."||$(this).data("id")=="0"){
+                // }else{
+                //     findCommodity($(this).data("id"));
+                // }
+                // findCommodity($(this).data("id"));
+            });
 
         /*
 		 *对象key值排序

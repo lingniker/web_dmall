@@ -15,10 +15,12 @@
 </div>
 <div class="wap_coupon">
     <div class="member_img">
-        <a href="i.modifyimg.html">
+        <a href="i.modifyimg02.html">
         <div class="member_img_1">头像</div>
         <div class="member_img_3"><img src="images/right_member.png" class="right_member"> </div>
-        <div class="member_img_2_member"></div>
+        <div class="member_img_2_member">
+            <img src="" id="persional_img">
+        </div>
         <div class="member_img_4"></div>
         </a>
     </div>
@@ -87,7 +89,7 @@
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script>
     var mykey = "union_supermarket_2018";
-    var url = "http://140.143.25.27:8080/";
+    var url = "http://192.168.1.108:8080/";
     if(sessionStorage.access_token !== undefined){
         var obj = {};
         obj.access_token = sessionStorage.access_token;
@@ -102,6 +104,13 @@
             success:function(data){
                 console.log(data.data.id);
                 console.log(data.data.nickname);
+                if(sessionStorage.headimgurl==""){
+                    document.getElementById("persional_img").src="images/persionalimg.png";
+
+                }else {
+                    document.getElementById("persional_img").src=sessionStorage.headimgurl;
+                }
+
                 if(data.data.nickname==""){
                     document.getElementById("member_name_Nickname").innerHTML="hello";
                 }else {
