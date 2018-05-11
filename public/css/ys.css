@@ -1769,6 +1769,7 @@ h4{
     background-size: 100px 60px;
     color: white!important;
     margin-top: -10px;
+    /*display: none;*/
 }
 .receipt_information04{
     border: 1px white solid;
@@ -3850,6 +3851,12 @@ margin-left: 2%;
 .address_1{
     width: 100%;
     height: 120px;
+    background-color: white;
+    margin-top: 20px;
+}
+.address_1_order{
+    width: 100%;
+    height: 60px;
     background-color: white;
     margin-top: 20px;
 }

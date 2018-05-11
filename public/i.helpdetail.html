@@ -5,19 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/ys.css">
+    <!--<link rel="stylesheet" href="css/ys.css">-->
     <link rel="stylesheet" href="css/common.css">
+    <style>
+        .wap_helpdetail{
+            width: 100%;
+            height: 100%;
+            /*border: 1px red solid;*/
+            margin-top: 45px;
+        }
+        /*@media screen and (max-width: 750px) {*/
+            /*.wap_helpdetail{*/
+                /*width: 100%;*/
+            /*}*/
+        /*}*/
+        /*.member_img{*/
+            /*width: 100%;*/
+            /*height: 80px;*/
+            /*line-height: 80px;*/
+            /*position: relative;*/
+            /*border: 1px white solid;*/
+            /*background-color: white!important;*/
+
+        /*}*/
+        .helpdetail li{
+            width: 100%;
+            /*height: 150px;*/
+            /*line-height: 50px;*/
+            background: white;
+            margin-top: 30px;
+
+
+        }
+        .helpdetail li span{
+            /*margin-top: 5px;*/
+            font-weight: bolder;
+            font-size: 16px;
+            margin-left: 2%;
+            position: relative;
+            top: 10px;
+        }
+        .helpdetail-value{
+            margin-left: 2%;
+            position: relative;
+            top: 15px;
+            font-size: 15px;
+        }
+    </style>
+
 </head>
-<body style="background-color: #eee">
+<body style="background-color: white">
 <div class="toolbar">
     <a class="back" href="./i.help.html"><div class="back-into"></div></a>
-    帮助中心
+    帮助中心-在线支付
 </div>
 <div class="wap_helpdetail">
     <div class="member_img">
-        <ul>
-            <li>在线支付</li>
-            <li></li>
+        <ul class="helpdetail">
+            <li><span>在线支付</span>
+                <div class="helpdetail-value">目前可以使用支付宝、微信、京东、银联、快捷支付等进行线上支付。</div>
+                <div class="helpdetail-value">注：我们会不断优化支付方式，敬请期待。</div>
+            </li>
+            <li><span>余额支付</span>
+                <div class="helpdetail-value">APP中(我的>我的资产>余额)查询账户总额。商品加入购物车后，点击结算，点击确认订单，在支付订单页的选择支付方式点击余额包支付。</div>
+                <div class="helpdetail-value">注：在线支付订单您需要在订单提交后30分钟内完成支付，否则订单会自动取消。</div>
+            </li>
+
         </ul>
     </div>
     </div>

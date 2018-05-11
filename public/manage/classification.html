@@ -273,6 +273,7 @@
 
             // alert($(".form-group input[name='catName']").val());
             if (/^[\u4E00-\u9FA5]{1,5}$/.test($(".form-group input[name='catName']").val())){
+
                 console.log("this is file",data);
                 data.access_token = sessionStorage.access_token;
                 data.timestamp=parseInt(new Date().getTime()/1000);
@@ -357,7 +358,7 @@
             // alert($(this).data("id"));
             // alert($(".category_input").val());
             if (/^[\u4E00-\u9FA5]{1,5}$/.test($(this).parent().find("input").val())){
-
+                if(confirm("商品类名修改，请再次确认是否修改？")){
                 var obj = {};
                 obj.access_token = sessionStorage.access_token;
                 obj.catId = $(this).data("id");
@@ -385,6 +386,8 @@
                 
                 });
                  alert("修改成功!");
+                }
+
 
             }else {
                 alert("只能输入1-5中文汉字");
@@ -425,30 +428,32 @@
 
         $(document).on("click",".categoryDelete",function(){//删除分类
             console.log("categoryUpdate");
-            var obj = {};
-            obj.access_token = sessionStorage.access_token;
-            obj.catId = $(this).data("id");
-            obj.timestamp = parseInt(new Date().getTime()/1000);
-            obj.from = "web";
+            if(confirm("商品类名删除，请再次确认是否删除？")) {
+                var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.catId = $(this).data("id");
+                obj.timestamp = parseInt(new Date().getTime() / 1000);
+                obj.from = "web";
 
-            var newObj = srotKeyObj(obj);
-            var str = objmd5(newObj);
-            var newUrl = url + "category/delete?" + str;
+                var newObj = srotKeyObj(obj);
+                var str = objmd5(newObj);
+                var newUrl = url + "category/delete?" + str;
 
-            $.ajax({
-                url:newUrl,
-                type:"get",
-                dataType:"json",
-                success:function(data){
-                    console.log(data);
-                    console.log("request ok");
-                },
-                error:function(er){
-                    console.log(err);
-                    console.log("请求错误");
-                }
+                $.ajax({
+                    url: newUrl,
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        console.log("request ok");
+                    },
+                    error: function (er) {
+                        console.log(err);
+                        console.log("请求错误");
+                    }
 
-            });
+                });
+            }
             console.log(newUrl);
 
 
@@ -486,6 +491,8 @@
             }
             var newstr = str.substr(0,str.length-1);
             var encodeStr = encodeURIComponent(newstr) + mykey;
+            encodeStr = encodeStr.replace(/\(/g,'%28');
+            encodeStr = encodeStr.replace(/\)/g,'%29');
             var sign = md5(encodeStr);
             newstr += "&sign=" + sign;
             return newstr;

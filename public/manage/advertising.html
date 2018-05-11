@@ -153,7 +153,7 @@
                     </div>
                     <ul class="store-manage">                        
                             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default">
+                                    <!-- <div class="panel panel-default">
                                       <div class="panel-heading" role="tab" id="headingOne1">
                                         <h4 class="panel-title">
                                           <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -282,7 +282,7 @@
                                               <ul class="page-ul">
                                               </ul>
                                               <div><input type="text" style="margin:0 5px 0px 20px;width:30px;text-align: center"><button>跳转</button></div>
-                                          </div>
+                                          </div> -->
                                   </div>
                     </ul>
                 <!-- <div class="add-advertising">
@@ -470,32 +470,37 @@
                             if ($(".form-group input[name='end']").val()){
                                 // if(/^[1-9]\d*$/.test($("#order").val())){
 
+                                if(confirm("广告提交，请再次确认是否提交？")){
+                                    console.log("this is file",data);
+                                    data.access_token = sessionStorage.access_token;
+                                    data.status = 0;
+                                    data.from = "web";
+                                    data.timestamp = parseInt(new Date().getTime()/1000);
+                                    var newObj = srotKeyObj(data);
+                                    var str = objmd5(newObj);
 
-                                console.log("this is file",data);
-                                data.access_token = sessionStorage.access_token;
-                                data.status = 0;
-                                data.from = "web";
-                                data.timestamp = parseInt(new Date().getTime()/1000);
-                                var newObj = srotKeyObj(data);
-                                var str = objmd5(newObj);
+                                    var newUrl = url + "banner/add?" + str;
+                                    console.log(newUrl);
+                                    $.ajax({
+                                        url:newUrl,
+                                        type:'get',
+                                        success:function(data){
+                                            console.log(data);
+                                            console.log("ok");
+                                            alert("广告添加成功");
+                                        },
+                                        error:function(err){
+                                            console.log(err);
+                                            console.log("err");
+                                            alert("广告添加失败");
 
-                                var newUrl = url + "banner/add?" + str;
-                                console.log(newUrl);
-                                $.ajax({
-                                    url:newUrl,
-                                    type:'get',
-                                    success:function(data){
-                                        console.log(data);
-                                        console.log("ok");
-                                        alert("广告添加成功");
-                                    },
-                                    error:function(err){
-                                        console.log(err);
-                                        console.log("err");
-                                        alert("广告添加失败");
-                                
-                                    }
-                                });
+                                        }
+                                    });
+                                    console.log(data);
+                                }else {
+
+                                }
+
                                 // alert("提交成功!");
 
                                 // }else {
@@ -536,34 +541,35 @@
                             if ($(".form-group input[name='end']").val()){
                                 if ($(".form-group input[name='status']").val()!==""){
 
-                                    console.log("this is file",data);
-                                    data.access_token = sessionStorage.access_token;
-                                    data.status = 0;
-                                    data.from = "web";
-                                    data.timestamp = parseInt(new Date().getTime()/1000);
-                                    var newObj = srotKeyObj(data);
-                                    var str = objmd5(newObj);
-
-                                    var newUrl = url + "banner/modify?" + str;
-                                    console.log(newUrl);
-                                    $.ajax({
-                                        url:newUrl,
-                                        type:'get',
-                                        success:function(data){
-                                            console.log(data);
-                                            console.log("ok");
-                                            alert("广告提交成功");
-                                            findAdvAll();
-                                            $(".modal").modal("hide");
-                                        },
-                                        error:function(err){
-                                            console.log(err);
-                                            console.log("err");
-                                            alert("广告提交失败");
-                                        }
-                                    });
-                                    alert("提交成功!");
-
+                                    if(confirm("广告修改，请再次确认是否修改？")) {
+                                        console.log("this is file", data);
+                                        data.access_token = sessionStorage.access_token;
+                                        data.status = 0;
+                                        data.from = "web";
+                                        data.timestamp = parseInt(new Date().getTime()/1000);
+                                        var newObj = srotKeyObj(data);
+                                        var str = objmd5(newObj);
+                                        
+                                        var newUrl = url + "banner/modify?" + str;
+                                        console.log(newUrl);
+                                        $.ajax({
+                                            url: newUrl,
+                                            type: 'get',
+                                            success: function (data) {
+                                                console.log(data);
+                                                console.log("ok");
+                                                alert("广告修改提交成功");
+                                                findAdvAll();
+                                                $(".modal").modal("hide");
+                                            },
+                                            error: function (err) {
+                                                console.log(err);
+                                                console.log("err");
+                                                alert("广告修改提交失败");
+                                            }
+                                        });
+                                        // alert("提交成功!");
+                                    }
                                 }else {
                                     alert("广告结束显示时间(状态)不能为空!");
                                 }
@@ -589,7 +595,39 @@
 
 
             }else if(api == "banner/del?"){
+                if(confirm("广告删除，请再次确认是否删除？")){
+                    console.log("this is file",data);
+                    data.access_token = sessionStorage.access_token;
+                    // data.status = 1;
+                    data.from = "web";
+                    data.timestamp = parseInt(new Date().getTime()/1000);
+                    var newObj = srotKeyObj(data);
+                    var str = objmd5(newObj);
 
+                    var newUrl = url + "banner/del?" + str;
+                    console.log(newUrl);
+                    $.ajax({
+                        url:newUrl,
+                        type:'get',
+                        success:function(data){
+                            console.log(data);
+                            console.log("ok");
+                            alert("广告删除成功");
+
+                            // $(this).remove();
+
+                        },
+                        error:function(err){
+                            console.log(err);
+                            console.log("err");
+                            alert("广告删除失败");
+
+                        }
+                    });
+                    console.log(data);
+                }else {
+
+                }
             }
 
         });
@@ -617,8 +655,8 @@
 
                 var listNode = '';
                 for(var i = 0; i < data.data.length;i++){
-                    listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title">'
-                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data[i].id+'">'
+                    listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title" style="padding-top:0px;">'
+                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data[i].id+'">'
                         + data.data[i].name
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="banner/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改广告"'
@@ -626,7 +664,7 @@
                         + '<button type="button" class="btn btn-primary admin-btn" data-api="banner/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除广告"'
                         + 'data-list="id_广告id:^:'+data.data[i].id+'0">删除广告</button>'
                         + '</h4></div>'
-                        + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
+                        + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
                         + '<div class="panel-body">'
                         + '<div class="panel-body">'
                         + '<li class="list-group-item">'
@@ -663,7 +701,7 @@
                 // listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
 
                 $('.panel-group').html(listNode);
-                $('.collapse').collapse();
+                // $('.collapse').collapse();
 
             },
             error:function(err){
@@ -705,6 +743,8 @@
             }
             var newstr = str.substr(0,str.length-1);
             var encodeStr = encodeURIComponent(newstr) + mykey;
+            encodeStr = encodeStr.replace(/\(/g,'%28');
+            encodeStr = encodeStr.replace(/\)/g,'%29');
             var sign = md5(encodeStr);
             newstr += "&sign=" + sign;
             return newstr;

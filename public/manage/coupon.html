@@ -158,6 +158,19 @@
         margin-top:50px;
     }
 
+    .goods-page-ul li{
+        float: left;
+        /* width: 24px; */
+        height: 24px;
+        padding: 0px 6px;
+        border: 1px solid gray;
+        text-align: center;
+        cursor: pointer;
+    }
+    .goods-page-ul li:hover{
+        background: #ddd;
+    }
+
 </style>
 <body>
     <div class="admin-container">
@@ -191,18 +204,18 @@
                 <div class="add-advertising" style="padding-bottom:30px;">
                         <!-- &%_%&powerDays_有效期:^:20&%_%&startDate_有效期开始时间:^:18&%_%&endDate_有效期结束时间:^:18 -->
                     <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-api="coupon/add?" data-whatever="增加商品" 
-                    data-list="name_名称:^:水果蔬菜满20减50&%_%&type_类型:^:满减券5&%_%&catId_适用类型:^:67&%_%&executeLimit_满多少:^:200&%_%&limit_减多少:^:50&%_%&dateType_时间类型:^:-6&%_%&condition_使用条件介绍:^:-0">添加优惠券</button>
+                    data-list="name_名称:^:水果蔬菜满20减50&%_%&type_类型:^:满减券5&%_%&catId_适用类型:^:07&%_%&executeLimit_满多少:^:200&%_%&limit_减多少:^:50&%_%&dateType_时间类型:^:-6&%_%&condition_使用条件介绍:^:-0">添加优惠券</button>
                     <button class="btn btn-primary findCouponUse-1">查看优惠券</button>
                     <button class="btn btn-primary findCouponUse-2">查询使用情况</button>               
                 </div>
                 <ul class="commodity-manage">
                         <table class="table table-hover myhide-1 myhide">
-                            <tr><th>名称</th><th>类型</th><th>使用数</th><th>未使用</th><th>总数</th><th>查看</th></tr>
+                            <!-- <tr><th>名称</th><th>类型</th><th>使用数</th><th>未使用</th><th>总数</th><th>查看</th></tr>
                             <tr><td>11</td><td>22</td><td>22</td><td>22</td><td>22</td><td><button class="findCouponUse1">查看</button></td></tr>
-                            <tr><td>44</td><td>33</td><td>22</td><td>22</td><td>77</td><td><button>查看</button></td></tr>
+                            <tr><td>44</td><td>33</td><td>22</td><td>22</td><td>77</td><td><button>查看</button></td></tr> -->
                         </table>
                         <div class="panel-group myhide-2" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
+                                <!-- <div class="panel panel-default">
                                   <div class="panel-heading" role="tab" id="headingOne1">
                                     <h4 class="panel-title">
                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -330,7 +343,7 @@
                                                 </ul>
                                           </div>
                                         </div>
-                                      </div>
+                                      </div> -->
                               </div>
                 </ul>
                 <!-- <div class="add-commodity">
@@ -402,17 +415,28 @@
             <h3>发放优惠券</h3>
             <hr>
                 <button class="btn onSale active goodsOne" data-api="product/findOnSaleByStoreId?">发放优惠券</button>
-                <button class="btn notSold goodsTwo" data-api="product/findNoSaleByStoreId?">单个发放优惠券</button>
-                <div class="goodsBox" style="width:100%;padding-bottom:32px;height:auto;position:relative;">
+                <!-- <button class="btn notSold goodsTwo" data-api="product/findNoSaleByStoreId?">单个发放优惠券</button> -->
+                <div class="goodsBox" style="width:100%;padding-bottom:60px;height:auto;position:relative;">
                     <ul style="width:100%;display:flex;flex-wrap:wrap;" class="coupon-ul">
-                            <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <!-- <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                             <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                             <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                             <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                             <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                             <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
-                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                            <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li> -->
                     </ul>
+                    <div class="page" style="padding-top:4px;padding-left:10px;position:absolute;width:300px;bottom:10px;">
+                        <ul class="goods-page-ul" style="margin-bottom:0px">
+                            <!-- <li><</li>
+                            <li>1</li>
+                            <li>></li> -->
+                        </ul>
+                        <!-- <div>
+                            <input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;">
+                            <button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">10</span>&nbsp;页
+                        </div> -->
+                    </div>
                     <button class="btn btn-primary modifyCoupon" data-api="storeProduct/saveList?" style="position:absolute;bottom:4px;right:57px;">发给选中用户</button>
                 </div>
             </div>
@@ -444,18 +468,23 @@
     <script>
         var $_331 = jQuery.noConflict();
         console.log("url",url);
-        var pageNum = 2;
+        // var url = "http://192.168.1.108:8080/";
+        // var url = "http://47.105.54.146:8080/";
+        // var mykey = "union_supermarket_2018";
+        // var mykey = "afafda7193c3787f899217b5b09d4a9e";
+        console.log("url",url);
+        var pageNum = 1;
         var pageSize = 10;
         (function(){
         //动态生成page页
-        $('.page ul').append("<li><</li>");
-        for(var i = 0; i<5;i++){
-            $('.page ul').append("<li>"+i+"</li>");
-        };
-        $('.page ul').append("<li>></li>");
-        $("#headingOne1").on("click",function(){
-            $('#collapseOne').collapse('toggle');
-        });
+        // $('.page ul').append("<li><</li>");
+        // for(var i = 0; i<5;i++){
+        //     $('.page ul').append("<li>"+i+"</li>");
+        // };
+        // $('.page ul').append("<li>></li>");
+        // $("#headingOne1").on("click",function(){
+        //     $('#collapseOne').collapse('toggle');
+        // });
         $('.collapse').collapse();
 
         //发放购物券
@@ -481,8 +510,21 @@
 
                 var newUrl = url + "coupon/sendCoupon?" + str ;
                 console.log(newUrl);
+                $.ajax({
+                    url:newUrl,
+                    type:'get',
+                    success:function(data){
+                        console.log(data);
+                        getAllUser(sessionStorage.userPage);
+                        alert("发放成功,请不要再次发送");
+                    },
+                    error:function(err){
+                        console.log("err");
+                        alert("错误信息");
+                    }
+                });
             }else{
-                alert("请勾选下架的商品");
+                alert("勾选需要发放的用户");
             }
             // var obj = {};
             // obj.couponIds = 1;
@@ -495,15 +537,15 @@
             // var str = objmd5(newobj);
 
             // var newUrl = url + "coupon/sendCoupon?" + str;
-            console.log("+++++++",newUrl);
+            // console.log("+++++++",newUrl);
 
         });
 
         //查找所有的用户并将其展示在模态框上
-        function getAllUser(){
+        function getAllUser(pageNum){
             var obj = {};
             obj.access_token = sessionStorage.access_token;
-            obj.pageNum  = 1;
+            obj.pageNum  = pageNum;
             obj.pageSize = 10;
             obj.timestamp = parseInt(new Date().getTime()/1000);
             obj.from = "wed";
@@ -526,6 +568,62 @@
                     $(".coupon-ul").html(userList);
 
                     console.log("ok");
+
+                    $('.goods-page-ul').html("");
+                    $('.goods-page-ul').append("<li data-id='"+data.data.prePage+"'><</li>");
+
+                    if(data.data.pages > 5){
+                        if(data.data.pageNum < 3){
+                          for(var i = 1 ; i < 4 ; i++){
+                              if(data.data.pageNum == i){
+                                $('.goods-page-ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
+                              }else{
+                                $('.goods-page-ul').append("<li data-id="+i+">"+i+"</li>"); 
+                              }                         
+                          }
+                          $('.goods-page-ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                          $('.goods-page-ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                        }else if(data.data.pageNum == 3){
+                            $('.goods-page-ul').append("<li data-id="+1+">"+1+"</li>");                           
+                            $('.goods-page-ul').append("<li data-id="+2+">"+2+"</li>");
+                            $('.goods-page-ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
+                            $('.goods-page-ul').append("<li data-id="+4+">"+4+"</li>");
+                            $('.goods-page-ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                            $('.goods-page-ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
+                        }else if(data.data.pageNum-3 > 0){
+                                $('.goods-page-ul').append("<li data-id="+1+">"+1+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                            if(data.data.pages-data.data.pageNum >= 3){
+                                $('.goods-page-ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 2){
+                                $('.goods-page-ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 1){
+                                $('.goods-page-ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                            }else if(data.data.pages-data.data.pageNum == 0){
+                                $('.goods-page-ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                $('.goods-page-ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
+                            }
+                        }
+                    }else{
+                        for(let i = 0; i<data.data.pages;i++){
+                            var k = i + 1;
+                            if(k == data.data.pageNum){
+                            $('.goods-page-ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
+                            }else{
+                            $('.goods-page-ul').append("<li data-id="+k+">"+k+"</li>");                         
+                            }
+                        };          
+                };
+                $('.goods-page-ul').append("<li data-id='"+data.data.nextPage+"'>></li>");
                 },
                 error:function(err){
                     console.log(err);
@@ -556,9 +654,7 @@
             // console.log(arr);
             
             //增加节点name_名字:0&%_%&age_年龄:1&%_%&phone_手机:2
-            var appendNode = '<div class="form-group"><label for="recipient-name" class="control-label">内容'
-            +'</label><input type="button" class="form-control" id="recipient-name" value="'+recipient
-            +'" style="text-align:start"></div><ul class="list-group"><li class="list-group-item" id="modal-list">';
+            var appendNode = '<ul class="list-group"><li class="list-group-item" id="modal-list">';
             
             for(var i = 0; i<arr.length ;i++){
                 if(arr[i][2] == 9){
@@ -595,11 +691,36 @@
                             dataType:"json",
                             async: false,
                             success:function(data,status){
+                                // if(data.code == 200){
+                                //     appendNode += '<div class="form-group select">适用类型</div><select id="okko" style="margin-bottom:10px;" class="form-control" name="catId"><option value="0">'+'通用'+'</option>';
+                                //     for(var i = 0 ; i<data.data.length ;i++){
+                                //          appendNode +=  '<option value="'+data.data[i].catId+'">'+data.data[i].catName+'</option>';
+                                //     }
+                                //     appendNode += '</select>';
+
+                                // };
+
+
+
                                 if(data.code == 200){
-                                    appendNode += '<div class="form-group select">适用类型</div><select id="okko" style="margin-bottom:10px;" class="form-control" name="catId"><option value="0">'+'通用'+'</option>';
-                                    for(var i = 0 ; i<data.data.length ;i++){
-                                         appendNode +=  '<option value="'+data.data[i].catId+'">'+data.data[i].catName+'</option>';
+
+                                    var selectedNode = "";
+                                    var selectNode = "";
+                                    appendNode += '<div class="form-group select">适用分类</div><select id="okko" style="margin-bottom:10px;" class="form-control" name="catId">';
+                                    for(var ii = 0 ; ii<data.data.length ;ii++){
+                                        if(data.data[ii].catId == arr[i][1]){
+                                            selectedNode += '<option value="'+data.data[ii].catId+'">'+data.data[ii].catName+'</option>';
+                                        }else{
+                                            selectNode += '<option value="'+data.data[ii].catId+'">'+data.data[ii].catName+'</option>';
+                                        }
+                                           '<option value="'+data.data[ii].catId+'">'+data.data[ii].catName+'</option>';
                                     }
+                                    if(selectedNode==""){
+                                        selectedNode = '<option value="0">'+'通用'+'</option>';
+                                    }else{
+                                        selectNode += '<option value="0">'+'通用'+'</option>';
+                                    }
+                                    appendNode += selectedNode + selectNode; 
                                     appendNode += '</select>';
 
                                 }
@@ -666,7 +787,7 @@
             $(".append-form").html(appendNode);
             document.getElementsByClassName("flatpickr").flatpickr();
             var modal = $(this);
-            modal.find('.modal-title').text("管理");
+            modal.find('.modal-title').text(recipient);
             console.log(button.data("api"));
             $("#modal-commit").data("api",button.data("api"));
             // modal.find('.modal-body input').val(recipient);
@@ -723,7 +844,7 @@
 
                                         var newUrl = url + "coupon/add?" + str;
                                         console.log(newUrl);
-                                        alert(newUrl);
+                                        // alert(newUrl);
                                         
                                         $.ajax({
                                             url:newUrl,
@@ -771,7 +892,7 @@
 
                                     var newUrl = url + "coupon/add?" + str;
                                     console.log(newUrl);
-                                    alert(newUrl);
+                                    // alert(newUrl);
                                     
                                     $.ajax({
                                         url:newUrl,
@@ -780,7 +901,8 @@
                                             console.log(data);
                                             console.log("ok");
                                             $('.modal').modal('hide');
-                                            alert("优惠券添加成功");
+                                            findCoupon();
+                                            // alert("优惠券添加成功");
                                         },
                                         error:function(err){
                                             console.log(err);
@@ -842,7 +964,8 @@
                         console.log(data);
                         console.log("ok");
                         $('.modal').modal('hide');
-                        alert("提交成功");
+                        findCoupon();
+                        // alert("提交成功");
                     },
                     error:function(err){
                         console.log(err);
@@ -851,10 +974,53 @@
                     }
                 });
 
+            }else if(api == "coupon/delete?"){ //删除优惠券
+
+                for(var i=0; i<$("#modal-list .form-group").length;i++){
+                        if($("#modal-list .form-group").eq(i).hasClass('select')){
+                            data.catId = $("#okko").val();
+                        }else  if($("#modal-list .form-group").eq(i).find("input").attr("type")=="file"){
+                            alert("请先上传图片");
+                            return;
+                        }else{
+                            data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();   
+                        }
+                };
+                console.log("this is file",data);
+                data.access_token = sessionStorage.access_token;
+                data.form = "web";
+                data.timestamp = parseInt(new Date().getTime()/1000);
+
+
+                var newObj = srotKeyObj(data);
+                var str = objmd5(newObj);
+
+                var newUrl = url + "coupon/delete?" + str;
+                console.log(newUrl);
+                // alert(newUrl);
+                
+                $.ajax({
+                    url:newUrl,
+                    type:'get',
+                    success:function(data){
+                        console.log(data);
+                        console.log("ok");
+                        $('.modal').modal('hide');
+                        findCoupon();
+                    },
+                    error:function(err){
+                        console.log(err);
+                        console.log("err");
+                        alert("提交失败");
+                    }
+                });
             }
             // console.log($("#modal-list input").length);
             
         });
+
+
+
 
 
 
@@ -939,7 +1105,7 @@
                     console.log(err);
                 }
             });
-        }
+        };
         findCouponUse();
 
         
@@ -1084,7 +1250,7 @@
                         };
                         if(data.data[i].endDate != null && data.data[i].endDate !=""){
                             endDateStr += '<li class="list-group-item"><span>有效期_结束时间(年月日时分秒):</span><span class="store-num">'+data.data[i].endDate+'</span></li>';
-                            endStr += "&%_%&startDate_有效期开始时间(年月日时分秒):^:"+data.data[i].endDate+"8";
+                            endStr += "&%_%&startDate_有效期结束时间(年月日时分秒):^:"+data.data[i].endDate+"8";
                         };
                         if(data.data[i].powerDays != 0){
                             console.log(data.data[i].powerDays);
@@ -1094,17 +1260,17 @@
 
 
 
-                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title">'
-                        + '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data[i].id+'">'
+                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data[i].id+'"><h4 class="panel-title" style="padding-top:0px;">'
+                        + '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data[i].id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data[i].id+'">'
                         + data.data[i].name
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="coupon/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改优惠券"'
-                        + 'data-list="id_优惠券ID:^:'+data.data[i].id+'0&%_%&type_类型:^:'+data.data[i].type+'0&%_%&name_名称:^:'+data.data[i].name+'0&%_%&catId_商品类别权限:^:'+data.data[i].cat_id+'7&%_%&limit_优惠券金额:^:'+data.data[i].limit+'0'+startStr+endStr+powerStr+'&%_%&condition_使用条件介绍:^:'+data.data[i].condition+'0">修改优惠券</button>'
+                        + 'data-list="id_优惠券ID:^:'+data.data[i].id+'0&%_%&type_类型:^:'+data.data[i].type+'0&%_%&timeType_时间类型:^:'+data.data[i].timeType+'0&%_%&name_名称:^:'+data.data[i].name+'0&%_%&catId_商品类别权限:^:'+data.data[i].catId+'7&%_%&executeLimit_满多少:^:'+data.data[i].executeLimit+'0&%_%&limit_减多少:^:'+data.data[i].limit+'0'+startStr+endStr+powerStr+'&%_%&condition_使用条件介绍:^:'+data.data[i].condition+'0">修改优惠券</button>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary couponManage" data-toggle="modal" data-target=".bs-example-modal-lg0" data-id = '+data.data[i].id+'>发放优惠券</button>'
-                        + '<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除优惠券"'
-                        + 'data-list="name_商品名称:^:'+data.data[i].name+'0&%_%&id_ID:^:'+data.data[i].id+'0">删除优惠券</button>'
+                        + '<button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-api="coupon/delete?" data-target="#exampleModal" data-whatever="删除优惠券"'
+                        + 'data-list="name_优惠券名称:^:'+data.data[i].name+'0&%_%&id_ID:^:'+data.data[i].id+'0">删除优惠券</button>'
                         + '</h4></div>'
-                        + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
+                        + '<div id="collapse'+data.data[i].id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
                         + '<div class="panel-body">'
                         + '<div class="panel-body">'
                         + '<li class="list-group-item">'
@@ -1149,10 +1315,10 @@
                         + '</ul></div></div></div></div>'
                     }
 
-                    listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
+                    // listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;'+data.data.pages+'&nbsp;页</div></div>'
 
                     $('.panel-group').html(listNode);
-                    $('.collapse').collapse();
+                    // $('.collapse').collapse();
 
                     //     $('.page ul').append("<li><</li>");
 
@@ -1208,8 +1374,6 @@
                     //         };          
                     // }
                     // $('.page ul').append("<li>></li>");
-
-
                 },
                 error:function(err){
                     console.log("err");
@@ -1224,9 +1388,19 @@
             console.log($(this).data("id"));
             sessionStorage.couponId = $(this).data("id");
             $(".couponModal1").modal("show");
-            // $(".coupon-ul").html();
-            getAllUser();
+            sessionStorage.userPage=1;
+            getAllUser(1);
         });
+
+        // $(document).on("click",".page-ul li",function(evev){
+        //     console.log($(this).data("id"));
+        //     if($(this).data("id")=="..."||$(this).data("id")=="0"){
+        //     }else{
+        //         getAllUser($(this).data("id"));
+        //     }
+        // });
+
+        
 
         //优惠券时间类型选择
         $(document).on("click",".select-time-one",function(e){
@@ -1246,8 +1420,13 @@
 
 
         //选择分页
-        $(document).on("click",".page-ul li",function(evev){
+        $(document).on("click",".goods-page-ul li",function(evev){
             console.log($(this).data("id"));
+            if($(this).data("id")=="..."||$(this).data("id")=="0"){
+            }else{
+                sessionStorage.userPage =$(this).data("id");
+                getAllUser($(this).data("id"));
+            }
         });
 
 
@@ -1292,6 +1471,8 @@
             }
             var newstr = str.substr(0,str.length-1);
             var encodeStr = encodeURIComponent(newstr) + mykey;
+            encodeStr = encodeStr.replace(/\(/g,'%28');
+            encodeStr = encodeStr.replace(/\)/g,'%29');
             var sign = md5(encodeStr);
             newstr += "&sign=" + sign;
             return newstr;

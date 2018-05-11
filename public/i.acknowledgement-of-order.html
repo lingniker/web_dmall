@@ -14,10 +14,10 @@
         <a class="back" href="./i.shopping.html"><div class="back-into"></div></a>
         <span>订单确认</span>
     </div>
-    <div class="acknowledgement_of_order1 add-new-address-btn" style="width: 100%;height: 80px;background-color: #f7931e;background-image: url('images/acknowledgement_of_orderimg.png');background-repeat: no-repeat;background-position:260px 10px;background-size:100px 60px;color: white!important;margin-top: 45px;">
+    <div  class="acknowledgement_of_order1 add-new-address-btn" style="width: 100%;height: 80px;background-color: #f7931e;background-image: url('images/acknowledgement_of_orderimg.png');background-repeat: no-repeat;background-position:260px 10px;background-size:100px 60px;color: white!important;margin-top: 45px;">
         <div class="" style="text-align:center;line-height:80px;">没有符合的条件的地址,去添加地址</div>
     </div>
-    <div class="acknowledgement_of_order" style="display:none;">
+    <div class="acknowledgement_of_order"  style="display: none">
         <div class="receipt_information02" style="color: white;position: relative;top: 20px;font-size: 11px">收货人: <span class="consignee">宋河桥</span><span class="consignee_phone01">手机号:<span class="consignee_phone">15264254151</span></span></div>
         <div class="receipt_information03"  style="color: white;position: relative;top: 20px;font-size: 11px">收货地址: <span class="receiving_address">朝阳街道立新街与夷安大道交汇处东150米路北</span></div>
         <a href="#" class="receipt_information04"><div class="address_3_2_img1" style="margin-top: -2px"></div></a>
@@ -46,7 +46,6 @@
     <div class="acknowledgement_of_order_laji">
         帮捎送生活垃圾 (满30元可选) : <input type="checkbox" class="acknowledgement_of_order_laji_input" >
     </div>
-
     <div class="Clearing_information">
         <div class="Clearing_information01">结算信息</div>
         <div>商品金额:<span>￥<span class="order-money">217.80</span></span></div>
@@ -59,8 +58,7 @@
         <!-- <div><span>+￥<span class="Clearing_information06">0.00</span></span></div> -->
         <!-- <div>配送积分: <span>+<span class="Clearing_information06">217.80</span></span></div> -->
     </div>
-
-<div class="acknowledgement_of_order_footer" >应付款: <span>￥<span class="playMoney">22.80</span></span> <a class="acknowledgement_of_order_payment" href="i.payment-order.html">确认下单</a></div>
+<div class="acknowledgement_of_order_footer" >应付款: <span>￥<span class="playMoney">22.80</span></span> <a class="acknowledgement_of_order_payment" >确认下单</a></div>
 </div>
 <div class="acknowledgement_of_peisongshijian">
     <div class="acknowledgement_of_peisongshijian01"></div>
@@ -200,8 +198,6 @@
     </div>
 
 </div>
-
-
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script>
@@ -219,7 +215,6 @@
                 // var arr = [{a:"c",b:[1,2,3]},"1,5",2,3,4];
                 // sessionStorage.arr = JSON.stringify(arr);
                 // console.log(JSON.parse(sessionStorage.arr));
-
                 obj.storeId = sessionStorage.storeId;
                 obj.access_token = sessionStorage.access_token;         
                 obj.shoppingCartId = sessionStorage.shoppingCartId;
@@ -234,26 +229,44 @@
                     dataType:'json',
                     success:function(data){
                         console.log(data);
-                        if(data.data.addresses.length != 0){
+
+                        if(data.data.addresses.length !== 0){
                             for(var i = 0;i<data.data.addresses.length;i++){
-                                if(data.data.addresses[i].status == "0"){
+                                if(data.data.addresses[i].status = "0"){
                                     console.log("进1");
                                     $3_3_1(".consignee").html(data.data.addresses[0].name);
                                     $3_3_1(".receiving_address").html(data.data.addresses[0].addres);
                                     $3_3_1(".consignee_phone").html(data.data.addresses[0].phone);
                                     $3_3_1(".acknowledgement_of_order").css({"display":"block"});
                                     $3_3_1(".acknowledgement_of_order1").css({"display":"none"});
+
+
+                                    //显示信息
+
+                                    $3_3_1(".consignee").html(sessionStorage.order_addressName);
+                                    $3_3_1(".consignee_phone").html(sessionStorage.order_addressPhone);
+                                    $3_3_1(".receiving_address").html(sessionStorage.order_addressAddress);
                                     break;
+                                }else if(data.data.addresses[i].status = "1"){
+
                                 }
-                                if(i == data.data.addresses.length-1){              
-                                    $3_3_1(".acknowledgement_of_order").css({"display":"none"});
-                                    $3_3_1(".acknowledgement_of_order1").css({"display":"block"});
-                                }                                                          
+                                // if(i == data.data.addresses.length-1){
+                                //     $3_3_1(".acknowledgement_of_order").css({"display":"none"});
+                                //     $3_3_1(".acknowledgement_of_order1").css({"display":"block"});
+                                //     $3_3_1(".acknowledgement_of_order1").click(function () {
+                                //         location.href="i.address.html";
+                                //     });
+                                // }
                             }
                         }else{
                             $3_3_1(".acknowledgement_of_order").css({"display":"none"});
                             $3_3_1(".acknowledgement_of_order1").css({"display":"block"});
                         };
+                        //点击获取收货地址信息
+                        $3_3_1(".acknowledgement_of_order").on('click',function(){
+                            location.href = "i.order-address.html";
+                        });
+
 
                         //结算信息
                         $3_3_1(".order-money").html(data.data.discountedMoney);
@@ -266,7 +279,7 @@
                         sessionStorage.addresses = JSON.stringify(data.data.addresses);
                         sessionStorage.userCoupons = JSON.stringify(data.data.userCoupons);                
                         // $(".acknowledgement_of_order").html();
-
+                         sessionStorage.discountedMoney= data.data.discountedMoney;
                         //帮捎送生活垃圾（满30元）
                         if(data.data.discountedMoney>=30){
                               // alert(data.data.discountedMoney);
@@ -275,18 +288,62 @@
                             // $3_3_1(".acknowledgement_of_order_laji_input").attr("checked","checked")
                             //js判断复选框是否被选中ok
                             //  if(document.getElementsByClassName("acknowledgement_of_order_laji_input").checked){
-                                 if($3_3_1(".acknowledgement_of_order_laji_input").checked){
-                                 alert("帮捎送生活垃圾（满30元）选中");
-
-                             }else {
-                                 alert("帮捎送生活垃圾（满30元）未选中");
-                             }
-
-
                         }else {
                               // alert("未满30元!");
                              $3_3_1(".acknowledgement_of_order_laji_input").attr("disabled","true");
                         }
+                        //提交订单
+                        //   alert(data.data.discountedMoney);
+                        $3_3_1(".acknowledgement_of_order_payment").on('click',function(){
+                            if(sessionStorage.access_token!==""){
+                            var additionalServices="";
+                            if($3_3_1(".acknowledgement_of_order_laji_input").is(":checked")){
+                                // alert("帮捎送生活垃圾（满30元）选中");
+                                additionalServices=1;
+                                // alert(additionalServices);
+                            }else {
+                                // alert("帮捎送生活垃圾（满30元）未选中");
+                                additionalServices=0;
+                                // alert(additionalServices);
+                            }
+                            sessionStorage.additionalServices=additionalServices;
+                            var obj={};
+                            alert(sessionStorage.shoppingCartId);
+                            obj.storeId = sessionStorage.storeId;
+                            obj.access_token = sessionStorage.access_token;
+                            obj.shoppingCartId = sessionStorage.shoppingCartId;
+                            obj.couponUserId=sessionStorage.CouponId;
+                            obj.addressId=sessionStorage.order_addressId;
+                            obj.additionalServices=sessionStorage.additionalServices;
+                            obj.remarks=sessionStorage.Remark;
+                            obj.payMoney=sessionStorage.discountedMoney;
+                            // obj.startDeliverTime=sessionStorage.PeisongTime;
+                            //     obj.startDeliverTime="立即配送";
+                            //     obj.startDeliverTime=""''
+                            obj.timestamp= parseInt(new Date().getTime()/1000);
+                            obj.from = "web";
+                            var str = srotKeyObjAndMd5(obj);
+                            var newUrl = url + "order/add?" + str;
+                            $3_3_1.ajax({
+                                url:newUrl,
+                                type:"get",
+                                dataType:"json",
+                                success:function(data){
+                                    console.log(data);
+                                    console.log("ok");
+                                    alert("提交订单成功!");
+                                    // location.href = "i.payment-order.html";
+                                },
+                                error:function(err){
+                                    console.log(err);
+                                    alert("提交订单失败!");
+                                    console.log(data);
+                                }
+                            });
+
+                            }
+                        });
+
 
                         //图片的展示
                         console.log(JSON.parse(sessionStorage.cartImgArr));
@@ -304,7 +361,6 @@
                                      '<img class="imglist"  src="'+arr[2].imgSrc+'">'+
                                      '<img class="imglist"  src="'+arr[3].imgSrc+'">';
                              }
-
                              $3_3_1(".pruduct_value_sum01").html(arr.length);
                          }
                        $3_3_1(".pruduct_value_img").html(listImg);
@@ -321,9 +377,6 @@
     }else{
         alert("未登陆");
     };
-    $3_3_1(".acknowledgement_of_order").on('click',function(){
-        location.href = "i.order-address.html";
-    });
     function srotKeyObjAndMd5(obj){
     var arr = [];
     var newobj = {};
@@ -375,7 +428,6 @@ $3_3_1(".acknowledgement_of_peisongshijian02_left_meue1").on("click",function ()
         $3_3_1(".acknowledgement_of_peisongshijian02_right_time01").css({'display':'none'});
         $3_3_1(".acknowledgement_of_peisongshijian02_right_time02").css({'display':'none'});
     });
-
     //获取当前时间
     function timeSelect(time){
         var weekArr = ['星期天','星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ];
@@ -458,14 +510,11 @@ $3_3_1(".acknowledgement_of_peisongshijian02_left_meue1").on("click",function ()
         console.log(timeLi);
         $3_3_1(".acknowledgement_of_peisongshijian02_right_time01").html(timeLi);
     };
-
     timeSelect(new Date().getTime());
-    
     //格式化数据
     function formatTime(num){
         return num > 9 ? num : '0'+ num;
     }
-
     //点击配送事件
     $3_3_1(".acknowledgement_of_order_peisongtime01").on("click",function () {
         $3_3_1(".acknowledgement_of_peisongshijian").css({'display':'block'});
@@ -546,23 +595,8 @@ $3_3_1(".acknowledgement_of_peisongshijian02_left_meue1").on("click",function ()
     //优惠券选择
     $3_3_1(".acknowledgement_of_order01_span").html(sessionStorage.CouponName);
 
-     //帮捎送生活垃圾 (满30元可选)
 
-    // $3_3_1(".acknowledgement_of_order_laji_input").prop("checked","true");
-    //获取checked属性
-    // if ($3_3_1(".acknowledgement_of_order_laji_input").prop("checked")) {
-    //     //设置checked属性
-    //     // $3_3_1(".acknowledgement_of_order_laji_input").prop("checked", true);
-    //     $3_3_1(".acknowledgement_of_order_laji_input").prop("checked",false);
-    // }
-    // // else {
-    // //     //设置checked属性
-    // //     $3_3_1(".acknowledgement_of_order_laji_input").prop("checked",false);
-    // // }
-    //
-    // // if($3_3_1(".acknowledgement_of_order_laji_input").){
-    // //
-    // // }
+
 
 
 

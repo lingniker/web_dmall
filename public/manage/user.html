@@ -152,7 +152,7 @@
                 </div>
                 <ul class="commodity-manage">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
+                        <!-- <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne1">
                                 <h4 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -285,7 +285,7 @@
                             <ul class="page-ul">
                             </ul>
                             <div><input type="text" style="margin:0 5px 0px 20px;width:30px;"><button>跳转</button></div>
-                        </div>
+                        </div> -->
                     </div>
                 </ul>
             </div>
@@ -323,7 +323,7 @@
     var $_331 = jQuery.noConflict();
     console.log(url);
     var pageNum = 1;
-    var pageSize = 1;
+    var pageSize = 10;
     (function(){
         //动态生成page页
         $('.page ul').append("<li><</li>");
@@ -331,9 +331,9 @@
             $('.page ul').append("<li>"+i+"</li>");
         };
         $('.page ul').append("<li>></li>");
-        $("#headingOne1").on("click",function(){
-            $('#collapseOne').collapse('toggle');
-        });
+        // $("#headingOne1").on("click",function(){
+        //     $('#collapseOne').collapse('toggle');
+        // });
         $('.collapse').collapse();
         function findAllUser(pageNum){
             var obj = {};
@@ -360,18 +360,18 @@
                     //添加长list
                     var listNode = '';
                     for(var i = 0; i < data.data.list.length;i++){
-                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'">'
-                            + '<h4 class="panel-title">'
-                            +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="true" aria-controls="collapse'+data.data.list[i].id+'">'
+                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].userId+'">'
+                            + '<h4 class="panel-title" style="padding-top:0px;">'
+                            +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].userId+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
                             + data.data.list[i].nickname
                             + '</a>'
                             + '</h4></div>'
-                            + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">'
+                            + '<div id="collapse'+data.data.list[i].userId+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
                             + '<div class="panel-body">'
                             + '<div class="panel-body">'
                             + '<li class="list-group-item">'
                             + '<span>昵称:</span>'
-                            + '<span class="store-num">'+data.data.list[i].nickname+'</span>'
+                            + '<span class="store-num">'+ '</span>'
                             + '</li>'
                             + '<li class="list-group-item">'
                             + '<span>手机号:</span>'
@@ -405,7 +405,7 @@
                     listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>';
 
                     $('.panel-group').html(listNode);
-                    $('.collapse').collapse();
+                    // $('.collapse').collapse();
 
                     $('.page ul').append("<li data-id='"+data.data.prePage+"'><</li>");
 

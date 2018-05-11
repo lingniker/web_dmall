@@ -76,10 +76,12 @@
 
                 //设置默认地址
                 $_331(document).ready(function(){
+
                     $_331("#address_ul").html(nodestr);
                     for(var i=0;i<data.data.length;i++){
                         if(data.data[i].isDefault == 1){
                             $_331("#address_ul li").eq(i).find(".address_3_1_1").attr("checked",true);
+                            $_331("#address_ul li").eq(i).find(".address_3_1_2").html(AddresId_input);
                         }
                     }
 
