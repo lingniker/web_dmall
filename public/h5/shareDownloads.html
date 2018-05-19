@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Title</title>
+    <!--<style>-->
+        <!--*{-->
+            <!--margin: 0;-->
+            <!--padding: 0;-->
+        <!--}-->
+        <!--.wap{-->
+            <!--width: 100%;-->
+            <!--height: 100%;-->
+        <!--}-->
+    <!--</style>-->
+</head>
+<body>
+<!--<div class="wap">-->
+
+<!--</div>-->
+</body>
+</html>
+<script>
+    var reg_Android=/Android/i;
+    var reg_ios=/iPhone/i;
+    if(reg_Android.test(navigator.userAgent)==true){
+        location.href="https://www.pgyer.com/lianjiachaoshiandroid";
+    }else if(reg_ios.test(navigator.userAgent)==true){
+        alert("下载密码：lianjia");
+        location.href="https://www.pgyer.com/lianjiachaoshi";
+    }
+
+</script>

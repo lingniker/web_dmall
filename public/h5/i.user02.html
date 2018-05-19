@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration:none;
+        }
+        .userwap{
+            width: 100%;
+            height: 100%;
+        }
+        .user_title{
+            width: 100%;
+            /*border: 1px red solid;*/
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 16px;
+            background-color: #f8f8f8;
+        }
+        .shezhiimg{
+            float: right;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        .shezhiimg_1{
+            width: 50%;
+            height: 50%;
+        }
+        .user_login{
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            /*border: 1px red solid;*/
+            margin-top: 1px;
+        }
+
+        .top-box{
+            display: block;
+            /*display: none;*/
+            /*margin:37px 0px 0px 20px;*/
+            width: 100%;
+            height: 56px;
+            /*text-align: center;*/
+
+        }
+        .top-box img{
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
+        .top-hello{
+            /* display: inline; */
+            color:  #8ec44a;
+            text-align: center;
+            /*position: absolute;*/
+            /*top:0px;*/
+        }
+        .content-box{
+            width: 100px;
+            height: 56px;
+            display: inline-block;
+            position:relative;
+            left: 35%;
+            top: 20px;
+            font-size: 16px;
+            color:#fff;
+
+        }
+        .user-button{
+
+            width: 82px;
+            border-radius: 10px;
+            position: absolute;
+            top: 30px;
+            height: 24px;
+            line-height: 24px;
+            margin-left: 5%;
+            background: #f7931e;
+            text-align: center;
+            font-size: 14px;
+        }
+        .user-button a{
+            color: white;
+        }
+        .top-box_login{
+            /*margin:60px 0px 0px 20px;*/
+            /*width: 100%;*/
+            height: 56px;
+            display: none;
+            /*display: block;*/
+            /*border: 1px red solid;*/
+            position: relative;
+            top: 20px;
+            padding-left: 30px;
+        }
+        .top-box_login_a{
+            float: left;
+        }
+        .top-box_login_img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .top-box_login_1{
+            float: left;
+            /*border: 1px red solid;*/
+            margin-top: 0.5%;
+            margin-left: 2%;
+        }
+        .top-box_login-hello{
+            text-align: left;
+        }
+        .top-box_login_phone{
+            color: #f7931e;
+        }
+        .user_daipay{
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            background-color: white;
+            /*border: 1px red solid;*/
+        }
+        .user_daipay02{
+            width: 100%;
+            height: 100px;
+            /*margin-top: 10px;*/
+            background-color: white;
+            /*border: 1px red solid;*/
+        }
+        .user_daipay03{
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            background-color: white;
+            /*border: 1px red solid;*/
+        }
+        .user_daipay_li{
+           list-style: none;
+            width:100%;
+            height: 50px;
+            line-height: 50px;
+            /*border: 1px grey solid;*/
+
+        }
+        .user_daipay_li a{
+            color: black;
+            font-size: 16px;
+            width: 95%;
+            /*font-weight: bold;*/
+            display: inline-block;
+            margin-left: 2%;
+            border-bottom: 1px #eaeaea solid;
+        }
+        .user_daipay_li01{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat 0px 4px;
+            background-size: 239px 53px;
+        }
+        .user_daipay_li02{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -33px 4px;
+            background-size: 265px 53px;
+        }
+        .user_daipay_li03{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -60px 4px;
+            background-size: 265px 53px;
+        }
+        .user_daipay_li04{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -78px 7px;
+            background-size: 240px 53px;
+        }
+        .user_daipay_li05{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -110px 4px;
+            background-size: 240px 53px;
+        }
+        .user_daipay_li06{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -135px 4px;
+            background-size: 240px 53px;
+        }
+        .user_daipay_li07{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -163px 4px;
+            background-size: 240px 53px;
+        }
+        .user_daipay_li08{
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin-top: 10px;
+            margin-left: 5px;
+            background: url("images/user.png")no-repeat -193px 4px;
+            background-size: 240px 53px;
+        }
+
+        .user_daipay_value{
+            float: left;
+            margin-left: 10px;
+        }
+        .user_daipay_right{
+            width: 30px;
+            height: 30px;
+            float:right;
+
+            margin-top: 10px;
+            /*margin-left: 5px;*/
+            margin-right: 0;
+            background: url("images/user.png")no-repeat -218px 10px;
+            background-size: 239px 53px;
+        }
+    </style>
+</head>
+<body style="background-color: white">
+    <div class="userwap">
+        <div class="user_title">
+            <span style="margin-left: 10%">我的</span>
+            <a  class="shezhiimg" id="shezhi_01">
+                <img src="images/shezhiimg.png" class="shezhiimg_1">
+            </a>
+        </div>
+        <div class="user_login">
+            <div class="top-box">
+                <div class="content-box">
+                    <div class="top-hello">Hello，你好</div>
+                    <div class="user-button"><a href="./i.login.html">去登陆</a></div>
+                </div>
+            </div>
+            <div class="top-box_login" id="top-box_login">
+                <a href="i.member.html" class="top-box_login_a">
+                    <img src="" class="top-box_login_img" id="persional_img">
+                </a>
+                <div class="top-box_login_1">
+                     <a href="i.member.html" style="color: #f7931e">
+                    <div class="top-box_login-hello" id="top-box_login-hello">Hello</div>
+                    <div class="top-box_login_phone" id="top-box_login_phone">185****30786</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;height: 10px;background-color: #eaeaea"></div>
+            <ul class="user_daipay">
+                <li class="user_daipay_li user_li01"><a href="#"><div class="user_daipay_li01"></div><span class="user_daipay_value">待支付</span><div class="user_daipay_right"></div></a></li>
+                <li class="user_daipay_li user_li02"><a href="#"><div class="user_daipay_li02"></div><span class="user_daipay_value">配送中</span><div class="user_daipay_right"></div></a></li>
+                <li class="user_daipay_li user_li03"><a href="#"><div class="user_daipay_li03"></div><span class="user_daipay_value">已完成</span><div class="user_daipay_right"></div></a></li>
+            </ul>
+        <div style="width: 100%;height: 10px;background-color: #eaeaea"></div>
+        <ul class="user_daipay02">
+            <li class="user_daipay_li user_li04"><a href="#"><div class="user_daipay_li04"></div><span class="user_daipay_value">优惠券</span><div class="user_daipay_right"></div></a></li>
+            <li class="user_daipay_li user_li05"><a href="#"><div class="user_daipay_li05"></div><span class="user_daipay_value">收货地址管理</span><div class="user_daipay_right"></div></a></li>
+        </ul>
+        <div style="width: 100%;height: 10px;background-color: #eaeaea"></div>
+        <ul class="user_daipay03">
+            <li class="user_daipay_li"><a href="i.help.html"><div class="user_daipay_li06"></div><span class="user_daipay_value">帮助中心</span><div class="user_daipay_right"></div></a></li>
+            <li class="user_daipay_li"><a href="#"><div class="user_daipay_li07"></div><span class="user_daipay_value">联系我们: 400-0086-603</span><div class="user_daipay_right"></div></a></li>
+            <li class="user_daipay_li"><a href="#"><div class="user_daipay_li08"></div><span class="user_daipay_value">我的版本</span><div class="user_daipay_right"></div></a></li>
+            <li class="user_daipay_li"><a href="about-us.html"><div class="user_daipay_li08"></div><span class="user_daipay_value">关于我们</span><div class="user_daipay_right"></div></a></li>
+        </ul>
+        <div style="width: 100%;height: 100px;background-color: white"></div>
+
+    </div>
+    <div class="footer">
+        <ul>
+            <li ><a href="./i.index.html"><div class="home-img1_2"></div><div>首页</div></a></li>
+            <li ><a href="./i.order.html"><div class="home-img2"></div><div>订单</div></a></li>
+            <li ><a href="./i.user02.html"><div class="home-img5_3"></div><div style="color:#a8d861 ">我的</div></a></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var flag = sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined";
+    if(!flag){
+        document.getElementsByClassName("top-box")[0].style="display:none;";
+        document.getElementsByClassName("top-box_login")[0].style="display:block;";
+        if(sessionStorage.headimgurl==""){
+            document.getElementById("persional_img").src="images/persionalimg.png";
+
+        }else {
+            document.getElementById("persional_img").src=sessionStorage.headimgurl;
+        }
+        if(sessionStorage.nickname==""){
+            document.getElementById("top-box_login-hello").innerHTML="hello";
+        }else {
+            document.getElementById("top-box_login-hello").innerHTML=sessionStorage.nickname;
+        }
+        document.getElementById("top-box_login_phone").innerHTML=sessionStorage.phone.slice(0,3)+"****"+sessionStorage.phone.slice(7,11);
+    }else{
+        document.getElementsByClassName("top-box")[0].style="display:block";
+        document.getElementsByClassName("top-box_login")[0].style="display:none";
+    }
+
+    $(document).ready(function () {
+
+
+
+        $(".user_li01").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.order.html";
+            }
+        });
+        $(".user_li02").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.order.html";
+            }
+        });
+        $(".user_li03").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.order.html";
+            }
+        });
+        // $("#myremainingsum").on("click",function(){
+        //     if(flag){
+        //         alert("请先登陆!");
+        //     }else {
+        //         location.href="i.remainingsum.html";
+        //     }
+        // });
+        // $("#myintegral").on("click",function(){
+        //     if(flag){
+        //         alert("请先登陆!");
+        //     }else {
+        //         location.href="i.integral.html";
+        //     }
+        // });
+        $(".user_li04").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.coupon.html";
+            }
+        });
+        $(".user_li05").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.address.html";
+            }
+        });
+        $("#shezhi_01").on("click",function(){
+            if(flag){
+                alert("请先登陆!");
+            }else {
+                location.href="i.shezhi.html";
+            }
+        });
+    });
+</script>

@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*********footer*************************************************/
+.footer a{
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.28);
+    margin-top: 5px;
+}
+.footer{
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    /*background: #fff;*/
+    border-top:0.5px solid lightgray;
+    bottom: 0;
+    background-color: #f8f8f8;
+}
+.footer ul {
+    list-style: none;
+    width: 100%;
+    height: 50px;
+}
+.footer ul li{
+    width: 33.33%;
+    height: 50px;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    line-height: 10px;
+    font-weight: 400;
+}
+/***主页footer******/
+.home-img1{
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: 2px -30px;
+    background-size: 210px 60px;
+    width: 30px;
+    height: 30px;
+}
+.home-img2{
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: -64px 0px;
+    background-size: 210px 60px;
+    width: 30px;
+    height: 30px;
+}
+.home-img5{
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: -33px 0px;
+    background-size: 210px 60px;
+    width: 30px;
+    height: 30px;
+}
+/******订单footer*************************/
+.home-img1_2{
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: 1px 0px;
+    background-size: 210px 60px;
+    width: 30px;
+    height: 30px;
+}
+.home-img2_2{
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: -66px -30px;
+    background-size: 210px 60px;
+    width: 30px;
+    height: 30px;
+}
+/**********我的footer****************************/
+.home-img5_3{
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: -32px -30px;
+    background-size: 210px 60px;
+    width: 30px;
+    height: 30px;
+}
+
+
+
+.toolbar {
+    font-size: 16px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    height: 44px;
+    background-color: #fff;
+    z-index: 999;
+    line-height: 44px;
+    text-align: center;
+}
+.back{
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    /*background: #333;*/
+    border-radius: 50%;
+    color: #fff;
+    display: block;
+}
+.back-into{
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /*border-radius: 50%;*/
+    /*color: #fff;*/
+    line-height: 32px;
+    background-image: url("../images/footerimg_1.png") ;
+    background-repeat: no-repeat;
+    background-position: -149px 9px;
+    background-size: 210px 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

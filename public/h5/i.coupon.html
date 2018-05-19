@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/ys.css">
+</head>
+<body style="background-color: rgba(135,135,135,0.35)">
+<div class="toolbar">
+    <a class="back" href="./i.user02.html"><div class="back-into"></div></a>
+    <span>优惠券</span>
+</div>
+<div class="wap_coupon">
+
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<!--接口-->
+<script src="js/wys.js"></script>
+<script>
+    var $_331 = jQuery.noConflict(true);
+    // var mykey = "union_supermarket_2018";
+    // var url = "http://192.168.1.108:8080/";
+    if(sessionStorage.access_token !== undefined){
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.timestamp= parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "coupon/findMyCoupon?" + str;
+        $_331.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                console.log(data.data);
+                // alert("请求成功!");
+                //动态添加优惠券
+                var nodestr = "";
+                // var AddresId="";
+                for(var i=0;i<data.data.page.list.length;i++){
+                    nodestr += "<div class='coupon_1'  data-id='"+data.data.page.list[i].id+"' >"
+                       +"<div class='coupon_2'>"+
+
+                            "<div class='coupon_3'>"+
+                            "<div class='coupon_3_1'>"+
+                              "<span class='coupon_3_2'>"+"￥"+"</span>"+"<span class='coupon_3_3'>"+data.data.page.list[i].limit+"</span>"
+                             +"</div>"+
+                            "<div class='coupon_4'>"+"优惠券"+"</div>"
+                             +"</div>"+
+
+                             "<div class='coupon_5'>"+
+                                  "<div class='coupon_5_1'>"+data.data.page.list[i].condition+"</div>"+
+                                  "<div class='coupon_5_2'>"+"满"+data.data.page.list[i].executeLimit +"元可用"+"</div>"+
+                              "</div>"+
+                        "</div>"+
+
+
+                          "<div class='coupon_6'>"+
+                            "<div class='coupon_6_1'>"+data.data.page.list[i].deadline +"天后过期"+"</div>"+
+                        "</div>"
+                        +"</div>";
+
+                    // AddresId=data.data[i].addresId;
+
+                }
+
+                //添加优惠券
+                $_331(document).ready(function(){
+                    $_331(".wap_coupon").html(nodestr);
+                    // for(var i=0;i<data.data.length;i++){
+                    //     if(data.data[i].isDefault == 1){
+                    //         $_331("#address_ul li").eq(i).find(".address_3_1_1").attr("checked",true);
+                    //     }
+                    // }
+
+                    // $_331(document).on("click",".address_3_1_1",function () {
+                    //     var self = this;
+                    //     var obj = {};
+                    //     obj.access_token = sessionStorage.access_token;
+                    //     obj.AddresId = $_331(this).data("id");
+                    //     obj.from = "web";
+                    //     obj.timestamp = Math.floor((new Date().getTime())/1000);
+                    //     var str = srotKeyObjAndMd5(obj);
+                    //     var newUrl = url + "address/modifyIsDefault?"+str;
+                    //     console.log(newUrl);
+                    //     $3_3_1.ajax({
+                    //         url:newUrl,
+                    //         type:"GET",
+                    //         dataType:"json",
+                    //         success:function(data){
+                    //             console.log(data);
+                    //             console.log("ok");
+                    //             alert("成功设置为默认地址！");
+                    //             $_331(self).parent().find(".address_3_1_1").attr("checked","true");
+                    //             $_331(self).parent().find(".address_3_1_2").html(AddresId_input);
+                    //             $_331(self).parent().parent().parent().parent().siblings().find(".address_3_1_2").html("设为默认");
+                    //         },
+                    //         error:function(err){
+                    //             console.log(err);
+                    //         }
+                    //     })
+                    // });
+
+
+                });
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }else{
+
+    }
+
+
+
+    // function del(n) {
+    //      // var wap=document.getElementById("wap");
+    //      if(confirm("地址删除后无法恢复，是否要删除地址？")){
+    //          var s=document.getElementById("address_ul");
+    //          var t=s.childNodes.length;
+    //          for ( var i=0;i<t;i++){
+    //              // list[i].index=i;
+    //              if(i==n)
+    //              {
+    //                  s.removeChild(s.childNodes[i]);
+    //              }
+    //          }
+    //          // document.getElementById("address_1").style.display="none";
+    //      }else {
+    //      }
+    //  }
+
+
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+
+
+</script>

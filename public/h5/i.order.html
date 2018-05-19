@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link href="https://cdn.bootcss.com/ionic/1.3.2/css/ionic.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/ionic/1.3.2/js/ionic.bundle.min.js"></script>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/ys.css">
+
+    <link href="https://cdn.bootcss.com/ionic/1.3.2/css/ionic.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/ionic/1.3.2/js/ionic.bundle.min.js"></script>
+</head>
+<body  ng-app="starter" ng-controller="actionsheetCtl">
+
+    <ion-content >
+        <ion-refresher pulling-text="刷新中..." on-refresh="doRefresh()"></ion-refresher>
+
+
+
+<div >
+    <div class="order">
+        <div class="title_order">
+            <p>订单</p>
+        </div>
+    </div>
+    <div class="nav_order_wys">
+        <ul class="nav-ul_order">
+            <li id="orderlist" style="color:#8cc63f;border-bottom:1px #8cc63f solid">全部</li>
+            <li id="unpaid">待支付</li>
+            <li id="Pendingdistribution">配送中</li>
+            <li id="completed">已完成</li>
+        </ul>
+    </div>
+    <div class="orderlist">
+            <!--<ul class="order-list-ul">-->
+                <!--<li data-play="wing_payment">-->
+                    <!--<a href="i.orderdetail.html" style="color: black">-->
+                    <!--<div class="order-img"><img src="images/shangpinshengnvguo.png" alt="" class="product_img"></div>-->
+                    <!--<div class="order-msg">-->
+                        <!--<div class="ordername order-div"><span class="product">千禧圣女果</span><span class="product_right">支付完成</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">订单号:</span><span class=product_right">88888888888</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">下单时间:</span><span class="product">2017-07-01</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">价格：</span><span class="product_right">￥22.00</span></div>-->
+                        <!--<div class="ordermore order-div"><span>去支付</span></div>-->
+                    <!--</div>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-play="delivered">-->
+                        <!--<div class="order-img"><img src="images/shangpinshengnvguo.png" alt="" class="product_img"></div>-->
+                    <!--<div class="order-msg">-->
+                        <!--<div class="ordername order-div"><span class="product">千禧圣女果</span><span class="product_right">配送中</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">订单号:</span><span class=product_right">88888888888</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">下单时间:</span><span class="product">2017-07-01</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">价格：</span><span class="product_right">￥22.00</span></div>-->
+                        <!--<div class="ordermore order-div"><span>再来一单</span></div>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li data-play="pendingPayment">-->
+                        <!--<div class="order-img"><img src="images/shangpinshengnvguo.png" alt="" class="product_img"></div>-->
+                    <!--<div class="order-msg">-->
+                        <!--<div class="ordername order-div"><span class="product">千禧圣女果</span><span class="product_right">待支付</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">订单号:</span><span class=product_right">88888888888</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">下单时间:</span><span class="product">2017-07-01</span></div>-->
+                        <!--<div class="ordertime order-div"><span class="product">价格：</span><span class="product_right">￥22.00</span></div>-->
+                        <!--<div class="ordermore order-div"><span>再来一单</span></div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+    </div>
+
+    <div class="unpaid">
+        <!--<ul class="order-list-ul">-->
+            <!--<li data-play="pendingPayment">-->
+                <!--<div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>-->
+                <!--<div class="order-msg">-->
+                    <!--<div class="ordername order-div"><span class="product">草莓</span><span class="product_right">待支付</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">订单号:</span><span class=product_right">88888888888</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">下单时间:</span><span class="product">2017-07-01</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">价格：</span><span class="product_right">￥22.00</span></div>-->
+                    <!--<div class="ordermore order-div"><span>再来一单</span></div>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
+
+    <!--<a name="Pendingdistribution_1" id="Pendingdistribution_1"></a>-->
+    <div class="Pendingdistribution" id="Pendingdistribution01">
+        <!--<ul class="order-list-ul">-->
+            <!--<li data-play="delivered">-->
+                <!--<div class="order-img"><img src="images/menu1.jpg" alt="" class="product_img"></div>-->
+                <!--<div class="order-msg">-->
+                    <!--<div class="ordername order-div"><span class="product">草莓</span><span class="product_right">配送中</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">订单号:</span><span class=product_right">88888888888</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">下单时间:</span><span class="product">2017-07-01</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">价格：</span><span class="product_right">￥22.00</span></div>-->
+                    <!--<div class="ordermore order-div"><span>再来一单</span></div>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
+
+    <div class="completed">
+        <!--<ul class="order-list-ul">-->
+            <!--<li data-play="wing_payment">-->
+                <!--<a href="i.orderdetail.html" style="color: black">-->
+                <!--<div class="order-img"><img src="images/shangpinshengnvguo.png" alt="" class="product_img"></div>-->
+                <!--<div class="order-msg">-->
+                    <!--<div class="ordername order-div"><span class="product">千禧圣女果</span><span class="product_right">待支付</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">订单号:</span><span class=product_right">88888888888</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">下单时间:</span><span class="product">2017-07-01</span></div>-->
+                    <!--<div class="ordertime order-div"><span class="product">价格：</span><span class="product_right">￥22.00</span></div>-->
+                    <!--<div class="ordermore order-div"><span>再来一单</span></div>-->
+                <!--</div>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
+
+
+
+</div>
+        <div style="width: 100%;height: 100px"></div>
+    </ion-content>
+
+
+
+<div class="footer">
+    <ul>
+        <li><a href="./i.index.html"><div class="home-img1_2"></div><div>首页</div></a></li>
+        <li ><a href="./i.order.html"><div class="home-img2_2"></div><div style="color:#a8d861">订单</div></a></li>
+        <li ><a href="./i.user02.html"><div class="home-img5"></div><div>我的</div></a></li>
+    </ul>
+</div>
+
+<!--<script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!--<script type="application/javascript" src="js/jquery-1.8.2.js"></script>-->
+    <!--接口-->
+    <script src="js/wys.js"></script>
+<script>
+    var $_331 = jQuery.noConflict();
+    $_331(document).ready(function(){
+        $_331("#orderlist").click(function(){
+            $_331("#orderlist").css({'color':'#8cc63f','borderBottom':'1px #8cc63f solid'});
+            $_331("#unpaid ").css({'color':'black','border':'0'});
+            $_331("#Pendingdistribution ").css({'color':'black','border':'0'});
+            $_331("#completed ").css({'color':'black','border':'0'});
+            $_331(".orderlist").show();
+            $_331(".unpaid").hide();
+            $_331(".Pendingdistribution").hide();
+            $_331(".completed").hide();
+        });
+
+        $_331("#unpaid").click(function(){
+            $_331("#orderlist").css({'color':'black','border':'0'});
+            $_331("#unpaid ").css({'color':'#8cc63f','borderBottom':'1px #8cc63f solid'});
+            $_331("#Pendingdistribution ").css({'color':'black','border':'0'});
+            $_331("#completed ").css({'color':'black','border':'0'});
+            $_331(".orderlist").hide();
+            $_331(".unpaid").show();
+            $_331(".Pendingdistribution").hide();
+            $_331(".completed").hide();
+        });
+
+        $_331("#Pendingdistribution").click(function(){
+            $_331("#orderlist").css({'color':'black','border':'0'});
+            $_331("#unpaid ").css({'color':'black','border':'0'});
+            $_331("#Pendingdistribution ").css({'color':'#8cc63f','borderBottom':'1px #8cc63f solid'});
+            $_331("#completed ").css({'color':'black','border':'0'});
+            $_331(".orderlist").hide();
+            $_331(".unpaid").hide();
+            $_331(".Pendingdistribution").show();
+            $_331(".completed").hide();
+        })
+
+        $_331("#completed").click(function(){
+            $_331("#orderlist").css({'color':'black','border':'0'});
+            $_331("#unpaid ").css({'color':'black','border':'0'});
+            $_331("#Pendingdistribution ").css({'color':'black','border':'0'});
+            $_331("#completed ").css({'color':'#8cc63f','borderBottom':'1px #8cc63f solid'});
+            $_331(".orderlist").hide();
+            $_331(".unpaid").hide();
+            $_331(".Pendingdistribution").hide();
+            $_331(".completed").show();
+        })
+    });
+    angular.module('starter', ['ionic']).run(function($ionicPlatform) {
+            $ionicPlatform.ready(function() {
+                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+                // for form inputs)
+                if(window.cordova && window.cordova.plugins.Keyboard) {
+                    cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                }
+                if(window.StatusBar) {
+                    StatusBar.styleDefault();
+                }
+            });
+        }).controller( 'actionsheetCtl',['$scope','$timeout' ,'$http',function($scope,$timeout,$http){
+
+            // $scope.items=[
+            //     {
+            //         "name":"HTML5"
+            //     },
+            //     {
+            //         "name":"JavaScript"
+            //     },
+            //     {
+            //         "name":"Css3"
+            //     }
+            // ];
+            //
+            $scope.doRefresh = function() {
+                $http.get('i.order.html')  //注意改为自己本站的地址，不然会有跨域问题
+                    .success(function(newItems) {
+                        $scope.items = newItems;
+                    })
+                    .finally(function() {
+                        $scope.$broadcast('scroll.refreshComplete');
+                    });
+            };
+        }
+        ]);
+
+
+
+
+    if(sessionStorage.access_token !== undefined){
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.orderStatus=0;
+        obj.timestamp= parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "order/list?" + str;
+        $_331.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log("订单数据显示");
+                console.log(data);
+                var listnode="";
+                for (var i=0;i<data.data.length;i++){
+                   // alert(data.data.length);
+                    if(data.data[i].status==1){
+                        listnode+='<ul class="order-list-ul">'+
+                            '<li data-play="wing_payment">' +
+                            '<a href="i.orderdetail.html" style="color: black">' +
+                            '<div class="order-img">'+'<img src="'+data.data[i].imagePath+'" alt="" class="product_img">'+'</div>'+
+                            ' <div class="order-msg">' +
+                            ' <div class="ordername order-div">'+'<div class="product_01">'+data.data[i].productName+'</div>'+'<div class="product_right">'+'待支付'+'</div>'+'</div>'+
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'订单号:'+'<span class=product_right_1">'+data.data[i].orderNo+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'下单时间:'+'<span class=product_right_1">'+data.data[i].orderTime+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'价格：'+'<span class="product_right_2">'+'￥'+data.data[i].payMoney+'</span>'+'</div>'+'</div>'+
+                            '</div>'+
+                            '</a>'+
+                            '</li>' +
+                            '</ul>';
+                        $_331(".unpaid").html(listnode);
+                    }else if(data.data[i].status==3){
+                        listnode+='<ul class="order-list-ul">'+
+                            '<li data-play="wing_payment">' +
+                            '<a href="i.orderdetail.html" style="color: black">' +
+                            '<div class="order-img">'+'<img src="'+data.data[i].imagePath+'" alt="" class="product_img">'+'</div>'+
+                            ' <div class="order-msg">' +
+                            ' <div class="ordername order-div">'+'<div class="product_01">'+data.data[i].productName+'</div>'+'<div class="product_right">'+'配送中'+'</div>'+'</div>'+
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'订单号:'+'<span class=product_right_1">'+data.data[i].orderNo+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'下单时间:'+'<span class=product_right_1">'+data.data[i].orderTime+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'价格：'+'<span class="product_right_2">'+'￥'+data.data[i].payMoney+'</span>'+'</div>'+'</div>'+
+                            '</div>'+
+                            '</a>'+
+                            '</li>' +
+                            '</ul>';
+                        $_331(".Pendingdistribution").html(listnode);
+                    }else if(data.data[i].status==5){
+                        listnode+='<ul class="order-list-ul">'+
+                            '<li data-play="wing_payment">' +
+                            '<a href="i.orderdetail.html" style="color: black">' +
+                            '<div class="order-img">'+'<img src="'+data.data[i].imagePath+'" alt="" class="product_img">'+'</div>'+
+                            ' <div class="order-msg">' +
+                            ' <div class="ordername order-div">'+'<div class="product_01">'+data.data[i].productName+'</div>'+'<div class="product_right">'+'支付完成'+'</div>'+'</div>'+
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'订单号:'+'<span class=product_right_1">'+data.data[i].orderNo+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'下单时间:'+'<span class=product_right_1">'+data.data[i].orderTime+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'价格：'+'<span class="product_right_2">'+'￥'+data.data[i].payMoney+'</span>'+'</div>'+'</div>'+
+                            '</div>'+
+                            '</a>'+
+                            '</li>' +
+                            '</ul>';
+                        $_331(".completed").html(listnode);
+                    }else if(data.data[i].status==6){
+                        listnode+='<ul class="order-list-ul">'+
+                            '<li data-play="wing_payment">' +
+                            '<a href="i.orderdetail.html" style="color: black">' +
+                            '<div class="order-img">'+'<img src="'+data.data[i].imagePath+'" alt="" class="product_img">'+'</div>'+
+                            ' <div class="order-msg">' +
+                            ' <div class="ordername order-div">'+'<div class="product_01">'+data.data[i].productName+'</div>'+'<div class="product_right">'+'已取消'+'</div>'+'</div>'+
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'订单号:'+'<span class=product_right_1">'+data.data[i].orderNo+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'下单时间:'+'<span class=product_right_1">'+data.data[i].orderTime+'</span>'+ '</div>'+'</div>' +
+                            ' <div class="ordertime order-div">'+'<div class="product_02">'+'价格：'+'<span class="product_right_2">'+'￥'+data.data[i].payMoney+'</span>'+'</div>'+'</div>'+
+                            '</div>'+
+                            '</a>'+
+                            '</li>' +
+                            '</ul>';
+                        $_331(".orderlist").html(listnode);
+                    }
+                    // listnode+='<ul class="order-list-ul">'+
+                    //     '<li data-play="wing_payment">' +
+                    //     '<a href="i.orderdetail.html" style="color: black">' +
+                    //     '<div class="order-img">'+'<img src="'+data.data[i].imagePath+'" alt="" class="product_img">'+'</div>'+
+                    //     ' <div class="order-msg">' +
+                    //     ' <div class="ordername order-div">'+'<span class="product">'+data.data[i].productName+'</span>'+'<span class="product_right">'+'待支付'+'</span>'+'</div>'+
+                    //     ' <div class="ordertime order-div">'+'<span class="product">'+'订单号:'+'</span>'+'<span class=product_right">'+data.data[i].orderNo+'</span>'+'</div>' +
+                    //     ' <div class="ordertime order-div">'+'<span class="product">'+'下单时间:'+'</span>'+'<span class="product">'+data.data[i].orderTime+'</span>'+'</div>'+
+                    //     ' <div class="ordertime order-div">'+'<span class="product">'+'价格：'+'</span>'+'<span class="product_right">'+'￥'+data.data[i].payMoney+'</span>'+'</div>'+
+                    //     // ' <div class="ordermore order-div"><span>去支付</span></div>'+
+                    //     '</div>'+
+                    //     '</a>'+
+                    //     '</li>' +
+                    //     '</ul>';
+                    // $_331(".orderlist").html(listnode);
+                }
+
+
+
+
+
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }else{
+
+    }
+
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>购物车</title>
+    <link rel="stylesheet" href="css/common.css">
+     <link rel="stylesheet" href="css/mycss/shopping.css">
+
+</head>
+<body style="background-color: #eee">
+<div class="wap_shopping">
+    <div class="toolbar">
+        <a class="back" href="./i.index.html"><div class="back-into"></div></a>
+        <span>购物车</span>
+        <span class="shoping_clear">清空</span>
+    </div>
+    <div class="shopping_main">
+        <ul id="shopping_ul">
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="shopping_li_checked">
+                    <div class="shopping_li_checked_01  item01 ">
+                        <div class="shopping_check">
+                            <div data-check="show" class="shopping_check_div shopping_check_div_yes">
+                                <div class="shopping_check_yes"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shoping_li_img">
+                    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2345459846,1574162539&fm=27&gp=0.jpg" class="shoping_li_img_01">
+                </div>
+                <div class="shopping_value">
+                    <div class="shopping_cart_1"><span>北京昌平有机园草莓</span><span>1kg</span><span></span></div>
+                    <div class="shopping_cart_2">
+                        <div class="shopping_cart_2_1">￥<span>12.8</span></div>
+                        <div class="shopping_cart_2_2"><div class="shoping_reduce">-</div><input type="text" value="1" class="shoping_quantity"><div class="shopping_add">+</div></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div class="shoping_footer">
+    <div class="shoping_footer_1">
+        <div class="shopping_li_checked_01 " style="margin-top:7px;margin-left: -20px;float: left" id="allSelected">
+            <div class="shopping_check">
+                <div data-check="show" class="shopping_check_div_all">
+                    <div class="shopping_check_yes"></div>
+                </div>
+            </div>
+        </div>
+        <div class="shopping_li_checked_02">&nbsp;全选</div>
+
+    </div>
+    <div class="shoping_footer_2">
+        <div class="shoping_footer_2_2"><a href="#" style="color: white">结算
+            <!-- (<span>0</span>) -->
+        </a></div>
+        <div class="shoping_footer_2_1">
+            <div class="shoping_footer_2_1_1">合计：<span>￥</span><span class="cart_sum">0.00</span></div>
+            <!-- <div class="shoping_footer_2_1_2">
+                <input type="checkbox" value="">
+                <span>携带垃圾</span>
+            </div> -->
+        </div>
+
+    </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<!--接口-->
+<script src="js/wys.js"></script>
+<script>
+    var $3_3_1 = jQuery.noConflict();
+    // var url = "http://192.168.1.108:8080/";
+    // var url = "http://192.168.1.109:8080/";
+    // var mykey = "union_supermarket_2018"; 
+    if(sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined"){
+        console.log("sessionStorage.access_token");
+    }else{
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.storeId = 10;
+        obj.timestamp = parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "shoppingCart/get?" + str;
+        console.log(newUrl);
+        //请求购物车
+        $3_3_1.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log("ok");
+                console.log(data);
+                // data = {"code": 200,
+                //         "message": "请求成功",
+                //         "data": {
+                //             "id": 2,
+                //             "deleted": "0",
+                //             "createTime": "2018-04-19 17:14:58",
+                //             "createUser": 11,
+                //             "updateTime": "2018-04-19 17:17:36",
+                //             "updateUser": 11,
+                //             "storeId": 10,
+                //             "sum": 2.5,
+                //             "discountedPrice": 2.5,
+                //             "amount": 5,
+                //             "weight": 0.12,
+                //             "garbage": null,
+                //             "list": [
+                //                 {
+                //                     "id": 3,
+                //                     "deleted": "0",
+                //                     "createTime": "2018-04-19 17:14:58",
+                //                     "createUser": 11,
+                //                     "updateTime": "2018-04-19 17:17:36",
+                //                     "updateUser": 11,
+                //                     "shoppingCartId": 2,
+                //                     "productId": 7,
+                //                     "amount": 5,
+                //                     "outOfStock": "0",
+                //                     "selected": "1",
+                //                     "sum": 2.5,
+                //                     "discountedPrice": 0.5,
+                //                     "weight": 0.12,
+                //                     "product": {
+                //                         "id": 7,
+                //                         "deleted": null,
+                //                         "createTime": null,
+                //                         "createUser": null,
+                //                         "updateTime": null,
+                //                         "updateUser": null,
+                //                         "name": "魔法士鲜香小葱味干脆面24克",
+                //                         "imagePath": "http://140.143.25.27:8080/attachment/view/61",
+                //                         "cost": 0.4,
+                //                         "price": 0.5,
+                //                         "introduction": null,
+                //                         "weight": 0.024,
+                //                         "categoryId": 2,
+                //                         "remarks": null,
+                //                         "hot": -1,
+                //                         "storeId": null,
+                //                         "storeProductId": null
+                //                     }
+                //                 }
+                //             ]
+                //         }
+                //     };
+            
+            var list = '';
+            var allCheck = 'show';
+            for(var i =0 ; i< data.data.list.length;i++){
+                var check = data.data.list[i].selected == 1 ? "show" : "hide";
+                if(data.data.list[i].selected == 0){
+                    allCheck = "hide";             
+                }
+                list += '<li class="cart-li" data-cartId='+data.data.list[i].id+'>'
+                        +'<div class="shopping_li_checked">'
+                        +'<div class="shopping_li_checked_01  item01">'
+                        +'<div class="shopping_check">'
+                        +'<div data-check="'+check+'" data-shopping-cart-item-id = "'+data.data.list[i].id+'" class="shopping_check_div">'
+                        +'<div class="shopping_check_yes"></div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</div>'
+                        +'<div class="shoping_li_img">'
+                        +'<img src="'+data.data.list[i].product.imagePath+'" class="shoping_li_img_01">'
+                        +'</div>'
+                        +'<div class="shopping_value">'
+                        +'<div class="shopping_cart_1"><span class="product-name">'+data.data.list[i].product.name+'</span><span></span><span></span></div>'
+                        +'<div class="shopping_cart_2">'
+                        +'<div class="shopping_cart_2_1">￥<span class="product-price">'+data.data.list[i].product.price+'</span></div>'
+                        +'<div class="shopping_cart_2_2"><div class="shoping_reduce" data-shopping-cart-id="'
+                        +data.data.id+'" data-shopping-cart-item-id="'
+                        +data.data.list[i].id+'">-</div><input type="button" value="'
+                        +data.data.list[i].amount+'" class="shoping_quantity"><div data-shopping-cart-id="'
+                        +data.data.id+'" data-shopping-cart-item-id="'
+                        +data.data.list[i].id+'" class="shopping_add">+</div></div>'
+                        +'</div>'
+                        +'</div>'
+                        +'</li>'
+            };
+            $3_3_1('#shopping_ul').html(list);
+            $3_3_1(".shoping_clear").data("catId",data.data.id);
+            console.log($3_3_1('.shopping_check_div').length);
+            for(var i = 0; i< $3_3_1('.shopping_check_div').length;i++){
+                if($3_3_1('.shopping_check_div').eq(i).data("check")=="show"){
+                    check_show($3_3_1('.shopping_check_div').eq(i));
+                }else{
+                    check_hide($3_3_1('.shopping_check_div').eq(i));
+                }
+            };
+            $3_3_1('.shopping_check_div_all').data("shoppingCartId",data.data.id);
+            if(allCheck == "show"){
+                check_show($3_3_1('.shopping_check_div_all'));
+                $3_3_1('.shopping_check_div_all').data("check","show");
+            }else{
+                check_hide($3_3_1('.shopping_check_div_all'));
+                $3_3_1('.shopping_check_div_all').data("check","hide");
+            }
+            $3_3_1(".cart_sum").html(data.data.sum);
+            // alert(data.data.weight);
+            sessionStorage.Goods_weight=data.data.weight;
+
+
+            },
+            error:function(err){
+                console.log(err);
+                console.log("err");
+            }
+        });
+
+        //清空购物车
+        $3_3_1(".shoping_clear").on('click',function () {
+                    if(confirm("购物车清空后无法恢复数据，你确定要清空购物车？")){
+                        // alert(1111);
+                        var obj={};
+                        obj.access_token = sessionStorage.access_token;
+                        obj.shoppingCartId= $3_3_1(".shoping_clear").data("catId");
+                        // alert(data.data.id);
+                        obj.timestamp = parseInt(new Date().getTime()/1000);
+                        obj.from = "web";
+                        var str = srotKeyObjAndMd5(obj);
+                        var newUrl = url + "shoppingCart/clear?" + str;
+                        console.log(newUrl);
+                        $3_3_1.ajax({
+                            url:newUrl,
+                            type:"get",
+                            dataType:"json",
+                            success:function(data){
+                                console.log(data);
+                                alert("清空成功!");
+                                $3_3_1('#shopping_ul').html("");
+                                $3_3_1(".cart_sum").html("0");
+                                // $3_3_1(".cart_sum").html(data.data.sum);
+                            },
+                            error:function(err){
+                                console.log(err);
+                            }
+                        });
+
+
+                    }else {}
+
+                });
+
+    }
+
+    $3_3_1(".shoping_footer_2_2").on('click',function(e){
+        console.log("你要结算吗?");
+        var obj = {};
+        obj.storeId = 10;
+        sessionStorage.storeId = 10;
+        sessionStorage.shoppingCartId = $3_3_1('.shopping_check_div_all').data("shoppingCartId");
+        obj.access_token = sessionStorage.access_token;
+        console.log($3_3_1(".cart-li").length);
+        var arrImg = [];
+        for(var i = 0; i < $3_3_1(".cart-li").length;i++){
+            console.log($3_3_1(".cart-li").eq(i).find(".shopping_check_div").data("check"));
+            if($3_3_1(".cart-li").eq(i).find(".shopping_check_div").data("check")=="show"){
+                var cartImgObj = {};
+                cartImgObj.imgSrc = $3_3_1(".cart-li").eq(i).find("img").attr("src");
+                cartImgObj.number = $3_3_1(".cart-li").eq(i).find("input").val();
+                cartImgObj.price = $3_3_1(".cart-li").eq(i).find(".product-price").text();
+                cartImgObj.name = $3_3_1(".cart-li").eq(i).find(".product-name").text();
+                arrImg.push(cartImgObj);
+            }else if($3_3_1(".cart-li").eq(i).find(".shopping_check_div").data("check")=="hide"){
+
+            }
+
+        }
+        sessionStorage.Goods_weights=sessionStorage.Goods_weight;
+        console.log(arrImg);
+        sessionStorage.cartImgArr=JSON.stringify(arrImg);
+        
+        
+        // obj.shoppingCartId = $3_3_1('.shopping_check_div_all').data("shoppingCartId");
+        // obj.timestamp = parseInt(new Date().getTime()/1000);
+        // obj.from = "web";
+        // var str = srotKeyObjAndMd5(obj);
+        // var newUrl = url + "order/settlement?" + str;
+        // console.log(newUrl);
+        location.href = "i.acknowledgement-of-order.html";
+    });
+
+    //商品数量的增加
+    $3_3_1(document).on('click','.shopping_add',function(e){
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartItemId"));
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartId"));
+        if($3_3_1(this).parent().find("input").val() == 10){
+            console.log("不能提交太多");
+        }else{
+            var self = this;
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.shoppingCartItemId = $3_3_1(this).data("shoppingCartItemId");
+            obj.shoppingCartId = $3_3_1(this).data("shoppingCartId");
+            obj.type = 1;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.from = "web";
+            var str = srotKeyObjAndMd5(obj);
+            var newUrl = url + "shoppingCart/changeAmount?" + str;
+            console.log(newUrl);
+            $3_3_1.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    console.log("add goods",data);
+                    var num = parseInt($3_3_1(self).parent().find("input").val())+1;
+                    $3_3_1(self).parent().find("input").val(num);
+                    $3_3_1(".cart_sum").text(data.data.sum);
+                    check_show($3_3_1(self).parents(".cart-li").find(".shopping_check_div").get(0));
+                    $3_3_1(self).parents(".cart-li").find(".shopping_check_div").data("check","show");
+                    allSelect();
+                },
+                error:function(err){
+                    console.log(err);
+                }
+                });
+        }
+    });
+
+    //商品数量的减少
+    $3_3_1(document).on('click','.shoping_reduce',function(e){
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartItemId"));
+        console.log("this is shopping car item id",$3_3_1(this).data("shoppingCartId"));
+        if($3_3_1(this).parent().find("input").val() == 1){
+            console.log("不能提交了");
+        }else{
+            var self = this;
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.shoppingCartItemId = $3_3_1(this).data("shoppingCartItemId");
+            obj.shoppingCartId = $3_3_1(this).data("shoppingCartId");
+            obj.type = -1;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.from = "web";
+            var str = srotKeyObjAndMd5(obj);
+            var newUrl = url + "shoppingCart/changeAmount?" + str;
+            console.log(newUrl);
+            $3_3_1.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    console.log(data);
+                    var num = parseInt($3_3_1(self).parent().find("input").val())-1;
+                    $3_3_1(self).parent().find("input").val(num);
+                    $3_3_1(".cart_sum").text(data.data.sum);
+                    check_show($3_3_1(self).parents(".cart-li").find(".shopping_check_div").get(0));
+                    $3_3_1(self).parents(".cart-li").find(".shopping_check_div").data("check","show");
+                    allSelect();
+                },
+                error:function(err){
+                    console.log(err);
+                }
+                });
+        }      
+    });
+
+    //check节点展示
+    function check_show(node){
+        $3_3_1(node).addClass("shopping_check_div_yes");
+        $3_3_1(node).children(".shopping_check_yes").css({"display":"block"});
+    }
+    //check节点隐藏
+    function check_hide(node){
+        $3_3_1(node).removeClass("shopping_check_div_yes");
+        $3_3_1(node).children(".shopping_check_yes").css({"display":"none"});
+    }
+
+    //全选与非全选
+    function allSelect(){
+        for(var i = 0 ;i<$3_3_1(".shopping_check_div").length;i++){
+            if($3_3_1(".shopping_check_div").eq(i).data("check") == "hide"){
+                check_hide($3_3_1(".shopping_check_div_all").get(0));
+                $3_3_1(".shopping_check_div_all").data("check","hide");
+                break;
+            };
+            if($3_3_1(".shopping_check_div").length-1 == i ){
+                check_show($3_3_1(".shopping_check_div_all").get(0));
+                $3_3_1(".shopping_check_div_all").data("check","show");
+            }
+        }
+    };
+
+    // //全选与取消全选check
+    // $('shopping_check_div_all').on("click",function(e){
+    //     console.log("全选");
+    // });
+
+
+    //选择或取消购物车里的商品
+    $3_3_1(document).on("click",".shopping_check_div",function(e){
+        // console.log("--------");
+        if($3_3_1(this).data("check") == "show"){
+            // console.log($3_3_1(this).data('shoppingCartItemId'));
+            var self = this;
+            var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartItemId = $3_3_1(this).data('shoppingCartItemId');
+                obj.type = 0;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selected?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        check_hide($3_3_1(self).get(0));
+                        $3_3_1(self).data("check","hide");
+                        $3_3_1(".cart_sum").text(data.data.sum);
+                        allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                    });
+
+            // check_hide($3_3_1(this).get(0));
+            // $3_3_1(this).data("check","hide");
+
+        }else{
+            var self = this;
+            var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartItemId = $3_3_1(this).data('shoppingCartItemId');
+                obj.type = 1;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selected?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        $3_3_1(self).data("check","show");
+                        check_show($3_3_1(self).get(0));
+                        $3_3_1(".cart_sum").text(data.data.sum);
+                        allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });    
+        }    
+    });
+
+    //全选或者非全选
+    $3_3_1(document).on("click",".shopping_check_div_all",function(e){
+        console.log($3_3_1(this).data("check"));
+        if($3_3_1(this).data("check") == "show"){
+            var self = this;
+            var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartId = $3_3_1(this).data('shoppingCartId');
+                obj.type = 0;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selectAll?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+
+                        $3_3_1(self).data("check","hide");
+                        check_hide($3_3_1(self).get(0));
+                        $3_3_1(".cart_sum").text(data.data.sum);
+
+                        for(var i = 0;i < $3_3_1(".shopping_check_div").length;i++){
+                            console.log("this is",i);
+                            if($3_3_1(".shopping_check_div").eq(i).data("check") == "show"){
+                                check_hide($3_3_1(".shopping_check_div").eq(i).get(0));
+                                $3_3_1(".shopping_check_div").eq(i).data("check","hide");
+                            }
+                        }
+
+                        // allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+        }else if($3_3_1(this).data("check") == "hide"){
+
+             var self = this;
+             var obj = {};
+                obj.access_token = sessionStorage.access_token;
+                obj.shoppingCartId = $3_3_1(this).data('shoppingCartId');
+                obj.type = 1;
+                obj.timestamp = parseInt(new Date().getTime()/1000);
+                obj.from = "web";
+                var str = srotKeyObjAndMd5(obj);
+                var newUrl = url + "shoppingCart/selectAll?" + str;
+                console.log(newUrl);
+                $3_3_1.ajax({
+                    url:newUrl,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        $3_3_1(self).data("check","show");
+                        check_show($3_3_1(self).get(0));
+                        $3_3_1(".cart_sum").text(data.data.sum);
+                        for(var i = 0;i < $3_3_1(".shopping_check_div").length;i++){
+                            console.log("this is",i);
+                            if($3_3_1(".shopping_check_div").eq(i).data("check") == "hide"){
+                                check_show($3_3_1(".shopping_check_div").eq(i).get(0));
+                                $3_3_1(".shopping_check_div").eq(i).data("check","show");
+                            }
+                        }
+                        // allSelect();
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+
+        };
+    });
+    
+
+    function srotKeyObjAndMd5(obj){
+    var arr = [];
+    var newobj = {};
+    for(var key in obj){
+        arr.push(key);
+    }
+    arr.sort();
+    var i=0;
+    for(var key in obj){
+        newobj[arr[i]] = obj[arr[i]];
+        i++;
+    };
+    var str = '';
+    for(var key in newobj){
+        str += key +"="+ newobj[key] + "&";
+    }
+    var newstr = str.substr(0,str.length-1);
+
+    var encodeStr = encodeURIComponent(newstr) + mykey;
+    var sign = md5(encodeStr);
+    newstr += "&sign=" + sign;
+    return newstr;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/ys.css">
+</head>
+<body style="background-color: rgba(135,135,135,0.35)">
+<div class="toolbar">
+    <a class="back" href="./i.acknowledgement-of-order.html"><div class="back-into"></div></a>
+    <span>优惠券</span>
+</div>
+<div class="wap_coupon">
+
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<!--接口-->
+<script src="js/wys.js"></script>
+<script>
+    var $_331 = jQuery.noConflict(true);
+    // var mykey = "afafda7193c3787f899217b5b09d4a9e";
+    // var mykey = "union_supermarket_2018";
+    // var url = "http://192.168.1.108:8080/";
+    // var url = "http://192.168.1.109:8080/";
+    if(sessionStorage.access_token !== undefined){
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.storeId = sessionStorage.storeId;
+        obj.shoppingCartId = sessionStorage.shoppingCartId;
+        obj.timestamp= parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "order/settlement?" + str;
+        $_331.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log(data);
+                // console.log(data.data);
+                // alert("请求成功!");
+                //动态添加优惠券
+                var nodestr = "";
+                // var AddresId="";
+                for(var i=0;i<data.data.userCoupons.length;i++){
+
+                    // if (sessionStorage.discountedMoney>=data.data.page.list[i].executeLimit){
+
+                    nodestr += "<div class='coupon_1'  data-id='"+data.data.userCoupons[i].userCouponId+"' data-name='"+data.data.userCoupons[i].name+"' + data-limit='"+data.data.userCoupons[i].limit+"'>"
+                        +"<div class='coupon_2'>"+
+
+                        "<div class='coupon_3'>"+
+                        "<div class='coupon_3_1'>"+
+                        "<span class='coupon_3_2'>"+"￥"+"</span>"+"<span class='coupon_3_3'>"+data.data.userCoupons[i].limit+"</span>"
+                        +"</div>"+
+                        "<div class='coupon_4'>"+"优惠券"+"</div>"
+                        +"</div>"+
+
+                        "<div class='coupon_5'>"+
+                        "<div class='coupon_5_1'>"+data.data.userCoupons[i].condition+"</div>"+
+                        "<div class='coupon_5_2'>"+"满"+data.data.userCoupons[i].executeLimit +"元可用"+"</div>"+
+                        "</div>"+
+                        "</div>"+
+
+
+                        "<div class='coupon_6'>"+
+                        "<div class='coupon_6_1'>"+data.data.userCoupons[i].deadline +"天后过期"+"</div>"+
+                        "</div>"
+                        +"</div>";
+
+                    // AddresId=data.data[i].addresId;
+                    // }
+
+                }
+                //点击获取优惠券信息
+                $_331(document).on("click",".coupon_1",function () {
+                    // alert($_331(this).data("id"));
+                    // alert($_331(this).data("name"));
+                    sessionStorage.CouponId=$_331(this).data("id");
+                    sessionStorage.CouponName=$_331(this).data("name");
+
+                    sessionStorage.CouponLimit=$_331(this).data("limit");
+                    location.href="i.acknowledgement-of-order.html";
+                });
+                //添加优惠券
+                $_331(document).ready(function(){
+                    $_331(".wap_coupon").html(nodestr);
+                });
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }else{
+
+    }
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+
+
+</script>
