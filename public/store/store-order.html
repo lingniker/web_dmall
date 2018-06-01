@@ -9,9 +9,9 @@
     <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
     <link href="myadmin/css/common.css" rel="stylesheet">
-    <link href="myadmin/css/mycss/store-order.css" rel="stylesheet">
+    <link href="myadmin/css/mycss/store-order.css?v=123" rel="stylesheet">
     <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
-    <title>Document</title>
+    <title>店铺管理</title>
 </head>
 <style>
     .data-title{
@@ -212,7 +212,7 @@
             <div class="body-right-title">订单查询</div>
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
-                    <button type="button" class="btn btn-primary not-delivery">未配送订单(<span class="not-delivery-num" style="color:red;">1</span>)</button>
+                    <button type="button" class="btn btn-primary not-delivery">未配送订单(<span class="not-delivery-num" style="color:red;">0</span>)</button>
                     <button type="button" class="btn btn-primary not-finish">配送中</button>                
                     <button type="button" class="btn btn-primary finish">配送完成订单</button>
                     <button type="button" class="btn btn-primary finished">已完成订单</button>
@@ -261,7 +261,7 @@
                         <!-- <li class="store-order-li"><span class="order-name-box"><span>订单号:</span></span><button class="btn btn-primary btn-right-margin">配送</button><button class="btn btn-primary btn-right-margin">完成</button><span class="order-status">状态：<span>已配送</span></span></li> -->
                 </ul>
                 <ul class="store-manage-not-delivery">                        
-                        <!-- <li class="store-order-li" style="height:350px;">
+                         <!-- <li class="store-order-li" style="height:auto;">
                             <div class="order-li-title" data-store-collapse="show" >
                                 <span class="order-name-box"><span>订单号:000001</span></span>
                                 <span class="order-status">状态：<span class="order-status-show">未配送</span></span>
@@ -274,22 +274,22 @@
                                         <li class="order-detail-li">时间：</li>
                                         <li class="order-detail-li">姓名：</li>
                                         <li class="order-detail-li">电话：</li>
-                                        <li class="order-detail-li" style="height:100px;position:relative">商品：
-                                            <ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
-                                                <li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;"><span style='display:inline-block;width: 350px;'>红牛功能维生素1234567897979878945564899</span> <span style='float:right;padding-right:10px;'>数量:<span>100</span></span></li>
+                                        <li class="order-detail-li" style="height:auto;position:relative">商品：
+                                            <ul style="position:relative;height:auto;top:0px;height:auto;">
+                                                <li style="width:430px;position:relative;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;display:inline-block;">
+                                                    <img src="http://pic.616pic.com/ys_b_img/00/21/71/ntrrLWfLuN.jpg" style="width:100px;height:100px;" />
+                                                    <span style='display:inline-block;width: 240px;'>红牛功能维生素能维生素红牛红牛功能维生素红牛功能维生素</span>
+                                                    <span style='position:absolute;top:5px;right:0px;padding-right:10px;'>数量:<span>100</span></span>
+                                                    <span style='position:absolute;top:25px;right:0px;padding-right:10px;'>单价:<span>100</span></span>
+                                                </li>
                                             </ul>
                                         </li>
                                     </ul>
-                                </div>                            
+                                </div>
                             </div>
-                        </li>
-                        <li class="store-order-li">
+                        </li> -->
+
+                        <!-- <li class="store-order-li">
                             <div class="order-li-title" data-store-collapse="hide">
                                 <span class="order-name-box"><span>订单号:00002</span></span>
                                 <span class="order-status">状态：<span class="order-status-show">未配送</span></span>
@@ -362,19 +362,25 @@
             <button class="btn allGoods goodsThree">所有商品</button>
             <div class="goodsBox" style="width:100%;padding-bottom:32px;height:auto;position:relative;">
                 <ul style="width:100%;display:flex;flex-wrap:wrap;" class="goods-ul">
-                        <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                        <h2>错误</h2>
+                        <!-- <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
-                        <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                        <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li> -->
                 </ul>
                 <button class="btn btn-primary modifyGoods" data-api="storeProduct/saveList?" style="position:absolute;bottom:4px;right:57px;">下架选中商品</button>
             </div>
           </div>
         </div>
       </div>
+      
+      <audio class="promptTone" src="media/audio/promptTone.mp3"></audio>
+      <object  id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
+        <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+      </object>
 </div>
 
 
@@ -385,25 +391,37 @@
     <script src="myadmin/assets/js/jquery.metisMenu.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-    <script type="text/javascript" src="myadmin/js/config.js"></script>
+    <script type="text/javascript" src="myadmin/js/config.js?v=20180513"></script>
+    <script type="text/javascript" src="myadmin/js/LodopFuncs.js"></script>
+    <script type="text/javascript" src="myadmin/js/print.js?version=9"></script>
     <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
     <script src="../cdn/md5.min.js"></script> -->
     <script>
-        console.log("url",url);
+        // console.log("url",url);
+        window.onload = function(){
 
+        if(sessionStorage.orderNoList == undefined){
+            sessionStorage.orderNoList = JSON.stringify([]);
+            // console.log("123265");
+        };
+        var list = JSON.parse(sessionStorage.orderNoList);
+        // console.log(list);
+        
         var orderStatus = 2;
         $(document).on('click',".order-li-title",function(){
             if($(this).data("storeCollapse")=="show"){
                  $(this).parent().css({"height":"55px"});
                  $(this).data("storeCollapse","hide");
             }else{
-                 $(this).parent().css({"height":"350px"});
+                 $(this).parent().css({"height":"auto"});
                  $(this).data("storeCollapse","show");             
             }
         });
 
         // $('.store-manage-not-delivery').css({'display':'none'});
-
+        
+        
+        //点击将未配送的订单改为已配送的订单
         $(document).on("click",".btn-order-shipping",function(e){
             // console.log(e);
             e.stopPropagation();
@@ -426,14 +444,17 @@
                 type:'get',
                 success:function(data){
                     console.log(data);
-                    console.log("ok--");
+                    // console.log("ok--");
                     $(self).parents("li").remove();
+                    findNotDeliveryOrder(2);
+                    clearInterval(myTimer);
+                    myTimer1();
                 },
                 error:function(err){
                     console.log("----");
                 },
             });
-        }
+            }
         });
 
         //查看未配送订单
@@ -441,11 +462,12 @@
             // findOrderNo(2);
             // myTimer1();
             
-            console.log("为配送的订单展示");
+            console.log("未配送的订单展示");
             $(".store-manage-not-delivery").css({'display':'block'});
             $(".store-manage").css({'display':'none'});
-            // clearInterval(myTimer);
-            // myTimer1();
+            findNotDeliveryOrder(2);
+            clearInterval(myTimer);
+            myTimer1();
         });
 
         //查看配送中的订单
@@ -506,6 +528,7 @@
                     console.log(data);
                     console.log("ok-------");
                     $(self).parents("li").remove();
+                    // findOrderNo(orderStatus);
                 },
                 error:function(err){
                     console.log(err);
@@ -513,6 +536,34 @@
             });
             }
         });
+
+        // $(document).on("click",".order-print",function(e){
+        //     e.stopPropagation();
+        //     console.log("打印了");
+        //     var printObj={};
+        //     printObj.name = $(this).parents("li").find(".order-datails-name").text();
+        //     printObj.phone = $(this).parents("li").find(".order-datails-phone").text();
+        //     printObj.addres = $(this).parents("li").find(".order-datails-addres").text();
+        //     printObj.doorplate = $(this).parents("li").find(".order-datails-doorplate").text();            
+        //     printObj.startDeliverTime = $(this).parents("li").find(".order-datails-startDeliverTime").text();
+        //     printObj.payTime = $(this).parents("li").find(".order-datails-payTime").text();
+        //     printObj.sumPrice = $(this).parents("li").find(".order-datails-sumPrice").text();
+        //     printObj.weight = $(this).parents("li").find(".order-datails-weight").text();
+        //     printObj.postage = $(this).parents("li").find(".order-datails-postage").text();
+        //     printObj.couponMoney = $(this).parents("li").find(".order-datails-couponMoney").text();
+        //     printObj.payMoney = $(this).parents("li").find(".order-datails-payMoney").text();
+        //     console.log($(this).parents("li").find(".order-goods-li").length);
+        //     printObj.goodsList = [];
+        //     for(var i = 0;i<$(this).parents("li").find(".order-goods-li").length;i++){
+        //         var goods = {};
+        //         goods.name=$(this).parents("li").find(".order-goods-li").eq(i).find('.order-product-name').text();
+        //         goods.num=$(this).parents("li").find(".order-goods-li").eq(i).find('.order-product-num').text();
+        //         goods.price=$(this).parents("li").find(".order-goods-li").eq(i).find('.order-product-price').text();
+        //         printObj.goodsList.push(goods);
+        //     }
+
+        //     console.log(printObj);
+        // });
 
         //查看订单
         function findOrderNo(orderStatus){
@@ -534,7 +585,7 @@
                 success:function(data){
                     console.log(data);
                     $('.store-manage').html('');
-                    for(var i = 0; i < data.data.list.length;i++){     
+                    for(var i = 0; i < data.data.list.length;i++){
                         if(data.data.list[i].status == 2){
                             //查看未配送的订单
                         }else if(data.data.list[i].status == 3){
@@ -555,36 +606,101 @@
                                 success: function(data){
                                     console.log(data);
                                     console.log("根据订单编号查询订单详情");
+                                    // var productNode="";
+                                    // for(var i=0;i<data.data.orderItems.length;i++){
+                                    // productNode+=
+                                    //     '<li style="width:430px;position:relative;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;display:inline-block;">' +
+                                    //     '<img src="'+data.data.orderItems[i].imagePath+'" style="width:100px;height:100px;" />'+
+                                    //     '<span style="display:inline-block;width: 240px;vertical-align:top;">'+data.data.orderItems[i].productName+'</span>' +
+                                    //     ' <span style="position:absolute;top:5px;right:0px;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span></span>'+
+                                    //     ' <span style="position:absolute;top:25px;right:0px;padding-right:10px;">'+'单价:'+'<span>'+data.data.orderItems[i].price+'</span></span>' +
+                                    //     '</span>'+
+                                    //     '</li>'
+                                    // }
+                                    // var liNode = '<li class="store-order-li" style="height:55px;"><div class="order-li-title" data-store-collapse="hide">'
+                                    //     +'<span class="order-name-box"><span>订单号:'+orderNO+'</span></span>'
+                                    //     // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNo+'>配送</button>'
+                                    //     +'<button class="btn btn-primary btn-right-margin btn-order-finish" data-order-no='+orderNO+'>配送完成</button>'                                        
+                                    //     +'<span class="order-status">状态：<span class="order-status-show">配送中</span></span>'
+                                    //     +'</div>'
+                                    //     +'<div class="order-detail">'
+                                    //     +'<div class="order-detail-ul-box">'
+                                    //     +'<ul class="order-detail-ul">'
+                                    //     +' <li class="order-detail-li">'+'配送地址:'+data.data.address.addres+'  门牌号：'+data.data.address.doorplate+'</li>'
+                                    //     +'<li class="order-detail-li">'+'时间：'+data.data.order.startDeliverTime+'</li>'
+                                    //     +'<li class="order-detail-li">'+'姓名：'+data.data.address.name+'</li>'
+                                    //     +'<li class="order-detail-li">'+'电话：'+data.data.address.phone+'</li>'
+                                    //     +'<li class="order-detail-li" style="height:auto;position:relative">商品：' 
+                                    //     +'<ul style="position:relative;height:auto;top:0px;height:auto;">' +productNode+'</ul>'
+                                    //     +'</li>'
+                                    //     +'</ul>'
+                                    //     +'</div>'
+                                    //     +'</div>'
+                                    //     +'</li>'; 
+
+                                    // $('.store-manage').append(liNode);
+
+
+
+
+
                                     var productNode="";
-                                    for(var i=0;i<data.data.orderItems.length;i++){
+                                    for(var i=0;i<data.data.orderItems.length;i++){                           
                                         productNode+=
-                                           '<li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;">' +
-                                            '<span style="display:inline-block;width: 350px;">'+data.data.orderItems[i].productName+'</span>' +
-                                           ' <span style="float:right;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span>' +
-                                            '</span>' +
-                                            '</li>'
+                                           '<li class="order-goods-li" style="width:430px;position:relative;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;display:inline-block;">' +
+                                            '<img src="'+data.data.orderItems[i].imagePath+'" style="width:100px;height:100px;" />'+
+                                            '<span style="display:inline-block;width: 240px;vertical-align:top;" class="order-product-name">'+data.data.orderItems[i].productName+'</span>' +
+                                           ' <span style="position:absolute;top:5px;right:0px;padding-right:10px;">'+'数量:'+'<span class="order-product-num">'+data.data.orderItems[i].amount+'</span></span>'+
+                                           ' <span style="position:absolute;top:25px;right:0px;padding-right:10px;">'+'单价:'+'<span  class="order-product-price">'+data.data.orderItems[i].price+'</span></span>' +
+                                            '</span>'+
+                                            '</li>';
                                     }
-                                    var liNode = '<li class="store-order-li" style="height:55px;"><div class="order-li-title" data-store-collapse="hide">'
+
+                                    if(data.data.order.additionalServices == "1"){
+                                        var additionalServices = '<li class="order-detail-li order-datails-additionalServices" data-additional="捎带垃圾">额外服务：捎带垃圾</li>'
+                                    }else{
+                                        var additionalServices = '<li class="order-detail-li order-datails-additionalServices" data-additional="无">额外服务：无</li>';
+                                    }
+
+                                    var liNode = '<li class="store-order-li" style="height:auto;"><div class="order-li-title" data-store-collapse="show">'
                                         +'<span class="order-name-box"><span>订单号:'+orderNO+'</span></span>'
-                                        +'<span class="order-status">状态：<span class="order-status-show">配送中</span></span>'
-                                        // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+data.data[i].orderNo+'>配送</button>'
+                                        // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNo+'>配送</button>'
                                         +'<button class="btn btn-primary btn-right-margin btn-order-finish" data-order-no='+orderNO+'>配送完成</button>'
+                                        +'<button class="btn btn-primary btn-right-margin order-print" data-order-no='+orderNO+'>打印</button>'
+                                        +'<span class="order-status" style="left:460px;">状态：<span class="order-status-show">配送中</span></span>'
                                         +'</div>'
                                         +'<div class="order-detail">'
                                         +'<div class="order-detail-ul-box">'
                                         +'<ul class="order-detail-ul">'
-                                        +' <li class="order-detail-li">'+'配送地址:'+data.data.address.addres+'门牌号：'+data.data.address.doorplate+'</li>'
-                                        +'<li class="order-detail-li">'+'时间：'+data.data.order.startDeliverTime+'</li>'
-                                        +'<li class="order-detail-li">'+'姓名：'+data.data.address.name+'</li>'
-                                        +'<li class="order-detail-li">'+'电话：'+data.data.address.phone+'</li>'
-                                        +'<li class="order-detail-li" style="height:100px;position:relative">商品：' 
-                                        +'<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">' +productNode+'</ul>'
+
+                                        +'<li class="order-detail-li">'+'姓名：<span class="order-datails-name">'+data.data.address.name+'</span></li>'
+                                        +'<li class="order-detail-li">'+'电话：<span class="order-datails-phone">'+data.data.address.phone+'</span></li>'
+                                        +'<li class="order-detail-li">'+'配送地址:<span class="order-datails-addres">'+data.data.address.addres+'</span></li>'
+                                        +'<li class="order-detail-li">'+'门牌号：<span class="order-datails-doorplate">'+data.data.address.doorplate+'</span></li>'                                        
+                                        +'<li class="order-detail-li">'+'配送时间：<span class="order-datails-startDeliverTime">'+data.data.order.startDeliverTime+'</span></li>'
+                                        +'<li class="order-detail-li">'+'下单时间：<span class="order-datails-payTime">'+data.data.order.payTime+'</span></li>'
+                                        +'<li class="order-detail-li">'+'总价(元)：<span class="order-datails-sumPrice">'+data.data.order.sumPrice+'</span></li>'
+                                        +'<li class="order-detail-li">'+'重量(kg)：<span class="order-datails-weight">'+data.data.order.weight+'</span></li>'
+                                        +'<li class="order-detail-li">'+'运费(元)：<span class="order-datails-postage">'+data.data.order.postage+'</span></li>'
+                                        +'<li class="order-detail-li">'+'折扣：<span class="order-datails-discountMoney">'+data.data.order.discountMoney+'</span></li>'
+                                        +'<li class="order-detail-li">'+'优惠券(元)：<span class="order-datails-couponMoney">'+data.data.order.couponMoney+'</span></li>'
+                                        +'<li class="order-detail-li">'+'实付金额(元)：<span class="order-datails-payMoney">'+data.data.order.payMoney+'</span></li>'
+                                        + additionalServices
+                                        +'<li class="order-detail-li">'+'备注：'+data.data.order.remarks+'</li>'
+                                        +'<li class="order-detail-li" style="height:auto;position:relative">商品：'
+                                        +'<ul style="position:relative;height:auto;top:0px;height:auto;" class="order-goods-ul">' +productNode+'</ul>'
                                         +'</li>'
                                         +'</ul>'
                                         +'</div>'
                                         +'</div>'
                                         +'</li>';
                                     $('.store-manage').append(liNode);
+
+
+
+
+
+
                                 },
                                 error:function(err){
                                     console.log(err);
@@ -611,33 +727,35 @@
                                     // console.log("根据订单编号查询订单详情");
                                     var productNode="";
                                     for(var i=0;i<data.data.orderItems.length;i++){
-                                        productNode+=
-                                           '<li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;">' +
-                                            '<span style="display:inline-block;width: 350px;">'+data.data.orderItems[i].productName+'</span>' +
-                                           ' <span style="float:right;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span>' +
-                                            '</span>' +
-                                            '</li>'
+                                    productNode+=
+                                        '<li style="width:430px;position:relative;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;display:inline-block;">' +
+                                        '<img src="'+data.data.orderItems[i].imagePath+'" style="width:100px;height:100px;" />'+
+                                        '<span style="display:inline-block;width: 240px;vertical-align:top;">'+data.data.orderItems[i].productName+'</span>' +
+                                        ' <span style="position:absolute;top:5px;right:0px;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span></span>'+
+                                        ' <span style="position:absolute;top:25px;right:0px;padding-right:10px;">'+'单价:'+'<span>'+data.data.orderItems[i].price+'</span></span>' +
+                                        '</span>'+
+                                        '</li>'
                                     }
                                     var liNode = '<li class="store-order-li" style="height:55px;"><div class="order-li-title" data-store-collapse="hide">'
                                         +'<span class="order-name-box"><span>订单号:'+orderNO+'</span></span>'
+                                        // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNo+'>配送</button>'
+                                        // +'<button class="btn btn-primary btn-right-margin btn-order-finish" data-order-no='+orderNO+'>配送完成</button>'                                        
                                         +'<span class="order-status">状态：<span class="order-status-show">配送完成</span></span>'
-                                        // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+data.data[i].orderNo+'>配送</button>'
-                                        // +'<button class="btn btn-primary btn-right-margin btn-order-finish" data-order-no='+orderNO+'>配送完成</button>'
                                         +'</div>'
                                         +'<div class="order-detail">'
                                         +'<div class="order-detail-ul-box">'
                                         +'<ul class="order-detail-ul">'
-                                        +' <li class="order-detail-li">'+'配送地址:'+data.data.address.addres+' 门牌号：'+data.data.address.doorplate+'</li>'
+                                        +' <li class="order-detail-li">'+'配送地址:'+data.data.address.addres+'  门牌号：'+data.data.address.doorplate+'</li>'
                                         +'<li class="order-detail-li">'+'时间：'+data.data.order.startDeliverTime+'</li>'
                                         +'<li class="order-detail-li">'+'姓名：'+data.data.address.name+'</li>'
                                         +'<li class="order-detail-li">'+'电话：'+data.data.address.phone+'</li>'
-                                        +'<li class="order-detail-li" style="height:100px;position:relative">商品：' +
-                                         '<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">' +productNode+'</ul>'
+                                        +'<li class="order-detail-li" style="height:auto;position:relative">商品：' 
+                                        +'<ul style="position:relative;height:auto;top:0px;height:auto;">' +productNode+'</ul>'
                                         +'</li>'
                                         +'</ul>'
                                         +'</div>'
                                         +'</div>'
-                                        +'</li>';
+                                        +'</li>'; 
                                     $('.store-manage').append(liNode);
                                 },
                                 error:function(err){
@@ -664,11 +782,13 @@
                                     console.log(data);
                                     console.log("根据订单编号查询订单详情");
                                     var productNode="";
+
                                     for(var i=0;i<data.data.orderItems.length;i++){
                                         productNode+=
                                            '<li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;">' +
-                                            '<span style="display:inline-block;width: 350px;">'+data.data.orderItems[i].productName+'</span>' +
+                                            '<span style="display:inline-block;width: 280px;">'+data.data.orderItems[i].productName+'</span>' +
                                            ' <span style="float:right;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span>' +
+                                           ' <span style="float:right;padding-right:10px;">'+'单价:'+'<span>'+data.data.orderItems[i].price+'</span>' +
                                             '</span>' +
                                             '</li>'
                                     }
@@ -685,8 +805,8 @@
                                         +'<li class="order-detail-li">'+'时间：'+data.data.order.startDeliverTime+'</li>'
                                         +'<li class="order-detail-li">'+'姓名：'+data.data.address.name+'</li>'
                                         +'<li class="order-detail-li">'+'电话：'+data.data.address.phone+'</li>'
-                                        +'<li class="order-detail-li" style="height:100px;position:relative">商品：' +
-                                         '<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">' +productNode+'</ul>'
+                                        +'<li class="order-detail-li" style="height:100px;position:relative">商品：' 
+                                        +'<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">' +productNode+'</ul>'
                                         +'</li>'
                                         +'</ul>'
                                         +'</div>'
@@ -721,8 +841,9 @@
                                     for(var i=0;i<data.data.orderItems.length;i++){
                                         productNode+=
                                            '<li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;">' +
-                                            '<span style="display:inline-block;width: 350px;">'+data.data.orderItems[i].productName+'</span>' +
+                                            '<span style="display:inline-block;width: 280px;">'+data.data.orderItems[i].productName+'</span>' +
                                            ' <span style="float:right;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span>' +
+                                           ' <span style="float:right;padding-right:10px;">'+'单价:'+'<span>'+data.data.orderItems[i].price+'</span>' +
                                             '</span>' +
                                             '</li>'
                                     }
@@ -739,8 +860,15 @@
                                         +'<li class="order-detail-li">'+'时间：'+data.data.order.startDeliverTime+'</li>'
                                         +'<li class="order-detail-li">'+'姓名：'+data.data.address.name+'</li>'
                                         +'<li class="order-detail-li">'+'电话：'+data.data.address.phone+'</li>'
+                                        +'<li class="order-detail-li">'+'配送时间：'+data.data.order.startDeliverTime+'</li>'
+                                        +'<li class="order-detail-li">'+'下单时间：'+data.data.order.orderItems+'</li>'
+                                        +'<li class="order-detail-li">'+'总价：'+data.data.order.sumPrice+'</li>'
+                                        +'<li class="order-detail-li">'+'运费：'+data.data.order.postage+'</li>'
+                                        +'<li class="order-detail-li">'+'优惠券：'+data.data.order.couponMoney+'</li>'
+                                        +'<li class="order-detail-li">'+'实付金额：'+data.data.order.payMoney+'</li>'
+                                        +'<li class="order-detail-li">'+'备注：'+data.data.order.remaks+'</li>'
                                         +'<li class="order-detail-li" style="height:100px;position:relative">商品：' +
-                                         '<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">' +productNode+'</ul>'
+                                         '<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;" class="order-goods-ul">' +productNode+'</ul>'
                                         +'</li>'
                                         +'</ul>'
                                         +'</div>'
@@ -755,15 +883,20 @@
                             });
                         }
                     };
-                   
-                    
                 },error:function(err){
                     console.log(err);
+                    location.href = "login.html";
+                    alert("报错 请您重新登陆");
+                    
                 }
             });
             };
             findOrderNo(orderStatus);
             
+            // document.getElementsByClassName("promptTone")[0].play();
+            
+            var orderNoDeliveryArr = [];//定义一个数组用来存储列表
+            var promptFlag = 0;//定义提示音的标记
 
             //查找没有送货的订单
             function findNotDeliveryOrder(orderStatus){
@@ -783,66 +916,183 @@
                     url:newUrl,
                     type:'get',
                     success:function(data1){
-                        console.log();
+                        console.log('this is orderList',data1);
                         var data1 = data1;
-                        $('.store-manage-not-delivery').html("");
-                        $(".not-delivery-num").html(data1.data.list.length);
-                        for(var ii = 0; ii < data1.data.list.length;ii++){
-                        var orderNO= data1.data.list[ii].orderNo;
-                            var obj = {};
-                            obj.access_token = sessionStorage.access_token;
-                            obj.orderNo=data1.data.list[ii].orderNo;
-                            obj.from = "web";
-                            obj.timestamp = parseInt(new Date().getTime() / 1000);
-                            var newObj = srotKeyObj(obj);
-                            var str = objmd5(newObj);
-                            var newUrl = url + "order/itemList?" + str;
-                            $.ajax({
-                                url: newUrl,
-                                type: 'get',
-                                async:false,
-                                success: function(data){
-                                    console.log(data);
-                                    console.log("根据订单编号查询订单详情");
-                                    var productNode="";
-                                    for(var i=0;i<data.data.orderItems.length;i++){
-                                        productNode+=
-                                           '<li style="width: 430px;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;float:left;">' +
-                                            '<span style="display:inline-block;width: 280px;">'+data.data.orderItems[i].productName+'</span>' +
-                                           ' <span style="float:right;padding-right:10px;">'+'数量:'+'<span>'+data.data.orderItems[i].amount+'</span>'+
-                                           ' <span style="float:right;padding-right:10px;">'+'单价:'+'<span>'+data.data.orderItems[i].price+'</span>' +
-                                            '</span>'+
-                                            '</li>'
+                        // $('.store-manage-not-delivery').html("");
+                        // if(orderNolist.length < 0){
+                        //     orderNolist.push(data1.data.list[ii].orderNo);
+                        // }
+                       if(sessionStorage.orderNoList == undefined){
+                            var orderNoList = [];
+                            sessionStorage.orderNoList = JSON.stringify([]);                  
+                       }else{
+                            var orderNoList = JSON.parse(sessionStorage.orderNoList);
+                       }
+                      
+                       
+                       //控制提示音的提示和打印
+                       if(data1.data.list.length !== 0){
+                            var newOrderlist = [];
+                            promptFlag += 1;
+                            outer:
+                            for(var i1 = 0; i1 < data1.data.list.length;i1++){                              
+                                // console.log('orderNoList length',orderNoList.length);
+                                if(orderNoList.length !== 0){
+                                    inner:
+                                    for(var i2 = 0; i2 < orderNoList.length;i2++){
+                                        // console.log(data1.data.list[i1].orderNo);
+                                        if(data1.data.list[i1].orderNo == orderNoList[i2]){
+                                            newOrderlist.push(data1.data.list[i1].orderNo);
+                                            break inner;
+                                        }else if(i2 == orderNoList.length-1){
+                                            console.log("报账单");
+                                            document.getElementsByClassName("promptTone")[0].play();
+                                            newOrderlist.push(data1.data.list[i1].orderNo);
+                                            autoPrint(data1.data.list[i1].orderNo);
+                                        }                   
                                     }
-                                    var liNode = '<li class="store-order-li"><div class="order-li-title" data-store-collapse="hide">'
-                                        +'<span class="order-name-box"><span>订单号:'+orderNO+'</span></span>'
-                                        // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNo+'>配送</button>'
-                                        +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNO+'>配送</button>'
-                                        +'<span class="order-status">状态：<span class="order-status-show">未配送</span></span>'
-                                        +'</div>'
-                                        +'<div class="order-detail">'
-                                        +'<div class="order-detail-ul-box">'
-                                        +'<ul class="order-detail-ul">'
-                                        +' <li class="order-detail-li">'+'配送地址:'+data.data.address.addres+'  门牌号：'+data.data.address.doorplate+'</li>'
-                                        +'<li class="order-detail-li">'+'时间：'+data.data.order.startDeliverTime+'</li>'
-                                        +'<li class="order-detail-li">'+'姓名：'+data.data.address.name+'</li>'
-                                        +'<li class="order-detail-li">'+'电话：'+data.data.address.phone+'</li>'
-                                        +'<li class="order-detail-li" style="height:100px;position:relative">商品：' 
-                                        +'<ul style="position:absolute;top:0px;left:70px;height:106px;overflow:auto;">' +productNode+'</ul>'
-                                        +'</li>'
-                                        +'</ul>'
-                                        +'</div>'
-                                        +'</div>'
-                                        +'</li>';
-                                    $('.store-manage-not-delivery').append(liNode);
-                                
-                                },
-                                error:function(err){
-                                    console.log(err);
-                                    console.log("err");
+                                    sessionStorage.orderNoList = JSON.stringify(newOrderlist);
+                                }else{
+                                    document.getElementsByClassName("promptTone")[0].play();
+                                    orderNoList=[];
+                                    for(var i3 = 0; i3 < data1.data.list.length ; i3++){
+                                        console.log("123456789",data1.data.list[i3].orderNo);
+                                        newOrderlist.push(data1.data.list[i3].orderNo);                    
+                                    }
+                                    sessionStorage.orderNoList = JSON.stringify(newOrderlist);
+                                    for(var i = 0 ; i < newOrderlist.length ;i++ ){
+                                        autoPrint(newOrderlist[i]);
+                                    }
+                                    break;
                                 }
-                            });
-                        };
+                            };
+                            console.log(promptFlag);
+                            if(promptFlag == 10){//订单存在5分钟提示
+                                document.getElementsByClassName("promptTone")[0].play();
+                                promptFlag = 0;
+                            };
+                       }else{
+                            sessionStorage.orderNoList = JSON.stringify([]);
+                            promptFlag = 0;
+                       }
+
+
+                       //自动打印订单
+                       function autoPrint(orderNo){
+                        // var orderNO= orderNoArr[ii];
+                        var obj = {};
+                        obj.access_token = sessionStorage.access_token;
+                        obj.orderNo=orderNo;
+                        obj.from = "web";
+                        obj.timestamp = parseInt(new Date().getTime()/1000);
+                        var newObj = srotKeyObj(obj);
+                        var str = objmd5(newObj);
+                        var newUrl = url + "order/itemList?" + str;
+                        $.ajax({
+                            url: newUrl,
+                            type: 'get',
+                            async:false,
+                            success: function(data){
+                                var printObj = {};
+                                printObj.addres=data.data.address.addres;//地址
+                                printObj.name = data.data.address.name;//收货人                                
+                                printObj.phone = data.data.address.phone;//收货人电话                           
+                                printObj.doorplate = data.data.address.doorplate;//收货人门派号
+                                printObj.order = data.data.order.orderNo;//订单号
+                                printObj.payTime = data.data.order.payTime;//下单时间
+                                printObj.postage = data.data.order.postage;//配送费
+                                printObj.couponMoney =data.data.order.couponMoney;//优惠金额
+                                printObj.discountMoney = data.data.order.discountMoney;//折算金额                      
+                                printObj.payMoney = data.data.order.payMoney;//实付金额
+                                printObj.startDeliverTime = data.data.order.startDeliverTime;//配送时间
+                                printObj.sumPrice = data.data.order.sumPrice;//总金额
+                                printObj.weight = data.data.order.weight;//重量
+                                if(data.data.order.additionalServices == "1"){//是否捎带垃圾
+                                    printObj.additionalServices = "捎带垃圾";
+                                }else{
+                                    printObj.additionalServices = "无";
+                                }
+
+                                printObj.goodsList = [];
+                                for(var i = 0;i < data.data.orderItems.length;i++){
+                                    var goodsObj = {};
+                                    goodsObj.name = data.data.orderItems[i].productName;
+                                    goodsObj.price = data.data.orderItems[i].price;
+                                    goodsObj.num = data.data.orderItems[i].amount;
+                                    goodsObj.sumPrice = data.data.orderItems[i].sum;
+                                    printObj.goodsList.push(goodsObj);
+                                };
+                                console.log("需要打印的数据",printObj);
+                                
+                                if(data.data.order.printCount == 0){
+                                    
+                                        printOrder(printObj);
+                                        // console.log("自动打印机 打印了");
+                                        printCount(orderNo);
+
+                                    
+                                };
+
+                            },
+                            error:function(err){
+                                console.log("err");
+                            }
+                        });
+                            //    printOrder();
+                       }
+                       
+
+                       
+                       //控制页面的订单展示
+                       if(data1.data.list.length !== 0){
+                            var newOrderFlag = 0;
+                            var newOrderlist = [];
+                            outer:
+                            for(var i1 = 0; i1 < data1.data.list.length;i1++){//查找的新的订单细节
+                                if(orderNoDeliveryArr.length !== 0){
+                                    inner:
+                                    for(var i2 = 0; i2 < orderNoDeliveryArr.length;i2++){
+                                        // console.log(data1.data.list[i1].orderNo);
+                                        if(data1.data.list[i1].orderNo == orderNoDeliveryArr[i2]){//没有新的就不必要查找了
+                                            newOrderlist.push(data1.data.list[i1].orderNo);                                 
+                                            break inner;
+                                        }else if(i2 == orderNoDeliveryArr.length-1){
+                                            newOrderFlag = 1;
+                                            newOrderlist.push(data1.data.list[i1].orderNo);
+                                        }           
+                                    };
+                                    
+                                }else{
+                                    // console.log('55555555555555555',data1.data.list.length);
+                                    for(var i3 = 0; i3 < data1.data.list.length ; i3++){
+                                        // console.log("123456789",data1.data.list[i3].orderNo);
+                                        newOrderlist.push(data1.data.list[i3].orderNo);                    
+                                    }
+                                    orderNoDeliveryArr = newOrderlist;
+                                    console.log("有查看的订单");
+                                    findOrderNoDatail(orderNoDeliveryArr);//根据订单的状态号去查看订单细节
+                                    break;
+                                }
+                            };
+                            orderNoDeliveryArr = newOrderlist;
+                            // console.log("查询订单的数量",orderNoDeliveryArr);                     
+                            if(newOrderFlag == 1){//有新的订单就去查找
+                                // console.log(orderNoDeliveryArr);
+                                // console.log("应该进到这里面来了 是的就是这样 ----------------------------------------------------");
+                                findOrderNoDatail(orderNoDeliveryArr);//根据订单的状态号去查看订单细节
+                            }else{
+                                // console.log("不找了");
+                            };
+                       }else{
+                            orderNoDeliveryArr = [];
+                       }
+
+
+
+                        //共有多少条数据
+                        $(".not-delivery-num").html(data1.data.list.length);
+                        //页面上的展示
+                        
                     },
                     error:function(err){
                         console.log(err);
@@ -851,16 +1101,103 @@
                 });
             };
             findNotDeliveryOrder(2);
+            
+            
 
+
+            //展示未完成的订单的详细信息
+            function findOrderNoDatail(orderNoArr){
+                $('.store-manage-not-delivery').html("");
+                for(var ii = 0; ii < orderNoArr.length;ii++){
+                    var orderNO= orderNoArr[ii];
+                    var obj = {};
+                    obj.access_token = sessionStorage.access_token;
+                    obj.orderNo=orderNoArr[ii];
+                    obj.from = "web";
+                    obj.timestamp = parseInt(new Date().getTime() / 1000);
+                    var newObj = srotKeyObj(obj);
+                    var str = objmd5(newObj);
+                    var newUrl = url + "order/itemList?" + str;
+                    $.ajax({
+                        url: newUrl,
+                        type: 'get',
+                        async:false,
+                        success: function(data){
+                            console.log(data);
+                            console.log("根据订单编号查询订单详情");
+                            var productNode="";
+                            for(var i=0;i<data.data.orderItems.length;i++){               
+                                productNode+=
+                                    '<li class="order-goods-li" style="width:430px;position:relative;border: 1px solid lightgray;border-radius: 5px;margin:0px 2px 2px 0px;padding-left: 10px;display:inline-block;">' +
+                                    '<img src="'+data.data.orderItems[i].imagePath+'" style="width:100px;height:100px;" />'+
+                                    '<span style="display:inline-block;width: 240px;vertical-align:top;" class="order-product-name">'+data.data.orderItems[i].productName+'</span>' +
+                                    ' <span style="position:absolute;top:5px;right:0px;padding-right:10px;">'+'数量:'+'<span class="order-product-num">'+data.data.orderItems[i].amount+'</span></span>'+
+                                    ' <span style="position:absolute;top:25px;right:0px;padding-right:10px;">'+'单价:'+'<span  class="order-product-price">'+data.data.orderItems[i].price+'</span></span>' +
+                                    '</span>'+
+                                    '</li>';
+                            };
+
+                            if(data.data.order.additionalServices == "1"){
+                                var additionalServices = '<li class="order-detail-li order-datails-additionalServices" data-additional="捎带垃圾">额外服务：捎带垃圾</li>'
+                            }else{
+                                var additionalServices = '<li class="order-detail-li order-datails-additionalServices" data-additional="无">额外服务：无</li>';
+                            }
+
+                            
+                            var liNode = '<li class="store-order-li" style="height:auto;"><div class="order-li-title" data-store-collapse="show">'
+                                +'<span class="order-name-box"><span>订单号:'+orderNO+'</span></span>'
+                                // +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNo+'>配送</button>'
+                                +'<button class="btn btn-primary btn-right-margin btn-order-shipping" data-order-no='+orderNO+'>配送</button>'
+                                +'<button class="btn btn-primary btn-right-margin order-print" data-order-no='+orderNO+'>打印</button>'
+                                +'<span class="order-status">状态：<span class="order-status-show">未配送</span></span>'
+                                +'</div>'
+                                +'<div class="order-detail">'
+                                +'<div class="order-detail-ul-box">'
+                                +'<ul class="order-detail-ul">'
+
+                                +'<li class="order-detail-li">'+'姓名：<span class="order-datails-name">'+data.data.address.name+'</span></li>'
+                                +'<li class="order-detail-li">'+'电话：<span class="order-datails-phone">'+data.data.address.phone+'</span></li>'
+                                +'<li class="order-detail-li">'+'配送地址:<span class="order-datails-addres">'+data.data.address.addres+'</span></li>'
+                                +'<li class="order-detail-li">'+'门牌号：<span class="order-datails-doorplate">'+data.data.address.doorplate+'</span></li>'                                        
+                                +'<li class="order-detail-li">'+'配送时间：<span class="order-datails-startDeliverTime">'+data.data.order.startDeliverTime+'</span></li>'
+                                +'<li class="order-detail-li">'+'下单时间：<span class="order-datails-payTime">'+data.data.order.payTime+'</span></li>'
+                                +'<li class="order-detail-li">'+'总价(元)：<span class="order-datails-sumPrice">'+data.data.order.sumPrice+'</span></li>'
+                                +'<li class="order-detail-li">'+'重量(kg)：<span class="order-datails-weight">'+data.data.order.weight+'</span></li>'
+                                +'<li class="order-detail-li">'+'运费(元)：<span class="order-datails-postage">'+data.data.order.postage+'</span></li>'
+                                +'<li class="order-detail-li">'+'折扣：<span class="order-datails-discountMoney">'+data.data.order.discountMoney+'</span></li>'
+                                +'<li class="order-detail-li">'+'优惠券(元)：<span class="order-datails-couponMoney">'+data.data.order.couponMoney+'</span></li>'
+                                +'<li class="order-detail-li">'+'实付金额(元)：<span class="order-datails-payMoney">'+data.data.order.payMoney+'</span></li>'
+                                + additionalServices
+                                +'<li class="order-detail-li">'+'备注：'+data.data.order.remarks+'</li>'
+                                +'<li class="order-detail-li" style="height:auto;position:relative">商品：'
+                                +'<ul style="position:relative;height:auto;top:0px;height:auto;" class="order-goods-ul">' +productNode+'</ul>'
+                                +'</li>'
+                                +'</ul>'
+                                +'</div>'
+                                +'</div>'
+                                +'</li>';
+                            $('.store-manage-not-delivery').append(liNode);
+                        
+                        },
+                        error:function(err){
+                            console.log(err);
+                            console.log("err");
+                        }
+                    });
+                };
+                
+            }
+
+            
 
             // 定时器自动刷新
             var ii = 0;
             var myTimer;
             function myTimer1(){
                 myTimer= setInterval(function(){
-                console.log(ii++);
+                // console.log(ii++);
                 findNotDeliveryOrder(2);
-            },100000);
+            },30000);
             };
             myTimer1();
             
@@ -868,8 +1205,7 @@
             // setTimeout(function(){
             //     myTimer1();
             // },70000);
-
-
+        };    
     </script>
 </body>
 </html>

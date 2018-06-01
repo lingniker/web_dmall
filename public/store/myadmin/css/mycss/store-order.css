@@ -15,6 +15,10 @@
     height: 55px;
     /* background: red; */
 }
+.order-li-title:hover{
+    background: #fafafa;
+    cursor: pointer;
+}
 .order-name-box{
     display: inline-block;
     min-width: 290px;
@@ -23,11 +27,11 @@
     margin-right:10px;
 }
 .order-detail-ul-box{
-    position: absolute;
+    position: realative;
     width: 100%;
     border-top: 1px solid lightgray;
-    height: 180px;
-    top: 55px;
+    height: auto;
+    /* top: 55px; */
     /* border-radius: 4px; */
     /* margin: 0 0px 0px -10px; */
 }
@@ -55,7 +59,7 @@
     padding: 6px;
     top: 10px;
     position: absolute;
-    left: 400px;
+    left: 425px;
     border-radius: 4px;
 }
 .order-status-show{

@@ -225,7 +225,7 @@
             <div class="body-right-data">
                 <div class="add-advertising" style="padding-bottom:30px;">
                     <button type="button" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-api="store/add?" data-whatever="增加店铺" 
-                    data-list="storeName_商品名称:^:例：高密联家超市1号店4&%_%&longitude_经度坐标:^:例：119.1070784&%_%&latitude_纬度坐标:^:例：36.709254&%_%&positionName_地址名称:^:例：山东省潍坊市潍城区城关街道胜利西街9号潍坊百货大楼和平路4">增加店铺</button>                   
+                    data-list="storeName_商品名称:^:例：高密联家超市1号店4&%_%&longitude_经度坐标:^:例：119.1070784&%_%&latitude_纬度坐标:^:例：36.709254&%_%&positionName_地址名称:^:例：山东省潍坊市潍城区城关街道胜利西街9号潍坊百货大楼和平路4&%_%&printer_打印设备名称:^:例：GB5890x-Server4">增加店铺</button>                   
                 <div class="search_store">
                     <span class="search_span">店铺查找:</span>
 
@@ -487,16 +487,18 @@
            <hr>
             <button class="btn onSale active goodsOne" data-api="product/findOnSaleByStoreId?">在售商品</button>
             <button class="btn notSold goodsTwo" data-api="product/findNoSaleByStoreId?">未上架商品</button>
+            <div style="display:inline-block;"><input type="text" class="select-goods" style="height:32.5px;vertical-align:middle;margin:0 6px 0 10px;border-radius:5px;border:1px gray solid "><button class="btn find-goods-btn" data-api="product/findOnSaleByStoreId?">查找商品</button></div>
+            <!-- <input type="text" class="select-goods" style="height:30px;"><button class="btn find-goods-btn" data-api="product/findOnSaleByStoreId?">查找商品</button> -->
             <!-- <button class="btn allGoods goodsThree">所有商品</button> -->
             <div class="goodsBox" style="width:100%;padding-bottom:60px;height:auto;position:relative;">
                 <ul style="width:100%;display:flex;flex-wrap:wrap;" class="goods-ul">
-                        <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                        <!-- <li class="goods-li" >红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
                         <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
-                        <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li>
+                        <li class="goods-li" >红牛维生素供能饮料225ml红牛维生素供能饮料225ml<div class="goodsCheck"><input type="checkbox"></div></li> -->
                 </ul>
                 <div class="page" style="padding-top:4px;padding-left:10px;position:absolute;width:300px;bottom:10px;">
                     <ul class="goods-page-ul" style="margin-bottom:0px">
@@ -649,6 +651,17 @@
             $("#modal-commit").data("api",button.data("api"));
             // modal.find('.modal-body input').val(recipient);
         });
+        
+        //模糊查询商品
+        $(".find-goods-btn").on('click',function(e){
+            console.log($(this).data("api"));
+            console.log($('.select-goods').val());
+            if($('.select-goods').val()!==""){
+                findOnSaleByStoreId(storeId,$(this).data("api"),1,$('.select-goods').val());
+            }else{
+                alert("请输入商品");
+            };
+        });
 
 
 
@@ -675,6 +688,9 @@
                     if(/^-?(([1-9])|([1-8]\d)|90)(\.\d{1,10})?$/.test(latreg)){
                         if(data.storeName.length<40&data.storeName.length>0&data.storeName!==" "){
                              if (data.positionName.length<50&data.positionName.length>0&data.positionName!==" "){
+                                 if(data.printer == ''){
+                                     delete data.printer;
+                                 }
                                  data.access_token = sessionStorage.access_token;
                                  data.from = "web";
                                  data.createUser = sessionStorage.id;
@@ -748,7 +764,7 @@
                                     success:function(data){
                                         console.log(data);
                                         console.log("ok");
-                                        alert("修改成功");
+                                        // alert("修改成功");
                                         location.reload();
                                     },
                                     error:function(err){
@@ -797,7 +813,7 @@
                     success:function(data){
                         console.log(data);
                         console.log("ok");
-                        alert("修改成功");
+                        // alert("修改成功");
                         location.reload();
                     },
                     error:function(err){
@@ -816,9 +832,12 @@
         $(document).on("click",".goodsOne",function(e){
             console.log("goodsOne");
             $(this).addClass('active');
+            // product/findOnSaleByStoreId?
             $(this).siblings('button').removeClass('active');
-            findOnSaleByStoreId(storeId,$(this).data("api"),1);
+            findOnSaleByStoreId(storeId,$(this).data("api"),1,'');
             // console.log("//");
+            $('.find-goods-btn').html("查看在售");            
+            $('.find-goods-btn').data('api','product/findOnSaleByStoreId?');
             $(".modifyGoods").data("api","storeProduct/delList?");
             $(".modifyGoods").html("下架选中商品");
             // console.log("//");            
@@ -827,8 +846,11 @@
         $(document).on("click",".goodsTwo",function(e){
             console.log("goodsTwo");
             $(this).addClass('active');
+            // product/findNoSaleByStoreId?
             $(this).siblings("button").removeClass('active');
-            findOnSaleByStoreId(storeId,$(this).data("api"),1);
+            $('.find-goods-btn').data('api','product/findNoSaleByStoreId?');
+            $('.find-goods-btn').html("查看未售");
+            findOnSaleByStoreId(storeId,$(this).data("api"),1,'');
             $(".modifyGoods").data("api","storeProduct/saveList?");
             $(".modifyGoods").html("上架选中商品");
         });
@@ -866,7 +888,7 @@
                         if(data.code == "200"){
                             console.log("商店添加商品成功");
                             console.log(data);
-                            findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,1);                  
+                            findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,1,'');                  
                         }else{
                             console.log("商店添加商品没有成功");
                         }
@@ -881,8 +903,12 @@
         });
 
         //根据店铺ID查询该店铺已绑定的商品并将其展示到模态框上
-        function findOnSaleByStoreId(id,api,pageNum){
+        function findOnSaleByStoreId(id,api,pageNum,name){
             var obj = {};
+            if(name==""){
+            }else{
+            obj.name=name;
+            }
             obj.access_token = sessionStorage.access_token;
             obj.storeId = id;
             obj.pageNum = pageNum;
@@ -983,7 +1009,7 @@
             console.log($(this).data('id'));        
             if($(this).data("id")=="..."||$(this).data("id")=="0"){
             }else{
-                findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,$(this).data('id'));
+                findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,$(this).data('id'),'');
             }
         });
         
@@ -1048,7 +1074,7 @@
                         + data.data[i].storeName 
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="store/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改店铺"'
-                        + 'data-list="id_店铺id:^:'+data.data[i].id+'3&%_%&storeName_店铺名:^:'+data.data[i].storeName+'0&%_%&longitude_经度坐标:^:'+data.data[i].longitude+'0&%_%&latitude_纬度坐标:^:'+data.data[i].latitude+'0&%_%&positionName_地址名称:^:'+data.data[i].positionName+'0">修改店铺</button>'
+                        + 'data-list="id_店铺id:^:'+data.data[i].id+'3&%_%&storeName_店铺名:^:'+data.data[i].storeName+'0&%_%&longitude_经度坐标:^:'+data.data[i].longitude+'0&%_%&latitude_纬度坐标:^:'+data.data[i].latitude+'0&%_%&positionName_地址名称:^:'+data.data[i].positionName+'0&%_%&printer_打印设备名称:^:'+data.data[i].printer+'0">修改店铺</button>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="store/delete?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除店铺"'
                         + 'data-list="id_ID:^:'+data.data[i].id+'2">删除店铺</button>'
                         // + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal"  data-target="#exampleModal" data-whatever="商品管理"'
@@ -1194,7 +1220,7 @@
                         + data.data[i].storeName 
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="store/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改店铺"'
-                        + 'data-list="id_店铺id:^:'+data.data[i].id+'3&%_%&storeName_店铺名:^:'+data.data[i].storeName+'0&%_%&longitude_经度坐标:^:'+data.data[i].longitude+'0&%_%&latitude_纬度坐标:^:'+data.data[i].latitude+'0&%_%&positionName_地址名称:^:'+data.data[i].positionName+'0">修改店铺</button>'
+                        + 'data-list="id_店铺id:^:'+data.data[i].id+'3&%_%&storeName_店铺名:^:'+data.data[i].storeName+'0&%_%&longitude_经度坐标:^:'+data.data[i].longitude+'0&%_%&latitude_纬度坐标:^:'+data.data[i].latitude+'0&%_%&positionName_地址名称:^:'+data.data[i].positionName+'0&%_%&printer_打印设备名称:^:'+data.data[i].printer+'0">修改店铺</button>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal" data-target="#exampleModal" data-whatever="删除店铺"'
                         + 'data-list="id_ID:^:'+data.data[i].id+'2">删除店铺</button>'
                         // + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-toggle="modal"  data-target="#exampleModal" data-whatever="商品管理"'
@@ -1316,7 +1342,7 @@
             $(".modifyGoods").html("下架选中商品");
             var api = "product/findOnSaleByStoreId?";
             storeId = $(this).data("id");
-            findOnSaleByStoreId(storeId,api,1);
+            findOnSaleByStoreId(storeId,api,1,'');
         });
         
 

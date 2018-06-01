@@ -10,7 +10,7 @@
     <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
     <link href="myadmin/css/common.css" rel="stylesheet">
     <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
-    <title>Document</title>
+    <title>店铺管理</title>
 </head>
 <style>
     .data-title{
@@ -198,6 +198,7 @@
         <div class="admin-nav">
             <div class="admin-nav-left">联家管理系统</div>
             <div class="admin-nav-right">
+            <div class="store-name" style="position:absolute;left:290px;top:9px;font-size:30px;"></div>
             <div class="back-login"><a href="#">退出登录</a></div>
             </div>
         </div>
@@ -259,6 +260,7 @@
            <hr>
             <button class="btn onSale active goodsOne" data-api="product/findOnSaleByStoreId?">在售商品</button>
             <button class="btn notSold goodsTwo" data-api="product/findNoSaleByStoreId?">未上架商品</button>
+            <div style="display:inline-block;"><input type="text" class="select-goods" style="height:32.5px;vertical-align:middle;margin:0 6px 0 10px;border-radius:5px;border:1px gray solid "><button class="btn find-goods-btn" data-api="product/findOnSaleByStoreId?">查找商品</button></div>
             <!-- <button class="btn allGoods goodsThree">所有商品</button> -->
             <div class="goodsBox" style="width:100%;padding-bottom:60px;height:auto;position:relative;">
                 <ul style="width:100%;display:flex;flex-wrap:wrap;" class="goods-ul">
@@ -393,7 +395,6 @@
                         return;
                     }else{
                             data[$("#modal-list .form-group").eq(i).find("input").attr("name")] = $("#modal-list .form-group").eq(i).find("input").val();
-
                     }
                 };
                 var longreg =data.longitude;
@@ -452,6 +453,49 @@
                     }
                 };
                 console.log(data);
+                var longreg =data.longitude;
+                var latreg =data.latitude;
+                if(/^-?(([1-9]\d?)|(1[1-7]\d)|180)(\.\d{1,10})?$/.test(longreg)){
+                    if(/^-?(([1-9])|([1-8]\d)|90)(\.\d{1,10})?$/.test(latreg)){
+                        if(data.storeName.length<40&data.storeName.length>0&data.storeName!==" "){
+                             if (data.positionName.length<50&data.positionName.length>0&data.positionName!==" "){
+                                 data.access_token = sessionStorage.access_token;
+                                 data.from = "web";
+                                 data.updateUser = sessionStorage.id;
+                                 data.timestamp = parseInt(new Date().getTime()/1000);
+
+                                 var newObj = srotKeyObj(data);
+                                 var str = objmd5(newObj);
+
+                                 var newUrl = url + "store/update?" + str;
+                                 console.log(newUrl);
+
+                                $.ajax({
+                                    url:newUrl,
+                                    type:'get',
+                                    success:function(data){
+                                        console.log(data);
+                                        console.log("ok");
+                                        alert("修改成功");
+                                        location.reload();
+                                    },
+                                    error:function(err){
+                                        console.log(err);
+                                        console.log("err");                                       
+                                    }
+                                });
+                             }else {
+                                 alert("店铺地址输入错误且不能超过50个字符!");
+                             }
+                        }else {
+                            alert("店铺名称输入错误且不能超过40个字符!");
+                        }
+                    } else {
+                         alert("纬度输入错误!");
+                    }
+                }else {
+                    alert("经度输入错误!");
+                }
             }
         });
 
@@ -460,8 +504,9 @@
             console.log("goodsOne");
             $(this).addClass('active');
             $(this).siblings('button').removeClass('active');
-            findOnSaleByStoreId(storeId,$(this).data("api"),1);
-            // console.log("//");
+            $('.find-goods-btn').html("查看在售");            
+            $('.find-goods-btn').data('api','product/findOnSaleByStoreId?');
+            findOnSaleByStoreId(storeId,$(this).data("api"),1,'');
             $(".modifyGoods").data("api","storeProduct/delList?");
             $(".modifyGoods").html("下架选中商品");
             // console.log("//");            
@@ -471,7 +516,9 @@
             console.log("goodsTwo");
             $(this).addClass('active');
             $(this).siblings("button").removeClass('active');
-            findOnSaleByStoreId(storeId,$(this).data("api"),1);
+            $('.find-goods-btn').data('api','product/findNoSaleByStoreId?');
+            $('.find-goods-btn').html("查看未售");
+            findOnSaleByStoreId(storeId,$(this).data("api"),1,'');
             $(".modifyGoods").data("api","storeProduct/saveList?");
             $(".modifyGoods").html("上架选中商品");
         });
@@ -509,7 +556,7 @@
                         if(data.code == "200"){
                             console.log("商店添加商品成功");
                             console.log(data);
-                            findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,1);                  
+                            findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,1,'');                  
                         }else{
                             console.log("商店添加商品没有成功");
                         }
@@ -524,8 +571,12 @@
         });
 
         //根据店铺ID查询该店铺已绑定的商品并将其展示到模态框上
-        function findOnSaleByStoreId(id,api,pageNum){
+        function findOnSaleByStoreId(id,api,pageNum,name){
             var obj = {};
+            if(name==''){
+            }else{
+                obj.name = name;
+            }
             obj.access_token = sessionStorage.access_token;
             obj.storeId = id;
             obj.pageNum = pageNum;
@@ -623,10 +674,10 @@
 
         //商品分类跳转
         $(document).on('click','.goods-page-ul li',function(){
-            console.log($(this).data('id'));        
+            console.log($(this).data('id'));
             if($(this).data("id")=="..."||$(this).data("id")=="0"){
             }else{
-                findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,$(this).data('id'));
+                findOnSaleByStoreId(storeId,sessionStorage.findGoodsApi,$(this).data('id'),'');
             }
         });
 
@@ -649,6 +700,15 @@
                 success:function(data){
                     console.log(data);
                     console.log("数据查询成功 ok");
+
+                    sessionStorage.printer = data.data.printer;
+                    if(sessionStorage.jumpFlag == "ok"){
+                    }else{
+                        sessionStorage.jumpFlag = "ok";
+                        location.href= "store-order.html";
+                    }
+                    
+                    
                     // if(data.data.length==0){
                     //     alert("未找到该店铺 请核对信息 再次查找");
                     // }else{
@@ -659,7 +719,7 @@
                         + data.data.storeName
                         + '</a>'
                         + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn" data-api="store/update?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改店铺"'
-                        + 'data-list="id_店铺id:^:'+data.data.id+'3&%_%&storeName_店铺名:^:'+data.data.storeName+'0&%_%&longitude_经度坐标:^:'+data.data.longitude+'0&%_%&latitude_纬度坐标:^:'+data.data.latitude+'0&%_%&positionName_地址名称:^:'+data.data.positionName+'0">修改店铺</button>'
+                        + 'data-list="id_店铺id:^:'+data.data.id+'3&%_%&storeName_店铺名:^:'+data.data.storeName+'0&%_%&longitude_经度坐标:^:'+data.data.longitude+'0&%_%&latitude_纬度坐标:^:'+data.data.latitude+'0&%_%&positionName_地址名称:^:'+data.data.positionName+'0&%_%&printer_打印设备名称:^:'+data.data.printer+'0">修改店铺</button>'
                         + '<button type="button" class="btn btn-primary goodsManage" data-toggle="modal" data-target=".bs-example-modal-lg" data-id = '+data.data.id+'>商品管理</button>'
                         + '</h4></div>'
                         + '<div id="collapse'+data.data.id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
@@ -709,7 +769,18 @@
             $(".modifyGoods").html("下架选中商品");
             var api = "product/findOnSaleByStoreId?";
             storeId = $(this).data("id");
-            findOnSaleByStoreId(storeId,api,1);
+            findOnSaleByStoreId(storeId,api,1,'');
+        });
+
+        //模糊查询商品
+        $(".find-goods-btn").on('click',function(e){
+            console.log($(this).data("api"));
+            console.log($('.select-goods').val());
+            if($('.select-goods').val()!==""){
+                findOnSaleByStoreId(storeId,$(this).data("api"),1,$('.select-goods').val());
+            }else{
+                alert("请输入商品");
+            };
         });
         
 

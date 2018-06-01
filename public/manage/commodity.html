@@ -153,6 +153,9 @@
     .my-panel-title{
         padding-top:0px;
     }
+    #my-table.my-table tr td{
+        vertical-align: middle;
+    }
 </style>
 <body>
     <div class="admin-container">
@@ -710,10 +713,7 @@
                         alert("请先上传图片");
                         return;
                     }else{
-
                         data[$("#modal-list .form-group").eq(i).find("input").attr("name")]= $("#modal-list .form-group").eq(i).find('input').val();
-
-
                     }
                 };
             // console.log("modify product");
@@ -764,11 +764,12 @@
                                                         console.log("ok");
                                                         $('.modal').modal('hide');
                                                         // alert("商品修改成功");
-                                                        var findNameFlag = sessionStorage.findByName!==undefined||sessionStorage.findByName!=="undefined";
+                                                        var findNameFlag = sessionStorage.findByName!==undefined&&sessionStorage.findByName!=="undefined";
+                                                        console.log(findNameFlag);
                                                         if(findNameFlag){
                                                             findCommodityByLike(sessionStorage.findByName);
                                                         }else{
-                                                            findCommodity(1,sessionStorage.catId);
+                                                            findCommodity(sessionStorage.pageNumId,sessionStorage.catId);
                                                         };
                                                     },
                                                     error:function(err){
@@ -829,6 +830,8 @@
                 var str = objmd5(newObj);
 
                 var newUrl = url + "product/del?" + str ;
+                console.log(newUrl);
+                // alert(newUrl);
                 $.ajax({
                     url:newUrl,
                     type:'get',
@@ -838,12 +841,16 @@
                         console.log("ok");
                         // alert("商品删除成功");
                         $(".modal").modal("hide");
-                        var findNameFlag = sessionStorage.findByName!==undefined||sessionStorage.findByName!=="undefined";
-                        if(findNameFlag){
-                            findCommodityByLike(sessionStorage.findByName);
+                        if(data.code==200){
+                            var findNameFlag = sessionStorage.findByName!==undefined&&sessionStorage.findByName!=="undefined";
+                            if(findNameFlag){
+                                findCommodityByLike(sessionStorage.findByName);
+                            }else{
+                                findCommodity(sessionStorage.pageNumId,sessionStorage.catId);
+                            };
                         }else{
-                            findCommodity(1,sessionStorage.catId);
-                        };
+                            alert(data.message);
+                        }
                     },
                     error:function(fn){
                         console.log(fn);
@@ -893,50 +900,88 @@
                     // console.log(data);
                     var data = data1;
                     console.log("data--------",data);
+                    // var listNode = '';
+                    // for(var i = 0; i < data.data.list.length;i++){
+                    //     listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'"><h4 class="panel-title my-panel-title">'
+                    //     +  '<a class="collapsed" role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
+                    //     + data.data.list[i].name 
+                    //     + '</a>'
+                    //     + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn"  data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
+                    //     + 'data-list="id_商品id:^:'+data.data.list[i].id+'3&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:'+data.data.list[i].weight+'0&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'a">修改商品</button>'
+                    //     + '<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
+                    //     + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
+                    //     + '</h4></div>' 
+                    //     + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
+                    //     + '<div class="panel-body">'
+                    //     + '<div class="panel-body">'
+                    //     + '<li class="list-group-item">' 
+                    //     + '<span>商品名称:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].name+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>成本价:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].cost+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>零售价:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].price+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>重量:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].weight+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>热度:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].hot+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>备注:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].remarks+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>图片路径:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].imagePath+'</span>'
+                    //     + '</li>'
+                    //     + '</ul></div></div></div></div>'
+                    // }
+
+                    // +'<td>'+data.data.list[i].hot+'</td>'<td style="vertical-align:middle;">热度</td>
+                    
                     var listNode = '';
-                    for(var i = 0; i < data.data.list.length;i++){
-                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'"><h4 class="panel-title my-panel-title">'
-                        +  '<a class="collapsed" role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
-                        + data.data.list[i].name 
-                        + '</a>'
-                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn"  data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
-                        + 'data-list="id_商品id:^:'+data.data.list[i].id+'3&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'a">修改商品</button>'
-                        + '<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
-                        + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
-                        + '</h4></div>' 
-                        + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
-                        + '<div class="panel-body">'
-                        + '<div class="panel-body">'
-                        + '<li class="list-group-item">' 
-                        + '<span>商品名称:</span>'
-                        + '<span class="store-num">'+data.data.list[i].name+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>成本价:</span>'
-                        + '<span class="store-num">'+data.data.list[i].cost+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>零售价:</span>'
-                        + '<span class="store-num">'+data.data.list[i].price+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>重量:</span>'
-                        + '<span class="store-num">'+data.data.list[i].weight+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>热度:</span>'
-                        + '<span class="store-num">'+data.data.list[i].hot+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>备注:</span>'
-                        + '<span class="store-num">'+data.data.list[i].remarks+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>图片路径:</span>'
-                        + '<span class="store-num">'+data.data.list[i].imagePath+'</span>'
-                        + '</li>'
-                        + '</ul></div></div></div></div>'
+                    listNode += '<table class="table table-bordered my-table" id="my-table" style="vertical-align:middle;text-align:center;"><tr><td style="width:66px;" >图片</td><td style="vertical-align:middle;">商品名称</td><td style="vertical-align: middle;">成本价(元)</td><td style="vertical-align:middle;">零售价(元)</td><td style="vertical-align:middle;">重量(kg)</td><td style="vertical-align:middle;">备注</td><td style="width:60px;">操作</td></tr>';
+                    for(var i = 0; i < data.data.list.length ; i++){
+                        if(data.data.list[i].imagePath == null){
+                            headimgurl = "myadmin/img/user-default.png";
+                        }else{
+                            headimgurl = data.data.list[i].imagePath;
+                        }
+                        listNode += '<tr>'
+                                +'<td style="width:66px;padding:0px;"><img src="'+headimgurl+'" height="50" width="50"/></td>'
+
+                                +'<td style="vertical-align:middle;">'+data.data.list[i].name+'</td>'
+                                +'<td>'+data.data.list[i].cost+'</td>'
+                                +'<td>'+data.data.list[i].price+'</td>'
+                                +'<td>'+data.data.list[i].weight+'</td>'
+                                +'<td>'+data.data.list[i].remarks+'</td>'
+
+
+
+                                +'<td style="width:145px;">'
+                                + '<button type="button" style="margin-right:10px;" class="btn btn-primary admin-btn"  data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
+                                + 'data-list="id_商品id:^:'+data.data.list[i].id+'3&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:'+data.data.list[i].weight+'0&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'a">修改</button>'
+                                
+                                +'<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
+                                +'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除</button>'
+                                +'</td>'
+                                +'</tr>';
                     }
+                    listNode += '</table>';
+
+
+
+
+
+
 
                     listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>'
 
@@ -1054,6 +1099,7 @@
                 $('.commodity-title').html(data.data[0].Name);
                 $(".classification-li").eq(0).addClass("classification-active");
                 sessionStorage.catId = data.data[0].catId;
+                sessionStorage.pageNumId = 1;
             },
             error:function(err){
                 console.log(err);
@@ -1194,50 +1240,80 @@
                     //             "lastPage": 2,"firstPage": 1
                     //         }}
                     //添加长list
+                    // var listNode = '';
+                    // for(var i = 0; i < data.data.list.length;i++){
+                    //     listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'"><h4 class="panel-title my-panel-title">'
+                    //     +  '<a class="collapsed" role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
+                    //     + data.data.list[i].name 
+                    //     + '</a>'
+                    //     + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn"  data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
+                    //     + 'data-list="id_商品id:^:'+data.data.list[i].id+'3&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:'+data.data.list[i].weight+'0&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'a">修改商品</button>'
+                    //     + '<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
+                    //     + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
+                    //     + '</h4></div>' 
+                    //     + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
+                    //     + '<div class="panel-body">'
+                    //     + '<div class="panel-body">'
+                    //     + '<li class="list-group-item">' 
+                    //     + '<span>商品名称:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].name+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>成本价:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].cost+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>零售价:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].price+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>重量:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].weight+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>热度:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].hot+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>备注:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].remarks+'</span>'
+                    //     + '</li>'
+                    //     + '<li class="list-group-item">'
+                    //     + '<span>图片路径:</span>'
+                    //     + '<span class="store-num">'+data.data.list[i].imagePath+'</span>'
+                    //     + '</li>'
+                    //     + '</ul></div></div></div></div>'
+                    // }
+
                     var listNode = '';
-                    for(var i = 0; i < data.data.list.length;i++){
-                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].id+'"><h4 class="panel-title my-panel-title">'
-                        +  '<a class="collapsed" role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
-                        + data.data.list[i].name 
-                        + '</a>'
-                        + '<button type="button" style="margin-right:20px;" class="btn btn-primary admin-btn"  data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
-                        + 'data-list="id_商品id:^:'+data.data.list[i].id+'3&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:0.50&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'a">修改商品</button>'
-                        + '<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
-                        + 'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除商品</button>'
-                        + '</h4></div>' 
-                        + '<div id="collapse'+data.data.list[i].id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
-                        + '<div class="panel-body">'
-                        + '<div class="panel-body">'
-                        + '<li class="list-group-item">' 
-                        + '<span>商品名称:</span>'
-                        + '<span class="store-num">'+data.data.list[i].name+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>成本价:</span>'
-                        + '<span class="store-num">'+data.data.list[i].cost+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>零售价:</span>'
-                        + '<span class="store-num">'+data.data.list[i].price+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>重量:</span>'
-                        + '<span class="store-num">'+data.data.list[i].weight+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>热度:</span>'
-                        + '<span class="store-num">'+data.data.list[i].hot+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>备注:</span>'
-                        + '<span class="store-num">'+data.data.list[i].remarks+'</span>'
-                        + '</li>'
-                        + '<li class="list-group-item">'
-                        + '<span>图片路径:</span>'
-                        + '<span class="store-num">'+data.data.list[i].imagePath+'</span>'
-                        + '</li>'
-                        + '</ul></div></div></div></div>'
+                    listNode += '<table class="table table-bordered my-table" id="my-table" style="vertical-align:middle;text-align:center;"><tr><td style="width:66px;" >图片</td><td style="vertical-align:middle;">商品名称</td><td style="vertical-align: middle;">成本价(元)</td><td style="vertical-align:middle;">零售价(元)</td><td style="vertical-align:middle;">重量(kg)</td><td style="vertical-align:middle;">备注</td><td style="width:60px;">操作</td></tr>';
+                    for(var i = 0; i < data.data.list.length ; i++){
+                        if(data.data.list[i].imagePath == null){
+                            headimgurl = "myadmin/img/user-default.png";
+                        }else{
+                            headimgurl = data.data.list[i].imagePath;
+                        }
+                        listNode += '<tr>'
+                                +'<td style="width:66px;padding:0px;"><img src="'+headimgurl+'" height="50" width="50"/></td>'
+
+                                +'<td style="vertical-align:middle;">'+data.data.list[i].name+'</td>'
+                                +'<td>'+data.data.list[i].cost+'</td>'
+                                +'<td>'+data.data.list[i].price+'</td>'
+                                +'<td>'+data.data.list[i].weight+'</td>'
+                                +'<td>'+data.data.list[i].remarks+'</td>'
+
+
+
+                                +'<td style="width:145px;">'
+                                + '<button type="button" style="margin-right:10px;" class="btn btn-primary admin-btn"  data-api="product/modify?" data-toggle="modal" data-target="#exampleModal" data-whatever="修改商品"'
+                                + 'data-list="id_商品id:^:'+data.data.list[i].id+'3&%_%&name_商品规格:^:'+data.data.list[i].name+'0&%_%&cost_成本价:^:'+data.data.list[i].cost+'0&%_%&price_零售价:^:'+data.data.list[i].price+'0&%_%&introduction_商品简介:^:'+data.data.list[i].introduction+'0&%_%&weight_重量:^:'+data.data.list[i].weight+'0&%_%&categoryId_商品分类ID:^:'+data.data.list[i].categoryId+'7&%_%&hot_热度:^:'+data.data.list[i].hot+'0&%_%&remarks_备注:^:'+data.data.list[i].remarks+'0&%_%&imagePath_图片:^:'+data.data.list[i].imagePath+'a">修改</button>'
+                                
+                                +'<button type="button" class="btn btn-primary admin-btn" data-api="product/del?" data-toggle="modal" data-target="#exampleModal" data-whatever="删除商品"'
+                                +'data-list="name_商品名称:^:'+data.data.list[i].name+'0&%_%&id_ID:^:'+data.data.list[i].id+'0">删除</button>'
+                                +'</td>'
+                                +'</tr>';
                     }
+                    listNode += '</table>';
 
                     listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>'
 
@@ -1363,6 +1439,7 @@
             console.log($(this).data("id"));
             if($(this).data("id")=="..."||$(this).data("id")=="0"){
             }else{
+                sessionStorage.pageNumId = $(this).data("id");
                 findCommodity($(this).data("id"),sessionStorage.catId);
             }
             // findCommodity($(this).data("id"));
@@ -1382,6 +1459,7 @@
                     }else {
                         // alert("跳转成功到第"+bottom_num+"页!");
                         console.log(bottom_num);
+                        sessionStorage.pageNumId = bottom_num;
                         findCommodity(bottom_num,sessionStorage.catId);
                     }
 

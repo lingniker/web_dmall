@@ -1118,9 +1118,9 @@ function srotKeyObjAndMd5(obj){
                         var list = '';
                         console.log(data);
                         if(data.data.list.length !== 0){
-                            list += '<ul class="header_menue1_goods_ul">'
+                            list += '<ul class="header_menue1_goods_ul">';
                             for(var i = 0; i < data.data.list.length;i++){
-                                list += '<li><a href="#" class="header_menue1_goods_a">'
+                                list += '<li><a href="#" class="header_menue1_goods_a" >'
                                         +'<div class="header_menue1_goods_img01">'
                                         +'<div class="header_menue1_goods_img03"></div>'
                                         +'<div class="header_menue1_goods_img02">'
@@ -1136,8 +1136,14 @@ function srotKeyObjAndMd5(obj){
                                         +'</div>'
                                         +'</a>'
                                         +'<div class="header_menue1_goods_shoppingadd">'
-                                        +'<a class="addCart" data-product-id = '+data.data.list[i].id+'><img src="images/header_menue1_goods_shoppingadd_img.png" class="header_menue1_goods_shoppingadd_img"></a>'
+
+
+                                        +'<a class="addCart" >' +
+                                      '<img src="images/reduce.png" class="header_menue1_goods_shoppingadd_img01">'+
+                                        '<div class="header_menue1_goods_shoppingadd_img02">'+'</div>'+
+                                        '<img src="images/header_menue1_goods_shoppingadd_img.png" class="header_menue1_goods_shoppingadd_img" data-product-id = '+data.data.list[i].id+'>'+'</a>'
                                         +'</div>'
+
                                         +'</li>'
                             }
                             list += '</ul>';
@@ -1146,9 +1152,7 @@ function srotKeyObjAndMd5(obj){
                         }else{
                             $3_3_1(".header_goods_menue0"+k).html("此类未有商品上架");
                         }
-                        
                 },
-                    
                     error:function(err){
                         console.log("err:",err);
                     }
@@ -1170,7 +1174,7 @@ function srotKeyObjAndMd5(obj){
     });
 
     var flag = true;
-    $3_3_1(document).on("click",".addCart",function(e){
+    $3_3_1(document).on("click",".header_menue1_goods_shoppingadd_img",function(e){
             if(flag){
                 flag = false;
                 var obj = {};

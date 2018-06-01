@@ -206,7 +206,7 @@
             // console.log(pt.lng);
             geoc.getLocation(pt, function(rs){
                 var addComp = rs.addressComponents;
-                document.getElementById("address-input").value = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+                document.getElementById("address-input").value = addComp.province  + addComp.city + addComp.district  + addComp.street  + addComp.streetNumber;
                 // alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
                 // alert(longitude);
                 // alert(latitude);

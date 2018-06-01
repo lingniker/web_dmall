@@ -18,8 +18,7 @@
         // var url = "http://192.168.1.109:8080/";
         // // var url = "http://47.105.54.146:8080/";
         // var mykey = "union_supermarket_2018";
-        // "access_token":"d3ba726f-3cfe-4bed-82ba-303521f67253","token_type":"bearer","refresh_token":"a892c6bc-e5e2-41e1-92b6-d7e0830168df","expires_in":315303893,"scope":"select"}
-        function login() {
+        function login(){
             $_331 = jQuery.noConflict();
             var phone = document.getElementById('phone').value;
             var psw = document.getElementById('psw').value;
@@ -29,7 +28,7 @@
 
                     var obj = {};
                     obj.username = phone;
-                    obj.password = md5(psw); 
+                    obj.password = md5(psw);
                     obj.grant_type = "password";
                     obj.scope="select";
                     obj.client_id="web";
@@ -38,7 +37,7 @@
 
                     var str = srotKeyObjAndMd5(obj);
 
-                    
+
                     var newUrl = url+"user/login?"+str;
                     console.log(newUrl);
                     $_331.ajax({
@@ -54,16 +53,14 @@
                             sessionStorage.userName=data.data.userName;
                             sessionStorage.id=data.data.id;
                             sessionStorage.headimgurl=data.data.headimgurl;
-
                             location.href="i.user02.html";
                         },
                         error:function(err){
                             console.log(err);
-                            // {"access_token":"363c5a7e-335b-4d2a-a8d4-4db4af244a67","token_type":"bearer","refresh_token":"a3352680-e3d2-48b0-9bf7-b01b107ee7d9","expires_in":43200,"scope":"select"}
                             console.log("请求错误");
                             // location.href="i.user.html";
                             // console.log("i.index.html");
-                        }        
+                        }
                     });
 
                     // function CORSRequest(method,url,opation,callback) {

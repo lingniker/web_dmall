@@ -332,7 +332,8 @@
                                       <!--</div>-->
                               </div>
                 </ul>
-
+                
+                
             </div>
         </div>
         <div class="floor"></div>
@@ -406,11 +407,11 @@
         // }
 
 
-        function findAllOrder(pageNum){
+
         var obj = {};
         obj.access_token = sessionStorage.access_token;
         obj.from = "web";
-        obj.pageNum= pageNum;
+        obj.pageNum= 1;
         obj.pageSize = 12;
         obj.timestamp = parseInt(new Date().getTime() / 1000);
         var newObj = srotKeyObj(obj);
@@ -441,7 +442,6 @@
                    $.ajax({
                        url: newUrl,
                        type: 'get',
-                       async: false,
                        success: function (data) {
                            console.log(data);
                            console.log("ok");
@@ -556,97 +556,29 @@
                            // alert("订单查询失败");
                        }
                    });
-               };
-               var pageNode = '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>';
-               $(".panel-group").append(pageNode);
-
-               $('.page ul').append("<li data-id='"+data.data.prePage+"'><</li>");
-
-                if(data.data.pages > 5){
-                    if(data.data.pageNum < 3){
-                    for(var i = 1 ; i < 4 ; i++){
-                        if(data.data.pageNum == i){
-                            $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});                                  
-                        }else{
-                            $('.page ul').append("<li data-id="+i+">"+i+"</li>"); 
-                        }                         
-                    }
-                    $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                    $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                    }else if(data.data.pageNum == 3){
-                        $('.page ul').append("<li data-id="+1+">"+1+"</li>");                           
-                        $('.page ul').append("<li data-id="+2+">"+2+"</li>");
-                        $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
-                        $('.page ul').append("<li data-id="+4+">"+4+"</li>");
-                        $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                        $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");            
-                    }else if(data.data.pageNum-3 > 0){
-                            $('.page ul').append("<li data-id="+1+">"+1+"</li>");
-                            $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                        if(data.data.pages-data.data.pageNum >= 3){
-                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
-                            $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                        }else if(data.data.pages-data.data.pageNum == 2){
-                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                        }else if(data.data.pages-data.data.pageNum == 1){
-                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
-                        }else if(data.data.pages-data.data.pageNum == 0){
-                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
-                            $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
-                        }                            
-                    }
-                }else{
-                    for(let i = 0; i<data.data.pages;i++){
-                        var k = i + 1;
-                        if(k == data.data.pageNum){
-                        $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});                            
-                        }else{
-                        $('.page ul').append("<li data-id="+k+">"+k+"</li>");                         
-                        }
-                    };          
-                }
-                $('.page ul').append("<li data-id='"+data.data.nextPage+"'>></li>");
+               }
             },
             error: function (err) {
                 console.log(err);
                 console.log("err");
             }
         });
-    }
         // alert("提交成功!");
-        findAllOrder(1);
-        
-        //选择分页
-        $(document).on("click",".page-ul li",function(evev){
-            console.log($(this).data("id"));
-            if($(this).data("id")=="..."||$(this).data("id")=="0"){
-            }else{
-                findAllOrder($(this).data("id"));
-            }
-            // findCommodity($(this).data("id"));
-        });
 
 
 
-        // 商品Id查找
+        // 查找
         $(".findStort").click(function () {
             var search_input1=document.getElementById("search_input1").value;
             // if(search_input1.length>0&search_input1!==" "){
             if(/^\d/.test(search_input1)){
-                // if(search_input1.length>0){
-                //     // obj.orderNo=search_input1;
-                // };
+
                 var obj = {};
                 obj.access_token = sessionStorage.access_token;
                 obj.from = "web";
+                obj.pageNum=1;
+                obj.pageSize=10;
+                obj.orderNo=search_input1;
                 obj.timestamp = parseInt(new Date().getTime() / 1000);
                 var newObj = srotKeyObj(obj);
                 var str = objmd5(newObj);
@@ -657,113 +589,86 @@
                     type: 'get',
                     success: function (data) {
                         console.log(data);
-                        console.log("ok");
                         console.log("数据查询成功 ok");
-                        if(data.data.length==0){
-                            alert("未找到该订单 请核对信息 再次查找");
-                        }else{
-                        // alert("11111");
-                        for(var i=0;i<data.data.length;i++) {
-                            var orderNo = data.data[i].orderNo;
-                            obj.access_token = sessionStorage.access_token;
-                            obj.orderNo = orderNo;
-                            obj.from = "web";
-                            obj.timestamp = parseInt(new Date().getTime() / 1000);
-                            var newObj = srotKeyObj(obj);
-                            var str = objmd5(newObj);
-                            var newUrl = url + "order/itemList?" + str;
-                            // console.log(newUrl);
-                            $.ajax({
-                                url: newUrl,
-                                type: 'get',
-                                // async: "false",
-                                success: function (data) {
-                                    console.log(data);
-                                    console.log("ok");
-                                    var liNode = "";
-                                    var productNode="";
-                                    for(var i=0;i<data.data.orderItems.length;i++){
-                                        productNode+='<li class="list-group-item">'
-                                            + '<span >'+data.data.orderItems[i].productName+" "+'</span>'
-                                            + '<span >'+data.data.orderItems[i].amount+"件 "+'</span>'
-                                            + '<span >'+data.data.orderItems[i].sum+"元"+'</span>'
-                                            + '</li>'
-                                    }
-                                    var status="";
-                                    if(data.data.order.status=="1"){
-                                        status="待支付";
-                                    }else if(data.data.order.status=="2"){
-                                        status="已付款";
-                                    }else if(data.data.order.status=="3"){
-                                        status="配送中";
-                                    }else if(data.data.order.status=="4"){
-                                        status="已配送";
-                                    }else if(data.data.order.status=="5"){
-                                        status="交易成功";
-                                    }else if(data.data.order.status=="6"){
-                                        status="交易关闭";
-                                    }
-                                    // var storeName="";
-                                    // if(data.data.order.storeId=="10"){
-                                    //     storeName="高密联家超市1号店";
-                                    // }else if(data.data.order.storeId=="12"){
-                                    //     storeName="高密联家超市3号店";
-                                    // }
-                                    liNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.order.id+'"><h4 class="panel-title">'
-                                        +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'
-                                        +data.data.order.id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.order.id+'">订单号：'
-                                        + data.data.order.orderNo
-                                        + '</a>'
-                                        + '</h4></div>'
-                                        + '<div id="collapse'+data.data.order.id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
-                                        + '<div class="panel-body">'
-                                        + '<div class="panel-body">'
-                                        + '<li class="list-group-item">'
-                                        + '<span>订单号:</span>'
-                                        + '<span class="store-num">'+data.data.order.orderNo+'</span>'
+                        var orderNo = data.data.list[0].orderNo;
+                        // alert(orderNo);
+                        obj.access_token = sessionStorage.access_token;
+                        obj.orderNo = orderNo;
+                        obj.from = "web";
+                        obj.timestamp = parseInt(new Date().getTime() / 1000);
+                        var newObj = srotKeyObj(obj);
+                        var str = objmd5(newObj);
+                        var newUrl = url + "order/itemList?" + str;
+                        $.ajax({
+                            url: newUrl,
+                            type: 'get',
+                            success: function (data) {
+                                console.log(data);
+                                console.log("ok");
+                                var liNode = "";
+                                var productNode="";
+                                for(var i=0;i<data.data.orderItems.length;i++){
+                                    productNode+='<li class="list-group-item">'
+                                        + '<span >'+data.data.orderItems[i].productName+" "+'</span>'
+                                        + '<span >'+data.data.orderItems[i].amount+"件 "+'</span>'
+                                        + '<span >'+data.data.orderItems[i].sum+"元"+'</span>'
                                         + '</li>'
-                                        + '<li class="list-group-item">'
-                                        + '<span>下单时间:</span>'
-                                        + '<span class="store-num">'+data.data.order.orderTime+'</span>'
-                                        + '</li>'
-                                        + '<li class="list-group-item">'
-                                        + '<span>金额:</span>'
-                                        + '<span class="store-num">'+data.data.order.payMoney+'元'+'</span>'
-                                        + '</li>'
-                                        + '<li class="list-group-item">'
-                                        + '<span>订单状态:</span>'
-                                        + '<span class="store-num">'+status+'</span>'
-                                        + '</li>'
-                                        // + '<li class="list-group-item">'
-                                        // + '<span>商店:</span>'
-                                        // + '<span class="store-num">'+storeName+'</span>'
-                                        // + '</li>'
-                                        + '<li class="list-group-item">'
-                                        + '<span>用户:</span>'
-                                        + '<span class="store-num">'+data.data.address.name+'</span>'
-                                        + '</li>'
-                                        + '<li class="list-group-item">'
-                                        + '<span style="color: #1E9FFF">商品细节</span>'
-                                        + '</li>'
-                                        +productNode
-                                        + '</ul></div></div></div></div>';
-                                    // $(".panel-group").append(liNode);
-
-                                      // alert(search_input1);
-                                    if(search_input1==data.data.order.orderNo){
-                                        $(".panel-group").html(liNode);
-                                    }
-
-                                },
-                                error: function (err) {
-                                    console.log(err);
-                                    console.log("err");
-                                    // alert("订单查询失败");
                                 }
-                            });
-                        }
-
-                        }
+                                var status="";
+                                if(data.data.order.status=="1"){
+                                    status="待支付";
+                                }else if(data.data.order.status=="2"){
+                                    status="已付款";
+                                }else if(data.data.order.status=="3"){
+                                    status="配送中";
+                                }else if(data.data.order.status=="4"){
+                                    status="已配送";
+                                }else if(data.data.order.status=="5"){
+                                    status="交易成功";
+                                }else if(data.data.order.status=="6"){
+                                    status="交易关闭";
+                                }
+                                liNode = '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.order.id+'"><h4 class="panel-title">'
+                                    +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'
+                                    +data.data.order.id+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.order.id+'">订单号：'
+                                    + data.data.order.orderNo
+                                    + '</a>'
+                                    + '</h4></div>'
+                                    + '<div id="collapse'+data.data.order.id+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
+                                    + '<div class="panel-body">'
+                                    + '<div class="panel-body">'
+                                    + '<li class="list-group-item">'
+                                    + '<span>订单号:</span>'
+                                    + '<span class="store-num">'+data.data.order.orderNo+'</span>'
+                                    + '</li>'
+                                    + '<li class="list-group-item">'
+                                    + '<span>下单时间:</span>'
+                                    + '<span class="store-num">'+data.data.order.orderTime+'</span>'
+                                    + '</li>'
+                                    + '<li class="list-group-item">'
+                                    + '<span>金额:</span>'
+                                    + '<span class="store-num">'+data.data.order.payMoney+'元'+'</span>'
+                                    + '</li>'
+                                    + '<li class="list-group-item">'
+                                    + '<span>订单状态:</span>'
+                                    + '<span class="store-num">'+status+'</span>'
+                                    + '</li>'
+                                    + '<li class="list-group-item">'
+                                    + '<span>用户:</span>'
+                                    + '<span class="store-num">'+data.data.address.name+'</span>'
+                                    + '</li>'
+                                    + '<li class="list-group-item">'
+                                    + '<span style="color: #1E9FFF">商品细节</span>'
+                                    + '</li>'
+                                    +productNode
+                                    + '</ul></div></div></div></div>';
+                                $(".panel-group").html(liNode);
+                            },
+                            error: function (err) {
+                                console.log(err);
+                                console.log("err");
+                            }
+                        });
                     },
                     error: function (err) {
                         console.log(err);

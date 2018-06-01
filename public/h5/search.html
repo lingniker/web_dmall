@@ -5,73 +5,319 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>search</title>
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/ys.css">
+    <!--<link rel="stylesheet" href="css/ys.css">-->
+    <link rel="stylesheet" href="css/mycss/index.css">
 </head>
 <body>
-<div >
+
 <div class="toolbar">
     <a  href="./i.index.html" class="back">
         <div class="back-into"></div></a>
     <div class="search_1">
-        <input type="text" placeholder="搜索想要的商品" value="" id="search" />
-        <button class="btn_search" onclick="fun1()">搜索</button>
-
+        <input type="text" placeholder="请输入商品名称" value="" id="search">
+         <img src="images/payment_X.png" class="search_qudiao">
+        <button class="btn_search" >搜索</button>
 
     </div>
 </div>
     <div class="content_search">
-        <div class="search_title">
-
-            <h4>历史搜索</h4><button onclick="fun2()" id="clear">清空记录</button>
-              <div class="lishijilu" id="lishijilu">
-            <!--<a href="#"> 老干妈辣椒酱</a>-->
-                  <!--<a href="#" class="lishi"></a>-->
-            </div>
-        </div>
-<div class="search_title2">
-    <h4>热门搜索</h4>
-
-        <a href="#"> 老干妈辣椒酱</a>
-        <a href="#"> 老干妈辣椒酱</a>
-        <a href="#"> 老干妈辣椒酱</a>
-        <a href="#"> 老干妈辣椒酱</a>
-        <a href="#"> 老干妈辣椒酱</a>
-
-
-    </div>
-
-    </div>
-
-
-</div>
-
-<script>
-    function  fun1() {
-        var search=document.getElementById("search").value;
-        var lishijilu=document.getElementById("lishijilu");
-        var clear=document.getElementById("clear");
-        // alert(search);
-        // lishijilu.innerHTML="<a href='#'>"+search+"</a>";
-        // search.appendChild(lishijilu);
-        var para = document.createElement("a");
-        para.attr="href='#'";
-        para.style.marginLeft="5px";
-        para.setAttribute("href", "#");
-        var txt1 = document.createTextNode(search);
-        para.appendChild(txt1);
-       lishijilu.appendChild(para);
-       clear.style.display="block";
-    }
-    function fun2() {
-        var clear=document.getElementById("clear");
-        if(confirm("确认删除全部历史记录？")){
-            // alert("1111111111111");
-        document.getElementById("lishijilu").innerHTML="";
-            clear.style.display="none";
-        }else {
-        }
-    }
-
-</script>
+        <!--<div class="search_history01">-->
+        <!--<ul class="search_history">-->
+           <!--<li>1111</li>-->
+           <!--<li>1111</li>-->
+           <!--<li>1111</li>-->
+       <!--</ul>-->
+        <!--<div class="search_clearhistory">清空历史记录</div>-->
+       <!--</div>-->
+   </div>
 </body>
 </html>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!--<script type="application/javascript" src="js/jquery-1.8.2.js"></script>-->
+<!--接口-->
+<script src="js/wys.js"></script>
+<script>
+    var $_331 = jQuery.noConflict();
+    $_331("#search").focus(function () {
+        $_331(".search_qudiao").show();
+    });
+
+
+    var history_listLi="";
+    $_331(".btn_search").on("click",function (){
+         if($_331("#search").val()!==""){
+          var obj={};
+           // obj.access_token=sessionStorage.access_token;
+           obj.pageNum=1;
+           obj.pageSize=10;
+           obj.storeId=sessionStorage.storeId;
+           obj.name=$_331("#search").val();
+           // obj.CatName=$_331("#search").val();
+
+           obj.timestamp= parseInt(new Date().getTime()/1000);
+           obj.from = "web";
+           var str = srotKeyObjAndMd5(obj);
+           var newUrl = url + "product/findProductByNameOrCatName?" + str;
+           console.log(newUrl);
+           $_331.ajax({
+               url:newUrl,
+               type:"get",
+               dataType:"json",
+               success:function (data){
+                   console.log(data);
+                   var list = '';
+                   list += '<ul class="header_menue1_goods_ul">';
+                   for(var i = 0; i < data.data.list.length;i++){
+                       list += '<li class="historyLi"><a href="#" class="header_menue1_goods_a" style="background-color: white!important; " >'
+                           +'<div class="header_menue1_goods_img01">'
+                           // +'<div class="header_menue1_goods_img03"></div>'
+                           +'<div class="header_menue1_goods_img02">'
+                           +'<img src="'+data.data.list[i].imagePath+'" class="header_menue1_goodsimg">'
+                           +'</div>'
+                           +'</div>'
+                           +'<div class="header_menue1_goods_value">'
+                           +'<div class="header_menue1_goods_value_1">'+data.data.list[i].name+'</div>'
+                           +'<div class="header_menue1_goods_value_2">'+data.data.list[i].introduction+'</div>'
+                           +'<div class="header_menue1_goods_value_3"><span>{ </span> <img src="images/pinzhibaozheng.png"  class="header_menue1_goods_value_3_img" >'
+                           +'<span class="header_menue1_goods_value_3_2" >100%品质检控</span> <span>}</span></div>'
+                           +'<div class="header_menue1_goods_value_4">￥<span>'+data.data.list[i].price+'</span></div>'
+                           +'</div>'
+                           +'</a>'
+                           +'<div class="header_menue1_goods_shoppingadd">'
+                           +'<a class="addCart"  >' +
+                           '<img src="images/reduce.png" class="header_menue1_goods_shoppingadd_img01">'+
+                           '<div class="header_menue1_goods_shoppingadd_img02">'+"10"+'</div>'+
+                           '<img src="images/header_menue1_goods_shoppingadd_img.png" class="header_menue1_goods_shoppingadd_img" data-product-id = '+data.data.list[i].id+'>'+'</a>'
+                           +'</div>'
+                           +'</li>'
+                   }
+                   list += '</ul>';
+
+                   $_331(".content_search").html(list);
+                   // $_331(".content_search").append(list);
+
+               },
+               error:function (err) {
+                   console.log(err);
+               }
+           });
+
+           //历史记录
+             history_listLi+=$_331("#search").val()+" ";
+             localStorage.historyList+=history_listLi;
+
+         }
+    });
+    var arr_historylist=localStorage.historyList.split(" ");
+    console.log(arr_historylist);
+    var history_li="";
+    for(var i=0;i<arr_historylist.length-1;i++){
+        // alert(arr_historylist[i]);
+        history_li+='<li class="historyLi">'+arr_historylist[i]+'</li>'
+    }
+    var historylist="";
+    if (arr_historylist.length>1){
+     historylist='<div class="search_history01">' +
+        '<ul class="search_history">' +
+        history_li +
+        '</ul>' +
+        '<div class="search_clearhistory">清空历史记录</div>'+
+        '</div>';
+    }
+    $_331(".content_search").html(historylist);
+    $_331(".search_qudiao").click(function () {
+        $_331(".search_qudiao").hide();
+        $_331("#search").val("");
+
+        //赢藏商品list
+        $_331(".header_menue1_goods_ul").hide();
+        $_331(".content_search").html(historylist);
+        window.location.reload();
+    });
+  $_331(".search_clearhistory").click(function () {
+      if (confirm("记录删除后无法恢复，请确定是否删除")){
+          localStorage.historyList="";
+          $_331(".search_clearhistory").hide();
+          // $_331(".content_search").html("");
+          parent.location.reload();
+      }
+  });
+
+//点击商品记录模糊查询
+    $_331(".historyLi").on("click",function () {
+        // alert($_331(this).text());
+        if($_331(this).text()!==""){
+            var obj={};
+            // obj.access_token=sessionStorage.access_token;
+            obj.pageNum=1;
+            obj.pageSize=10;
+            obj.storeId=sessionStorage.storeId;
+            obj.name=$_331(this).text();
+            // obj.CatName=$_331(this).text();
+
+            obj.timestamp= parseInt(new Date().getTime()/1000);
+            obj.from = "web";
+            var str = srotKeyObjAndMd5(obj);
+            var newUrl = url + "product/findProductByNameOrCatName?" + str;
+            console.log(newUrl);
+            $_331.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function (data){
+                    console.log(data);
+                    var list = '';
+                    list += '<ul class="header_menue1_goods_ul">';
+                    for(var i = 0; i < data.data.list.length;i++){
+                        list += '<li ><a href="#" class="header_menue1_goods_a" style="background-color: white!important; " >'
+                            +'<div class="header_menue1_goods_img01">'
+                            +'<div class="header_menue1_goods_img03"></div>'
+                            +'<div class="header_menue1_goods_img02">'
+                            +'<img src="'+data.data.list[i].imagePath+'" class="header_menue1_goodsimg">'
+                            +'</div>'
+                            +'</div>'
+                            +'<div class="header_menue1_goods_value">'
+                            +'<div class="header_menue1_goods_value_1">'+data.data.list[i].name+'</div>'
+                            +'<div class="header_menue1_goods_value_2">'+data.data.list[i].introduction+'</div>'
+                            +'<div class="header_menue1_goods_value_3"><span>{ </span> <img src="images/pinzhibaozheng.png"  class="header_menue1_goods_value_3_img" >'
+                            +'<span class="header_menue1_goods_value_3_2" >100%品质检控</span> <span>}</span></div>'
+                            +'<div class="header_menue1_goods_value_4">￥<span>'+data.data.list[i].price+'</span></div>'
+                            +'</div>'
+                            +'</a>'
+                            +'<div class="header_menue1_goods_shoppingadd">'
+                            +'<a class="addCart" >' +
+                            '<img src="images/reduce.png" class="header_menue1_goods_shoppingadd_img01" data-product-id = '+data.data.list[i].id+'>'+
+                            '<div class="header_menue1_goods_shoppingadd_img02">'+'</div>'+
+                            '<img src="images/header_menue1_goods_shoppingadd_img.png" class="header_menue1_goods_shoppingadd_img" data-product-id = '+data.data.list[i].id+'>'+
+                            '</a>'
+                            +'</div>'
+                            +'</li>'
+                    }
+                    list += '</ul>';
+                    $_331(".content_search").html(list);
+
+                    // $_331(".content_search").append(list);
+
+                },
+                error:function (err) {
+                    console.log(err);
+                }
+            });
+            $_331(".search_qudiao").show();
+            $_331("#search").val($_331(this).text());
+
+            //历史记录
+            // history_listLi+=$_331("#search").val()+" ";
+            // localStorage.historyList+=history_listLi;
+
+        }
+    });
+    $_331(".header_menue1_goods_shoppingadd_img01").hide();
+    $_331(".header_menue1_goods_shoppingadd_img02").hide();
+
+    // //商品数量的减少
+    $_331(document).on("click",".header_menue1_goods_shoppingadd_img01",function(e) {
+        var goodssum=$_331(this).next();
+        var self01=$_331(this);
+        var self02=$_331(this).next();
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.storeId = 10;
+        obj.productId =$_331(this).data("productId");
+        obj.type = -1;
+        obj.timestamp = parseInt(new Date().getTime() / 1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "shoppingCart/outChangeAmount?" + str;
+        console.log("商品数量--" + newUrl);
+        $_331.ajax({
+            url: newUrl,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                console.log("ok");
+                console.log(data);
+                if (data.data.amount==0){
+                    self01.css({'visibility':'hidden'});
+                    self02.css({'visibility':'hidden'});
+                }else {
+                    goodssum.html(data.data.amount);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+                console.log("err");
+            }
+        });
+    });
+
+    //add商品添加到购物车
+    var flag =  sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined";
+    var k=0;
+    $_331(document).on("click",".header_menue1_goods_shoppingadd_img",function(e){
+        if(!flag){
+            $_331(this).prev().css({'visibility':'inherit'});
+            $_331(this).prev().prev().css({'visibility':'inherit'});
+            // var goodsid=$_331(this).data("productId");
+             var goodssum=$_331(this).prev();
+            var goodsadd="";
+            k++;
+            var j=k;
+            var obj = {};
+            obj.access_token = sessionStorage.access_token;
+            obj.storeId = 10;
+            obj.productId = $_331(this).data("productId");
+            // obj.type = 1;
+            obj.timestamp = parseInt(new Date().getTime()/1000);
+            obj.from = "web";
+            var str = srotKeyObjAndMd5(obj);
+            var newUrl = url + "shoppingCart/add?" + str;
+            console.log(newUrl);
+            $_331.ajax({
+                url:newUrl,
+                type:"get",
+                dataType:"json",
+                success:function(data){
+                    // flag = true;
+                    console.log("ok");
+                    console.log(data);
+                    console.log(goodssum.text(j));
+                    goodssum.text(j);
+                    // parent.location.reload();
+                },
+                error:function(err){
+                    console.log(err);
+                    console.log("err");
+                }
+            });
+        }else {
+            location.href="i.login.html";
+        }
+    });
+
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+</script>

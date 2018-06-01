@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/ys.css">
+</head>
+<body style="background-color: #eee">
+<div class="wap_coupon">
+    <div class="toolbar">
+        <a class="back" href="./i.orderdetail.html"><div class="back-into"></div></a>
+        <span>商品详情</span>
+    </div>
+    <div style="margin-top: 46px" class="listGoods">
+        <div class="commodity_details">
+            <div class="commodity_details_img"><img src="images/shangpinshengnvguo.png"></div>
+            <div class="commodity_details02">
+                <div class="commodity_details02_value01"> 千禧圣女果【盒】 500g</div>
+                <div class="commodity_details02_value02"> x2</div>
+                <div class="commodity_details02_value03"> ￥39.6</div>
+            </div>
+        </div>
+        <div class="commodity_details">
+            <div class="commodity_details_img"><img src="images/shangpinshengnvguo.png"></div>
+            <div class="commodity_details02">
+                <div class="commodity_details02_value01"> 千禧圣女果【盒】 500g</div>
+                <div class="commodity_details02_value02"> x2</div>
+                <div class="commodity_details02_value03"> ￥39.6</div>
+            </div>
+        </div>
+        <div class="commodity_details">
+            <div class="commodity_details_img"><img src="images/shangpinshengnvguo.png"></div>
+            <div class="commodity_details02">
+                <div class="commodity_details02_value01"> 千禧圣女果【盒】 500g</div>
+                <div class="commodity_details02_value02"> x2</div>
+                <div class="commodity_details02_value03"> ￥39.6</div>
+            </div>
+        </div>
+
+
+
+
+        <div class="commodity_details">
+            <div class="commodity_details_img"><img src="images/shangpinshengnvguo.png"></div>
+            <div class="commodity_details02">
+                <div class="commodity_details02_value01"> 千禧圣女果【盒】 500g</div>
+                <div class="commodity_details02_value02"> x2</div>
+                <div class="commodity_details02_value03"> ￥39.6</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<!--<script type="application/javascript" src="js/jquery-1.8.2.js"></script>-->
+<!--接口-->
+<script src="js/wys.js"></script>
+<script>
+    var $_331 = jQuery.noConflict();
+    var flag = sessionStorage.access_token == undefined || sessionStorage.access_token == "undefined";
+    if(!flag){
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.orderNo=sessionStorage.order_MyorderNo;
+        obj.timestamp= parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "order/itemList?" + str;
+        $_331.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log("订单数据显示");
+                console.log(data);
+                var listGoods="";
+                for(var i=0;i<data.data.orderItems.length;i++){
+                    listGoods+='<div class="commodity_details">'+
+                        '<div class="commodity_details_img">'+'<img src="'+data.data.orderItems[i].imagePath+'">'+'</div>'+
+                        '<div class="commodity_details02">'+
+                        '<div class="commodity_details02_value01">'+data.data.orderItems[i].productName+'</div>'+
+                        '<div class="commodity_details02_value02">'+'x'+data.data.orderItems[i].amount+'</div>'+
+                        '<div class="commodity_details02_value03">'+'￥'+data.data.orderItems[i].sum+'</div>'
+                        +'</div>'
+                        +'</div>';
+                }
+                $_331(".listGoods").html(listGoods);
+
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+</script>

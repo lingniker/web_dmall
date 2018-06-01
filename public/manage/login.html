@@ -79,6 +79,7 @@
     <script type="text/javascript" src="myadmin/js/Treatment.js"></script>
 	<script type="text/javascript" src="myadmin/js/jquery.mockjax.js"></script>
 	<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+	<!-- <script src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script> -->
 	<script type="text/javascript">
 		var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
 		var ajaxmockjax = 0;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
@@ -87,14 +88,15 @@
 		var truelogin = "123456";
 		var truepwd = "123456";
 
-		var url = "http://47.105.54.146:8080/";
-		// var url = "http://192.168.1.108:8080/";
-		// var url = "http://192.168.1.109:8080/";
+		// var url = "http://47.105.54.146:8080/";
+		var url = "http://192.168.1.108:8080/";
+		// var url = "http://192.168.1.115:8080/";
 		// var mykey = "union_supermarket_2018";
 		var mykey = "afafda7193c3787f899217b5b09d4a9e";
 
+		// $19 = jQuery.noConflict();
 		console.log("url",url);
-		console.log();
+		// console.log();
 		
 		var CodeVal = 0;
 	    Code();
@@ -130,7 +132,7 @@
 	    $('input[name="pwd"]').focus(function () {
 	        $(this).attr('type', 'password');
 	    });
-	    $('input[type="text"]').focus(function () {
+	    $('input[type="text"]').focus(function(){
 	        $(this).prev().animate({ 'opacity': '1' }, 200);
 	    });
 	    $('input[type="text"],input[type="password"]').blur(function () {
@@ -265,8 +267,8 @@
 					});
 					
 	            }
-	        })
-	    })
+	        });
+	    });
 	    var fullscreen = function () {
 	        elem = document.body;
 	        if (elem.webkitRequestFullScreen) {

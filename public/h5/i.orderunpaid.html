@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/ys.css">
+</head>
+<body style="background-color: #eee">
+<div class="wap_coupon">
+    <div class="toolbar">
+        <a class="back" href="./i.order.html"><div class="back-into"></div></a>
+        <span>订单详情</span>
+    </div>
+    <!--<div class="orderdetail_header">-->
+    <!--<div class="orderdetail_header_1"><img src="images/orderDetialsimg.png"></div>-->
+    <!--<div class="orderdetail_header_2"><span>订单已签收</span></div>-->
+    <!--<div class="orderdetail_header_3"><a href="#">去评价</a></div>-->
+    <!--</div>-->
+<div  class="receipt_information_001" >
+    <div class="receipt_payment-order " >
+        <div class="payment-order02_2">支付剩余时间</div>
+        <div class="payment-order02_3">
+            <span id="minute"></span>:<span style="margin-left: 3px" id="second"></span>
+        </div>
+    </div>
+
+</div>
+
+
+    <div class="receipt_information">
+        <div class="receipt_information01">收货信息</div>
+        <div class="receipt_information02">收货人: <span class="consignee">宋河桥</span><span class="consignee_phone01">手机号:<span class="consignee_phone">15264254151</span></span></div>
+        <div class="receipt_information03">收货地址: <span class="receiving_address">朝阳街道立新街与夷安大道交汇处东150米路北</span></div>
+    </div>
+    <!--<div class="distribution_information">-->
+    <!--<div class="distribution_information01">配送信息</div>-->
+    <!--<div class="distribution_information02">配送员: <span class="distributor">徐福鑫</span></div>-->
+    <!--<div class="distribution_information03">手机号: <span class="distributor_phone">18601568819</span></div>-->
+    <!--</div>-->
+
+    <div class="pruduct_value">
+        <div class="pruduct_value01">商品信息</div>
+        <div class="pruduct_value02">
+            <a href="i.order-commoditydetails.html" class="pruduct_value02_a">
+                <div class="pruduct_value_img">
+                    <!--<img src="images/shangpinshengnvguo.png"><img src="images/shangpinshengnvguo.png"><img src="images/shangpinshengnvguo.png"><img src="images/shangpinshengnvguo.png">-->
+                </div>
+                <div class="pruduct_value_sum">共<span class="pruduct_value_sum01"></span>件 <img src="images/right_member.png" class="right_member"></div>
+            </a>
+        </div>
+    </div>
+    <div class="orderdetail_value-1">
+        <div class="orderdetail_value01">订单信息</div>
+        <div>订单编号: <span class="orderdetail_value02">DD18030303754654254</span></div>
+        <!--<div>交易流水: <span class="orderdetail_value03">4523452132132023162132156215</span></div>-->
+        <div>创建时间: <span class="orderdetail_value04">2018-03-03 11:45:20</span></div>
+        <!--<div>付款时间: <span class="orderdetail_value"05>2018-03-03 11:45:40</span></div>-->
+        <div>发货时间: <span class="orderdetail_value06">2018-03-03 11:49:20</span></div>
+        <!--<div>配送单号: <span class="orderdetail_value07">1998753002548</span></div>-->
+    </div>
+    <div class="Clearing_information-01">
+        <div class="Clearing_information01">结算信息</div>
+        <div >商品金额:<span>￥<span class="Clearing_information02">217.80</span></span></div>
+        <div>满减优惠:<span>-￥<span class="Clearing_information03">0.00</span></span></div>
+        <div>优惠券:<span>-￥<span class="Clearing_information04">0.00</span></span></div>
+        <!--<div>包装费:<span>+￥<span class="Clearing_information05">0.00</span></span></div>-->
+        <div>配送费:<span>+￥<span class="Clearing_information06">0.00</span></span></div>
+        <!--<div>使用金额:<span>-￥<span class="Clearing_information07">0.00</span></span></div>-->
+        <div><span class="Clearing_information_paynum"><span class="Clearing_information_paynum_span1">实付总额:</span>￥<span class="Clearing_information08">217.80</span></span></div>
+    </div>
+    <div class="other_information">
+        <div class="other_information01">其他信息</div>
+        <!--<div>配送积分: <span>+<span>217.80</span></span></div>-->
+        <div>附加服务: <span class="other_information_laji">帮捎带送生活垃圾</span></div>
+        <div>备注:<span class="other_information_remaks"></span></div>
+    </div>
+    <div style="width: 100%;height: 80px"></div>
+</div>
+<div class="orderunpaid_footer" >
+
+    <a ><div class="orderunpaid_footer01" >立即支付</div></a>
+</div>
+</body>
+</html>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/wys.js"></script>
+<script>
+    var $_331 = jQuery.noConflict();
+    if(sessionStorage.access_token !== undefined){
+        var obj = {};
+        obj.access_token = sessionStorage.access_token;
+        obj.orderNo=sessionStorage.order_MyorderNo;
+        obj.timestamp= parseInt(new Date().getTime()/1000);
+        obj.from = "web";
+        var str = srotKeyObjAndMd5(obj);
+        var newUrl = url + "order/itemList?" + str;
+        $_331.ajax({
+            url:newUrl,
+            type:"get",
+            dataType:"json",
+            success:function(data){
+                console.log("订单数据显示");
+                console.log(data);
+                //支付剩余时间
+                var arr_time=data.data.order.orderTime;
+                var hour_time=arr_time.slice(11,13);
+                var minute_time=arr_time.slice(14,16);
+                var second_time=arr_time.slice(17,19);
+           var date=new Date();
+           var year=date.getFullYear();
+           var month=date.getMonth()+1;
+           var day=date.getDate();
+           var hour=date.getHours();
+           var minutes=date.getMinutes();
+           var seconds=date.getSeconds();
+                if (month >= 0 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (day >= 0 && day <= 9) {
+                    day = "0" + day;
+                }
+                if (hour >= 0 && hour <= 9) {
+                    hour = "0" + hour;
+                }
+                if (minutes >= 0 && minutes <= 9) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds >= 0 && seconds <= 9) {
+                    seconds = "0" + seconds;
+                }
+           var now_time=year+"-"+month+"-"+day+" "+hour+":"+minutes+":"+seconds;
+                var d1=new Date(arr_time);
+                var d2=new Date(now_time);
+                // console.log("当前时间："+d2);
+                // console.log("订单时间："+d1);
+                // console.log(parseInt(d2 - d1));//两个时间相差的毫秒数
+                // console.log(parseInt(d2 - d1) / 1000);//两个时间相差的秒数
+                // console.log(parseInt(d2 - d1) / 1000 / 60);//两个时间相差的分钟数
+                // console.log(parseInt(d2 - d1) / 1000 / 60/60);//两个时间相差的小时数
+                 var ms=parseInt(d2 - d1);
+                 var ms_xianshi=parseInt(30*60*1000);
+                 if (ms>ms_xianshi){
+                     alert("支付超时");
+                 } else if(ms>0&&ms<=ms_xianshi){
+                     var minute_0 = parseInt(d2 - d1)/1000/60;
+                     var minute_1=minute_0.toString();
+                     if (minute_1<10){
+                         minute_1="0"+minute_1;
+                     }
+                     console.log(minute_1.substring(0,2));
+                     console.log("0"+minute_1.substring(2));
+                     //分
+                    var minute=parseInt(30-(minute_1.substring(0,2)));
+                     //秒
+                     var second_0="0"+minute_1.substring(2);
+                     var second_1=parseInt(60-(second_0*60))
+                    console.log(second_1);
+                     var second = second_1;
+                     setInterval(function() {
+                         second--;
+                         if(second == 00 && minute == 00) {
+                             minute = 00;
+                             second = 00;
+                         }; //当分钟和秒钟都为00时，重新给值
+
+                         if(second == 00) {
+                             second = 59;
+                             minute--;
+                             if(minute < 10) minute = "0" + minute;
+                         }; //当秒钟为00时，秒数重新给值
+                         if(second < 10) second = "0" + second;
+                         $_331("#minute").text(minute);
+                         $_331("#second").text(second);
+                         // alert(minute+second+minute.slice(0,1)+second.slice(0,1));
+                         // $("#minute").text(minute.slice(0,1));
+                         // $("#fen1").text(minute.slice(1,2));
+                         // $("#second").text(second.slice(0,1));
+                         // $("#miao2").text(second.slice(1,2));
+                     }, 1000);
+                 }
+                 //立即支付
+                $_331(".orderunpaid_footer01").click(function () {
+                    sessionStorage.minuteTime=minute;
+                    sessionStorage.secondTime=second;
+                    sessionStorage.unpaidNo=data.data.order.orderNo;
+                    sessionStorage.unpaidPaymoney=data.data.order.payMoney;
+                    location.href="i.payment-order.html";
+                });
+
+                //收货人信息
+                $_331(".consignee").html(data.data.address.name);
+                $_331(".consignee_phone").html(data.data.address.phone);
+                $_331(".receiving_address").html(data.data.address.addres+" "+data.data.address.doorplate);
+                //商品信息
+                var listImg="";
+                var countGoods=new Array();
+                for(var i=0;i<data.data.orderItems.length;i++){
+                    if(data.data.orderItems.length<4){
+                        // alert(arr[i].imgSrc);
+                        listImg+='<div class="imglist-value">'+'<img class="imglist"  src="'+data.data.orderItems[i].imagePath+'">'+'<div class="imglistnum">'+data.data.orderItems[i].amount+'</div>'+'</div>';
+                    }else {
+                        listImg='<div class="imglist-value">'+'<img class="imglist"  src="'+data.data.orderItems[0].imagePath+'">'+'<div class="imglistnum">'+data.data.orderItems[0].amount+'</div>'+'</div>'+
+                            '<div class="imglist-value">'+'<img class="imglist"  src="'+data.data.orderItems[1].imagePath+'">'+'<div class="imglistnum">'+data.data.orderItems[1].amount+'</div>'+'</div>'+
+                            '<div class="imglist-value">'+'<img class="imglist"  src="'+data.data.orderItems[2].imagePath+'">'+'<div class="imglistnum">'+data.data.orderItems[2].amount+'</div>'+'</div>'+
+                            '<div class="imglist-value">'+'<img class="imglist"  src="'+data.data.orderItems[3].imagePath+'">'+'<div class="imglistnum">'+data.data.orderItems[3].amount+'</div>'+'</div>';
+                    }
+                    countGoods.push(data.data.orderItems[i].amount);
+                }
+                var total=0;
+                for (var i=0;i<countGoods.length;i++){
+                    // total=parseInt(countGoods[i])+parseInt(countGoods[i+1]);
+                    total+=parseInt(countGoods[i]);
+                }
+                $_331(".pruduct_value_sum01").html(total);
+                $_331(".pruduct_value_img").html(listImg);
+                //订单信息
+                $_331(".orderdetail_value02").html(data.data.order.orderNo);
+                $_331(".orderdetail_value04").html(data.data.order.createTime);
+                $_331(".orderdetail_value06").html(data.data.order.startDeliverTime);
+                //结算信息
+                $_331(".Clearing_information02").html(data.data.order.discountedMoney);
+                $_331(".Clearing_information03").html(data.data.order.discountMoney);
+                $_331(".Clearing_information04").html(data.data.order.couponMoney);
+                $_331(".Clearing_information06").html(data.data.order.basePostage);
+                $_331(".Clearing_information08").html(data.data.order.payMoney);
+                //其他信息
+
+                var additionalServices="";
+                if( data.data.order.additionalServices==1){
+                    additionalServices="帮捎带送生活垃圾";
+                }else {
+                    additionalServices="未选择附加服务"
+                }
+                var Remarks="";
+
+                if(data.data.order.remarks!==""){
+                    Remarks=data.data.order.remarks;
+                }else {
+                    Remarks="未添加备注";
+                }
+                $_331(".other_information_laji").html(additionalServices);
+                $_331(".other_information_remaks").html(Remarks);
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }else{
+
+    }
+
+
+    function srotKeyObjAndMd5(obj){
+        var arr = [];
+        var newobj = {};
+        for(var key in obj){
+            arr.push(key);
+        }
+        arr.sort();
+        var i=0;
+        for(var key in obj){
+            newobj[arr[i]] = obj[arr[i]];
+            i++;
+        };
+        var str = '';
+        for(var key in newobj){
+            str += key +"="+ newobj[key] + "&";
+        }
+        var newstr = str.substr(0,str.length-1);
+
+        var encodeStr = encodeURIComponent(newstr) + mykey;
+        var sign = md5(encodeStr);
+        newstr += "&sign=" + sign;
+        return newstr;
+    }
+
+</script>

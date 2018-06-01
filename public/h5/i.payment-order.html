@@ -10,7 +10,7 @@
 <body style="background-color: #eee">
 <div class="wap_coupon">
     <div class="toolbar">
-        <a class="back" href="./i.acknowledgement-of-order.html"><div class="back-into"></div></a>
+        <a class="back" href="./i.shopping.html"><div class="back-into"></div></a>
         <span>支付订单</span>
     </div>
     <div class="payment-order01">
@@ -88,29 +88,65 @@
 <!--接口-->
 <script src="js/wys.js"></script>
 <script>
+
     // var $3_3_1 = jQuery.noConflict(true);
-    var minute = "29";
-    var second = 59;
-    setInterval(function() {
-        second--;
-        if(second == 00 && minute == 00) {
-            minute = 29;
-            second = 59;
-        }; //当分钟和秒钟都为00时，重新给值
-        if(second == 00) {
-            second = 59;
-            minute--;
-            if(minute < 10) minute = "0" + minute;
-        }; //当秒钟为00时，秒数重新给值
-        if(second < 10) second = "0" + second;
-        $("#minute").text(minute);
-        $("#second").text(second);
-        // alert(minute+second+minute.slice(0,1)+second.slice(0,1));
-        // $("#minute").text(minute.slice(0,1));
-        // $("#fen1").text(minute.slice(1,2));
-        // $("#second").text(second.slice(0,1));
-        // $("#miao2").text(second.slice(1,2));
-    }, 1000);
+    if (sessionStorage.unpaidNo==undefined){
+
+        $(".payment-order03_1").html(sessionStorage.discountedMoney);
+        $(".payment-method—pay02").html(sessionStorage.discountedMoney);
+        var minute = 29;
+        var second = 59;
+        setInterval(function() {
+            second--;
+            if(second == 00 && minute == 00) {
+                minute = 29;
+                second = 59;
+            }; //当分钟和秒钟都为00时，重新给值
+            if(second == 00){
+                second = 59;
+                minute--;
+                if(minute < 10) minute = "0" + minute;
+            }; //当秒钟为00时，秒数重新给值
+            if(second < 10) second = "0" + second;
+            $("#minute").text(minute);
+            $("#second").text(second);
+
+            // alert(minute+second+minute.slice(0,1)+second.slice(0,1));
+            // $("#minute").text(minute.slice(0,1));
+            // $("#fen1").text(minute.slice(1,2));
+            // $("#second").text(second.slice(0,1));
+            // $("#miao2").text(second.slice(1,2));
+        }, 1000);
+    } else {
+
+        $(".payment-order03_1").html(sessionStorage.unpaidPaymoney);
+        $(".payment-method—pay02").html(sessionStorage.unpaidPaymoney);
+        var minute = sessionStorage.minuteTime;
+        var second = sessionStorage.secondTime;
+        setInterval(function() {
+            second--;
+            if(second == 00 && minute == 00) {
+                minute = 29;
+                second = 59;
+            }; //当分钟和秒钟都为00时，重新给值
+            if(second == 00){
+                second = 59;
+                minute--;
+                if(minute < 10) minute = "0" + minute;
+            }; //当秒钟为00时，秒数重新给值
+            if(second < 10) second = "0" + second;
+            $("#minute").text(minute);
+            $("#second").text(second);
+
+            // alert(minute+second+minute.slice(0,1)+second.slice(0,1));
+            // $("#minute").text(minute.slice(0,1));
+            // $("#fen1").text(minute.slice(1,2));
+            // $("#second").text(second.slice(0,1));
+            // $("#miao2").text(second.slice(1,2));
+        }, 1000);
+    }
+
+
 
 
 //单选框点击
@@ -132,8 +168,6 @@
 
 
 
-  $(".payment-order03_1").html(sessionStorage.discountedMoney);
-    $(".payment-method—pay02").html(sessionStorage.discountedMoney);
 
     $(".payment-method—pay").on("click",function () {
         if(sessionStorage.access_token !== undefined) {
@@ -169,6 +203,12 @@
          }
 
         }
+    });
+
+    //清空此页用到的session
+    $(".back").click(function () {
+        sessionStorage.unpaidPaymoney=undefined;
+        sessionStorage.discountedMoney=undefined;
     });
 
     function srotKeyObjAndMd5(obj){

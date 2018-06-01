@@ -8,11 +8,11 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0"> 
 	<title>登录界面</title>
-    <link href="../manage/myadmin/css/default.css" rel="stylesheet" type="text/css" />
+    <link href="myadmin/css/default.css" rel="stylesheet" type="text/css" />
 	<!--必要样式-->
-    <link href="../manage/myadmin/css/styles.css" rel="stylesheet" type="text/css" />
-    <link href="../manage/myadmin/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="../manage/myadmin/css/loaders.css" rel="stylesheet" type="text/css" />
+    <link href="myadmin/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="myadmin/css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="myadmin/css/loaders.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class='login'>
@@ -22,25 +22,25 @@
 	  <div class='login_fields'>
 	    <div class='login_fields__user'>
 	      <div class='icon'>
-	        <img alt="" src='../manage/myadmin/img/user_icon_copy.png'>
+	        <img alt="" src='myadmin/img/user_icon_copy.png'>
 	      </div>
-	      <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="123456"/>
+	      <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off"/>
 	        <div class='validation'>
-	          <img alt="" src='../manage/myadmin/img/tick.png'>
+	          <img alt="" src='myadmin/img/tick.png'>
 	        </div>
 	    </div>
 	    <div class='login_fields__password'>
 	      <div class='icon'>
-	        <img alt="" src='../manage/myadmin/img/lock_icon_copy.png'>
+	        <img alt="" src='myadmin/img/lock_icon_copy.png'>
 	      </div>
 	      <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
 	      <div class='validation'>
-	        <img alt="" src='../manage/myadmin/img/tick.png'>
+	        <img alt="" src='myadmin/img/tick.png'>
 	      </div>
 	    </div>
 	    <div class='login_fields__password'>
 	      <div class='icon'>
-	        <img alt="" src='../manage/myadmin/img/key.png'>
+	        <img alt="" src='myadmin/img/key.png'>
 	      </div>
 	      <input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off">
 	      <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
@@ -69,15 +69,15 @@
 	</div>
 	<div class="OverWindows"></div>
 	
-    <link href="../manage/myadmin/layui/css/layui.css" rel="stylesheet" type="text/css" />
+    <link href="myadmin/layui/css/layui.css" rel="stylesheet" type="text/css" />
 	
-	<script type="text/javascript" src="../manage/myadmin/js/jquery.min.js"></script>
-	<script type="text/javascript" src="../manage/myadmin/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src='../manage/myadmin/js/stopExecutionOnTimeout.js?t=1'></script>
-    <script type="text/javascript" src="../manage/myadmin/layui/layui.js"></script>
-    <script type="text/javascript" src="../manage/myadmin/js/Particleground.js"></script>
-    <script type="text/javascript" src="../manage/myadmin/js/Treatment.js"></script>
-	<script type="text/javascript" src="../manage/myadmin/js/jquery.mockjax.js"></script>
+	<script type="text/javascript" src="myadmin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="myadmin/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src='myadmin/js/stopExecutionOnTimeout.js?t=1'></script>
+    <script type="text/javascript" src="myadmin/layui/layui.js"></script>
+    <script type="text/javascript" src="myadmin/js/Particleground.js"></script>
+    <script type="text/javascript" src="myadmin/js/Treatment.js"></script>
+	<script type="text/javascript" src="myadmin/js/jquery.mockjax.js"></script>
 	<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
 	<script type="text/javascript">
 		var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
@@ -96,6 +96,8 @@
 		var mykey = "afafda7193c3787f899217b5b09d4a9e";
         // var url = "http://47.105.54.146:8080/";
 		// var mykey = "union_supermarket_2018";
+
+		// alert(url);
 		
 		var CodeVal = 0;
 	    Code();
@@ -263,7 +265,8 @@
 							}
 						},
 						error:function(err){
-							console.log(err)
+							console.log(err);
+							alert("链接错误或权限不够等等");
 						}
 					});
 					
@@ -281,7 +284,7 @@
 	        } else {
 	            //浏览器不支持全屏API或已被禁用  
 	        }
-	    }
+	    };
 		if(ajaxmockjax == 1){
 			$.mockjax({
 				url: 'Ajax/Login',  
@@ -295,7 +298,7 @@
 				responseTime: 50,          
 				responseText: {"Status":"Erro","Erro":"账号名或密码或验证码有误"}
 			});
-		}
+		};
 
 		// $.ajax({
 		// 		data: "info",

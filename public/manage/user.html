@@ -15,7 +15,7 @@
     <title>Document</title>
 </head>
 <style>
-    .data-title{
+    .data-title{ 
         height: 44px;
         margin-bottom: 20px;
         background: #fff;
@@ -117,6 +117,95 @@
     .mymodal{
         margin-top:50px;
     }
+
+    /******************************/
+    .search_store{
+        width: 90%;
+        height: 35px;
+        line-height: 35px;
+        float:right;
+        font-size: 16px;
+        margin-right: 13px;
+    }
+    .findStort{
+        display: inline-block;
+        padding: 6px 12px;
+        margin-top: 0;
+        /*margin-bottom: 0;*/
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        -webkit-appearance: button;
+
+        /*float: right;*/
+        /*margin-right: 458px;*/
+        margin-left: 10px;
+    }
+    .findStort02{
+        display: inline-block;
+        padding: 6px 12px;
+        margin-top: 0;
+        /*margin-bottom: 0;*/
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        -webkit-appearance: button;
+
+        /*float: right;*/
+        /*margin-right: 458px;*/
+    }
+    .search_input1{
+        width: 200px;
+        height: 35px;
+        /*float: right;*/
+        margin-left: 10px;
+        /*margin-right: 5px;*/
+        padding-left: 20px;
+        font-size: 13px;
+    }
+    .search_input2{
+        width: 200px;
+        height: 35px;
+        /*float: right;*/
+        margin-right: 10px;
+        padding-left: 20px;
+        font-size: 13px;
+    }
+    #my-table.my-table tr td{
+        vertical-align: middle;
+    }
 </style>
 <body>
 <div class="admin-container">
@@ -147,7 +236,15 @@
         <div class="body-right">
             <div class="body-right-title">用户管理</div>
             <div class="body-right-data">
-                <div class="add-advertising" style="padding-bottom:30px;">
+                <div class="add-advertising" style="padding-bottom:50px;">
+                    <div class="search_store">
+                        <span class="search_span">用户查找:</span>
+
+                        <input type="text" class="search_input2" placeholder="按手机号查找" id="search_input2" value="">
+                        <button class="findStort02">查找</button>
+                        <input type="text" class="search_input1" placeholder="按昵称查找" id="search_input1" value="">
+                        <button class="findStort">查找</button>
+                    </div>
 
                 </div>
                 <ul class="commodity-manage">
@@ -335,8 +432,13 @@
         //     $('#collapseOne').collapse('toggle');
         // });
         $('.collapse').collapse();
-        function findAllUser(pageNum){
+        function findAllUser(pageNum,name){
             var obj = {};
+            console.log("nickname",name);
+
+            if(name !== undefined){
+                obj.nickname = name;
+            };
             obj.pageNum = pageNum;
             obj.pageSize = pageSize;
             obj.access_token = sessionStorage.access_token;
@@ -357,53 +459,70 @@
                 success:function(data){
                     console.log("ok");
                     console.log(data);
-                    //添加长list
+                    //添加长list   折叠框的展开
+                    // var listNode = '';
+                    // for(var i = 0; i < data.data.list.length;i++){
+                    //     listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].userId+'">'
+                    //         + '<h4 class="panel-title" style="padding-top:0px;">'
+                    //         +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].userId+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
+                    //         + data.data.list[i].nickname
+                    //         + '</a>'
+                    //         + '</h4></div>'
+                    //         + '<div id="collapse'+data.data.list[i].userId+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
+                    //         + '<div class="panel-body">'
+                    //         + '<div class="panel-body">'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>昵称:</span>'
+                    //         + '<span class="store-num">'+ '</span>'
+                    //         + '</li>'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>手机号:</span>'
+                    //         + '<span class="store-num">'+data.data.list[i].phone+'</span>'
+                    //         + '</li>'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>余额:</span>'
+                    //         + '<span class="store-num">'+data.data.list[i].balance+'</span>'
+                    //         + '</li>'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>积分:</span>'
+                    //         + '<span class="store-num">'+data.data.list[i].score+'</span>'
+                    //         + '</li>'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>创建时间:</span>'
+                    //         + '<span class="store-num">'+data.data.list[i].createTime+'</span>'
+                    //         + '</li>'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>更新时间:</span>'
+                    //         + '<span class="store-num">'+data.data.list[i].updateTime+'</span>'
+                    //         + '</li>'
+                    //         + '<li class="list-group-item">'
+                    //         + '<span>头像路径:</span>'
+                    //         + '<span class="store-num">'+data.data.list[i].headimgurl+'</span>'
+                    //         + '</li>'
+                    //         + '</ul></div></div></div></div>'
+                    // }
+
                     var listNode = '';
-                    for(var i = 0; i < data.data.list.length;i++){
-                        listNode += '<div class="panel panel-default"><div class="panel-heading" role="tab" id="heading'+data.data.list[i].userId+'">'
-                            + '<h4 class="panel-title" style="padding-top:0px;">'
-                            +  '<a role="button" data-toggle="collapse" style="min-width:400px;display: inline-block;" data-parent="#accordion" href="#collapse'+data.data.list[i].userId+'" style="min-width:200px;" aria-expanded="false" aria-controls="collapse'+data.data.list[i].id+'">'
-                            + data.data.list[i].nickname
-                            + '</a>'
-                            + '</h4></div>'
-                            + '<div id="collapse'+data.data.list[i].userId+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'
-                            + '<div class="panel-body">'
-                            + '<div class="panel-body">'
-                            + '<li class="list-group-item">'
-                            + '<span>昵称:</span>'
-                            + '<span class="store-num">'+ '</span>'
-                            + '</li>'
-                            + '<li class="list-group-item">'
-                            + '<span>手机号:</span>'
-                            + '<span class="store-num">'+data.data.list[i].phone+'</span>'
-                            + '</li>'
-
-                            + '<li class="list-group-item">'
-                            + '<span>余额:</span>'
-                            + '<span class="store-num">'+data.data.list[i].balance+'</span>'
-                            + '</li>'
-                            + '<li class="list-group-item">'
-                            + '<span>积分:</span>'
-                            + '<span class="store-num">'+data.data.list[i].score+'</span>'
-                            + '</li>'
-                            + '<li class="list-group-item">'
-                            + '<span>创建时间:</span>'
-                            + '<span class="store-num">'+data.data.list[i].createTime+'</span>'
-                            + '</li>'
-                            + '<li class="list-group-item">'
-                            + '<span>更新时间:</span>'
-                            + '<span class="store-num">'+data.data.list[i].updateTime+'</span>'
-                            + '</li>'
-                            + '<li class="list-group-item">'
-                            + '<span>头像路径:</span>'
-                            + '<span class="store-num">'+data.data.list[i].headimgurl+'</span>'
-                            + '</li>'
-
-                            + '</ul></div></div></div></div>'
+                    listNode += '<table class="table table-bordered my-table" id="my-table" style="vertical-align:middle;text-align:center;"><tr><td style="width:66px;" >头像</td><td style="vertical-align:middle;">昵称</td><td style="vertical-align: middle;">手机号</td><td style="vertical-align:middle;">注册时间</td><td style="width:60px;">修改</td><td style="width:60px;">删除</td></tr>';
+                    for(var i = 0; i < data.data.list.length ; i++){
+                        if(data.data.list[i].headimgurl == null){
+                            headimgurl = "myadmin/img/user-default.png";
+                        }else{
+                            headimgurl = data.data.list[i].headimgurl;
+                        }
+                        listNode += '<tr>'
+                                   +'<td style="width:66px;padding:0px;"><img src="'+headimgurl+'" height="50" width="50"/></td>'
+                                   +'<td style="vertical-align:middle;">'+data.data.list[i].nickname+'</td>'
+                                   +'<td>'+data.data.list[i].phone+'</td>'
+                                   +'<td>'+data.data.list[i].createTime+'</td>'
+                                   +'<td style="width:60px;"><button class="btn btn-primary">修改</button></td>'
+                                   +'<td style="width:60px;"><button class="btn btn-primary">删除</button></td>'
+                                   +'</tr>';
                     }
+                    listNode += '</table>';
 
                     listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>';
-
+                    
                     $('.panel-group').html(listNode);
                     // $('.collapse').collapse();
 
@@ -472,6 +591,120 @@
 
         }
         findAllUser(pageNum);
+
+
+        //根据手机号或者昵称(昵称,模糊查询)查询用户
+        $(".findStort").on("click",function(e){
+            var search_input1=document.getElementById("search_input1").value;
+            // var search_input2=document.getElementById("search_input2").value;
+            console.log(search_input1);
+            findAllUser(1,search_input1);
+        });
+        $(".findStort02").on("click",function(e){
+            var search_input2=document.getElementById("search_input2").value;
+                    var obj = {};
+                    obj.access_token = sessionStorage.access_token;
+                    obj.pageNum=1;
+                    obj.pageSize=10;
+                    obj.phone=search_input2;
+                    obj.timestamp = parseInt(new Date().getTime()/1000);
+                    obj.from = "web";
+                    var newobj = srotKeyObj(obj);
+                    var str = objmd5(newobj);
+                    var newUrl = url + "user/customerList?" + str ;
+                    console.log(newUrl);
+                    $.ajax({
+                        url:newUrl,
+                        type:'get',
+                        success:function(data){
+                            console.log(data);
+                            console.log("数据查询成功 ok");
+                                //添加长list
+                                var listNode = '';
+                                listNode += '<table class="table table-bordered my-table" id="my-table" style="vertical-align:middle;text-align:center;"><tr><td style="width:66px;" >头像</td><td style="vertical-align:middle;">昵称</td><td style="vertical-align: middle;">手机号</td><td style="vertical-align:middle;">注册时间</td><td style="width:60px;">修改</td><td style="width:60px;">删除</td></tr>';
+                                for(var i = 0; i < data.data.list.length ; i++){
+                                    if(data.data.list[i].headimgurl == null){
+                                        headimgurl = "myadmin/img/user-default.png";
+                                    }else{
+                                        headimgurl = data.data.list[i].headimgurl;
+                                    }
+                                    listNode += '<tr>'
+                                            +'<td style="width:66px;padding:0px;"><img src="'+headimgurl+'" height="50" width="50"/></td>'
+                                            +'<td style="vertical-align:middle;">'+data.data.list[i].nickname+'</td>'
+                                            +'<td>'+data.data.list[i].phone+'</td>'
+                                            +'<td>'+data.data.list[i].createTime+'</td>'
+                                            +'<td style="width:60px;"><button class="btn btn-primary">修改</button></td>'
+                                            +'<td style="width:60px;"><button class="btn btn-primary">删除</button></td>'
+                                            +'</tr>';
+                                }
+                                listNode += '</table>';
+                                
+                                listNode += '<div class="page" style="padding-top:10px;"><ul class="page-ul"></ul><div><input type="text" class="inputPage" style="margin:0 5px 0px 20px;width:30px;text-align:center;"><button class="btnPage">跳转</button>   &nbsp;&nbsp;&nbsp;共&nbsp;<span class="sumPage">'+data.data.pages+'</span>&nbsp;页</div></div>';
+
+                                $('.panel-group').html(listNode);
+                                // $('.collapse').collapse();
+                                $('.page ul').append("<li data-id='"+data.data.prePage+"'><</li>");
+
+                                if(data.data.pages > 5){
+                                    if(data.data.pageNum < 3){
+                                        for(var i = 1 ; i < 4 ; i++){
+                                            if(data.data.pageNum == i){
+                                                $('.page ul').append("<li data-id="+i+">"+i+"</li>").find("li").eq(i).css({"color":"red"});
+                                            }else{
+                                                $('.page ul').append("<li data-id="+i+">"+i+"</li>");
+                                            }
+                                        }
+                                        $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                        $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                                    }else if(data.data.pageNum == 3){
+                                        $('.page ul').append("<li data-id="+1+">"+1+"</li>");
+                                        $('.page ul').append("<li data-id="+2+">"+2+"</li>");
+                                        $('.page ul').append("<li data-id="+3+">"+3+"</li>").find("li").eq(3).css({"color":"red"});
+                                        $('.page ul').append("<li data-id="+4+">"+4+"</li>");
+                                        $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                        $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                                    }else if(data.data.pageNum-3 > 0){
+                                        $('.page ul').append("<li data-id="+1+">"+1+"</li>");
+                                        $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                        if(data.data.pages-data.data.pageNum >= 3){
+                                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                            $('.page ul').append("<li data-id="+"..."+">"+"..."+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                                        }else if(data.data.pages-data.data.pageNum == 2){
+                                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.nextPage+">"+data.data.nextPage+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                                        }else if(data.data.pages-data.data.pageNum == 1){
+                                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pageNum+" style='color:red'>"+data.data.pageNum+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pages+">"+data.data.pages+"</li>");
+                                        }else if(data.data.pages-data.data.pageNum == 0){
+                                            $('.page ul').append("<li data-id="+data.data.prePage+">"+data.data.prePage+"</li>");
+                                            $('.page ul').append("<li data-id="+data.data.pages+" style='color:red'>"+data.data.pages+"</li>");
+                                        }
+                                    }
+                                }else{
+                                    for(let i = 0; i<data.data.pages;i++){
+                                        var k = i + 1;
+                                        if(k == data.data.pageNum){
+                                            $('.page ul').append("<li data-id="+k+">"+k+"</li>").find("li").eq(k).css({"color":"red"});
+                                        }else{
+                                            $('.page ul').append("<li data-id="+k+">"+k+"</li>");
+                                        }
+                                    };
+                                }
+                                $('.page ul').append("<li data-id='"+data.data.nextPage+"'>></li>");
+
+                        },
+                        error:function(err){
+                            console.log(err);
+                            console.log("err");
+                        }
+                    });
+        });
 
         //选择分页
         $(document).on("click",".page-ul li",function(evev){

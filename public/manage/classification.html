@@ -446,8 +446,13 @@
                     success: function (data) {
                         console.log(data);
                         console.log("request ok");
+                        if(data.code=='200'){
+
+                        }else{
+                            alert(data.message);
+                        }
                     },
-                    error: function (er) {
+                    error:function(er){
                         console.log(err);
                         console.log("请求错误");
                     }

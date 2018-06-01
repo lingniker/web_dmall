@@ -11,7 +11,7 @@
     
 <div class="wap_coupon">
     <div class="toolbar">
-        <a class="back" href="./i.shopping.html"><div class="back-into"></div></a>
+        <a class="back" ><div class="back-into"></div></a>
         <span>订单确认</span>
     </div>
     <div  class="acknowledgement_of_order1 add-new-address-btn" style="width: 100%;height: 80px;background-color: #f7931e;background-image: url('images/acknowledgement_of_orderimg.png');background-repeat: no-repeat;background-position:260px 10px;background-size:100px 60px;color: white!important;margin-top: 45px;">
@@ -382,8 +382,8 @@
                                 success:function(data){
                                     console.log(data);
                                     console.log("ok");
-                                    alert("提交订单成功!");
-                                    // location.href = "i.payment-order.html";
+                                    // alert("提交订单成功!");
+                                    location.href = "i.payment-order.html";
                                 },
                                 error:function(err){
                                     console.log(err);
@@ -391,10 +391,6 @@
                                     console.log(data);
                                 }
                             });
-
-
-
-
                             }
                         });
 
@@ -463,7 +459,6 @@
 }
 //配送时间选择
 $3_3_1(".acknowledgement_of_peisongshijian02_left_meue1").on("click",function () {
-                  // alert("11111");
                   $3_3_1(".acknowledgement_of_peisongshijian02_left_meue1").css({'backgroundColor':'white'});
                   $3_3_1(".acknowledgement_of_peisongshijian02_left_meue3").css({'backgroundColor':'#eee'});
                   $3_3_1(".acknowledgement_of_peisongshijian02_left_meue2").css({'backgroundColor':'#eee'});
@@ -678,6 +673,13 @@ $3_3_1(".acknowledgement_of_peisongshijian02_left_meue1").on("click",function ()
     $3_3_1(".acknowledgement_of_order_youhuiquan03").html(sessionStorage.Coupon);
     //优惠券选择
     $3_3_1(".acknowledgement_of_order01_span").html(sessionStorage.CouponName);
+
+
+    //清空session
+    $3_3_1(".back").click(function () {
+      sessionStorage.PeisongTime="立即配送";
+       location.href="i.shopping.html";
+    });
 
 </script>
 </body>

@@ -101,6 +101,7 @@ ul{
     height: 100%;
     color: #212121;
     font-size: 18px;
+    text-decoration: none;
     display: inline-block;
     /*border-bottom: 1px #df5d45 solid;*/
 }
@@ -147,6 +148,7 @@ ul{
 }
 .header_menue1_goods_ul{
     /*margin-top: 20px;*/
+    background-color: white;
 }
 .header_menue1_goods_ul li{
     list-style: none;
@@ -154,12 +156,12 @@ ul{
     height: 170px;
     background-color: white;
     border-bottom: 1px solid lightgray;
-
 }
 .header_menue1_goods_a{
     display: inline-block;
-    width: 85%;
-    height: 100%;
+    width: 80%;
+    /*height: 100%;*/
+    background-color: white;
 }
 .header_menue1_goods_img01{
     width: 50%;
@@ -241,18 +243,52 @@ ul{
     margin-top: 15px;
 }
 .header_menue1_goods_shoppingadd{
-    width: 15%;
+    width: 20%;
     height: 100%;
     float: right;
-    text-align: center;
+    /*text-align: center;*/
+    background-color: white;
 }
 .header_menue1_goods_shoppingadd a{
     display: inline-block;
+    background-color: white;
 }
 .header_menue1_goods_shoppingadd_img{
     width: 20px;
     height: 20px;
-    margin-top: 60px;
+    /*margin-top: 110px;*/
+    margin-left: 5px;
+    display: inline-block;
+    position: relative;
+    top: 100px;
+
+}
+.header_menue1_goods_shoppingadd_img01{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 100px;
+    /*margin-top: 110px;*/
+    display: inline-block;
+    visibility: hidden;
+    /*visibility: inherit;*/
+
+}
+.header_menue1_goods_shoppingadd_img02{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    display: inline-block;
+    /*margin-top: -5px;*/
+    visibility: hidden;
+    text-align: center;
+    position: relative;
+    top: 95px;
+
+
+}
+.addCart{
+    background-color: white!important;
 }
 
 #header_menue01{
@@ -676,3 +712,106 @@ ul {
     background-position: -341px -42px;
     background-size: 398px 100px;
 }
+/*******search.html部分css*******************************************/
+.content_search{
+    width: 100%;
+    height: 100%;
+    margin-top: 45px;
+}
+.content_search a{
+    text-decoration: none;
+    display: inline-block;
+    background-color: #eeeeee;
+    color: black;
+    padding: 1%;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.search_1{
+    text-align: center;
+    line-height:44px;
+}
+#search{
+    width:70%;
+    height: 30px;
+    margin: 0 auto;
+    padding-left: 10px;
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    outline: none;
+}
+.btn_search{
+    background: white;
+    border: 0;
+    color: black;
+    font-size: 16px;
+    /*margin-top: 15px;*/
+    /*margin-left: 10px;*/
+    outline: none;
+    position: relative;
+    top: 13px;
+    right: 10px;
+    float: right;
+}
+
+.search_title{
+    width: 100%;
+    margin-top:4rem;
+    /*height: 50px;*/
+
+}
+.search_title2{
+    width: 100%;
+    margin-top:5%;
+    /*height: 50px;*/
+}
+h4{
+    margin-left: 20px;
+}
+#clear{
+    margin-left: 20px;
+    border-radius: 5px;
+    border-style:dashed ;
+    background-color: white;
+    /*margin-top: -5%;*/
+    float: right;
+    display: none;
+
+}
+
+.search_qudiao{
+    width: 18px;
+    height: 18px;
+    /*margin-left: -30px;*/
+    position: relative;
+    top: 6px;
+    left: 125px;
+    /*left: -30px;*/
+    display: none;
+}
+.search_history{
+    width: 100%;
+    height: 100%;
+}
+.search_history li{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 5%;
+    border-bottom: 1px #eee solid;
+}
+.search_clearhistory{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+    top: 10px;
+    text-align: center;
+    color: white;
+    background-color:#f57d41 ;
+}
+

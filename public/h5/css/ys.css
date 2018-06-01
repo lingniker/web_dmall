@@ -981,7 +981,7 @@ html, .body {
 .content_search{
     width: 100%;
     height: 100%;
-    margin-top: 44px;
+    margin-top: 45px;
 }
 .content_search a{
     text-decoration: none;
@@ -998,19 +998,27 @@ html, .body {
     line-height:44px;
 }
 #search{
-    /*background-color: #eeeeee;*/
-    width:62%;
+    width:70%;
     height: 30px;
     margin: 0 auto;
     padding-left: 10px;
-
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    outline: none;
 }
 .btn_search{
     background: white;
     border: 0;
     color: black;
-    font-size: 18px;
-    margin-top: 5px;
+    font-size: 16px;
+    /*margin-top: 15px;*/
+    /*margin-left: 10px;*/
+    outline: none;
+    position: relative;
+    top: 13px;
+    right: 10px;
+    float: right;
 }
 
 .search_title{
@@ -1038,6 +1046,39 @@ h4{
 
 }
 
+.search_qudiao{
+    width: 18px;
+    height: 18px;
+    /*margin-left: -30px;*/
+   position: relative;
+    top: 6px;
+    left: 125px;
+    /*left: -30px;*/
+    display: none;
+}
+.search_history{
+    width: 100%;
+    height: 100%;
+}
+.search_history li{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 5%;
+    border-bottom: 1px #eee solid;
+}
+.search_clearhistory{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+    top: 10px;
+    text-align: center;
+    color: white;
+    background-color:#f57d41 ;
+}
 
 /********menue.html**********************************/
 .content_menue{
@@ -1317,7 +1358,7 @@ h4{
     padding-top: 10px;
 }
 .product_01{
-    width: 210px;
+    width: 200px;
     /*height: 50px;*/
     font-weight: 600;
     float: left;
@@ -1547,6 +1588,12 @@ h4{
     background-color: white;
     margin-top: 10px;
 }
+.receipt_information_001{
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    margin-top: 10px;
+}
 .receipt_information01{
     width: 100%;
     height: 30px;
@@ -1691,6 +1738,16 @@ h4{
     color: #4d4d4d ;
     padding-left: 2%;
 }
+.orderdetail_value-1{
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    background-color: white;
+    font-size: 13px;
+    color: #4d4d4d ;
+    padding-left: 2%;
+    line-height: 28px;
+}
 .orderdetail_value01{
     width: 100%;
     height: 30px;
@@ -1714,6 +1771,25 @@ h4{
     color: #4d4d4d ;
     padding-left: 2%;
 }
+.Clearing_information-01{
+    width: 100%;
+    height: 180px;
+    margin-top: 10px;
+    background-color: white;
+    font-size: 13px;
+    color: #4d4d4d ;
+    padding-left: 2%;
+}
+.Clearing_information-01 div{
+    margin-top: 10px;
+}
+.Clearing_information-01 div>span{
+    float: right;
+    margin-right: 5%;
+}
+
+
+
 .Clearing_information01{
     width: 100%;
     height: 30px;
@@ -1756,6 +1832,26 @@ h4{
 }
 .other_information div{
     margin-top: 10px;
+}
+/*******i.orderunpaid************************************************/
+.orderunpaid_footer{
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    background-color: #eee;
+}
+.orderunpaid_footer01{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    background-color:#f15a24;
+    margin: 0 auto;
+    margin-top: 5px;
 }
 
 /********i.commoditydetails.html************************************/

@@ -2,7 +2,6 @@
 // var url = "http://140.143.25.27:8080/";
 // var url = "http://192.168.1.109:8080/";
 var url = "http://192.168.1.108:8080/";
-// var url = "http://192.168.1.109:8080/";
 // var url = "http://47.105.54.146:8080/";
 // var mykey = "union_supermarket_2018";
 var mykey = "afafda7193c3787f899217b5b09d4a9e";

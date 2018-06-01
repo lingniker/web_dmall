@@ -8,8 +8,18 @@
     <link href="myadmin/assets/css/font-awesome.css" rel="stylesheet" />
     <link href="myadmin/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <link href="myadmin/assets/css/custom-styles.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" >
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
+
+    <script async src="myadmin/time/dist/flatpickr.js" onload="fp_ready()"></script>
+	<script async src="myadmin/time/assets/prettify.js?skin=none" onload="prettyPrint()"></script>
+	<script async src="myadmin/time/assets/table-of-contents.js"></script>
+	<script async src="myadmin/time/assets/themer.js"></script>
+	<script async id="myadmin/time/locale_script"></script>
+	<script async src="myadmin/time/assets/localizr.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="myadmin/time/assets/site.css"> -->
+	<link rel="stylesheet" id=cal_style type="text/css" href="myadmin/time/dist/flatpickr.min.css">
+
     <link href="myadmin/css/common.css" rel="stylesheet">
     <!-- <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> -->
     <title>Document</title>
@@ -340,6 +350,7 @@
     <!-- <script src="../cdn/jquery3.3.1.min.js"></script>
     <script src="../cdn/md5.min.js"></script> -->
     <script>
+        window.onload = function(){
         var $_331 = jQuery.noConflict();
         // var url = "http://192.168.1.108:8080/";
         // var mykey = "union_supermarket_2018";
@@ -391,7 +402,7 @@
                     +a[i].split(':^:')[0].split('_')[0]
                     +'" class="control-label">'
                     +a[i].split(':^:')[0].split('_')[1]
-                    +'</label><input type="text" data-enable-time=true data-time_24hr=true  data-enable-seconds=true class="form-control flatpickr" id="index" name="'
+                    +'</label><input class="form-control flatpickr" type="text" data-enable-time=true   data-enable-seconds=true   name="'
                     +a[i].split(':^:')[0].split('_')[0]+'"></div>';
                 }else{
                     appendNode += '<div class="form-group"><label for="'
@@ -407,7 +418,9 @@
             }
             appendNode += '</li></ul>';
             $(".append-form").html(appendNode);
-            document.getElementsByClassName("flatpickr").flatpickr();
+            setTimeout(() => {
+                document.getElementsByClassName("flatpickr").flatpickr();                
+            }, 0);
             var modal = $(this);
             modal.find('.modal-title').text("管理");
             $("#modal-commit").data("api",button.data("api"));
@@ -612,8 +625,11 @@
                         success:function(data){
                             console.log(data);
                             console.log("ok");
-                            alert("广告删除成功");
-
+                            if(data.code == 200){
+                                alert("广告删除成功");
+                            }else{
+                                alert(data.messge);
+                            }
                             // $(this).remove();
 
                         },
@@ -808,6 +824,7 @@
             
         });
     })();
+   }
     </script>
 </body>
 </html>
